@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="GWJ 80"
+config/name="Slime Alchemist"
 run/main_scene="res://scenes/opening/opening_with_logo.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -24,10 +24,12 @@ ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/autolo
 
 [debug]
 
-gdscript/warnings/untyped_declaration=2
+gdscript/warnings/untyped_declaration=1
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
@@ -36,7 +38,7 @@ enabled=PackedStringArray("res://addons/gwj_countdown/plugin.cfg", "res://addons
 
 [gui]
 
-theme/custom="res://resources/themes/gravity.tres"
+theme/custom="uid://bxjiw3b5i82d3"
 
 [input]
 
