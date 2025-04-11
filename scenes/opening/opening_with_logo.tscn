@@ -3,10 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://sikc02ddepyt" path="res://addons/maaacks_game_template/base/scenes/opening/opening.tscn" id="1_w60c0"]
 [ext_resource type="Script" uid="uid://103rw4nk02ws" path="res://scenes/opening/opening.gd" id="2_ynkyy"]
 [ext_resource type="Texture2D" uid="uid://damao0xeid2r5" path="res://assets/images/GWJ-Full-Logo-tag-Orange2.svg" id="3_kt5v3"]
-[ext_resource type="Texture2D" uid="uid://s7vtfe3nu54j" path="res://assets/images/ThemeBanner.png" id="4_u58oj"]
-[ext_resource type="Texture2D" uid="uid://d2t0hl32kfagp" path="res://assets/images/WildcardsBanner.png" id="5_qie0p"]
+[ext_resource type="Texture2D" uid="uid://dpqjbqufdoqmf" path="res://assets/images/80-Controlled_Chaos.png" id="4_w60c0"]
+[ext_resource type="Texture2D" uid="uid://dbr8e36m67rfw" path="res://assets/images/80-All-Cards.png" id="5_ynkyy"]
 
 [node name="Opening" instance=ExtResource("1_w60c0")]
 script = ExtResource("2_ynkyy")
 next_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
-images = Array[Texture2D]([ExtResource("3_kt5v3"), ExtResource("4_u58oj"), ExtResource("5_qie0p")])
+images = Array[Texture2D]([ExtResource("3_kt5v3"), ExtResource("4_w60c0"), ExtResource("5_ynkyy")])
+
+[node name="ImagesContainer" parent="." index="1"]
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 64
