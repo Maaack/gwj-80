@@ -1,3 +1,6 @@
+## Modified version of Third Person Controller
+## by emirthab - MIT License
+
 class_name PlayerCharacter
 extends CharacterBody3D
 
@@ -28,11 +31,8 @@ var bigattack_node_name = "BigAttack"
 var rollattack_node_name = "RollAttack"
 
 # Condition States
-var is_attacking = bool()
-var is_rolling = bool()
 var is_walking = bool()
 var is_running = bool()
-var is_dancing = bool()
 var should_stop_dancing = bool()
 
 # Physics values
@@ -71,20 +71,6 @@ func _physics_process(delta):
 		#vertical_velocity = -get_floor_normal() * gravity / 3
 		vertical_velocity = Vector3.DOWN * gravity / 10
 	
-	is_attacking = false
-
-# Giving BigAttack some Slide
-	if bigattack_node_name in playback.get_current_node(): 
-		acceleration = 3
-
-	# Defining Roll state and limiting movment during rolls
-	if roll_node_name in playback.get_current_node(): 
-		is_rolling = true
-		acceleration = 2
-		angular_acceleration = 2
-	else: 
-		is_rolling = false
-	
 #	Jump input and Mechanics
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		vertical_velocity = Vector3.UP * jump_force
@@ -114,11 +100,7 @@ func _physics_process(delta):
 	#else: # Normal turn movement mechanics
 	player_mesh.rotation.y = lerp_angle(player_mesh.rotation.y, atan2(direction.x, direction.z) - rotation.y, delta * angular_acceleration)
 	
-	# Movment mechanics with limitations during rolls/attacks
-	if ((is_attacking == true) or (is_rolling == true)): 
-		horizontal_velocity = horizontal_velocity.lerp(direction.normalized() * .01 , acceleration * delta)
-	else: # Movement mechanics without limitations 
-		horizontal_velocity = horizontal_velocity.lerp(direction.normalized() * movement_speed, acceleration * delta)
+	horizontal_velocity = horizontal_velocity.lerp(direction.normalized() * movement_speed, acceleration * delta)
 	
 	# The Physics Sauce. Movement, gravity and velocity in a perfect dance.
 	velocity.z = horizontal_velocity.z + vertical_velocity.z
