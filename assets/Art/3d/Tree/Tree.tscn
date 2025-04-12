@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bngyb7766rb5a"]
+
+[ext_resource type="ArrayMesh" uid="uid://dyhpc2af0vqks" path="res://assets/Art/3d/Tree_Obj.obj" id="1_li0rl"]
+[ext_resource type="Texture2D" uid="uid://f6u77e5k5gu1" path="res://assets/Art/3d/Tree/Tree_Cowl.png" id="2_w2xm7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6xq7"]
+albedo_color = Color(0.405989, 0.247142, 0.0744858, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sno2e"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+albedo_texture = ExtResource("2_w2xm7")
+rim_tint = 0.49
+subsurf_scatter_strength = 0.55
+subsurf_scatter_skin_mode = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="TreeObj" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0150708, 0, 0, 0, 0.0150708, 0, 0, 0, 0.0150708, -0.0131373, 0, 0.0196157)
+mesh = ExtResource("1_li0rl")
+surface_material_override/0 = SubResource("StandardMaterial3D_g6xq7")
+surface_material_override/1 = SubResource("StandardMaterial3D_sno2e")
