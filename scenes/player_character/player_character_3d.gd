@@ -4,61 +4,61 @@
 class_name PlayerCharacter
 extends CharacterBody3D
 
-@onready var animation_tree = $AnimationTree
-@onready var playback = animation_tree.get("parameters/playback")
+@onready var animation_tree : AnimationTree = $AnimationTree
+@onready var playback : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 
 # Allows to pick your chracter's mesh from the inspector
 @export_node_path("Node3D") var PlayerCharacterMesh: NodePath
 @onready var player_mesh : Node3D = get_node(PlayerCharacterMesh)
 
 # Gamplay mechanics and Inspector tweakables
-@export var gravity = 9.8
-@export var jump_force = 9
-@export var walk_speed = 1.3
-@export var run_speed = 5.5
-@export var dash_power = 12 # Controls roll and big attack speed boosts
+@export var gravity : float = 9.8
+@export var jump_force : float = 9
+@export var walk_speed : float = 1.3
+@export var run_speed : float = 5.5
+@export var dash_power : float = 12 # Controls roll and big attack speed boosts
 @export var character_model : Node3D
 
 # Animation node names
-var roll_node_name = "Roll"
-var idle_node_name = "Idle"
-var walk_node_name = "Walk"
-var run_node_name = "Run"
-var jump_node_name = "Jump"
-var dance_node_name = "Dance"
-var attack2_node_name = "Attack2"
-var bigattack_node_name = "BigAttack"
-var rollattack_node_name = "RollAttack"
+var roll_node_name : String= "Roll"
+var idle_node_name : String= "Idle"
+var walk_node_name : String= "Walk"
+var run_node_name : String= "Run"
+var jump_node_name : String= "Jump"
+var dance_node_name : String= "Dance"
+var attack2_node_name : String= "Attack2"
+var bigattack_node_name : String= "BigAttack"
+var rollattack_node_name : String= "RollAttack"
 
 # Condition States
-var is_walking = bool()
-var is_running = bool()
-var should_stop_dancing = bool()
+var is_walking : bool = false
+var is_running : bool = false
+var should_stop_dancing : bool = false
 
 # Physics values
-var direction = Vector3()
-var horizontal_velocity = Vector3()
-var aim_turn = float()
-var movement = Vector3()
-var vertical_velocity = Vector3()
-var movement_speed = int()
-var angular_acceleration = int()
-var acceleration = int()
+var direction : Vector3
+var horizontal_velocity : Vector3
+var aim_turn : float
+var movemen : Vector3
+var vertical_velocity : Vector3
+var movement_speed : float
+var angular_acceleration : float
+var acceleration : float
 var selected_outfit : Node3D
 var stop_movement_inputs : bool = false
 
-func _ready(): # Camera based Rotation
+func _ready() -> void: # Camera based Rotation
 	direction = Vector3.BACK.rotated(Vector3.UP, $Camroot/h.global_transform.basis.get_euler().y)
 
-func _input(event): # All major mouse and button input events
+func _input(event : InputEvent)  -> void: # All major mouse and button input events
 	if event is InputEventMouseMotion:
 		aim_turn = -event.relative.x * 0.015 # animates player with mouse movement while aiming 
 
-func _physics_process(delta):
+func _physics_process(delta : float) -> void:
 	if stop_movement_inputs:
 		return
-	var on_floor = is_on_floor() # State control for is jumping/falling/landing
-	var h_rot = $Camroot/h.global_transform.basis.get_euler().y
+	var on_floor := is_on_floor() # State control for is jumping/falling/landing
+	var h_rot : float = $Camroot/h.global_transform.basis.get_euler().y
 	
 	movement_speed = 0
 	angular_acceleration = 10
