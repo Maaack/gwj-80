@@ -1,0 +1,141 @@
+class_name PlayerCharacter
+extends CharacterBody3D
+
+@onready var animation_tree = $AnimationTree
+@onready var playback = animation_tree.get("parameters/playback")
+
+# Allows to pick your chracter's mesh from the inspector
+@export_node_path("Node3D") var PlayerCharacterMesh: NodePath
+@onready var player_mesh : Node3D = get_node(PlayerCharacterMesh)
+
+# Gamplay mechanics and Inspector tweakables
+@export var gravity = 9.8
+@export var jump_force = 9
+@export var walk_speed = 1.3
+@export var run_speed = 5.5
+@export var dash_power = 12 # Controls roll and big attack speed boosts
+@export var character_model : Node3D
+
+# Animation node names
+var roll_node_name = "Roll"
+var idle_node_name = "Idle"
+var walk_node_name = "Walk"
+var run_node_name = "Run"
+var jump_node_name = "Jump"
+var dance_node_name = "Dance"
+var attack2_node_name = "Attack2"
+var bigattack_node_name = "BigAttack"
+var rollattack_node_name = "RollAttack"
+
+# Condition States
+var is_attacking = bool()
+var is_rolling = bool()
+var is_walking = bool()
+var is_running = bool()
+var is_dancing = bool()
+var should_stop_dancing = bool()
+
+# Physics values
+var direction = Vector3()
+var horizontal_velocity = Vector3()
+var aim_turn = float()
+var movement = Vector3()
+var vertical_velocity = Vector3()
+var movement_speed = int()
+var angular_acceleration = int()
+var acceleration = int()
+var selected_outfit : Node3D
+var stop_movement_inputs : bool = false
+
+func _ready(): # Camera based Rotation
+	direction = Vector3.BACK.rotated(Vector3.UP, $Camroot/h.global_transform.basis.get_euler().y)
+
+func _input(event): # All major mouse and button input events
+	if event is InputEventMouseMotion:
+		aim_turn = -event.relative.x * 0.015 # animates player with mouse movement while aiming 
+
+func _physics_process(delta):
+	if stop_movement_inputs:
+		return
+	var on_floor = is_on_floor() # State control for is jumping/falling/landing
+	var h_rot = $Camroot/h.global_transform.basis.get_euler().y
+	
+	movement_speed = 0
+	angular_acceleration = 10
+	acceleration = 15
+
+	# Gravity mechanics and prevent slope-sliding
+	if not is_on_floor(): 
+		vertical_velocity += Vector3.DOWN * gravity * 2 * delta
+	else: 
+		#vertical_velocity = -get_floor_normal() * gravity / 3
+		vertical_velocity = Vector3.DOWN * gravity / 10
+	
+	is_attacking = false
+
+# Giving BigAttack some Slide
+	if bigattack_node_name in playback.get_current_node(): 
+		acceleration = 3
+
+	# Defining Roll state and limiting movment during rolls
+	if roll_node_name in playback.get_current_node(): 
+		is_rolling = true
+		acceleration = 2
+		angular_acceleration = 2
+	else: 
+		is_rolling = false
+	
+#	Jump input and Mechanics
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		vertical_velocity = Vector3.UP * jump_force
+		
+	# Movement input, state and mechanics. *Note: movement stops if attacking
+	if (Input.is_action_pressed("move_forward") ||  Input.is_action_pressed("move_backward") ||  Input.is_action_pressed("move_left") ||  Input.is_action_pressed("move_right")):
+		direction = Vector3(Input.get_action_strength("move_left") - Input.get_action_strength("move_right"),
+					0,
+					Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward"))
+		direction = direction.rotated(Vector3.UP, h_rot).normalized()
+		is_walking = true
+		
+	# Walk input, dash state and movement speed
+		if not Input.is_action_pressed("walk") and (is_walking == true ):
+			movement_speed = run_speed
+			is_running = true
+		else: # Walk State and speed
+			movement_speed = walk_speed
+			is_running = false
+	else: 
+		is_walking = false
+		is_running = false
+	
+	#if Input.is_action_pressed("aim"):  # Aim/Strafe input and  mechanics
+		#player_mesh.rotation.y = lerp_angle(player_mesh.rotation.y, $Camroot/h.rotation.y, delta * angular_acceleration)
+
+	#else: # Normal turn movement mechanics
+	player_mesh.rotation.y = lerp_angle(player_mesh.rotation.y, atan2(direction.x, direction.z) - rotation.y, delta * angular_acceleration)
+	
+	# Movment mechanics with limitations during rolls/attacks
+	if ((is_attacking == true) or (is_rolling == true)): 
+		horizontal_velocity = horizontal_velocity.lerp(direction.normalized() * .01 , acceleration * delta)
+	else: # Movement mechanics without limitations 
+		horizontal_velocity = horizontal_velocity.lerp(direction.normalized() * movement_speed, acceleration * delta)
+	
+	# The Physics Sauce. Movement, gravity and velocity in a perfect dance.
+	velocity.z = horizontal_velocity.z + vertical_velocity.z
+	velocity.x = horizontal_velocity.x + vertical_velocity.x
+	velocity.y = vertical_velocity.y
+	
+	move_and_slide()
+
+	# ========= State machine controls =========
+	# The booleans of the on_floor, is_walking etc, trigger the 
+	# advanced conditions of the AnimationTree, controlling animation paths
+	
+	# on_floor manages jumps and falls
+	animation_tree["parameters/conditions/IsOnFloor"] = on_floor
+	animation_tree["parameters/conditions/IsInAir"] = !on_floor
+	# Moving and running respectively
+	animation_tree["parameters/conditions/IsWalking"] = is_walking
+	animation_tree["parameters/conditions/IsNotWalking"] = !is_walking
+	animation_tree["parameters/conditions/IsRunning"] = is_running
+	animation_tree["parameters/conditions/IsNotRunning"] = !is_running
