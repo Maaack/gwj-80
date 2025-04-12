@@ -34,7 +34,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gwj_countdown/plugin.cfg", "res://addons/maaacks_game_template/plugin.cfg")
+enabled=PackedStringArray("res://addons/gwj_countdown/plugin.cfg", "res://addons/maaacks_game_template/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [gui]
 
