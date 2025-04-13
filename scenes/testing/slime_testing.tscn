@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://chsmnfd4o7tj4"]
+
+[ext_resource type="PackedScene" uid="uid://dgeh3m30gar0o" path="res://scenes/slimes/slime.tscn" id="1_oeq8d"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oeq8d"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_yi86t"]
+sky_material = SubResource("ProceduralSkyMaterial_oeq8d")
+
+[sub_resource type="Environment" id="Environment_qva8q"]
+background_mode = 2
+sky = SubResource("Sky_yi86t")
+tonemap_mode = 2
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_oeq8d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yi86t"]
+albedo_color = Color(0.193378, 0.362305, 0.169947, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qva8q"]
+material = SubResource("StandardMaterial3D_yi86t")
+size = Vector2(50, 50)
+
+[node name="SlimeTesting" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qva8q")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Slime" parent="." instance=ExtResource("1_oeq8d")]
+
+[node name="Slime2" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56541, 0, 0)
+
+[node name="Slime3" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71578, 0, 1.52902)
+
+[node name="Slime4" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.96984)
+
+[node name="Camera3D" type="Camera3D" parent="Slime4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3)
+current = true
+
+[node name="Slime5" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23586, 0, 2.70158)
+
+[node name="Slime6" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60744, 0, 0)
+
+[node name="Slime7" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.97431)
+
+[node name="Slime8" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9354, 0, 0)
+
+[node name="Slime9" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4594, 0, -9.56157)
+
+[node name="Slime10" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47763, 0, 2.85507)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30, 0)
+current = true
+
+[node name="Area3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("WorldBoundaryShape3D_oeq8d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.14218, 0)
+mesh = SubResource("PlaneMesh_qva8q")
