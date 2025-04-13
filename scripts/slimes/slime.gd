@@ -20,11 +20,8 @@ extends CharacterBody3D
 @export var return_in_bounds_velocity: float = 10.0
 
 var nearby_slimes: Array[Slime] = []
-var has_target_location: bool = false
-var target_location := Vector3.ZERO :
-	set(value):
-		target_location = value
-		has_target_location = true
+var attract_locations: Array[Vector3] = []
+var repel_locations: Array[Vector3] = []
 
 @onready var pivot: Node3D = %Pivot
 @onready var debug_label: Label3D = %DebugLabel
@@ -36,7 +33,6 @@ func _ready() -> void:
 	velocity = velocity.normalized() * max_speed
 
 
-# TODO: Add gravity
 func _physics_process(delta: float) -> void:
 	debug_label.text = "V: %.3v (%.3f)\nC: %.3v (%.3f)\nS: %.3v (%.3f)\nA: %.3v (%.3f)" % [
 		velocity,
@@ -50,8 +46,10 @@ func _physics_process(delta: float) -> void:
 	]
 
 	velocity += calc_cohesion() + calc_separation() + calc_alignment()
-	if has_target_location:
-		velocity += calc_attract_location() #calc_repel_location()
+	for attract_location: Vector3 in attract_locations:
+		velocity += calc_attract_location(attract_location)
+	for repel_location: Vector3 in repel_locations:
+		velocity += calc_repel_location(repel_location)
 	velocity.y = 0.0
 
 	if velocity.length() > max_speed:
@@ -74,10 +72,17 @@ func _physics_process(delta: float) -> void:
 ## Used to test the slime target location calculations.
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attract_slimes"):
-		if has_target_location:
-			has_target_location = false
+		if attract_locations.is_empty():
+			attract_locations.append(Vector3.ZERO)
+		elif attract_locations.size() == 1:
+			attract_locations.append(Vector3(10.0, 0.0, 10.0))
 		else:
-			target_location = Vector3.ZERO
+			attract_locations.clear()
+	if event.is_action_pressed("repel_slimes"):
+		if repel_locations.is_empty():
+			repel_locations.append(Vector3(10.0, 0.0, 10.0))
+		else:
+			repel_locations.clear()
 
 
 #region Boid Rules
@@ -129,8 +134,8 @@ func calc_alignment() -> Vector3:
 
 
 ## Slimes will try to move towards a particular location.
-func calc_attract_location() -> Vector3:
-	var distance_to_target_center: Vector3 = (target_location - global_position)
+func calc_attract_location(attract_location: Vector3) -> Vector3:
+	var distance_to_target_center: Vector3 = (attract_location - global_position)
 	# No forces applied within a zone around the target.
 	if distance_to_target_center.length() < target_location_radius:
 		return Vector3.ZERO # -velocity.limit_length(0.001)
@@ -144,8 +149,8 @@ func calc_attract_location() -> Vector3:
 
 
 ## Slimes will try to move away from a particular location.
-func calc_repel_location() -> Vector3:
-	var distance_to_target_center: Vector3 = (target_location - global_position)
+func calc_repel_location(repel_location: Vector3) -> Vector3:
+	var distance_to_target_center: Vector3 = (repel_location - global_position)
 
 	# Full force applied within the target_location_radius
 	if distance_to_target_center.length() < target_location_radius:
