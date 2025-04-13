@@ -21,9 +21,10 @@ subsurf_scatter_strength = 0.55
 subsurf_scatter_skin_mode = true
 
 [node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1.19978, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="TreeObj" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.0150708, 0, 0, 0, 0.0150708, 0, 0, 0, 0.0150708, -0.0131373, 0, 0.0196157)
+transform = Transform3D(0.0224219, 0, 0, 0, 0.0224219, 0, 0, 0, 0.0224219, -0.0131373, 0, 0.0196157)
 mesh = ExtResource("1_li0rl")
 surface_material_override/0 = SubResource("StandardMaterial3D_g6xq7")
 surface_material_override/1 = SubResource("StandardMaterial3D_sno2e")
