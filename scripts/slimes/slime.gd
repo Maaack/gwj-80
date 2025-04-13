@@ -22,6 +22,7 @@ extends CharacterBody3D
 var nearby_slimes: Array[Slime] = []
 var attract_locations: Array[Vector3] = []
 var repel_locations: Array[Vector3] = []
+var is_scattering: bool = false
 
 @onready var pivot: Node3D = %Pivot
 @onready var debug_label: Label3D = %DebugLabel
@@ -74,8 +75,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attract_slimes"):
 		if attract_locations.is_empty():
 			attract_locations.append(Vector3.ZERO)
-		elif attract_locations.size() == 1:
-			attract_locations.append(Vector3(10.0, 0.0, 10.0))
 		else:
 			attract_locations.clear()
 	if event.is_action_pressed("repel_slimes"):
@@ -99,7 +98,11 @@ func calc_cohesion() -> Vector3:
 		center += slime.global_position
 	center /= nearby_slimes.size()
 
-	return (center - global_position) * cohesion_weight
+	var cohesion: Vector3 = (center - global_position) * cohesion_weight
+	if is_scattering:
+		cohesion *= -1
+
+	return cohesion
 
 
 ## Boids rule #2
