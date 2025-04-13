@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyu3536o1ohig"]
+
+[ext_resource type="PackedScene" uid="uid://w1qyucuhwbf7" path="res://assets/Art/3d/Plank/Fence_End.glb" id="1_q5bw7"]
+
+[node name="Fence_End" type="Node3D"]
+
+[node name="Fence_End" parent="." instance=ExtResource("1_q5bw7")]
+transform = Transform3D(1.6127, 0, 0, 0, 1.6127, 0, 0, 0, 1.6127, 0, 0, 0)

@@ -12,13 +12,15 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 shading_mode = 2
-diffuse_mode = 3
-specular_mode = 1
-disable_ambient_light = true
+diffuse_mode = 1
+vertex_color_is_srgb = true
 albedo_texture = ExtResource("2_w2xm7")
-rim_tint = 0.49
+rim_enabled = true
+rim = 0.67
+rim_tint = 1.0
 subsurf_scatter_strength = 0.55
 subsurf_scatter_skin_mode = true
+uv1_scale = Vector3(0.755, 0.755, 0.755)
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1.19978, 0, 0, 0, 1, 0, 0, 0)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctnjck76hupjm"]
+
+[ext_resource type="PackedScene" uid="uid://bpbfi1d0no0cg" path="res://assets/Art/3d/Ancient Items/Platform.glb" id="1_0lu6l"]
+
+[node name="PLatform" type="Node3D"]
+
+[node name="Platform" parent="." instance=ExtResource("1_0lu6l")]
+transform = Transform3D(0.509807, 0, 0, 0, 0.509807, 0, 0, 0, 0.509807, -0.407964, 1.19209e-07, -0.413408)

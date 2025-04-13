@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh7wqbsf60jx3"]
+
+[ext_resource type="PackedScene" uid="uid://dak2i65nd5yf4" path="res://assets/Art/3d/Rock/rOCK.glb" id="1_xu8ab"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="rOCK" parent="." instance=ExtResource("1_xu8ab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.105646, -0.897277, -0.22621)

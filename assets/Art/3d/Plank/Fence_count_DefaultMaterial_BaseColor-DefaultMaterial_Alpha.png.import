@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dn3vxotxtut5c"
+path.s3tc="res://.godot/imported/Fence_count_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-7fba986f4074fb7968a983826a90db44.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "165ad042b9b7884b488211a5111b8bfe"
+}
+
+[deps]
+
+source_file="res://assets/Art/3d/Plank/Fence_count_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png"
+dest_files=["res://.godot/imported/Fence_count_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-7fba986f4074fb7968a983826a90db44.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://du6sadv6lcq1j"]
+[gd_scene load_steps=4 format=3 uid="uid://du6sadv6lcq1j"]
 
 [ext_resource type="PackedScene" uid="uid://cf3dicswiy0ad" path="res://assets/Art/3d/PC/Character_MC.glb" id="1_i7w6j"]
+[ext_resource type="Texture2D" uid="uid://bko0lktp184fm" path="res://assets/Art/3d/PC/Character_MC_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png" id="2_xm47j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xiq5l"]
+albedo_texture = ExtResource("2_xm47j")
 
 [node name="Character_MC" instance=ExtResource("1_i7w6j")]
 
@@ -225,7 +229,10 @@ bones/490/position = Vector3(0.0826153, 6.80825, 1.77239)
 bones/490/rotation = Quaternion(-0.00970963, -0.695713, -0.0125926, 0.718144)
 
 [node name="Hat" parent="rig/Skeleton3D" index="0"]
-transform = Transform3D(1, -4.75848e-09, 7.07805e-08, 2.79397e-09, 1, -6.0536e-09, -6.70552e-08, 5.58794e-09, 1, -4.65661e-08, -0.0524788, -1.49012e-07)
+transform = Transform3D(1, 5.11645e-08, 5.96046e-08, -5.2969e-08, 1, -9.31323e-10, -5.58794e-08, 4.65661e-10, 1, -4.06988e-07, -0.0524788, -1.78814e-07)
 
 [node name="NurbsPath_010" parent="rig/Skeleton3D" index="1"]
-transform = Transform3D(1, -4.75848e-09, 7.07805e-08, 2.79397e-09, 1, -6.0536e-09, -6.70552e-08, 5.58794e-09, 1, -4.65661e-08, -0.0524788, -1.49012e-07)
+transform = Transform3D(1, 5.11645e-08, 5.96046e-08, -5.2969e-08, 1, -9.31323e-10, -5.58794e-08, 4.65661e-10, 1, -4.06988e-07, -0.0524788, -1.78814e-07)
+
+[node name="Eyes_001" parent="rig/Skeleton3D" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_xiq5l")
