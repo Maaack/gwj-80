@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var separation_weight: float = 0.01
 @export var alignment_weight: float = 0.000525
 @export var target_location_weight: float = 0.005
+@export var target_location_repel_weight: float = 0.1
 
 @export_category("Boid Settings")
 @export var separation_distance: float = 3.5
@@ -50,7 +51,7 @@ func _physics_process(delta: float) -> void:
 
 	velocity += calc_cohesion() + calc_separation() + calc_alignment()
 	if has_target_location:
-		velocity += calc_target_location()
+		velocity += calc_attract_location() #calc_repel_location()
 	velocity.y = 0.0
 
 	if velocity.length() > max_speed:
@@ -121,7 +122,7 @@ func calc_alignment() -> Vector3:
 
 
 ## Slimes will try to move towards a particular location.
-func calc_target_location() -> Vector3:
+func calc_attract_location() -> Vector3:
 	var distance_to_target_center: Vector3 = (target_location - global_position)
 	# No forces applied within a zone around the target.
 	if distance_to_target_center.length() < target_location_radius:
@@ -133,6 +134,25 @@ func calc_target_location() -> Vector3:
 		(distance_to_target_center.length() - target_location_radius)
 
 	return (distance_to_target_zone * target_location_weight).limit_length(target_location_max_magnitude)
+
+
+## Slimes will try to move away from a particular location.
+func calc_repel_location() -> Vector3:
+	var distance_to_target_center: Vector3 = (target_location - global_position)
+
+	# Full force applied within the target_location_radius
+	if distance_to_target_center.length() < target_location_radius:
+		return -distance_to_target_center.normalized() * target_location_max_magnitude
+
+	# Partial force applied based on how far the slime is from the repulsion location.
+	var distance_to_target_zone: float = distance_to_target_center.length() - target_location_radius
+	var force_falloff: float = distance_to_target_zone * target_location_repel_weight
+
+	# No forces applied outside of the falloff zone.
+	if force_falloff > target_location_max_magnitude:
+		return Vector3.ZERO
+
+	return (target_location_max_magnitude - force_falloff) * -distance_to_target_center.normalized()
 
 
 #endregion
