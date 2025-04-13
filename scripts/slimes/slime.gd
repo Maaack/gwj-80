@@ -60,6 +60,13 @@ func _physics_process(delta: float) -> void:
 	bound_position(delta)
 	if not velocity.is_zero_approx():
 		pivot.look_at(global_position + velocity)
+
+	# Y velocity is zeroed after the boids rules are applied, so the boids do not try to fly.
+	# So this is added after that, and after the velocity gets normalized, so the gravity
+	# will be consistent.
+	if not is_on_floor():
+		velocity += get_gravity()
+
 	move_and_slide()
 
 

@@ -12,6 +12,7 @@ radius = 7.5
 script = ExtResource("1_22mvs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_22mvs")
 debug_color = Color(0.787219, 0.410982, 0.360379, 0.42)
 
@@ -19,18 +20,19 @@ debug_color = Color(0.787219, 0.410982, 0.360379, 0.42)
 unique_name_in_owner = true
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Pivot"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.05)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.5, 0.05)
 height = 1.0
 cone = true
 
 [node name="FlockingZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FlockingZone"]
 shape = SubResource("SphereShape3D_22mvs")
 
 [node name="DebugLabel" type="Label3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2271, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.727, 0)
 visible = false
 billboard = 1
 
