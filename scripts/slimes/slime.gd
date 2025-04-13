@@ -103,7 +103,7 @@ func calc_alignment() -> Vector3:
 
 ## Used to create a bounding box that slimes will stay in.  This is useful for testing,
 ## so the slimes will stay in the camera range and will have chances to change direction.
-func bound_position(delta: float) -> void:
+func bound_position(_delta: float) -> void:
 	var bounds: float = 25.0
 	if global_position.x < -bounds:
 		velocity.x = return_in_bounds_velocity
@@ -122,6 +122,7 @@ func _on_flocking_zone_body_entered(body: Node3D) -> void:
 		return
 
 	nearby_slimes.append(body)
+
 
 ## Stop tracking slimes that leave the area.
 func _on_flocking_zone_body_exited(body: Node3D) -> void:
