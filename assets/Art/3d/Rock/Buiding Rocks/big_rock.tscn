@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dajo70m0k3f0f"]
+
+[ext_resource type="PackedScene" uid="uid://b7odqgv5vf8dq" path="res://assets/Art/3d/Rock/Buiding Rocks/Big_Rock.glb" id="1_gdege"]
+
+[node name="Big_Rock" type="Node3D"]
+
+[node name="Big_Rock" parent="." instance=ExtResource("1_gdege")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40704, 0, -2.77542)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c663vj28gs3tj"]
+
+[ext_resource type="PackedScene" uid="uid://y3hwxqvp4ipw" path="res://assets/Art/3d/Rock/Buiding Rocks/Small_Rock.glb" id="1_tktpe"]
+
+[node name="Small_Rock" type="Node3D"]
+
+[node name="Small_Rock" parent="." instance=ExtResource("1_tktpe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.156996, 0, -0.49456)

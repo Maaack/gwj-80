@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://du6sadv6lcq1j"]
+[gd_scene load_steps=3 format=3 uid="uid://du6sadv6lcq1j"]
 
 [ext_resource type="PackedScene" uid="uid://cf3dicswiy0ad" path="res://assets/Art/3d/PC/Character_MC.glb" id="1_i7w6j"]
-[ext_resource type="Texture2D" uid="uid://bko0lktp184fm" path="res://assets/Art/3d/PC/Character_MC_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png" id="2_xm47j"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xiq5l"]
-albedo_texture = ExtResource("2_xm47j")
+[ext_resource type="Material" uid="uid://ddmgpuvlxwhi" path="res://scenes/player_character/Player_Shader.tres" id="2_xm47j"]
 
 [node name="Character_MC" instance=ExtResource("1_i7w6j")]
 
@@ -231,8 +228,44 @@ bones/490/rotation = Quaternion(-0.00970963, -0.695713, -0.0125926, 0.718144)
 [node name="Hat" parent="rig/Skeleton3D" index="0"]
 transform = Transform3D(1, 5.11645e-08, 5.96046e-08, -5.2969e-08, 1, -9.31323e-10, -5.58794e-08, 4.65661e-10, 1, -4.06988e-07, -0.0524788, -1.78814e-07)
 
+[node name="Hat" parent="rig/Skeleton3D/Hat" index="0"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
 [node name="NurbsPath_010" parent="rig/Skeleton3D" index="1"]
 transform = Transform3D(1, 5.11645e-08, 5.96046e-08, -5.2969e-08, 1, -9.31323e-10, -5.58794e-08, 4.65661e-10, 1, -4.06988e-07, -0.0524788, -1.78814e-07)
 
+[node name="NurbsPath_010" parent="rig/Skeleton3D/NurbsPath_010" index="0"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Belt" parent="rig/Skeleton3D" index="2"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Circle_001" parent="rig/Skeleton3D" index="3"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Circle_002" parent="rig/Skeleton3D" index="4"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Circle_003" parent="rig/Skeleton3D" index="5"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Cube" parent="rig/Skeleton3D" index="6"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Eyes" parent="rig/Skeleton3D" index="7"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
 [node name="Eyes_001" parent="rig/Skeleton3D" index="8"]
-surface_material_override/0 = SubResource("StandardMaterial3D_xiq5l")
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Low+Poly" parent="rig/Skeleton3D" index="9"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Low+Poly_001" parent="rig/Skeleton3D" index="10"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Low+Poly_002" parent="rig/Skeleton3D" index="11"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Top" parent="rig/Skeleton3D" index="12"]
+surface_material_override/0 = ExtResource("2_xm47j")
