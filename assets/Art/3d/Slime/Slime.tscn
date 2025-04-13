@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://chx4skxp7tgbu"]
+
+[ext_resource type="PackedScene" uid="uid://dvlpyy6ml8tjq" path="res://assets/Art/3d/Slime/SLime.glb" id="1_u1n8k"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="SLime" parent="." instance=ExtResource("1_u1n8k")]
+transform = Transform3D(0.632184, 0, 0, 0, 0.632184, 0, 0, 0, 0.632184, -0.0578741, 1.19209e-07, -0.0456581)
+
+[node name="Skeleton3D" parent="SLime/Armature" index="0"]
+bones/0/position = Vector3(-0.250711, -0.133827, 0.406895)
+bones/1/position = Vector3(-0.169712, 0.590945, 0.474417)
+bones/1/scale = Vector3(1, 1, 1)
+
+[node name="AnimationPlayer" parent="SLime" index="1"]
+autoplay = "Idle"
+
+[editable path="SLime"]
