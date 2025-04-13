@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c75f1vydhi588"]
+
+[ext_resource type="PackedScene" uid="uid://b8k6it2ec4owj" path="res://assets/Art/3d/Ancient Items/Pillar.glb" id="1_edwb3"]
+
+[node name="Pillar" type="Node3D"]
+transform = Transform3D(2.60858, 0, 0, 0, 2.60858, 0, 0, 0, 2.60858, 0, 0, 0)
+
+[node name="Pillar" parent="." instance=ExtResource("1_edwb3")]
+transform = Transform3D(0.390563, 0, 0, 0, 0.390563, 0, 0, 0, 0.390563, -0.0104305, -1.19209e-07, 0.0136759)
