@@ -45,7 +45,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.96984)
 
 [node name="Camera3D" type="Camera3D" parent="Slime4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3)
-current = true
 
 [node name="Slime5" parent="." instance=ExtResource("1_oeq8d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23586, 0, 2.70158)
