@@ -17,12 +17,15 @@ extends CharacterBody3D
 @export_category("Movement Settings")
 @export var min_speed: float = 2.0
 @export var max_speed: float = 3.0
-@export var return_in_bounds_velocity: float = 10.0
+@export var turn_speed: float = 3.0
+@export var external_velocity_deceleration: float = 6.0
 
 var nearby_slimes: Array[Slime] = []
 var attract_locations: Array[Vector3] = []
 var repel_locations: Array[Vector3] = []
 var is_scattering: bool = false
+
+var external_velocity: Vector3 = Vector3.ZERO
 
 @onready var pivot: Node3D = %Pivot
 
@@ -34,18 +37,49 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	velocity += calc_cohesion() + calc_separation() + calc_alignment()
+	var cohesion: Vector3 = calc_cohesion()
+	var separation: Vector3 = calc_separation()
+	var alignment: Vector3 = calc_alignment()
+
+	cohesion.y = 0.0
+	separation.y = 0.0
+	alignment.y = 0.0
+
+	velocity += cohesion + separation + alignment
+
 	for attract_location: Vector3 in attract_locations:
-		velocity += calc_attract_location(attract_location)
+		var attraction: Vector3 = calc_attract_location(attract_location)
+		attraction.y = 0.0
+		velocity += attraction
+
 	for repel_location: Vector3 in repel_locations:
-		velocity += calc_repel_location(repel_location)
-	velocity.y = 0.0
+		var repulsion: Vector3 = calc_repel_location(repel_location)
+		repulsion.y = 0.0
+		velocity += repulsion
 
 	if velocity.length() > max_speed:
 		velocity = velocity.normalized() * randf_range(min_speed, max_speed)
 
-	if not velocity.is_zero_approx():
-		pivot.look_at(global_position + velocity)
+	# Rotate the model to face the movement direction, limited by the turn speed.
+	pivot.rotation.y = move_toward(pivot.rotation.y, atan2(-velocity.x, -velocity.z), turn_speed * delta)
+
+	velocity += external_velocity
+	# Decelerate gradually, simulating linear drag.
+	if is_on_floor():
+		external_velocity = external_velocity.move_toward(Vector3.ZERO, external_velocity_deceleration * 2 * delta)
+	else:
+		external_velocity = external_velocity.move_toward(Vector3.ZERO, external_velocity_deceleration * delta)
+
+	# If a slime collides with something, it will be unable to continue moving in that direction,
+	# so the real velocity in that direction is 0.  Reducing external velocity when this happens
+	# prevents the slime from being pinned to the object.  Essentially, it increases the linear drag.
+	var real_velocity: Vector3 = get_real_velocity()
+	if real_velocity.x == 0.0:
+		external_velocity.x *= 0.9
+	if real_velocity.y == 0.0:
+		external_velocity.y *= 0.9
+	if real_velocity.z == 0.0:
+		external_velocity.z *= 0.9
 
 	# Y velocity is zeroed after the boids rules are applied, so the boids do not try to fly.
 	# So this is added after that, and after the velocity gets normalized, so the gravity
@@ -145,6 +179,9 @@ func calc_repel_location(repel_location: Vector3) -> Vector3:
 #endregion
 
 
+#region Nearby slime tracking
+
+
 ## Keep track of the slimes that within the area.
 func _on_flocking_zone_body_entered(body: Node3D) -> void:
 	if body is not Slime or body == self:
@@ -159,3 +196,10 @@ func _on_flocking_zone_body_exited(body: Node3D) -> void:
 		return
 
 	nearby_slimes.erase(body.owner)
+
+
+#endregion
+
+
+func add_external_velocity(ext_velocity: Vector3) -> void:
+	external_velocity += ext_velocity
