@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxmkabpx7vj8e"]
+
+[ext_resource type="PackedScene" uid="uid://dwlwcfrcydqfa" path="res://assets/Art/3d/Plank/fence_plank.tscn" id="1_rvgsi"]
+[ext_resource type="PackedScene" uid="uid://biqi7kjekf2qu" path="res://assets/Art/3d/Plank/lantern.glb" id="2_smmpd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_smmpd"]
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.205117, 0.205117, 0.205117, 1)
+disable_receive_shadows = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvgsi"]
+emission_enabled = true
+emission = Color(0.692614, 0.395777, 0.179172, 1)
+emission_energy_multiplier = 9.81
+disable_receive_shadows = true
+
+[node name="Lantern" type="Node3D"]
+
+[node name="Fence_Plank" parent="." instance=ExtResource("1_rvgsi")]
+transform = Transform3D(1, 0, 0, 0, 2.2521, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Fence_Plank2" parent="." instance=ExtResource("1_rvgsi")]
+transform = Transform3D(0.621885, 0, 0, 0, 0.0233995, 0.750168, 0, -1.08806, 0.0161329, 0.0110989, 2.97879, 1.59264)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00119114, 2.56526, 1.43028)
+light_color = Color(0.613718, 0.326555, 0.0610501, 1)
+light_energy = 0.354
+shadow_enabled = true
+omni_range = 1.66447
+
+[node name="lantern" parent="." instance=ExtResource("2_smmpd")]
+transform = Transform3D(0.760237, 0, 0, 0, 0.760237, 0, 0, 0, 0.760237, -0.00119114, 2.29708, 1.43028)
+
+[node name="Cube" parent="lantern" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_smmpd")
+
+[node name="Circle" parent="lantern" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rvgsi")
+
+[editable path="lantern"]
