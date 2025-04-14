@@ -1,5 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://g6bpfoo0jy77"]
+[gd_scene load_steps=3 format=3 uid="uid://g6bpfoo0jy77"]
 
 [ext_resource type="PackedScene" uid="uid://c2o8tdtpcqsbb" path="res://scenes/world/world_3d.tscn" id="1_0nr2a"]
+[ext_resource type="Resource" uid="uid://bo5xs7cl2lqc6" path="res://resources/data/objective_lists/level_1.tres" id="2_2hhcp"]
 
 [node name="Level1" instance=ExtResource("1_0nr2a")]
+objective_list = ExtResource("2_2hhcp")
