@@ -25,7 +25,6 @@ var repel_locations: Array[Vector3] = []
 var is_scattering: bool = false
 
 @onready var pivot: Node3D = %Pivot
-@onready var debug_label: Label3D = %DebugLabel
 
 
 ## Sets a random initial velocity
@@ -35,17 +34,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	debug_label.text = "V: %.3v (%.3f)\nC: %.3v (%.3f)\nS: %.3v (%.3f)\nA: %.3v (%.3f)" % [
-		velocity,
-		velocity.length(),
-		calc_cohesion(),
-		calc_cohesion().length(),
-		calc_separation(),
-		calc_separation().length(),
-		calc_alignment(),
-		calc_alignment().length()
-	]
-
 	velocity += calc_cohesion() + calc_separation() + calc_alignment()
 	for attract_location: Vector3 in attract_locations:
 		velocity += calc_attract_location(attract_location)
@@ -56,7 +44,6 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() > max_speed:
 		velocity = velocity.normalized() * randf_range(min_speed, max_speed)
 
-	bound_position(delta)
 	if not velocity.is_zero_approx():
 		pivot.look_at(global_position + velocity)
 
@@ -67,21 +54,6 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity()
 
 	move_and_slide()
-
-
-# TODO: Remove when finished testing
-## Used to test the slime target location calculations.
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("attract_slimes"):
-		if attract_locations.is_empty():
-			attract_locations.append(Vector3.ZERO)
-		else:
-			attract_locations.clear()
-	if event.is_action_pressed("repel_slimes"):
-		if repel_locations.is_empty():
-			repel_locations.append(Vector3(10.0, 0.0, 10.0))
-		else:
-			repel_locations.clear()
 
 
 #region Boid Rules
@@ -171,21 +143,6 @@ func calc_repel_location(repel_location: Vector3) -> Vector3:
 
 
 #endregion
-
-
-## Used to create a bounding box that slimes will stay in.  This is useful for testing,
-## so the slimes will stay in the camera range and will have chances to change direction.
-func bound_position(_delta: float) -> void:
-	var bounds: float = 25.0
-	if global_position.x < -bounds:
-		velocity.x = return_in_bounds_velocity
-	elif global_position.x > bounds:
-		velocity.x = -return_in_bounds_velocity
-
-	if global_position.z < -bounds:
-		velocity.z = return_in_bounds_velocity
-	elif global_position.z > bounds:
-		velocity.z = -return_in_bounds_velocity
 
 
 ## Keep track of the slimes that within the area.

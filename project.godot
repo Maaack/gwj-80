@@ -112,6 +112,10 @@ exit={
 
 locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/translations/menus_translations.en.translation", "res://addons/maaacks_game_template/base/translations/menus_translations.fr.translation")
 
+[layer_names]
+
+3d_physics/layer_2="Slimes"
+
 [maaacks_game_template]
 
 disable_plugin_dialogues=true
