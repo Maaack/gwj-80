@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctdmeqiwxnbct"]
+[gd_scene load_steps=3 format=3 uid="uid://ctdmeqiwxnbct"]
 
 [ext_resource type="PackedScene" uid="uid://dxbf00ltm2dmu" path="res://assets/Art/3d/Plank/Fence_count.glb" id="1_ljis2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ljis2"]
+size = Vector3(0.170166, 1.11084, 1.24365)
 
 [node name="Fence_Mid" type="Node3D"]
 transform = Transform3D(1.45788, 0, 0, 0, 1.45788, 0, 0, 0, 1.45788, 0, 0, 0)
 
 [node name="Fence_count" parent="." instance=ExtResource("1_ljis2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0182806, 1.19209e-07, -0.56664)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Fence_count"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fence_count/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00624158, 0.628008, 0.0628956)
+shape = SubResource("BoxShape3D_ljis2")
+
+[editable path="Fence_count"]

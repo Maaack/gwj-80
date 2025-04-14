@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://consct85qpdhe"]
+
+[ext_resource type="PackedScene" uid="uid://c663vj28gs3tj" path="res://assets/Art/3d/Rock/Buiding Rocks/small_rock.tscn" id="1_cmbxe"]
+[ext_resource type="Material" uid="uid://cpjnhum16swsn" path="res://assets/Art/3d/Rock/Buiding Rocks/Rock_Gray_version.tres" id="2_ls7uf"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Small_Rock" parent="." instance=ExtResource("1_cmbxe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0324472, 0, -0.060375)
+
+[node name="Small rock Lp" parent="Small_Rock/Small_Rock" index="0"]
+surface_material_override/0 = ExtResource("2_ls7uf")
+
+[editable path="Small_Rock"]
+[editable path="Small_Rock/Small_Rock"]

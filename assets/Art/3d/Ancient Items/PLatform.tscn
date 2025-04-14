@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctnjck76hupjm"]
+[gd_scene load_steps=3 format=3 uid="uid://ctnjck76hupjm"]
 
 [ext_resource type="PackedScene" uid="uid://bpbfi1d0no0cg" path="res://assets/Art/3d/Ancient Items/Platform.glb" id="1_0lu6l"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0lu6l"]
+points = PackedVector3Array(1.09493, -0.19896, 20.634, -0.699068, -0.19896, 11.0536, -1.29832, -0.19896, 11.2045, -0.699068, 0.699124, 11.6528, 4.98865, -0.19896, 14.9463, -2.19672, 0.699124, 19.4355, 4.23935, 0.699124, 17.3405, -4.59185, -0.19896, 16.7403, -3.84255, 0.699124, 14.3471, 3.19184, 0.699124, 12.7003, 2.44254, -0.19896, 11.5037, 1.69512, 0.699124, 19.8848, 3.9402, -0.19896, 18.9873, -2.94508, -0.19896, 19.5856, -3.54339, -0.19896, 12.7003, -3.84255, 0.699124, 17.3405, 4.3894, 0.699124, 14.9463, -2.79504, 0.699124, 12.7003, 1.09493, 0.699124, 11.6528, -0.699068, -0.19896, 20.634, 4.53945, -0.19896, 13.5987, 4.98865, -0.19896, 16.7403, -0.699068, 0.699124, 20.0339, -4.4418, -0.19896, 14.3471, 3.19184, 0.699124, 18.9873, 2.44254, -0.19896, 20.1839, -3.54339, -0.19896, 18.9873, 1.09493, -0.19896, 11.0536, -3.9926, 0.699124, 14.9463, -2.94508, 0.699124, 18.8363, 3.34188, -0.19896, 12.102, -2.04574, -0.19896, 11.5037)
 
 [node name="PLatform" type="Node3D"]
 
 [node name="Platform" parent="." instance=ExtResource("1_0lu6l")]
 transform = Transform3D(0.509807, 0, 0, 0, 0.509807, 0, 0, 0, 0.509807, -0.407964, 1.19209e-07, -0.413408)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform/Circle" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.889)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/Circle/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.889)
+shape = SubResource("ConvexPolygonShape3D_0lu6l")
+
+[editable path="Platform"]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dq4f2b18tkyyo"]
+
+[ext_resource type="Texture2D" uid="uid://drx338w62atlj" path="res://assets/Art/2d/TExtures/Butterfly.png" id="1_172qm"]
+[ext_resource type="Texture2D" uid="uid://e28pdevlfq5" path="res://assets/Art/2d/TExtures/Butterfly_flap.png" id="2_trncf"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_0jgfk"]
+frames = 2
+frame_0/texture = ExtResource("1_172qm")
+frame_0/duration = 0.9
+frame_1/texture = ExtResource("2_trncf")
+frame_1/duration = 0.21
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xyv1"]
+transparency = 4
+cull_mode = 2
+albedo_texture = SubResource("AnimatedTexture_0jgfk")
+billboard_mode = 2
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_7yb2x"]
+material = SubResource("StandardMaterial3D_7xyv1")
+size = Vector2(0.115, 0.18)
+
+[sub_resource type="Gradient" id="Gradient_uhvrp"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_agi1r"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+amount = 12
+lifetime = 6.86
+randomness = 0.95
+mesh = SubResource("QuadMesh_7yb2x")
+emission_shape = 1
+emission_sphere_radius = 7.35
+gravity = Vector3(0.085, 0.09, 0.14)
+initial_velocity_max = 1.15
+radial_accel_min = -0.35
+radial_accel_max = 0.19
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_uhvrp")
+color_initial_ramp = SubResource("Gradient_agi1r")
+hue_variation_min = -0.49
+hue_variation_max = 1.0
