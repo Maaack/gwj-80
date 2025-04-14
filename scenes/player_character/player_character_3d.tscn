@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cbw777lrjulgr" path="res://scenes/player_character/player_character_3d.gd" id="1_ppdav"]
 [ext_resource type="PackedScene" uid="uid://du6sadv6lcq1j" path="res://scenes/player_character/player_character_model.tscn" id="2_u7jsy"]
-[ext_resource type="PackedScene" uid="uid://dcyqaw6kwj58q" path="res://addons/ThirdPersonTemplate/Character/Nodes/camroot.tscn" id="3_u7jsy"]
+[ext_resource type="PackedScene" uid="uid://bvs8yjrgay5ob" path="res://scenes/player_character/custom_camera.tscn" id="3_u7jsy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b2or0"]
 
@@ -67,6 +67,8 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-91, -71)
 
 [node name="PlayerCharacter3D" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_ppdav")
 PlayerCharacterMesh = NodePath("PlayerCharacterModel")
 
@@ -109,7 +111,7 @@ transform = Transform3D(0.99999, 0.0044613, 2.14869e-07, -0.00446131, 0.99999, -
 [node name="NurbsPath_010" parent="PlayerCharacterModel/root/Skeleton3D" index="1"]
 transform = Transform3D(0.99999, 0.0044613, 2.14869e-07, -0.00446131, 0.99999, -1.66001e-05, -2.88739e-07, 1.66001e-05, 1, -0.0284308, 4.86374e-05, -9.5427e-05)
 
-[node name="Camroot" parent="." instance=ExtResource("3_u7jsy")]
+[node name="CustomCamera" parent="." instance=ExtResource("3_u7jsy")]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../PlayerCharacterModel")
