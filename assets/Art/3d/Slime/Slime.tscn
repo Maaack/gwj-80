@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://chx4skxp7tgbu"]
+[gd_scene load_steps=5 format=3 uid="uid://chx4skxp7tgbu"]
 
 [ext_resource type="PackedScene" uid="uid://dvlpyy6ml8tjq" path="res://assets/Art/3d/Slime/SLime.glb" id="1_u1n8k"]
+[ext_resource type="Shader" uid="uid://maj0snw8f56l" path="res://scenes/player_character/Toon.gdshader" id="2_y83dd"]
+[ext_resource type="Texture2D" uid="uid://dg5bmo1nvybng" path="res://assets/Art/3d/Slime/SLime_Material.001_BaseColor-Material.png" id="3_haggc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m7gbv"]
+render_priority = 0
+shader = ExtResource("2_y83dd")
+shader_parameter/ToonRampOffset = 0.511
+shader_parameter/ToonRampSmoothness = 0.05
+shader_parameter/ToonRampTinting = Color(0, 0, 0, 1)
+shader_parameter/RimPower = 4.944
+shader_parameter/RimCutOff = 0.0
+shader_parameter/RimSmoothness = 0.466
+shader_parameter/RimLightBrightness = 50.0
+shader_parameter/SubSurfDistortion = 1.0
+shader_parameter/SubSurfTint = Color(0.740764, 0.216334, 0.405269, 1)
+shader_parameter/SubSurfBrightness = 3.0
+shader_parameter/SubSurfCutoff = 0.5
+shader_parameter/SubSurfSmoothness = 0.05
+shader_parameter/Texture = ExtResource("3_haggc")
 
 [node name="Node3D" type="Node3D"]
 
@@ -11,6 +30,9 @@ transform = Transform3D(0.632184, 0, 0, 0, 0.632184, 0, 0, 0, 0.632184, -0.05787
 bones/0/position = Vector3(-0.250711, -0.133827, 0.406895)
 bones/1/position = Vector3(-0.169712, 0.590945, 0.474417)
 bones/1/scale = Vector3(1, 1, 1)
+
+[node name="Sphere" parent="SLime/Armature/Skeleton3D" index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_m7gbv")
 
 [node name="AnimationPlayer" parent="SLime" index="1"]
 autoplay = "Idle"

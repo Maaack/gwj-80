@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://6rviyes7fouy"]
+
+[ext_resource type="ArrayMesh" uid="uid://dyhpc2af0vqks" path="res://assets/Art/3d/Tree_Obj.obj" id="1_eg05a"]
+[ext_resource type="Texture2D" uid="uid://f6u77e5k5gu1" path="res://assets/Art/3d/Tree/Tree_Cowl.png" id="2_xcc3q"]
+[ext_resource type="PackedScene" uid="uid://dw8fuamnrwjon" path="res://assets/Art/3d/Tree/treev2.glb" id="3_stdyp"]
+[ext_resource type="Material" uid="uid://cyo6q1au0l2d2" path="res://assets/Art/3d/Tree/treered.tres" id="4_eg05a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6xq7"]
+albedo_color = Color(0.405989, 0.247142, 0.0744858, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sno2e"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 2
+diffuse_mode = 1
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("2_xcc3q")
+rim_enabled = true
+rim = 0.67
+rim_tint = 1.0
+subsurf_scatter_strength = 0.55
+subsurf_scatter_skin_mode = true
+uv1_scale = Vector3(0.755, 0.755, 0.755)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="TreeObj" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0224219, 0, 0, 0, 0.0224219, 0, 0, 0, 0.0224219, -0.0131373, 0, 0.0196157)
+visible = false
+mesh = ExtResource("1_eg05a")
+surface_material_override/0 = SubResource("StandardMaterial3D_g6xq7")
+surface_material_override/1 = SubResource("StandardMaterial3D_sno2e")
+
+[node name="treev2" parent="." instance=ExtResource("3_stdyp")]
+transform = Transform3D(1.21416, 0, 0, 0, 1.21416, 0, 0, 0, 1.21416, 0.401647, -0.337376, 0.313772)
+
+[node name="Plane_113" parent="treev2" index="1"]
+surface_material_override/0 = ExtResource("4_eg05a")
+
+[node name="Plane_109" parent="treev2" index="2"]
+surface_material_override/0 = ExtResource("4_eg05a")
+
+[node name="Plane_110" parent="treev2" index="3"]
+surface_material_override/0 = ExtResource("4_eg05a")
+
+[node name="Plane_111" parent="treev2" index="4"]
+surface_material_override/0 = ExtResource("4_eg05a")
+
+[node name="Plane_055" parent="treev2" index="5"]
+surface_material_override/0 = ExtResource("4_eg05a")
+
+[node name="Plane_047" parent="treev2" index="6"]
+surface_material_override/0 = ExtResource("4_eg05a")
+
+[editable path="treev2"]

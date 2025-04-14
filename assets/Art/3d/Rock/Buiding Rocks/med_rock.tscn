@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bupjw4jvqktdu"]
+
+[ext_resource type="PackedScene" uid="uid://4lkyetbvwyne" path="res://assets/Art/3d/Rock/Buiding Rocks/Med_Rock.glb" id="1_21abe"]
+
+[node name="Med_Rock" type="Node3D"]
+
+[node name="Med_Rock" parent="." instance=ExtResource("1_21abe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.296581, 0, 0.439592)
