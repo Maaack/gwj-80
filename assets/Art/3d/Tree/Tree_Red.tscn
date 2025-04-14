@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://6rviyes7fouy"]
+[gd_scene load_steps=8 format=3 uid="uid://6rviyes7fouy"]
 
 [ext_resource type="ArrayMesh" uid="uid://dyhpc2af0vqks" path="res://assets/Art/3d/Tree_Obj.obj" id="1_eg05a"]
 [ext_resource type="Texture2D" uid="uid://f6u77e5k5gu1" path="res://assets/Art/3d/Tree/Tree_Cowl.png" id="2_xcc3q"]
@@ -23,6 +23,10 @@ rim_tint = 1.0
 subsurf_scatter_strength = 0.55
 subsurf_scatter_skin_mode = true
 uv1_scale = Vector3(0.755, 0.755, 0.755)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eg05a"]
+height = 3.13879
+radius = 1.36719
 
 [node name="Node3D" type="Node3D"]
 
@@ -53,5 +57,11 @@ surface_material_override/0 = ExtResource("4_eg05a")
 
 [node name="Plane_047" parent="treev2" index="6"]
 surface_material_override/0 = ExtResource("4_eg05a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="treev2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="treev2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0271889, 1.75403, 0.0104238)
+shape = SubResource("CylinderShape3D_eg05a")
 
 [editable path="treev2"]

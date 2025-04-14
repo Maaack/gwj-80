@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://cpjnhum16swsn"]
+
+[ext_resource type="Texture2D" uid="uid://dlp7ot5y0sxa5" path="res://assets/Art/3d/Rock/Buiding Rocks/Gray_Default.png" id="1_1erb3"]
+[ext_resource type="Texture2D" uid="uid://bo4b2qxc0kjfr" path="res://assets/Art/3d/Rock/Buiding Rocks/Small_Rock_DefaultMaterial_Normal.png" id="2_frhp7"]
+[ext_resource type="Texture2D" uid="uid://cxptstsnejx7s" path="res://assets/Art/3d/Rock/Buiding Rocks/Small_Rock_DefaultMaterial_Roughness.png" id="3_c8w1q"]
+
+[resource]
+albedo_texture = ExtResource("1_1erb3")
+roughness_texture = ExtResource("3_c8w1q")
+normal_enabled = true
+normal_texture = ExtResource("2_frhp7")
