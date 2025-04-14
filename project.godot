@@ -121,6 +121,10 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 disable_plugin_dialogues=true
 copy_path="res://"
 
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
