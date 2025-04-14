@@ -1,0 +1,161 @@
+class_name Slime
+extends CharacterBody3D
+
+@export_category("Boid Rule Weights")
+@export var cohesion_weight: float = 0.0005
+@export var separation_weight: float = 0.01
+@export var alignment_weight: float = 0.000525
+@export var target_location_weight: float = 0.005
+@export var target_location_repel_weight: float = 0.1
+
+@export_category("Boid Settings")
+@export var separation_distance: float = 3.5
+@export var separation_max_magnitude: float = 0.1
+@export var target_location_radius: float = 3.5
+@export var target_location_max_magnitude: float = 0.2
+
+@export_category("Movement Settings")
+@export var min_speed: float = 2.0
+@export var max_speed: float = 3.0
+@export var return_in_bounds_velocity: float = 10.0
+
+var nearby_slimes: Array[Slime] = []
+var attract_locations: Array[Vector3] = []
+var repel_locations: Array[Vector3] = []
+var is_scattering: bool = false
+
+@onready var pivot: Node3D = %Pivot
+
+
+## Sets a random initial velocity
+func _ready() -> void:
+	velocity = Vector3(randf(), 0.0, randf())
+	velocity = velocity.normalized() * max_speed
+
+
+func _physics_process(delta: float) -> void:
+	velocity += calc_cohesion() + calc_separation() + calc_alignment()
+	for attract_location: Vector3 in attract_locations:
+		velocity += calc_attract_location(attract_location)
+	for repel_location: Vector3 in repel_locations:
+		velocity += calc_repel_location(repel_location)
+	velocity.y = 0.0
+
+	if velocity.length() > max_speed:
+		velocity = velocity.normalized() * randf_range(min_speed, max_speed)
+
+	if not velocity.is_zero_approx():
+		pivot.look_at(global_position + velocity)
+
+	# Y velocity is zeroed after the boids rules are applied, so the boids do not try to fly.
+	# So this is added after that, and after the velocity gets normalized, so the gravity
+	# will be consistent.
+	if not is_on_floor():
+		velocity += get_gravity()
+
+	move_and_slide()
+
+
+#region Boid Rules
+
+
+## Boids rule #1
+## Slimes will try to move towards other slimes.
+func calc_cohesion() -> Vector3:
+	if nearby_slimes.is_empty():
+		return Vector3.ZERO
+
+	var center := Vector3.ZERO
+	for slime: Slime in nearby_slimes:
+		center += slime.global_position
+	center /= nearby_slimes.size()
+
+	var cohesion: Vector3 = (center - global_position) * cohesion_weight
+	if is_scattering:
+		cohesion *= -1
+
+	return cohesion
+
+
+## Boids rule #2
+## Slimes will try to avoid running into other slimes.
+func calc_separation() -> Vector3:
+	if nearby_slimes.is_empty():
+		return Vector3.ZERO
+
+	var separation := Vector3.ZERO
+	for slime: Slime in nearby_slimes:
+		if global_position.distance_to(slime.global_position) <= separation_distance:
+			var delta_distance: Vector3 = slime.global_position - global_position
+			separation += (delta_distance - delta_distance.normalized() * separation_distance)
+
+	# Cap the separation vector's magnitude to prevent sudden 'spikes' that cause
+	# erratic, flickering movements.
+	return (separation * separation_weight).limit_length(separation_max_magnitude)
+
+
+## Boids rule #3
+## Slimes will try to match the direction of nearby slimes.
+func calc_alignment() -> Vector3:
+	if nearby_slimes.is_empty():
+		return Vector3.ZERO
+
+	var avg_velocity := Vector3.ZERO
+	for slime: Slime in nearby_slimes:
+		avg_velocity += slime.velocity
+	avg_velocity /= nearby_slimes.size()
+
+	return (avg_velocity - velocity) * alignment_weight
+
+
+## Slimes will try to move towards a particular location.
+func calc_attract_location(attract_location: Vector3) -> Vector3:
+	var distance_to_target_center: Vector3 = (attract_location - global_position)
+	# No forces applied within a zone around the target.
+	if distance_to_target_center.length() < target_location_radius:
+		return Vector3.ZERO # -velocity.limit_length(0.001)
+
+	# Apply force proportional to distance to the edge of the target zone.
+	var distance_to_target_zone: Vector3 = \
+		distance_to_target_center.normalized() * \
+		(distance_to_target_center.length() - target_location_radius)
+
+	return (distance_to_target_zone * target_location_weight).limit_length(target_location_max_magnitude)
+
+
+## Slimes will try to move away from a particular location.
+func calc_repel_location(repel_location: Vector3) -> Vector3:
+	var distance_to_target_center: Vector3 = (repel_location - global_position)
+
+	# Full force applied within the target_location_radius
+	if distance_to_target_center.length() < target_location_radius:
+		return -distance_to_target_center.normalized() * target_location_max_magnitude
+
+	# Partial force applied based on how far the slime is from the repulsion location.
+	var distance_to_target_zone: float = distance_to_target_center.length() - target_location_radius
+	var force_falloff: float = distance_to_target_zone * target_location_repel_weight
+
+	# No forces applied outside of the falloff zone.
+	if force_falloff > target_location_max_magnitude:
+		return Vector3.ZERO
+
+	return (target_location_max_magnitude - force_falloff) * -distance_to_target_center.normalized()
+
+
+#endregion
+
+
+## Keep track of the slimes that within the area.
+func _on_flocking_zone_body_entered(body: Node3D) -> void:
+	if body is not Slime or body == self:
+		return
+
+	nearby_slimes.append(body)
+
+
+## Stop tracking slimes that leave the area.
+func _on_flocking_zone_body_exited(body: Node3D) -> void:
+	if body.owner is not Slime:
+		return
+
+	nearby_slimes.erase(body.owner)
