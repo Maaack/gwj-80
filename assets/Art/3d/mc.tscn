@@ -7,4 +7,13 @@
 [node name="Character_MC" parent="." instance=ExtResource("1_xikf5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025049, -1.19209e-07, -0.193782)
 
+[node name="Hat" parent="Character_MC/root/Skeleton3D" index="0"]
+transform = Transform3D(1, -2.76495e-09, -5.12318e-09, 2.76491e-09, 1, -1.34343e-07, 5.12296e-09, 1.49244e-07, 1, -8.38185e-09, 9.53674e-07, -5.66244e-07)
+
+[node name="NurbsPath_010" parent="Character_MC/root/Skeleton3D" index="1"]
+transform = Transform3D(1, -2.76495e-09, -5.12318e-09, 2.76491e-09, 1, -1.34343e-07, 5.12296e-09, 1.49244e-07, 1, -8.38185e-09, 9.53674e-07, -5.66244e-07)
+
+[node name="Cube" parent="Character_MC/root/Skeleton3D" index="2"]
+transform = Transform3D(0.997236, -0.0212093, 0.0711988, 0.0205918, 0.999744, 0.00939556, -0.0713798, -0.00790349, 0.997418, 0.104883, 0.00349903, 0.0314706)
+
 [editable path="Character_MC"]

@@ -40,22 +40,31 @@ surface_material_override/1 = SubResource("StandardMaterial3D_sno2e")
 [node name="treev2" parent="." instance=ExtResource("3_g6xq7")]
 transform = Transform3D(1.21416, 0, 0, 0, 1.21416, 0, 0, 0, 1.21416, 0.401647, -0.337376, 0.313772)
 
+[node name="LP" parent="treev2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1.37139, 0, 0, 0, 1, 0, 0, 0)
+
 [node name="Plane_113" parent="treev2" index="1"]
+transform = Transform3D(0.128795, 0.13741, -0.0277157, 0.158697, -0.112822, 0.0134499, -0.00746416, -0.027699, -0.192276, 1.9994, 11.3501, 0.237189)
 surface_material_override/0 = ExtResource("4_sno2e")
 
 [node name="Plane_109" parent="treev2" index="2"]
+transform = Transform3D(0.128676, 0.137284, -0.0276902, 0.158551, -0.112718, 0.0134375, -0.00745729, -0.0276735, -0.1921, 3.39391, 7.5823, 1.04946)
 surface_material_override/0 = ExtResource("4_sno2e")
 
 [node name="Plane_110" parent="treev2" index="3"]
+transform = Transform3D(0.0696948, 0.074357, -0.0149979, 0.0821587, -0.0523534, 0.0421239, 0.0253161, -0.0348004, -0.0954164, 1.39152, 12.5846, -0.691802)
 surface_material_override/0 = ExtResource("4_sno2e")
 
 [node name="Plane_111" parent="treev2" index="4"]
+transform = Transform3D(0.0420459, 0.0807457, 0.0431881, 0.0821587, -0.0523534, 0.0421239, 0.0610771, 0.014838, -0.0863945, 1.45971, 10.1643, -1.7944)
 surface_material_override/0 = ExtResource("4_sno2e")
 
 [node name="Plane_055" parent="treev2" index="5"]
+transform = Transform3D(-0.422251, -0.740332, -0.229872, -0.723589, 0.282499, 0.419335, 0.278121, -0.389013, 0.741988, -0.329753, 15.0688, -3.31807)
 surface_material_override/0 = ExtResource("4_sno2e")
 
 [node name="Plane_047" parent="treev2" index="6"]
+transform = Transform3D(0.383473, -0.512763, -0.039054, -0.338878, -0.207424, 0.545547, -0.520674, -0.242646, -0.383829, -0.380105, 11.3274, -2.44576)
 surface_material_override/0 = ExtResource("4_sno2e")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="treev2"]
