@@ -13,7 +13,7 @@ enum SlimeType {
 	MOSS, # LIFE CHAOS
 	MUD, # GRIPPING CHAOS
 	CRYSTAL, # ORDERING CHAOS
-	YINGYANG, # BALANCED CHAOS
+	YINYANG, # BALANCED CHAOS
 }
 
 class SlimeCombination :
@@ -41,5 +41,5 @@ static var combinations : Array[SlimeCombination] = [
 	SlimeCombination.new(SlimeType.ASH, SlimeType.ROCK, SlimeType.EXPLOSIVE),
 	SlimeCombination.new(SlimeType.METAL, SlimeType.WATER, SlimeType.EXPLOSIVE),
 	SlimeCombination.new(SlimeType.METAL, SlimeType.VINE, SlimeType.EXPLOSIVE),
-	SlimeCombination.new(SlimeType.CRYSTAL, SlimeType.EXPLOSIVE, SlimeType.YINGYANG),
+	SlimeCombination.new(SlimeType.CRYSTAL, SlimeType.EXPLOSIVE, SlimeType.YINYANG),
 ]

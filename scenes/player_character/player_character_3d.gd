@@ -48,7 +48,7 @@ var selected_outfit : Node3D
 var stop_movement_inputs : bool = false
 
 func _ready() -> void: # Camera based Rotation
-	direction = Vector3.BACK.rotated(Vector3.UP, $Camroot/h.global_transform.basis.get_euler().y)
+	direction = Vector3.BACK.rotated(Vector3.UP, $CustomCamera/h.global_transform.basis.get_euler().y)
 
 func _input(event : InputEvent)  -> void: # All major mouse and button input events
 	if event is InputEventMouseMotion:
@@ -58,7 +58,7 @@ func _physics_process(delta : float) -> void:
 	if stop_movement_inputs:
 		return
 	var on_floor := is_on_floor() # State control for is jumping/falling/landing
-	var h_rot : float = $Camroot/h.global_transform.basis.get_euler().y
+	var h_rot : float = $CustomCamera/h.global_transform.basis.get_euler().y
 	
 	movement_speed = 0
 	angular_acceleration = 10
