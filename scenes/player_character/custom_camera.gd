@@ -7,6 +7,8 @@ var camrot_v = 0
 @export var joystick_sensitivity : float = 20
 @export var min_spring_length : float = 4.0
 @export var max_spring_length : float = 8.0
+@export var min_fov : float = 60.0
+@export var max_fov : float = 90.0
 var h_sensitivity = .01
 var v_sensitivity = .01
 var h_acceleration = 10
@@ -40,4 +42,5 @@ func _physics_process(delta):
 	$h.rotation.y = lerpf($h.rotation.y, camrot_h, delta * h_acceleration)
 	$h/v.rotation.x = lerpf($h/v.rotation.x, camrot_v, delta * v_acceleration)
 	$h/v/Arm.spring_length = -(min_spring_length + ((max_spring_length - min_spring_length) * ratio))
+	$h/v/Arm/Camera3D.fov = min_fov + ((max_fov - min_fov) * ratio)
 	
