@@ -29,6 +29,7 @@ var external_velocity: Vector3 = Vector3.ZERO
 
 @onready var pivot: Node3D = %Pivot
 
+var slime_data : SlimeData = SlimeData.new()
 
 ## Sets a random initial velocity
 func _ready() -> void:
