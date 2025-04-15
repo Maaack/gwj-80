@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://r1j0c83claca"]
+
+[ext_resource type="PackedScene" uid="uid://cvjk7flub5e0y" path="res://assets/Art/3d/Tree/swamp tree.glb" id="1_otv2w"]
+[ext_resource type="Material" uid="uid://cc7fki4xf8wgq" path="res://assets/Art/3d/Tree/swamptree.tres" id="2_edfly"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c881q"]
+size = Vector3(2.7644, 5.03125, 2.7724)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="swamp tree" parent="." instance=ExtResource("1_otv2w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0496258, -1.19209e-07, -0.15796)
+
+[node name="Plane_001" parent="swamp tree" index="1"]
+surface_material_override/0 = ExtResource("2_edfly")
+
+[node name="Plane_004" parent="swamp tree" index="2"]
+surface_material_override/0 = ExtResource("2_edfly")
+
+[node name="Plane_003" parent="swamp tree" index="3"]
+surface_material_override/0 = ExtResource("2_edfly")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0567627, 2.59214, 0.00308228)
+shape = SubResource("BoxShape3D_c881q")
+
+[editable path="swamp tree"]

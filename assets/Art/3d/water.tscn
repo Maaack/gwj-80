@@ -1,4 +1,16 @@
-[gd_scene format=3 uid="uid://cls745n3axol8"]
+[gd_scene load_steps=4 format=3 uid="uid://cls745n3axol8"]
+
+[ext_resource type="Shader" uid="uid://buyq25ts5m5iq" path="res://assets/Terrain Data/water.gdshader" id="1_4vt4c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rwiaa"]
+render_priority = 0
+shader = ExtResource("1_4vt4c")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wgows"]
+material = SubResource("ShaderMaterial_rwiaa")
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00327253, 0.0124955, -0.00599027)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_wgows")
