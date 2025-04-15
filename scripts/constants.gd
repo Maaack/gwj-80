@@ -3,6 +3,7 @@ extends Node
 
 enum SlimeType {
 	NONE = -1,
+	ANY,
 	WATER, # FLOODING CHAOS
 	FIRE, # BURNING CHAOS
 	VINE, # GROWING CHAOS

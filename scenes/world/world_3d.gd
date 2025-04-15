@@ -11,6 +11,11 @@ var slimes_submitted : Dictionary[Constants.SlimeType, int] = {}
 func _check_objectives_completed() -> bool:
 	for objective_data in objective_list.objectives:
 		var slime_type = objective_data.slime_type
+		if slime_type == Constants.SlimeType.ANY:
+			if slimes_submitted.size() < objective_data.slime_count:
+				return false
+			else:
+				continue
 		if not slimes_submitted.has(slime_type):
 			return false
 		if slimes_submitted[slime_type] < objective_data.slime_count:
