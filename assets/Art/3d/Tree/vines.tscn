@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccqeq3ee6dtqo"]
+
+[ext_resource type="PackedScene" uid="uid://dytl7scwoll3l" path="res://assets/Art/3d/Tree/Vines.glb" id="1_h6qjq"]
+
+[node name="Vines" type="Node3D"]
+
+[node name="Vines2" parent="." instance=ExtResource("1_h6qjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2377, 0, 0.108496)
