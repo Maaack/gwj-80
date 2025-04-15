@@ -17,24 +17,27 @@ extends CharacterBody3D
 @export_category("Movement Settings")
 @export var min_speed: float = 2.0
 @export var max_speed: float = 3.0
-@export var turn_speed: float = 3.0
+@export var turn_speed: float = 1.0
 @export var external_velocity_deceleration: float = 6.0
+@export var ambient_direction_update_cooldown: float = 5.0
 
 var nearby_slimes: Array[Slime] = []
 var attract_locations: Array[Vector3] = []
 var repel_locations: Array[Vector3] = []
 var is_scattering: bool = false
+var is_idle: bool = false
 
 var external_velocity: Vector3 = Vector3.ZERO
 
 @onready var pivot: Node3D = %Pivot
+@onready var update_ambient_direction_timer: Timer = %UpdateAmbientDirectionTimer
 
 var slime_data : SlimeData = SlimeData.new()
 
 ## Sets a random initial velocity
 func _ready() -> void:
-	velocity = Vector3(randf(), 0.0, randf())
-	velocity = velocity.normalized() * max_speed
+	update_ambient_direction_timer.wait_time = ambient_direction_update_cooldown
+	set_random_movement_direction()
 
 
 func _physics_process(delta: float) -> void:
@@ -61,8 +64,15 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() > max_speed:
 		velocity = velocity.normalized() * randf_range(min_speed, max_speed)
 
+	# NOTE: This would be more efficient if checked when these conditions change, rather than every physics update.
+	if not is_idle and nearby_slimes.is_empty() and attract_locations.is_empty() and repel_locations.is_empty():
+		if update_ambient_direction_timer.is_stopped():
+			update_ambient_direction_timer.start()
+	elif not update_ambient_direction_timer.is_stopped():
+		update_ambient_direction_timer.stop()
+
 	# Rotate the model to face the movement direction, limited by the turn speed.
-	pivot.rotation.y = move_toward(pivot.rotation.y, atan2(-velocity.x, -velocity.z), turn_speed * delta)
+	pivot.rotation.y = lerpf(pivot.rotation.y, atan2(-velocity.x, -velocity.z), turn_speed * delta)
 
 	velocity += external_velocity
 	# Decelerate gradually, simulating linear drag.
@@ -204,3 +214,12 @@ func _on_flocking_zone_body_exited(body: Node3D) -> void:
 
 func add_external_velocity(ext_velocity: Vector3) -> void:
 	external_velocity += ext_velocity
+
+
+func set_random_movement_direction() -> void:
+	velocity = Vector3(randf(), 0.0, randf())
+	velocity = velocity.normalized() * max_speed
+
+
+func _on_update_ambient_direction_timer_timeout() -> void:
+	set_random_movement_direction()
