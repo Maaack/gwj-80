@@ -42,6 +42,7 @@ func _try_connecting_signal_to_level(signal_name : String, callable : Callable):
 	_try_connecting_signal_to_node(current_level, signal_name, callable)
 
 func _load_main_menu():
+	await get_tree().create_timer(0.1).timeout
 	SceneLoader.load_scene(main_menu_scene)
 
 func _advance_level() -> bool:
@@ -55,6 +56,7 @@ func _advance_and_load_main_menu():
 
 func _load_ending():
 	if ending_scene:
+		await get_tree().create_timer(0.1).timeout
 		SceneLoader.load_scene(ending_scene)
 	else:
 		_load_main_menu()
@@ -72,6 +74,7 @@ func get_current_level_id() -> int:
 	return current_level_id if force_level == -1 else force_level
 
 func load_current_level():
+	await get_tree().create_timer(0.1).timeout
 	level_list_loader.load_level(get_current_level_id())
 
 func _advance_and_reload():

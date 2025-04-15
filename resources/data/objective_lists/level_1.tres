@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_sdkcc"]
 script = ExtResource("1_f4jve")
 slime_type = 0
-slime_count = 4
+slime_count = 1
 metadata/_custom_type_script = "uid://ba0t0vst1rfh"
 
 [resource]
