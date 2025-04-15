@@ -233,10 +233,6 @@ func _on_update_ambient_direction_timer_timeout() -> void:
 	set_random_movement_direction()
 
 
-func apply_effects_to_nearby_slimes() -> void:
-	pass
-
-
 func get_flocking_zone_radius() -> float:
 	var shape: SphereShape3D = flocking_zone_collision_shape.shape
 	return shape.radius

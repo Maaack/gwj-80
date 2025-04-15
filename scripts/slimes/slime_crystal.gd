@@ -1,0 +1,42 @@
+class_name SlimeCrystal
+extends Slime
+
+
+@export var cohesion_multiplier: float = 2.0
+@export var alignment_multiplier: float = 2.0
+
+var cohesion_increase: float
+var alignment_increase: float
+
+
+func _ready() -> void:
+	# The increase is additive, so subtract out the default value from the multiplier.
+	cohesion_increase = cohesion_weight * (cohesion_multiplier - 1)
+	alignment_increase = alignment_weight * (alignment_multiplier - 1)
+
+	cohesion_weight += cohesion_increase
+	alignment_weight += alignment_increase
+
+
+## Keep track of the slimes that within the area and increase their cohesion and alignment.
+func _on_flocking_zone_body_entered(body: Node3D) -> void:
+	if body is not Slime or body == self:
+		return
+
+	var slime: Slime = body
+	nearby_slimes.append(slime)
+
+	slime.cohesion_weight += cohesion_increase
+	slime.alignment_weight += alignment_increase
+
+
+## Stop tracking slimes that leave the area and remove the cohesion and alignment increases.
+func _on_flocking_zone_body_exited(body: Node3D) -> void:
+	if body is not Slime:
+		return
+
+	var slime: Slime = body
+	nearby_slimes.erase(slime)
+
+	slime.cohesion_weight -= cohesion_increase
+	slime.alignment_weight -= alignment_increase
