@@ -16,11 +16,12 @@ script = ExtResource("1_nwcsa")
 cam_v_max = 40.0
 cam_v_min = 10.0
 max_spring_length = 12.0
+max_fov = 80.0
 
 [node name="h" type="Node3D" parent="."]
 
 [node name="v" type="Node3D" parent="h"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 2)
 
 [node name="Arm" type="SpringArm3D" parent="h/v"]
 collision_mask = 0
