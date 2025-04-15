@@ -11,7 +11,7 @@ var slimes_submitted : Dictionary[Constants.SlimeType, int] = {}
 func _check_objectives_completed() -> bool:
 	for objective_data in objective_list.objectives:
 		var slime_type = objective_data.slime_type
-		if slime_type == Constants.SlimeType.ANY:
+		if slime_type == Constants.SlimeType.NONE:
 			if slimes_submitted.size() < objective_data.slime_count:
 				return false
 			else:
@@ -35,6 +35,9 @@ func _on_slime_delivered(slime_data : SlimeData):
 func _on_slime_detected():
 	$DeliveryDelayTimer.start()
 
+func _on_slime_spawned(slime_node : Slime):
+	slime_node.reparent(self)
+
 func _on_delivery_delay_timer_timeout():
 	delivery_area.deliver()
 
@@ -43,6 +46,9 @@ func _ready():
 	if delivery_area:
 		delivery_area.slime_delivered.connect(_on_slime_delivered)
 		delivery_area.slime_detected.connect(_on_slime_detected)
+	for child in get_children():
+		if child is SlimeSpawner:
+			child.slime_spawned.connect(_on_slime_spawned)
 
 func _exit_tree():
 	GlobalState.save()
