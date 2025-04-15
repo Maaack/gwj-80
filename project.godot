@@ -36,6 +36,10 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/gwj_countdown/plugin.cfg", "res://addons/maaacks_game_template/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
+[global_group]
+
+player=""
+
 [gui]
 
 theme/custom="uid://bxjiw3b5i82d3"

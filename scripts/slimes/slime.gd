@@ -26,16 +26,19 @@ var attract_locations: Array[Vector3] = []
 var repel_locations: Array[Vector3] = []
 var is_scattering: bool = false
 var is_idle: bool = false
+var _player: PlayerCharacter
 
 var external_velocity: Vector3 = Vector3.ZERO
 
 @onready var pivot: Node3D = %Pivot
 @onready var update_ambient_direction_timer: Timer = %UpdateAmbientDirectionTimer
+@onready var flocking_zone_collision_shape: CollisionShape3D = %FlockingZoneCollisionShape
 
 var slime_data : SlimeData = SlimeData.new()
 
 ## Sets a random initial velocity
 func _ready() -> void:
+	_player = get_tree().get_first_node_in_group("player")
 	update_ambient_direction_timer.wait_time = ambient_direction_update_cooldown
 	set_random_movement_direction()
 
@@ -223,3 +226,12 @@ func set_random_movement_direction() -> void:
 
 func _on_update_ambient_direction_timer_timeout() -> void:
 	set_random_movement_direction()
+
+
+func apply_effects_to_nearby_slimes() -> void:
+	pass
+
+
+func get_flocking_zone_radius() -> float:
+	var shape: SphereShape3D = flocking_zone_collision_shape.shape
+	return shape.radius
