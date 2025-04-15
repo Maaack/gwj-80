@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5iybcpovkwdx"]
 
-[ext_resource type="Script" uid="uid://3uu1o1e5j8b2" path="res://scripts/slimes/slime_rock.gd" id="1_31s8q"]
+[ext_resource type="Script" uid="uid://3uu1o1e5j8b2" path="res://scripts/slimes/slime_metal.gd" id="1_31s8q"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="1_gwy1k"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
@@ -9,7 +9,7 @@ radius = 0.63
 [sub_resource type="SphereShape3D" id="SphereShape3D_22mvs"]
 radius = 13.0
 
-[node name="SlimeRock" type="CharacterBody3D"]
+[node name="SlimeMetal" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_31s8q")
