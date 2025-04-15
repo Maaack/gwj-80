@@ -1,0 +1,44 @@
+class_name SlimeSpawner
+extends Node3D
+
+signal slime_spawned(slime_node : Slime)
+
+@export var slime_scene : PackedScene
+@export var slime_type : Constants.SlimeType
+@export_range(0, 10) var spawn_radius : float = 2.5
+@export_range(0, 10) var spawn_delay : float = 0.25
+@export_range(0, 10) var spawn_duration : float = 1.0
+@export var queued_to_spawn : int = 0
+@onready var _spawn_timer : Timer = $SpawnTimer
+
+func queue_spawn(count : int = 1):
+	queued_to_spawn += count
+
+func spawn():
+	if not slime_scene:
+		push_error("No slime scene set")
+		return
+	var slime_instance : Slime = slime_scene.instantiate()
+	var rand_angle = randf_range(0, 2 * PI)
+	var rand_distance = randf_range(0, spawn_radius)
+	var normal_vector = Vector2.from_angle(rand_angle)
+	slime_instance.slime_type = slime_type
+	slime_instance.position = Vector3(normal_vector.x, 0, normal_vector.y) * rand_distance
+	add_child(slime_instance)
+	slime_spawned.emit(slime_instance)
+	slime_instance.scale = Vector3.ONE * 0.01
+	var tween = create_tween()
+	tween.tween_property(slime_instance, "scale", Vector3.ONE, spawn_duration)
+
+func _process_queue():
+	if not _spawn_timer.is_stopped(): return
+	if queued_to_spawn < 1: return
+	spawn()
+	queued_to_spawn -= 1
+	_spawn_timer.start(spawn_delay)
+
+func _on_spawn_timer_timeout():
+	_process_queue()
+
+func _ready():
+	_process_queue()
