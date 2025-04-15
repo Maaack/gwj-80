@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ObjectiveList" load_steps=4 format=3 uid="uid://cfjwu5fn5thwn"]
+
+[ext_resource type="Script" uid="uid://ba0t0vst1rfh" path="res://resources/data/objective_data.gd" id="1_wtkp3"]
+[ext_resource type="Script" uid="uid://ddfwubyjq4ce" path="res://resources/data/objective_list.gd" id="2_70mk2"]
+
+[sub_resource type="Resource" id="Resource_sdkcc"]
+script = ExtResource("1_wtkp3")
+slime_type = 11
+slime_count = 1
+metadata/_custom_type_script = "uid://ba0t0vst1rfh"
+
+[resource]
+script = ExtResource("2_70mk2")
+objectives = Array[ExtResource("1_wtkp3")]([SubResource("Resource_sdkcc")])
+metadata/_custom_type_script = "uid://ddfwubyjq4ce"
