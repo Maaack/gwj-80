@@ -14,10 +14,15 @@ var v_sensitivity = .01
 var h_acceleration = 10
 var v_acceleration = 10
 var joyview = Vector2()
+var init_mouse_mode : Input.MouseMode 
 
 func _ready():
+	init_mouse_mode = Input.mouse_mode
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+
+func _exit_tree():
+	Input.set_mouse_mode(init_mouse_mode)
+
 func _input(event):
 	if event is InputEventMouseMotion:
 	
