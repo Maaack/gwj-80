@@ -1,20 +1,22 @@
 class_name Slime
 extends CharacterBody3D
 
-@export_category("Boid Rule Weights")
+@export var slime_type : Constants.SlimeType
+
+@export_group("Boid Rule Weights")
 @export var cohesion_weight: float = 0.0005
 @export var separation_weight: float = 0.01
 @export var alignment_weight: float = 0.000525
 @export var target_location_weight: float = 0.005
 @export var target_location_repel_weight: float = 0.1
 
-@export_category("Boid Settings")
+@export_group("Boid Settings")
 @export var separation_distance: float = 3.5
 @export var separation_max_magnitude: float = 0.1
 @export var target_location_radius: float = 3.5
 @export var target_location_max_magnitude: float = 0.2
 
-@export_category("Movement Settings")
+@export_group("Movement Settings")
 @export var min_speed: float = 2.0
 @export var max_speed: float = 3.0
 @export var turn_speed: float = 3.0
@@ -35,6 +37,8 @@ var slime_data : SlimeData = SlimeData.new()
 func _ready() -> void:
 	velocity = Vector3(randf(), 0.0, randf())
 	velocity = velocity.normalized() * max_speed
+	# This assignment may reverse when the slime spawner logic is determined.
+	slime_data.slime_type = slime_type
 
 
 func _physics_process(delta: float) -> void:
@@ -102,6 +106,7 @@ func calc_cohesion() -> Vector3:
 
 	var center := Vector3.ZERO
 	for slime: Slime in nearby_slimes:
+		if not is_instance_valid(slime): continue
 		center += slime.global_position
 	center /= nearby_slimes.size()
 
@@ -120,6 +125,7 @@ func calc_separation() -> Vector3:
 
 	var separation := Vector3.ZERO
 	for slime: Slime in nearby_slimes:
+		if not is_instance_valid(slime): continue
 		if global_position.distance_to(slime.global_position) <= separation_distance:
 			var delta_distance: Vector3 = slime.global_position - global_position
 			separation += (delta_distance - delta_distance.normalized() * separation_distance)
@@ -137,6 +143,7 @@ func calc_alignment() -> Vector3:
 
 	var avg_velocity := Vector3.ZERO
 	for slime: Slime in nearby_slimes:
+		if not is_instance_valid(slime): continue
 		avg_velocity += slime.velocity
 	avg_velocity /= nearby_slimes.size()
 

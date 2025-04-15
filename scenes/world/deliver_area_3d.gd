@@ -9,11 +9,12 @@ signal slime_detected
 var slimes_detected : Array[Slime]
 
 func deliver():
+	var tween = create_tween()
 	for slime in slimes_detected:
 		var slime_data = slime.slime_data
-		var tween = create_tween()
-		tween.tween_property(slime, "scale", Vector3.ONE * 0.01, delivery_time)
-		await tween.finished
+		tween.parallel().tween_property(slime, "scale", Vector3.ONE * 0.01, delivery_time)
+	await tween.finished
+	for slime in slimes_detected:
 		slime.queue_free()
 		slime_delivered.emit(slime.slime_data)
 
