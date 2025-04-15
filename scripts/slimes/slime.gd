@@ -24,8 +24,10 @@ extends CharacterBody3D
 var nearby_slimes: Array[Slime] = []
 var attract_locations: Array[Vector3] = []
 var repel_locations: Array[Vector3] = []
+var push_velocities: Array[Vector3] = []
 var is_scattering: bool = false
 var is_idle: bool = false
+
 var _player: PlayerCharacter
 
 var external_velocity: Vector3 = Vector3.ZERO
@@ -66,6 +68,9 @@ func _physics_process(delta: float) -> void:
 
 	if velocity.length() > max_speed:
 		velocity = velocity.normalized() * randf_range(min_speed, max_speed)
+
+	for push_velocity: Vector3 in push_velocities:
+		velocity += push_velocity
 
 	# NOTE: This would be more efficient if checked when these conditions change, rather than every physics update.
 	if not is_idle and nearby_slimes.is_empty() and attract_locations.is_empty() and repel_locations.is_empty():
@@ -206,10 +211,10 @@ func _on_flocking_zone_body_entered(body: Node3D) -> void:
 
 ## Stop tracking slimes that leave the area.
 func _on_flocking_zone_body_exited(body: Node3D) -> void:
-	if body.owner is not Slime:
+	if body is not Slime:
 		return
 
-	nearby_slimes.erase(body.owner)
+	nearby_slimes.erase(body)
 
 
 #endregion

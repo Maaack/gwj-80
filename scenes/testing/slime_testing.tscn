@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://chsmnfd4o7tj4"]
+[gd_scene load_steps=12 format=3 uid="uid://chsmnfd4o7tj4"]
 
 [ext_resource type="PackedScene" uid="uid://dgeh3m30gar0o" path="res://scenes/slimes/slime.tscn" id="1_oeq8d"]
 [ext_resource type="PackedScene" uid="uid://dtollnkgrdph8" path="res://scenes/slimes/slime_explosive.tscn" id="2_yi86t"]
 [ext_resource type="PackedScene" uid="uid://b5iybcpovkwdx" path="res://scenes/slimes/slime_metal.tscn" id="3_qva8q"]
+[ext_resource type="PackedScene" uid="uid://dc01qmly3uoig" path="res://scenes/slimes/slime_water.tscn" id="4_85mtq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oeq8d"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -36,48 +37,6 @@ environment = SubResource("Environment_qva8q")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
-
-[node name="Slime" parent="." instance=ExtResource("1_oeq8d")]
-
-[node name="Slime2" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56541, 0, 0)
-
-[node name="Slime3" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71578, 0, 1.52902)
-
-[node name="Slime4" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.97)
-
-[node name="Camera3D" type="Camera3D" parent="Slime4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3)
-
-[node name="Slime5" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23586, 0, 2.70158)
-
-[node name="Slime6" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60744, 0, 0)
-
-[node name="Slime7" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.97431)
-
-[node name="Slime8" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9354, 0, 0)
-
-[node name="Slime9" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4594, 0, -9.56157)
-
-[node name="Slime10" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47763, 0, 2.85507)
-
-[node name="SlimeExplosive" parent="." instance=ExtResource("2_yi86t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04358, 0, 0)
-
-[node name="SlimeRock" parent="." instance=ExtResource("3_qva8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43364, 0, -2.18313)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 35, 0)
-current = true
 
 [node name="Area3D" type="StaticBody3D" parent="."]
 collision_mask = 3
@@ -127,3 +86,39 @@ shape = SubResource("BoxShape3D_oeq8d")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Area3D5"]
 size = Vector3(1, 10, 50)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 35, 0)
+current = true
+
+[node name="Slime" parent="." instance=ExtResource("1_oeq8d")]
+
+[node name="Slime2" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56541, 0, 0)
+
+[node name="Slime3" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71578, 0, 1.52902)
+
+[node name="Slime4" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.97)
+
+[node name="Camera3D" type="Camera3D" parent="Slime4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3)
+
+[node name="Slime5" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23586, 0, 2.70158)
+
+[node name="Slime6" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60744, 0, 0)
+
+[node name="Slime7" parent="." instance=ExtResource("1_oeq8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.97431)
+
+[node name="SlimeExplosive" parent="." instance=ExtResource("2_yi86t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04358, 0, 0)
+
+[node name="SlimeMetal" parent="." instance=ExtResource("3_qva8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43364, 0, -2.18313)
+
+[node name="SlimeWater" parent="." instance=ExtResource("4_85mtq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94905, 0, 3.90215)
