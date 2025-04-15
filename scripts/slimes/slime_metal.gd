@@ -11,6 +11,9 @@ func _ready() -> void:
 
 ## Override the physics_process, to make the external velocity the only factor that moves this slime.
 func _physics_process(delta: float) -> void:
+	for push_velocity: Vector3 in push_velocities:
+		velocity += push_velocity
+
 	# Rotate the model to face the movement direction, limited by the turn speed.
 	pivot.rotation.y = lerpf(pivot.rotation.y, atan2(-velocity.x, -velocity.z), turn_speed * delta)
 

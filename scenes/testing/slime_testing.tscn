@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://chsmnfd4o7tj4"]
+[gd_scene load_steps=13 format=3 uid="uid://chsmnfd4o7tj4"]
 
 [ext_resource type="PackedScene" uid="uid://dgeh3m30gar0o" path="res://scenes/slimes/slime.tscn" id="1_oeq8d"]
 [ext_resource type="PackedScene" uid="uid://dtollnkgrdph8" path="res://scenes/slimes/slime_explosive.tscn" id="2_yi86t"]
 [ext_resource type="PackedScene" uid="uid://b5iybcpovkwdx" path="res://scenes/slimes/slime_metal.tscn" id="3_qva8q"]
 [ext_resource type="PackedScene" uid="uid://dc01qmly3uoig" path="res://scenes/slimes/slime_water.tscn" id="4_85mtq"]
+[ext_resource type="PackedScene" uid="uid://rsvs5gnqqr8d" path="res://scenes/slimes/slime_ash.tscn" id="5_xlo40"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oeq8d"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -122,3 +123,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43364, 0, -2.18313)
 
 [node name="SlimeWater" parent="." instance=ExtResource("4_85mtq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94905, 0, 3.90215)
+
+[node name="SlimeAsh" parent="." instance=ExtResource("5_xlo40")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62126, 0, -2.78451)
