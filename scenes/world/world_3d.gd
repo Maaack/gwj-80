@@ -47,6 +47,7 @@ func _on_slimes_touch(slime_1 : Slime, slime_2 : Slime) -> void:
 			slimes_combined.emit(slime_1.slime_type, slime_2.slime_type)
 			slime_2.depart(1.0)
 			slime_1.grow(combo.slime_result, 2, 1.0)
+			GameState.get_journal_state().add_combination(combo)
 
 func _on_delivery_delay_timer_timeout():
 	delivery_area.deliver()

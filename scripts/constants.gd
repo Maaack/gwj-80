@@ -16,16 +16,6 @@ enum SlimeType {
 	YINYANG, # BALANCED CHAOS
 }
 
-class SlimeCombination :
-	var slime_1 : SlimeType
-	var slime_2 : SlimeType
-	var slime_result : SlimeType
-	
-	func _init(_slime_1: SlimeType, _slime_2: SlimeType, _slime_result: SlimeType ):
-		slime_1 = _slime_1
-		slime_2 = _slime_2
-		slime_result = _slime_result
-
 static var combinations : Array[SlimeCombination] = [
 	SlimeCombination.new(SlimeType.WATER, SlimeType.FIRE, SlimeType.EXPLOSIVE),
 	SlimeCombination.new(SlimeType.WATER, SlimeType.VINE, SlimeType.MOSS),
