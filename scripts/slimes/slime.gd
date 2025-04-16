@@ -35,6 +35,9 @@ var is_growing: bool = false
 var external_velocity: Vector3 = Vector3.ZERO
 
 @onready var pivot: Node3D = %Pivot
+@onready var slime_model: Node3D = %SlimeModel
+@onready var collision_shape: CollisionShape3D = %CollisionShape3D
+@onready var sphere_shape: SphereShape3D = collision_shape.shape
 
 var slime_data : SlimeData = SlimeData.new()
 
@@ -61,7 +64,8 @@ func grow(new_type : Constants.SlimeType, new_scale : float = 1.0, grow_duration
 	if is_busy(): return
 	is_growing = true
 	var tween = create_tween()
-	tween.tween_property(self, "scale", Vector3.ONE * new_scale, grow_duration)
+	tween.tween_property(slime_model, "scale", Vector3.ONE * new_scale, grow_duration)
+	tween.tween_property(sphere_shape, "radius", sphere_shape.radius * new_scale, grow_duration)
 	await tween.finished
 	slime_type = new_type
 	slime_data.slime_type = slime_type
@@ -236,7 +240,7 @@ func _on_flocking_zone_body_exited(body: Node3D) -> void:
 
 
 func _on_touch_zone_body_entered(body) -> void:
-	if is_departing : return
+	if is_busy() : return
 	if body is Slime:
 		slime_touched.emit(body)
 
