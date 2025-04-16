@@ -22,6 +22,10 @@ extends CharacterBody3D
 @export var external_velocity_deceleration: float = 6.0
 @export var ambient_direction_update_cooldown: float = 5.0
 
+@export_category("Scale Settings")
+@export var min_scale: float = 0.25
+@export var max_scale: float = 4.0
+
 var nearby_slimes: Array[Slime] = []
 var attract_locations: Array[Vector3] = []
 var repel_locations: Array[Vector3] = []
@@ -270,10 +274,12 @@ func set_slime_scale(new_scale: float) -> void:
 	if pivot.scale.x == new_scale:
 		return
 
-	tween_scale(Vector3(new_scale, new_scale, new_scale), 0.75)
+	var clamped_scale: float = clampf(new_scale, min_scale, max_scale)
+
+	tween_scale(Vector3(clamped_scale, clamped_scale, clamped_scale), 0.75)
 
 	var current_radius: float = get_collision_shape_radius()
-	var new_radius: float = default_collision_shape_radius * new_scale
+	var new_radius: float = default_collision_shape_radius * clamped_scale
 	var radius_increase: float = new_radius - current_radius
 	set_collision_shape_radius(new_radius)
 	collision_shape.position.y += radius_increase
