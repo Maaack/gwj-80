@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://315yyb7omro3"]
+
+[ext_resource type="PackedScene" uid="uid://dajo70m0k3f0f" path="res://assets/Art/3d/Rock/Buiding Rocks/big_rock.tscn" id="1_dfgst"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ha5nv"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_5opww"]
+material = SubResource("StandardMaterial3D_ha5nv")
+size = Vector2(1.25, 1)
+center_offset = Vector3(0, 0.225, 0)
+
+[node name="Rock Spawner" type="Node3D"]
+
+[node name="Big_Rock" parent="." instance=ExtResource("1_dfgst")]
+transform = Transform3D(0.147413, -0.0122551, 0.0222927, 0.0237763, 0.281023, -0.0506433, -0.0264536, 0.184289, 0.0787084, -0.109771, 0.0724244, -0.499326)
+
+[node name="Big_Rock5" parent="." instance=ExtResource("1_dfgst")]
+transform = Transform3D(0.134122, 0.0329938, 0.017713, 0.0260573, 0.138681, -0.0167682, -0.0946144, 0.0849643, 0.0204912, -1.33805, -0.321666, -0.534465)
+
+[node name="Big_Rock6" parent="." instance=ExtResource("1_dfgst")]
+transform = Transform3D(0.164072, -0.0244688, 0.001911, 0.024341, 0.115138, -0.0224622, 0.0103613, 0.116981, 0.0225079, -0.0851232, 1.49643, -0.630807)
+
+[node name="Big_Rock2" parent="." instance=ExtResource("1_dfgst")]
+transform = Transform3D(0.164632, -0.028787, 0.0477392, -0.0103903, 0.212156, 0.0847169, -0.0540325, -0.128508, 0.129166, 0.0541695, 0.67612, 2.70854)
+
+[node name="Big_Rock4" parent="." instance=ExtResource("1_dfgst")]
+transform = Transform3D(0.23642, 0.0164399, 0.0068349, -0.0363999, 0.111654, 0.017419, -0.0092029, -0.0192825, 0.10669, -0.490124, -0.127059, 2.58186)
+
+[node name="Big_Rock3" parent="." instance=ExtResource("1_dfgst")]
+transform = Transform3D(0.0436343, 0.104656, -0.0871421, -0.00237601, 0.318505, 0.0308323, 0.14521, -0.0262367, 0.0266899, -1.74746, 0.0724244, 1.23716)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.168656, -0.00240497, 2.00252, -0.0136081, 2.0231, 0.000970909, -1.79236, -0.0151336, -0.18844, -0.108458, 0.654853, 0.952323)
+mesh = SubResource("QuadMesh_5opww")
