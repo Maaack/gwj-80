@@ -270,13 +270,21 @@ func tween_scale(new_scale: Vector3, duration: float) -> void:
 	scale_tween.tween_property(pivot, "scale", new_scale, duration)
 
 
-func set_slime_scale(new_scale: float) -> void:
+func get_slime_scale() -> float:
+	return pivot.scale.x
+
+
+func set_slime_scale(new_scale: float, tweened: bool = true) -> void:
 	if pivot.scale.x == new_scale:
 		return
 
 	var clamped_scale: float = clampf(new_scale, min_scale, max_scale)
+	var clamped_scale_vec := Vector3(clamped_scale, clamped_scale, clamped_scale)
 
-	tween_scale(Vector3(clamped_scale, clamped_scale, clamped_scale), 0.75)
+	if tweened:
+		tween_scale(clamped_scale_vec, 0.75)
+	else:
+		pivot.scale = clamped_scale_vec
 
 	var current_radius: float = get_collision_shape_radius()
 	var new_radius: float = default_collision_shape_radius * clamped_scale
