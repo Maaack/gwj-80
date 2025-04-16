@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://0ebfq5klmi2x"]
+
+[ext_resource type="Shader" uid="uid://maj0snw8f56l" path="res://scenes/player_character/Toon.gdshader" id="1_hkaar"]
+[ext_resource type="Texture2D" uid="uid://m5646klqux1e" path="res://assets/Art/3d/QuestGiver/Quest Giver_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png" id="2_1rn23"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_hkaar")
+shader_parameter/ToonRampOffset = 0.511
+shader_parameter/ToonRampSmoothness = 0.05
+shader_parameter/ToonRampTinting = Color(0, 0, 0, 1)
+shader_parameter/RimPower = 4.944
+shader_parameter/RimCutOff = 0.0
+shader_parameter/RimSmoothness = 0.466
+shader_parameter/RimLightBrightness = 50.0
+shader_parameter/SubSurfDistortion = 1.0
+shader_parameter/SubSurfTint = Color(0.740764, 0.216334, 0.405269, 1)
+shader_parameter/SubSurfBrightness = 3.0
+shader_parameter/SubSurfCutoff = 0.5
+shader_parameter/SubSurfSmoothness = 0.05
+shader_parameter/Texture = ExtResource("2_1rn23")

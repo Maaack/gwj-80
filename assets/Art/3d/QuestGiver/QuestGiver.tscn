@@ -1,0 +1,129 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfetxfuxwlk1p"]
+
+[ext_resource type="PackedScene" uid="uid://or5eompav04b" path="res://assets/Art/3d/QuestGiver/Quest Giver.glb" id="1_ljld7"]
+[ext_resource type="Material" uid="uid://7dove364tbfv" path="res://assets/Art/3d/QuestGiver/QuestGiver_Hair.tres" id="2_dot4x"]
+[ext_resource type="Material" uid="uid://0ebfq5klmi2x" path="res://assets/Art/3d/QuestGiver/QuestGiver.tres" id="3_o1iad"]
+
+[node name="QuetGiver" type="Node3D"]
+
+[node name="Quest Giver" parent="." instance=ExtResource("1_ljld7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.834915, -1.19209e-07, -0.830765)
+
+[node name="root" parent="Quest Giver" index="0"]
+transform = Transform3D(0.37, 0, 0, 0, 0.37, 0, 0, 0, 0.37, 0.930377, -0.0440708, 0.70856)
+
+[node name="Skeleton3D" parent="Quest Giver/root" index="0"]
+bones/0/position = Vector3(-0.375222, 5.6255, 2.4394)
+bones/0/rotation = Quaternion(0.0633753, -0.701777, 0.0882375, 0.704065)
+bones/2/rotation = Quaternion(6.91184e-11, 1, -7.43967e-09, -4.33024e-07)
+bones/4/rotation = Quaternion(-0.00580123, 0.00035617, 0.0334801, 0.999422)
+bones/7/rotation = Quaternion(0.0366199, 0.000148295, 0.0249402, 0.999018)
+bones/9/rotation = Quaternion(-0.0959284, 0.00481383, 0.0487438, 0.994182)
+bones/10/position = Vector3(0.437598, 0.870721, 0.650406)
+bones/10/rotation = Quaternion(-5.82077e-11, 1, 1.2733e-11, -4.33402e-07)
+bones/12/position = Vector3(0.0141965, -0.155877, -0.00137702)
+bones/15/position = Vector3(-0.492307, 0.856863, 0.679306)
+bones/29/rotation = Quaternion(-0.0197121, 2.93627e-08, -0.019931, 0.999607)
+bones/31/rotation = Quaternion(0.733091, -0.664703, -0.0967534, -0.106707)
+bones/34/rotation = Quaternion(-0.00145025, -0.00138343, -0.179134, 0.983823)
+bones/35/rotation = Quaternion(0.0370006, -0.00658071, 0.142714, 0.98905)
+bones/36/rotation = Quaternion(0.103633, -0.0588964, 0.479833, 0.869225)
+bones/38/rotation = Quaternion(0.0686898, 0.0098626, -0.130816, 0.988975)
+bones/39/rotation = Quaternion(-0.00180264, 0.00129423, 0.144398, 0.989517)
+bones/40/rotation = Quaternion(-0.131283, 0.0669896, 0.440643, 0.885501)
+bones/43/rotation = Quaternion(-0.0197121, 2.92754e-08, -0.019931, 0.999607)
+bones/47/rotation = Quaternion(-0.0656121, 0.00222449, 0.0449592, 0.996829)
+bones/48/rotation = Quaternion(-0.00172273, -0.00136057, -0.213137, 0.97702)
+bones/49/rotation = Quaternion(0.000730442, -0.000717311, -0.452221, 0.891905)
+bones/51/rotation = Quaternion(0.0927264, -0.00559853, 0.0672149, 0.993405)
+bones/52/rotation = Quaternion(-0.00212564, 0.000621873, -0.189216, 0.981933)
+bones/53/rotation = Quaternion(-0.0981441, -0.0507352, -0.467296, 0.877171)
+bones/55/position = Vector3(-0.150237, 0.149017, -0.0156613)
+bones/55/rotation = Quaternion(-0.515173, 0.493449, 0.506425, 0.484395)
+bones/56/rotation = Quaternion(-0.436446, -0.385025, 0.331047, 0.742751)
+bones/56/scale = Vector3(1, 1.12061, 1)
+bones/57/rotation = Quaternion(-1.04019e-07, 0.467101, 7.46616e-08, 0.884204)
+bones/58/rotation = Quaternion(-0.0773038, -0.000427691, -0.0437578, 0.996047)
+bones/58/scale = Vector3(0.999234, 0.794867, 0.997607)
+bones/59/rotation = Quaternion(-2.37854e-08, -0.411627, 9.30374e-08, 0.911353)
+bones/60/rotation = Quaternion(0.0223424, -0.399253, -0.155254, 0.903324)
+bones/60/scale = Vector3(1.0121, 1.11568, 1.00065)
+bones/63/rotation = Quaternion(0.251479, -0.0465669, 0.387215, 0.885807)
+bones/67/position = Vector3(0.0494336, 0.212185, -0.0153127)
+bones/67/rotation = Quaternion(0.0092383, -0.00594468, -0.0966881, 0.995254)
+bones/68/position = Vector3(0.122707, 0.174643, -0.0104751)
+bones/68/rotation = Quaternion(0.504432, 0.504432, 0.495529, -0.495529)
+bones/69/rotation = Quaternion(-0.61664, 0.299134, 0.209373, 0.697451)
+bones/69/scale = Vector3(1, 1.31899, 1)
+bones/70/rotation = Quaternion(-3.0366e-08, -0.23057, -1.15485e-07, 0.973056)
+bones/71/rotation = Quaternion(0.00217279, 0.000451614, -0.707518, 0.706691)
+bones/71/scale = Vector3(0.758159, 1.13643, 0.999997)
+bones/72/rotation = Quaternion(3.63075e-08, 0.747393, 1.76004e-08, 0.664382)
+bones/73/rotation = Quaternion(-0.0834373, 0.731837, -0.132483, 0.66325)
+bones/73/scale = Vector3(0.989681, 0.891897, 0.999681)
+bones/76/position = Vector3(-0.0276044, 0.252813, 0.0717563)
+bones/80/rotation = Quaternion(0.0652914, 0.317976, -0.341261, 0.882139)
+bones/82/position = Vector3(0.338824, 0.0709797, 0.0273074)
+bones/82/rotation = Quaternion(0.976548, -0.0157456, 0.213588, 0.0220685)
+bones/82/scale = Vector3(1, 0.999999, 1)
+bones/83/rotation = Quaternion(4.65795e-08, 0.00350213, -4.16776e-07, 0.999994)
+bones/84/rotation = Quaternion(1.26818e-08, 6.23373e-08, 0.00251264, 0.999997)
+bones/85/rotation = Quaternion(0.11139, 0.822479, -0.526307, 0.184718)
+bones/86/rotation = Quaternion(-0.00482786, 0.999342, -0.035368, -0.00646042)
+bones/87/rotation = Quaternion(1.02163e-07, 0.000920314, 7.27944e-08, 1)
+bones/88/rotation = Quaternion(0.984263, -0.120087, -0.127999, 0.0205508)
+bones/89/rotation = Quaternion(-3.91163e-07, -0.000924117, -1.27357e-06, 1)
+bones/90/rotation = Quaternion(-1.86128e-07, -7.23897e-08, -0.0023334, 0.999997)
+bones/91/rotation = Quaternion(-0.0260147, 0.799545, -0.5794, -0.156036)
+bones/92/rotation = Quaternion(-0.0166247, 0.994407, -0.10406, 0.00708726)
+bones/93/rotation = Quaternion(-4.05457e-09, -0.00376148, -2.53344e-07, 0.999993)
+
+[node name="Hair" parent="Quest Giver/root/Skeleton3D" index="0"]
+transform = Transform3D(0.977008, -0.213201, -0.000557587, 0.213087, 0.976395, 0.0352986, -0.00698139, -0.0346059, 0.999376, -0.46043, 6.22439, -0.509834)
+
+[node name="Hair" parent="Quest Giver/root/Skeleton3D/Hair" index="0"]
+surface_material_override/0 = ExtResource("2_dot4x")
+
+[node name="Hair Tie" parent="Quest Giver/root/Skeleton3D" index="1"]
+transform = Transform3D(0.977008, -0.2132, -0.000557347, 0.213087, 0.976395, 0.0352986, -0.00698148, -0.0346058, 0.999377, -0.412743, 6.15767, -0.534234)
+
+[node name="Hair Tie" parent="Quest Giver/root/Skeleton3D/Hair Tie" index="0"]
+surface_material_override/0 = ExtResource("3_o1iad")
+
+[node name="Jacket" parent="Quest Giver/root/Skeleton3D" index="2"]
+transform = Transform3D(0.997758, -0.0669256, 0.000326461, 0.0669173, 0.997691, 0.0116199, -0.00110338, -0.011572, 0.999932, -0.124185, 4.21256, 0.0943027)
+
+[node name="Jacket" parent="Quest Giver/root/Skeleton3D/Jacket" index="0"]
+surface_material_override/0 = ExtResource("3_o1iad")
+
+[node name="Body" parent="Quest Giver/root/Skeleton3D" index="3"]
+surface_material_override/0 = ExtResource("3_o1iad")
+
+[node name="Brows" parent="Quest Giver/root/Skeleton3D" index="4"]
+surface_material_override/0 = ExtResource("2_dot4x")
+
+[node name="Left Eye" parent="Quest Giver/root/Skeleton3D" index="5"]
+surface_material_override/0 = ExtResource("3_o1iad")
+
+[node name="Left Lash" parent="Quest Giver/root/Skeleton3D" index="6"]
+surface_material_override/0 = ExtResource("3_o1iad")
+
+[node name="Right Eye" parent="Quest Giver/root/Skeleton3D" index="7"]
+surface_material_override/0 = ExtResource("3_o1iad")
+
+[node name="Right LAsh" parent="Quest Giver/root/Skeleton3D" index="8"]
+surface_material_override/0 = ExtResource("3_o1iad")
+
+[node name="Skeleton3D" parent="Quest Giver" index="1"]
+visible = false
+bones/2/rotation = Quaternion(0.00425248, 0.778299, -0.627872, -0.002943)
+bones/14/rotation = Quaternion(0.989238, -0.0538564, -0.132315, 0.0316362)
+bones/41/rotation = Quaternion(0.504432, -0.504432, -0.495529, -0.495529)
+bones/43/rotation = Quaternion(0.504432, 0.504432, 0.495529, -0.495529)
+bones/54/rotation = Quaternion(0.733091, -0.664703, -0.0967534, -0.106707)
+bones/70/rotation = Quaternion(-0.256711, -0.0490095, -0.181011, 0.948121)
+
+[node name="AnimationPlayer" parent="Quest Giver" index="2"]
+autoplay = "Action"
+
+[editable path="Quest Giver"]
