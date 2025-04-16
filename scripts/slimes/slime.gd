@@ -1,6 +1,9 @@
 class_name Slime
 extends CharacterBody3D
 
+signal slime_touched(other_slime : Slime)
+signal departed
+
 @export var slime_type : Constants.SlimeType
 
 @export_group("Boid Rule Weights")
@@ -26,6 +29,8 @@ var nearby_slimes: Array[Slime] = []
 var attract_locations: Array[Vector3] = []
 var repel_locations: Array[Vector3] = []
 var is_scattering: bool = false
+var is_departing: bool = false
+var is_growing: bool = false
 
 var external_velocity: Vector3 = Vector3.ZERO
 
@@ -40,6 +45,27 @@ func _ready() -> void:
 	# This assignment may reverse when the slime spawner logic is determined.
 	slime_data.slime_type = slime_type
 
+func is_busy():
+	return is_departing or is_growing
+
+func depart(departure_time : float = 1.0) -> void:
+	if is_busy(): return
+	is_departing = true
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector3.ONE * 0.01, departure_time)
+	await tween.finished
+	queue_free()
+	departed.emit()
+
+func grow(new_type : Constants.SlimeType, new_scale : float = 1.0, grow_duration : float = 1.0) -> void:
+	if is_busy(): return
+	is_growing = true
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector3.ONE * new_scale, grow_duration)
+	await tween.finished
+	slime_type = new_type
+	slime_data.slime_type = slime_type
+	is_growing = false
 
 func _physics_process(delta: float) -> void:
 	var cohesion: Vector3 = calc_cohesion()
@@ -208,6 +234,11 @@ func _on_flocking_zone_body_exited(body: Node3D) -> void:
 
 #endregion
 
+
+func _on_touch_zone_body_entered(body) -> void:
+	if is_departing : return
+	if body is Slime:
+		slime_touched.emit(body)
 
 func add_external_velocity(ext_velocity: Vector3) -> void:
 	external_velocity += ext_velocity
