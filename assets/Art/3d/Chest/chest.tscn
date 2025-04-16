@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ld17blvffcfp"]
+
+[ext_resource type="PackedScene" uid="uid://cpsusg0kxk7xi" path="res://assets/Art/3d/Chest/Chest.glb" id="1_jqguf"]
+
+[node name="Chest" type="Node3D"]
+
+[node name="Chest" parent="." instance=ExtResource("1_jqguf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.115345, 0, -0.0612235)

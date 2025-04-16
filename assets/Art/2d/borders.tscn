@@ -6,7 +6,9 @@
 points = PackedVector3Array(-1.83111, -1.25611, -0.0286111, 1.83111, 1.26167, 0.0286111, 1.83111, 1.26167, -0.0286111, -1.83111, 1.26167, 0.0286111, 1.83111, -1.25611, 0.0286111, 1.83111, -1.25611, -0.0286111, -1.83111, 1.26167, -0.0286111, -1.83111, -1.25611, 0.0286111)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3n0n8"]
-transparency = 4
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("1_g1by6")
 disable_receive_shadows = true
 
