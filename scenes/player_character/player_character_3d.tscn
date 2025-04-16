@@ -124,4 +124,8 @@ parameters/conditions/IsOnFloor = false
 parameters/conditions/IsRunning = false
 parameters/conditions/IsWalking = false
 
+[node name="WhistlingStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+bus = &"SFX"
+
 [editable path="PlayerCharacterModel"]

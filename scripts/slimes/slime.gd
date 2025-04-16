@@ -1,6 +1,9 @@
 class_name Slime
 extends CharacterBody3D
 
+signal slime_touched(other_slime : Slime)
+signal departed
+
 @export var slime_type : Constants.SlimeType
 
 @export_group("Boid Rule Weights")
@@ -9,6 +12,9 @@ extends CharacterBody3D
 @export var alignment_weight: float = 0.000525
 @export var target_location_weight: float = 0.005
 @export var target_location_repel_weight: float = 0.1
+@export var pc_factor: float = 0.0005
+@export var pc_avoid_factor: float  = 0.01
+@export var pc_whistle_factor: float  = 0.01
 
 @export_group("Boid Settings")
 @export var separation_distance: float = 3.5
@@ -26,10 +32,18 @@ var nearby_slimes: Array[Slime] = []
 var attract_locations: Array[Vector3] = []
 var repel_locations: Array[Vector3] = []
 var is_scattering: bool = false
+var is_departing: bool = false
+var is_growing: bool = false
+var _pc: Node3D
 
 var external_velocity: Vector3 = Vector3.ZERO
 
 @onready var pivot: Node3D = %Pivot
+@onready var slime_model: Node3D = %SlimeModel
+@onready var collision_shape: CollisionShape3D = %CollisionShape3D
+@onready var sphere_shape: SphereShape3D = collision_shape.shape
+@onready var touch_collision_shape: CollisionShape3D = %TouchCollisionShape3D
+@onready var touch_sphere_shape: SphereShape3D = touch_collision_shape.shape
 
 var slime_data : SlimeData = SlimeData.new()
 
@@ -40,17 +54,42 @@ func _ready() -> void:
 	# This assignment may reverse when the slime spawner logic is determined.
 	slime_data.slime_type = slime_type
 
+func is_busy():
+	return is_departing or is_growing
+
+func depart(departure_time : float = 1.0) -> void:
+	if is_busy(): return
+	is_departing = true
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector3.ONE * 0.01, departure_time)
+	await tween.finished
+	queue_free()
+	departed.emit()
+
+func grow(new_type : Constants.SlimeType, new_scale : float = 1.0, grow_duration : float = 1.0) -> void:
+	if is_busy(): return
+	is_growing = true
+	var tween = create_tween()
+	tween.tween_property(slime_model, "scale", Vector3.ONE * new_scale, grow_duration)
+	tween.parallel().tween_property(sphere_shape, "radius", sphere_shape.radius * new_scale, grow_duration)
+	tween.parallel().tween_property(touch_sphere_shape, "radius", touch_sphere_shape.radius * new_scale, grow_duration)
+	await tween.finished
+	slime_type = new_type
+	slime_data.slime_type = slime_type
+	is_growing = false
 
 func _physics_process(delta: float) -> void:
 	var cohesion: Vector3 = calc_cohesion()
-	var separation: Vector3 = calc_separation()
+	var separation: Vector3 = calc_separation() + calc_pc_separation()
 	var alignment: Vector3 = calc_alignment()
+	var pc_direction: Vector3 =  calc_direction_to_pc()
 
 	cohesion.y = 0.0
 	separation.y = 0.0
 	alignment.y = 0.0
+	pc_direction.y = 0.0
 
-	velocity += cohesion + separation + alignment
+	velocity += cohesion + separation + alignment + pc_direction
 
 	for attract_location: Vector3 in attract_locations:
 		var attraction: Vector3 = calc_attract_location(attract_location)
@@ -183,6 +222,20 @@ func calc_repel_location(repel_location: Vector3) -> Vector3:
 
 	return (target_location_max_magnitude - force_falloff) * -distance_to_target_center.normalized()
 
+func calc_direction_to_pc() -> Vector3:
+	if _pc:
+		var final_factor = pc_factor
+		if _pc.is_whistling:
+			final_factor += pc_whistle_factor
+		return global_position.direction_to(_pc.global_position) * final_factor
+	else:
+		return Vector3.ZERO
+
+func calc_pc_separation() -> Vector3:
+	if _pc and global_position.distance_to(_pc.global_position) <= separation_distance:
+		return -global_position.direction_to(_pc.global_position) * pc_avoid_factor
+	else:
+		return Vector3.ZERO
 
 #endregion
 
@@ -192,22 +245,28 @@ func calc_repel_location(repel_location: Vector3) -> Vector3:
 
 ## Keep track of the slimes that within the area.
 func _on_flocking_zone_body_entered(body: Node3D) -> void:
-	if body is not Slime or body == self:
+	if body == self:
 		return
-
-	nearby_slimes.append(body)
+	if body is Slime:
+		nearby_slimes.append(body)
+	if body is PlayerCharacter:
+		_pc = body
 
 
 ## Stop tracking slimes that leave the area.
 func _on_flocking_zone_body_exited(body: Node3D) -> void:
-	if body.owner is not Slime:
-		return
-
-	nearby_slimes.erase(body.owner)
-
+	if body is Slime and body in nearby_slimes:
+		nearby_slimes.erase(body)
+	if body is PlayerCharacter and _pc == body:
+		_pc = null
 
 #endregion
 
+
+func _on_touch_zone_body_entered(body) -> void:
+	if is_busy() : return
+	if body is Slime:
+		slime_touched.emit(body)
 
 func add_external_velocity(ext_velocity: Vector3) -> void:
 	external_velocity += ext_velocity

@@ -10,6 +10,7 @@ extends CharacterBody3D
 # Allows to pick your chracter's mesh from the inspector
 @export_node_path("Node3D") var PlayerCharacterMesh: NodePath
 @onready var player_mesh : Node3D = get_node(PlayerCharacterMesh)
+@onready var whistling_player: AudioStreamPlayer3D = %WhistlingStreamPlayer3D
 
 # Gamplay mechanics and Inspector tweakables
 @export var gravity : float = 9.8
@@ -38,7 +39,6 @@ var should_stop_dancing : bool = false
 # Physics values
 var direction : Vector3
 var horizontal_velocity : Vector3
-var aim_turn : float
 var movemen : Vector3
 var vertical_velocity : Vector3
 var movement_speed : float
@@ -46,13 +46,18 @@ var angular_acceleration : float
 var acceleration : float
 var selected_outfit : Node3D
 var stop_movement_inputs : bool = false
+var is_whistling : bool = false
 
-func _ready() -> void: # Camera based Rotation
+func _ready() -> void:
 	direction = Vector3.BACK.rotated(Vector3.UP, $CustomCamera/h.global_transform.basis.get_euler().y)
 
-func _input(event : InputEvent)  -> void: # All major mouse and button input events
-	if event is InputEventMouseMotion:
-		aim_turn = -event.relative.x * 0.015 # animates player with mouse movement while aiming 
+func _input(event) -> void:
+	if event.is_action_pressed("attract_slimes"):
+		is_whistling = true
+		whistling_player.play()
+	elif event.is_action_released("attract_slimes"):
+		is_whistling = false
+		whistling_player.stop()
 
 func _physics_process(delta : float) -> void:
 	if stop_movement_inputs:
