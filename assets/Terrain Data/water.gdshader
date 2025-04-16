@@ -34,15 +34,15 @@ void fragment(){
 	highp vec2 polar_uv = polar_coordinates(base_uv, vec2(0.5), 1.0, 1.0);
 	polar_uv.x -= TIME * flow_speed;
 	float caus = texture(caustics_texture, polar_uv).r;
-	
+
 	// Fade out caustics
 	float cd = distance(UV, vec2(0.5));
 	float vign = 1.0 - smoothstep(vignette_size, vignette_size + vignette_blend, cd);
-	
+
 	// Color the caustics
 	float grad_uv = caus * vign;
 	vec3 color = texture(color_gradient, vec2(grad_uv)).rgb;
-	
+
 	// Center discs
 	float global_disc = 0.0;
 	for (int i = 0; i < 20; i++){
@@ -57,6 +57,6 @@ void fragment(){
 		global_disc += disc;
 	}
 	global_disc *= 0.6;
-	
+
 	ALBEDO = color + global_disc;
 }
