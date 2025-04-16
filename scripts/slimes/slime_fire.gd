@@ -12,7 +12,7 @@ extends Slime
 ## How close another fire slime must be to be grown by this one
 @export var fire_spread_distance: float = 1.5
 ## How often this slime can grow nearby fire slimes
-@export var fire_spread_cooldown: float = 15.0
+@export var fire_spread_cooldown: float = 45.0
 ## The maximum amount this slime can grow another one at once.  This affects the
 ## other slime's scale.
 @export var max_spread_amount: float = 0.3
@@ -46,13 +46,13 @@ func _physics_process(delta: float) -> void:
 		is_fire_spread_available = false
 		if spread_timer.is_stopped():
 			spread_timer.start()
-		slime.set_slime_scale(slime.pivot.scale.x + minf(pivot.scale.x, max_spread_amount))
+		slime.set_slime_scale(slime.get_slime_scale() + minf(get_slime_scale(), max_spread_amount))
 
 
 ## Has a chance to shrink whenever this timer finishes.
 func _on_shrink_timer_timeout() -> void:
 	if randi_range(0, 1) == 0:
-		set_slime_scale(pivot.scale.x - shrink_amount)
+		set_slime_scale(get_slime_scale() - shrink_amount)
 
 
 func _on_spread_timer_timeout() -> void:
