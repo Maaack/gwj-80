@@ -14,6 +14,7 @@ var last_push_velocity := Vector3.ZERO
 
 
 func _ready() -> void:
+	super()
 	update_push_timer.wait_time = update_push_cooldown
 	update_push_timer.start()
 

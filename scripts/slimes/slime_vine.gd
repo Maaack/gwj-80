@@ -12,17 +12,14 @@ var grow_requirement_time: float
 var current_growth_time: float = 0.0
 
 var current_growth_stage: int = 0
-var growth_scales: Array[float] = [ 1.0, 2.0, 3.0]
-
-var scale_tween: Tween
-var default_collision_shape_radius: float
+var growth_scales: Array[float] = [ 1.0, 2.0, 3.0, 4.0 ]
 
 
 func _ready() -> void:
-	# Store the default values, so the properties can be scaled from the default,
-	# as opposed to the current values.
+	super()
+	# Store the default value, so the property can be scaled from the default,
+	# as opposed to the current value.
 	grow_requirement_time = default_grow_requirement_time
-	default_collision_shape_radius = get_collision_shape_radius()
 
 
 func _process(delta: float) -> void:
@@ -66,19 +63,5 @@ func grow() -> void:
 		current_growth_time = 0.0
 		current_growth_stage += 1
 		var new_scale: float = growth_scales[current_growth_stage]
-		tween_scale(Vector3(new_scale, new_scale, new_scale), 0.75)
-
-		var current_radius: float = get_collision_shape_radius()
-		var new_radius: float = default_collision_shape_radius * new_scale
-		var radius_increase: float = new_radius - current_radius
-		set_collision_shape_radius(new_radius)
-		collision_shape.position.y += radius_increase
-		set_flocking_zone_radius(get_flocking_zone_radius() + radius_increase)
+		set_slime_scale(new_scale)
 		grow_requirement_time = default_grow_requirement_time * new_scale
-
-
-func tween_scale(new_scale: Vector3, duration: float) -> void:
-	if scale_tween and scale_tween.is_running():
-		scale_tween.kill()
-	scale_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	scale_tween.tween_property(pivot, "scale", new_scale, duration)

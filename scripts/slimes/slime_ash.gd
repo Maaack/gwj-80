@@ -11,6 +11,7 @@ extends Slime
 
 
 func _ready() -> void:
+	super()
 	scatter_effect_timer.wait_time = scatter_effect_cooldown
 	scatter_effect_timer.start()
 

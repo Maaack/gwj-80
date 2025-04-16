@@ -13,6 +13,7 @@ var alignment_increase: float
 
 
 func _ready() -> void:
+	super()
 	# The increase is additive, so subtract out the default value from the multiplier.
 	cohesion_increase = cohesion_weight * (cohesion_multiplier - 1)
 	alignment_increase = alignment_weight * (alignment_multiplier - 1)

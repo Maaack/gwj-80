@@ -33,6 +33,8 @@ var _player: PlayerCharacter
 
 var speed_modifier: float = 1.0
 var external_velocity: Vector3 = Vector3.ZERO
+var default_collision_shape_radius: float
+var scale_tween: Tween
 
 @onready var pivot: Node3D = %Pivot
 @onready var update_ambient_direction_timer: Timer = %UpdateAmbientDirectionTimer
@@ -46,6 +48,7 @@ func _ready() -> void:
 	_player = get_tree().get_first_node_in_group("player")
 	update_ambient_direction_timer.wait_time = ambient_direction_update_cooldown
 	set_random_movement_direction()
+	default_collision_shape_radius = get_collision_shape_radius()
 
 
 func _physics_process(delta: float) -> void:
@@ -254,3 +257,24 @@ func get_collision_shape_radius() -> float:
 func set_collision_shape_radius(new_radius: float) -> void:
 	var shape: SphereShape3D = collision_shape.shape
 	shape.radius = new_radius
+
+
+func tween_scale(new_scale: Vector3, duration: float) -> void:
+	if scale_tween and scale_tween.is_running():
+		scale_tween.kill()
+	scale_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	scale_tween.tween_property(pivot, "scale", new_scale, duration)
+
+
+func set_slime_scale(new_scale: float) -> void:
+	if pivot.scale.x == new_scale:
+		return
+
+	tween_scale(Vector3(new_scale, new_scale, new_scale), 0.75)
+
+	var current_radius: float = get_collision_shape_radius()
+	var new_radius: float = default_collision_shape_radius * new_scale
+	var radius_increase: float = new_radius - current_radius
+	set_collision_shape_radius(new_radius)
+	collision_shape.position.y += radius_increase
+	set_flocking_zone_radius(get_flocking_zone_radius() + radius_increase)
