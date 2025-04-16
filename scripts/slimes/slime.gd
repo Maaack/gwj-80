@@ -18,6 +18,7 @@ extends CharacterBody3D
 @export var min_speed: float = 2.0
 @export var max_speed: float = 3.0
 @export var turn_speed: float = 1.0
+@export var external_velocity_weight: float = 1.0
 @export var external_velocity_deceleration: float = 6.0
 @export var ambient_direction_update_cooldown: float = 5.0
 
@@ -30,6 +31,7 @@ var is_idle: bool = false
 
 var _player: PlayerCharacter
 
+var speed_modifier: float = 1.0
 var external_velocity: Vector3 = Vector3.ZERO
 
 @onready var pivot: Node3D = %Pivot
@@ -67,8 +69,8 @@ func _physics_process(delta: float) -> void:
 		repulsion.y = 0.0
 		velocity += repulsion
 
-	if velocity.length() > max_speed:
-		velocity = velocity.normalized() * randf_range(min_speed, max_speed)
+	if velocity.length() > (max_speed * speed_modifier):
+		velocity = velocity.normalized() * randf_range(min_speed * speed_modifier, max_speed * speed_modifier)
 
 	for push_velocity: Vector3 in push_velocities:
 		velocity += push_velocity
@@ -83,7 +85,7 @@ func _physics_process(delta: float) -> void:
 	# Rotate the model to face the movement direction, limited by the turn speed.
 	pivot.rotation.y = lerpf(pivot.rotation.y, atan2(-velocity.x, -velocity.z), turn_speed * delta)
 
-	velocity += external_velocity
+	velocity += external_velocity * external_velocity_weight
 	# Decelerate gradually, simulating linear drag.
 	if is_on_floor():
 		external_velocity = external_velocity.move_toward(Vector3.ZERO, external_velocity_deceleration * 2 * delta)
@@ -227,7 +229,7 @@ func add_external_velocity(ext_velocity: Vector3) -> void:
 
 func set_random_movement_direction() -> void:
 	velocity = Vector3(randf(), 0.0, randf())
-	velocity = velocity.normalized() * max_speed
+	velocity = velocity.normalized() * max_speed * speed_modifier
 
 
 func _on_update_ambient_direction_timer_timeout() -> void:
