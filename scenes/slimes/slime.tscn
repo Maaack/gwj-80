@@ -1,12 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgeh3m30gar0o"]
+[gd_scene load_steps=6 format=3 uid="uid://dgeh3m30gar0o"]
 
 [ext_resource type="Script" uid="uid://opg812lnvyu4" path="res://scripts/slimes/slime.gd" id="1_22mvs"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_5rpp1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
+resource_local_to_scene = true
 radius = 0.7
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_22mvs"]
+radius = 15.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5rpp1"]
+resource_local_to_scene = true
 radius = 1.0
 
 [node name="Slime" type="CharacterBody3D"]
@@ -40,8 +45,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TouchZone"]
-shape = SubResource("SphereShape3D_22mvs")
+[node name="TouchCollisionShape3D" type="CollisionShape3D" parent="TouchZone"]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_5rpp1")
 
 [connection signal="body_entered" from="FlockingZone" to="." method="_on_flocking_zone_body_entered"]
 [connection signal="body_exited" from="FlockingZone" to="." method="_on_flocking_zone_body_exited"]
