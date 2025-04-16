@@ -4,7 +4,9 @@ signal level_won
 signal slimes_combined(slime_type_1: Constants.SlimeType, slime_type_2: Constants.SlimeType)
 
 @export var objective_list : ObjectiveList
-@export var delivery_area : DeliveryArea3D
+
+@onready var delivery_area : DeliveryArea3D = $DeliveryArea3D
+@onready var slime_manager : SlimeManager = $SlimeManager
 
 var level_state : LevelState
 var slimes_submitted : Dictionary[Constants.SlimeType, int] = {}
@@ -36,9 +38,13 @@ func _on_slime_delivered(slime_data : SlimeData):
 func _on_slime_detected():
 	$DeliveryDelayTimer.start()
 
-func _on_slime_spawned(slime_node : Slime):
+func _on_slime_spawned(slime_node : Slime) -> void:
 	slime_node.reparent(self)
 	slime_node.slime_touched.connect(_on_slimes_touch.bind(slime_node))
+	slime_node.departed.connect(_on_slime_departed.bind(slime_node.slime_data))
+
+func _on_slime_departed(slime_data : SlimeData) -> void:
+	slime_manager.slime_removed(slime_data.slime_type)
 
 func _on_slimes_touch(slime_1 : Slime, slime_2 : Slime) -> void:
 	for combo in Constants.combinations:
