@@ -7,11 +7,16 @@
 [node name="Level2" instance=ExtResource("1_irplr")]
 objective_list = ExtResource("2_irplr")
 
+[node name="SlimeManager" parent="." index="0" node_paths=PackedStringArray("slime_spawners")]
+slime_spawners = [NodePath("../SlimeSpawner"), NodePath("../SlimeSpawner2")]
+slime_type_target = Dictionary[int, int]({
+1: 20,
+2: 20
+})
+
 [node name="SlimeSpawner" parent="." index="6" instance=ExtResource("3_irplr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 21, 15)
-queued_to_spawn = 20
 
 [node name="SlimeSpawner2" parent="." index="7" instance=ExtResource("3_irplr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 21, 15)
 slime_type = 2
-queued_to_spawn = 20
