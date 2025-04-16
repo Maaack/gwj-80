@@ -23,16 +23,20 @@ func _get_spawn_of_type(slime_type : Constants.SlimeType) -> SlimeSpawner:
 	push_warning("No slime of type %d" % slime_type)
 	return null
 
-func slime_added(slime_type : Constants.SlimeType) -> void:
+func slime_added(slime_type : Constants.SlimeType, count : int = 1) -> void:
 	if slime_type not in slimes_type_count:
 		slimes_type_count[slime_type] = 0
-	slimes_type_count[slime_type] += 1
+	slimes_type_count[slime_type] += count
 
-func slime_removed(slime_type : Constants.SlimeType) -> void:
+func slime_removed(slime_type : Constants.SlimeType, count : int = 1) -> void:
 	if slime_type not in slimes_type_count:
 		slimes_type_count[slime_type] = 0
-	slimes_type_count[slime_type] -= 1
+	slimes_type_count[slime_type] -= count
 	refresh_slime_spawns()
+
+func slime_masses_removed(slime_mass_types : Dictionary[Constants.SlimeType, int] = {}) -> void:
+	for slime_type in slime_mass_types:
+		slime_removed(slime_type, slime_mass_types[slime_type])
 
 func _ready():
 	refresh_slime_spawns()

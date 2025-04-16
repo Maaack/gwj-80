@@ -35,8 +35,10 @@ var is_scattering: bool = false
 var is_departing: bool = false
 var is_growing: bool = false
 var _pc: Node3D
+var mass : int = 1
 
 var external_velocity: Vector3 = Vector3.ZERO
+const VOLUME_TO_RADIUS_MODIFER : float = 4.18879
 
 @onready var pivot: Node3D = %Pivot
 @onready var slime_model: Node3D = %SlimeModel
@@ -57,22 +59,26 @@ func _ready() -> void:
 func is_busy():
 	return is_departing or is_growing
 
-func depart(departure_time : float = 1.0) -> void:
+func depart(departure_time : float = 1.0, send_signal : bool = true) -> void:
 	if is_busy(): return
 	is_departing = true
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector3.ONE * 0.01, departure_time)
 	await tween.finished
 	queue_free()
-	departed.emit()
+	if send_signal:
+		departed.emit()
 
-func grow(new_type : Constants.SlimeType, new_scale : float = 1.0, grow_duration : float = 1.0) -> void:
+func grow(new_type : Constants.SlimeType, new_mass : int = 1, grow_duration : float = 1.0) -> void:
 	if is_busy(): return
 	is_growing = true
+	mass = new_mass
+	slime_data.slime_mass = mass
+	var radius = pow(3/(4*PI)*mass*VOLUME_TO_RADIUS_MODIFER, 0.333) 
 	var tween = create_tween()
-	tween.tween_property(slime_model, "scale", Vector3.ONE * new_scale, grow_duration)
-	tween.parallel().tween_property(sphere_shape, "radius", sphere_shape.radius * new_scale, grow_duration)
-	tween.parallel().tween_property(touch_sphere_shape, "radius", touch_sphere_shape.radius * new_scale, grow_duration)
+	tween.tween_property(slime_model, "scale", Vector3.ONE * radius, grow_duration)
+	tween.parallel().tween_property(sphere_shape, "radius", sphere_shape.radius * radius, grow_duration)
+	tween.parallel().tween_property(touch_sphere_shape, "radius", touch_sphere_shape.radius * radius, grow_duration)
 	await tween.finished
 	slime_type = new_type
 	slime_data.slime_type = slime_type
@@ -266,6 +272,7 @@ func _on_flocking_zone_body_exited(body: Node3D) -> void:
 func _on_touch_zone_body_entered(body) -> void:
 	if is_busy() : return
 	if body is Slime:
+		if body.is_busy() : return
 		slime_touched.emit(body)
 
 func add_external_velocity(ext_velocity: Vector3) -> void:
