@@ -1,6 +1,7 @@
 extends Node3D
 
 signal level_won
+signal slimes_combined(slime_type_1: Constants.SlimeType, slime_type_2: Constants.SlimeType)
 
 @export var objective_list : ObjectiveList
 @export var delivery_area : DeliveryArea3D
@@ -37,6 +38,15 @@ func _on_slime_detected():
 
 func _on_slime_spawned(slime_node : Slime):
 	slime_node.reparent(self)
+	slime_node.slime_touched.connect(_on_slimes_touch.bind(slime_node))
+
+func _on_slimes_touch(slime_1 : Slime, slime_2 : Slime) -> void:
+	for combo in Constants.combinations:
+		if (slime_1.slime_type == combo.slime_1 and slime_2.slime_type == combo.slime_2) or \
+			(slime_2.slime_type == combo.slime_1 and slime_1.slime_type == combo.slime_2):
+			slimes_combined.emit(slime_1.slime_type, slime_2.slime_type)
+			slime_2.depart(1.0)
+			slime_1.grow(combo.slime_result, 2, 1.0)
 
 func _on_delivery_delay_timer_timeout():
 	delivery_area.deliver()
