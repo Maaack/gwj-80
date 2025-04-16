@@ -7,6 +7,11 @@
 [node name="Level1" instance=ExtResource("1_0nr2a")]
 objective_list = ExtResource("2_2hhcp")
 
+[node name="SlimeManager" parent="." index="0" node_paths=PackedStringArray("slime_spawners")]
+slime_spawners = [NodePath("../SlimeSpawner")]
+slime_type_target = Dictionary[int, int]({
+1: 10
+})
+
 [node name="SlimeSpawner" parent="." index="6" instance=ExtResource("4_w6i3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 21, 15)
-queued_to_spawn = 20
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 22, 15)

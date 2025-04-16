@@ -4,16 +4,24 @@ signal level_won
 signal slimes_combined(slime_type_1: Constants.SlimeType, slime_type_2: Constants.SlimeType)
 
 @export var objective_list : ObjectiveList
-@export var delivery_area : DeliveryArea3D
+
+@onready var delivery_area : DeliveryArea3D = $DeliveryArea3D
+@onready var slime_manager : SlimeManager = $SlimeManager
 
 var level_state : LevelState
 var slimes_submitted : Dictionary[Constants.SlimeType, int] = {}
+
+func _get_total_slimes_delivered() -> int:
+	var total_slimes : int = 0
+	for slime_type in slimes_submitted:
+		total_slimes += slimes_submitted[slime_type]
+	return total_slimes
 
 func _check_objectives_completed() -> bool:
 	for objective_data in objective_list.objectives:
 		var slime_type = objective_data.slime_type
 		if slime_type == Constants.SlimeType.NONE:
-			if slimes_submitted.size() < objective_data.slime_count:
+			if _get_total_slimes_delivered() < objective_data.slime_count:
 				return false
 			else:
 				continue
@@ -36,17 +44,35 @@ func _on_slime_delivered(slime_data : SlimeData):
 func _on_slime_detected():
 	$DeliveryDelayTimer.start()
 
-func _on_slime_spawned(slime_node : Slime):
+func _on_slime_spawned(slime_node : Slime) -> void:
 	slime_node.reparent(self)
 	slime_node.slime_touched.connect(_on_slimes_touch.bind(slime_node))
+	slime_node.departed.connect(_on_slime_departed.bind(slime_node.slime_data))
+	slime_manager.slime_added(slime_node.slime_type)
+
+func _on_slime_departed(slime_data : SlimeData) -> void:
+	slime_manager.slime_masses_removed(slime_data.get_slime_type_masses())
+
+func _combine_slime_masses(slime : Slime, other_slime : Slime) -> Dictionary[Constants.SlimeType, int]:
+	var slime_type_masses : Dictionary[Constants.SlimeType, int] = slime.slime_data.get_slime_type_masses()
+	var other_slime_type_masses : Dictionary[Constants.SlimeType, int] = other_slime.slime_data.get_slime_type_masses()
+	for slime_type in other_slime_type_masses:
+		if slime_type in slime_type_masses:
+			slime_type_masses[slime_type] += other_slime_type_masses[slime_type]
+		else:
+			slime_type_masses[slime_type] = other_slime_type_masses[slime_type]
+	return slime_type_masses
 
 func _on_slimes_touch(slime_1 : Slime, slime_2 : Slime) -> void:
 	for combo in Constants.combinations:
 		if (slime_1.slime_type == combo.slime_1 and slime_2.slime_type == combo.slime_2) or \
 			(slime_2.slime_type == combo.slime_1 and slime_1.slime_type == combo.slime_2):
 			slimes_combined.emit(slime_1.slime_type, slime_2.slime_type)
-			slime_2.depart(1.0)
-			slime_1.grow(combo.slime_result, 2, 1.0)
+			var total_mass = slime_1.mass + slime_2.mass
+			slime_1.slime_data.slime_type_masses = _combine_slime_masses(slime_1, slime_2)
+			slime_2.depart(1.0, false)
+			slime_1.grow(combo.slime_result, total_mass, 1.0)
+			GameState.get_journal_state().add_combination(combo)
 
 func _on_delivery_delay_timer_timeout():
 	delivery_area.deliver()

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkl3lq1qfby3p"]
+
+[ext_resource type="Script" uid="uid://duyas5xiq1g3i" path="res://scenes/world/slime_manager.gd" id="1_07fg4"]
+
+[node name="SlimeManager" type="Node"]
+script = ExtResource("1_07fg4")
