@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://opg812lnvyu4" path="res://scripts/slimes/slime.gd" id="1_4r53x"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_opnhi"]
-[ext_resource type="Texture2D" uid="uid://c5h7uqljbjb1i" path="res://assets/Art/3d/Slime/SLime_Eyes_Angry.png" id="3_5m0dv"]
+[ext_resource type="Texture2D" uid="uid://dakfaqvf5labj" path="res://assets/Art/3d/Slime/X  face.png" id="3_4r53x"]
 [ext_resource type="Texture2D" uid="uid://c7b31aghxo0ei" path="res://assets/Art/3d/Slime/Ying Yang.png" id="4_eq6a2"]
 [ext_resource type="Texture2D" uid="uid://bpyifld1qffep" path="res://assets/Art/3d/Slime/Mouth_default.png" id="5_7m3mw"]
 
@@ -13,9 +13,9 @@ radius = 0.7
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("3_5m0dv")
+albedo_texture = ExtResource("3_4r53x")
 
-[sub_resource type="Shader" id="Shader_ptp6l"]
+[sub_resource type="Shader" id="Shader_8uoeh"]
 code = "shader_type spatial;
 
 #define USE_RIM 1
@@ -150,9 +150,9 @@ void light() {
 	SPECULAR_LIGHT = ambientLightOutput;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_417up"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4r53x"]
 render_priority = 0
-shader = SubResource("Shader_ptp6l")
+shader = SubResource("Shader_8uoeh")
 shader_parameter/ToonRampOffset = 0.511
 shader_parameter/ToonRampSmoothness = 0.05
 shader_parameter/ToonRampTinting = Color(0.63773, 0.324889, 0.322546, 1)
@@ -192,10 +192,15 @@ unique_name_in_owner = true
 [node name="SlimeModel" parent="Pivot" instance=ExtResource("2_opnhi")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
+[node name="Skeleton3D" parent="Pivot/SlimeModel/SLime/Armature" index="0"]
+bones/0/position = Vector3(-0.250711, -0.133827, 0.406895)
+bones/1/position = Vector3(-0.169712, 0.590945, 0.474417)
+bones/1/scale = Vector3(1, 1, 1)
+
 [node name="Sphere" parent="Pivot/SlimeModel/SLime/Armature/Skeleton3D" index="0"]
 transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, -0.0102396, -0.0116708, 0.00671297)
 surface_material_override/0 = SubResource("StandardMaterial3D_fjvml")
-surface_material_override/1 = SubResource("ShaderMaterial_417up")
+surface_material_override/1 = SubResource("ShaderMaterial_4r53x")
 surface_material_override/2 = SubResource("StandardMaterial3D_c5aeo")
 
 [node name="FlockingZone" type="Area3D" parent="."]
