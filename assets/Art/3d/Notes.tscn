@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7b2bo8oiniyt"]
+[gd_scene load_steps=8 format=3 uid="uid://b7b2bo8oiniyt"]
 
 [ext_resource type="PackedScene" uid="uid://c6a6rsna2fddd" path="res://assets/Art/3d/PC/Notes.glb" id="1_ayvqs"]
 [ext_resource type="Texture2D" uid="uid://dd3exm4j633uk" path="res://assets/Art/2d/TExtures/Notes.png" id="2_dlnwo"]
@@ -40,13 +40,16 @@ _data = {
 &"RESET": SubResource("Animation_it52c")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u8d6s"]
+[sub_resource type="QuadMesh" id="QuadMesh_ayvqs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dlnwo"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_texture = ExtResource("2_dlnwo")
 metallic_specular = 0.31
+billboard_mode = 1
 
 [node name="Node3D" type="Node3D"]
 
@@ -62,6 +65,7 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.152
 
 [node name="Plane" parent="Notes" index="0"]
 transform = Transform3D(0.269235, -0.0170692, 0, 0.00625084, 0.7352, 0, 0, 0, 0.735398, -0.231003, 0.140448, 0)
-surface_material_override/0 = SubResource("StandardMaterial3D_u8d6s")
+mesh = SubResource("QuadMesh_ayvqs")
+surface_material_override/0 = SubResource("StandardMaterial3D_dlnwo")
 
 [editable path="Notes"]

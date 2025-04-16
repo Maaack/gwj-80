@@ -8,9 +8,14 @@ const FILE_PATH = "res://scripts/game_state.gd"
 @export var max_level_reached : int
 @export var current_level : int
 @export var times_played : int
+@export var journal_state : JournalState = JournalState.new()
+
+static func get_journal_state() -> JournalState:
+	var game_state := get_game_state()
+	return game_state.journal_state
 
 static func get_level_state(level_state_key : String) -> LevelState:
-	var game_state = get_game_state()
+	var game_state := get_game_state()
 	if level_state_key.is_empty() : return
 	if level_state_key in game_state.level_states:
 		return game_state.level_states[level_state_key] 
