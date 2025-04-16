@@ -1,29 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://dc01qmly3uoig"]
+[gd_scene load_steps=5 format=3 uid="uid://c6w5jfswaercw"]
 
-[ext_resource type="Script" uid="uid://crpkhgtvqgdn7" path="res://scripts/slimes/slime_water.gd" id="1_fmaks"]
-[ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_bc6p0"]
+[ext_resource type="Script" uid="uid://dkhfq3ugbiakt" path="res://scripts/slimes/slime_vine.gd" id="1_n5orl"]
+[ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_7q7g0"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_n5orl"]
 radius = 0.63
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_22mvs"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_7q7g0"]
 radius = 13.0
 
-[node name="SlimeWater" type="CharacterBody3D"]
+[node name="SlimeVine" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_fmaks")
+script = ExtResource("1_n5orl")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0746541, 0.495757, 0.16989)
-shape = SubResource("SphereShape3D_6nu0y")
+shape = SubResource("SphereShape3D_n5orl")
 debug_color = Color(0.787219, 0.410982, 0.360379, 0.42)
 
 [node name="Pivot" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="SlimeModel" parent="Pivot" instance=ExtResource("2_bc6p0")]
+[node name="SlimeModel" parent="Pivot" instance=ExtResource("2_7q7g0")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="FlockingZone" type="Area3D" parent="."]
@@ -33,17 +33,13 @@ collision_mask = 2
 
 [node name="FlockingZoneCollisionShape" type="CollisionShape3D" parent="FlockingZone"]
 unique_name_in_owner = true
-shape = SubResource("SphereShape3D_22mvs")
+shape = SubResource("SphereShape3D_7q7g0")
 
 [node name="UpdateAmbientDirectionTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
 
-[node name="UpdatePushTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-
 [connection signal="body_entered" from="FlockingZone" to="." method="_on_flocking_zone_body_entered"]
 [connection signal="body_exited" from="FlockingZone" to="." method="_on_flocking_zone_body_exited"]
 [connection signal="timeout" from="UpdateAmbientDirectionTimer" to="." method="_on_update_ambient_direction_timer_timeout"]
-[connection signal="timeout" from="UpdatePushTimer" to="." method="_on_update_push_timer_timeout"]

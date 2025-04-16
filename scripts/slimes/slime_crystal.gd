@@ -1,6 +1,9 @@
 class_name SlimeCrystal
 extends Slime
 
+## A slime that will increase the cohesion and alignment of nearby slimes, so
+## they flock together more tightly.
+
 
 @export var cohesion_multiplier: float = 2.0
 @export var alignment_multiplier: float = 2.0

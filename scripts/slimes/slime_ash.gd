@@ -1,6 +1,8 @@
 class_name SlimeAsh
 extends Slime
 
+## A slime that will periodically cause nearby slimes to scatter.
+
 
 @export var scatter_duration: float = 5.0
 @export var scatter_effect_cooldown: float = 30.0

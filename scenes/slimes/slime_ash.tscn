@@ -14,7 +14,8 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_dr6uu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0746541, 0.495757, 0.16989)
 shape = SubResource("SphereShape3D_6nu0y")
 debug_color = Color(0.787219, 0.410982, 0.360379, 0.42)

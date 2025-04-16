@@ -5,7 +5,7 @@ extends Slime
 ## the current of a river.  Updates the push direction periodically, based on the timer.
 
 
-@export var push_magnitude: float = 2.0
+@export var push_magnitude: float = 0.1
 @export var update_push_cooldown: float = 3.0
 
 var last_push_velocity := Vector3.ZERO

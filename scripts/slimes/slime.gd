@@ -34,6 +34,7 @@ var external_velocity: Vector3 = Vector3.ZERO
 
 @onready var pivot: Node3D = %Pivot
 @onready var update_ambient_direction_timer: Timer = %UpdateAmbientDirectionTimer
+@onready var collision_shape: CollisionShape3D = %CollisionShape
 @onready var flocking_zone_collision_shape: CollisionShape3D = %FlockingZoneCollisionShape
 
 var slime_data : SlimeData = SlimeData.new()
@@ -236,3 +237,18 @@ func _on_update_ambient_direction_timer_timeout() -> void:
 func get_flocking_zone_radius() -> float:
 	var shape: SphereShape3D = flocking_zone_collision_shape.shape
 	return shape.radius
+
+
+func set_flocking_zone_radius(new_radius: float) -> void:
+	var shape: SphereShape3D = flocking_zone_collision_shape.shape
+	shape.radius = new_radius
+
+
+func get_collision_shape_radius() -> float:
+	var shape: SphereShape3D = collision_shape.shape
+	return shape.radius
+
+
+func set_collision_shape_radius(new_radius: float) -> void:
+	var shape: SphereShape3D = collision_shape.shape
+	shape.radius = new_radius
