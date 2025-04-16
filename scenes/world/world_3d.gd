@@ -11,11 +11,17 @@ signal slimes_combined(slime_type_1: Constants.SlimeType, slime_type_2: Constant
 var level_state : LevelState
 var slimes_submitted : Dictionary[Constants.SlimeType, int] = {}
 
+func _get_total_slimes_delivered() -> int:
+	var total_slimes : int = 0
+	for slime_type in slimes_submitted:
+		total_slimes += slimes_submitted[slime_type]
+	return total_slimes
+
 func _check_objectives_completed() -> bool:
 	for objective_data in objective_list.objectives:
 		var slime_type = objective_data.slime_type
 		if slime_type == Constants.SlimeType.NONE:
-			if slimes_submitted.size() < objective_data.slime_count:
+			if _get_total_slimes_delivered() < objective_data.slime_count:
 				return false
 			else:
 				continue
