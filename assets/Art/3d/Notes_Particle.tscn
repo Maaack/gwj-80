@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1l4hwnpvt4jh"]
+
+[ext_resource type="Texture2D" uid="uid://b30xdesr4swn" path="res://assets/Art/2d/TExtures/Notes1.png" id="1_bojkw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3qmvh"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_bojkw")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_2imp2"]
+material = SubResource("StandardMaterial3D_3qmvh")
+size = Vector2(0.385, 0.39)
+
+[sub_resource type="Gradient" id="Gradient_ojemx"]
+offsets = PackedFloat32Array(0, 0.2, 0.48, 1)
+colors = PackedColorArray(0, 0, 0, 0.0235294, 0, 0, 0, 1, 0.108696, 0.108696, 0.108696, 0.902387, 1, 1, 1, 0.101961)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0117881, 0.320621, 0)
+amount = 6
+lifetime = 1.44
+speed_scale = 0.25
+randomness = 0.55
+lifetime_randomness = 0.08
+mesh = SubResource("QuadMesh_2imp2")
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(1, 0.195, 0)
+gravity = Vector3(1, 0, 1)
+initial_velocity_max = 0.45
+angular_velocity_min = -0.45
+angular_velocity_max = 0.8
+linear_accel_max = 0.4
+radial_accel_max = 0.6
+damping_min = 0.415
+damping_max = 1.68
+angle_max = 1.0
+scale_amount_min = 0.0
+scale_amount_max = 0.15
+color_ramp = SubResource("Gradient_ojemx")
+hue_variation_min = -0.4
