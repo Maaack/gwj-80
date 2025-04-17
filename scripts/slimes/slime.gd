@@ -73,7 +73,7 @@ func _ready() -> void:
 	update_ambient_direction_timer.wait_time = ambient_direction_update_cooldown
 	set_random_movement_direction()
 	default_collision_shape_radius = get_collision_shape_radius()
-	
+
 	# This assignment may reverse when the slime spawner logic is determined.
 	slime_data.slime_type = slime_type
 
@@ -98,7 +98,7 @@ func grow(new_type : Constants.SlimeType, new_mass : int = 1, grow_duration : fl
 	is_growing = true
 	mass = new_mass
 	slime_data.slime_mass = mass
-	var radius = pow(3/(4*PI)*mass*VOLUME_TO_RADIUS_MODIFER, 0.333) 
+	var radius = pow(3/(4*PI)*mass*VOLUME_TO_RADIUS_MODIFER, 0.333)
 	var tween = create_tween()
 	tween.tween_property(slime_model, "scale", Vector3.ONE * radius, grow_duration)
 	tween.parallel().tween_property(sphere_shape, "radius", sphere_shape.radius * radius, grow_duration)

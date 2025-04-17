@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	# Increment the timer for each water slime nearby
 	current_growth_time += delta * num_water_nearby
 	if current_growth_time >= grow_requirement_time:
-		grow()
+		grow_vine()
 
 
 ## Keep track of the slimes that within the area.
@@ -57,7 +57,7 @@ func _on_flocking_zone_body_exited(body: Node3D) -> void:
 
 
 ## Increase the model scale, the collision shape radius, and the flocking shape radius
-func grow() -> void:
+func grow_vine() -> void:
 	# Check if there is another size to increase to
 	if current_growth_stage < growth_scales.size() - 1:
 		current_growth_time = 0.0
