@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://chsmnfd4o7tj4"]
+[gd_scene load_steps=19 format=3 uid="uid://chsmnfd4o7tj4"]
 
 [ext_resource type="PackedScene" uid="uid://dtollnkgrdph8" path="res://scenes/slimes/slime_explosive.tscn" id="2_yi86t"]
 [ext_resource type="PackedScene" uid="uid://b5iybcpovkwdx" path="res://scenes/slimes/slime_metal.tscn" id="3_qva8q"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://xa7j2wqcqeyr" path="res://scenes/slimes/slime_rock.tscn" id="8_bdrux"]
 [ext_resource type="PackedScene" uid="uid://hb7xi8e15pp6" path="res://scenes/slimes/slime_mud.tscn" id="9_25rhk"]
 [ext_resource type="PackedScene" uid="uid://dppp4c2wn6eny" path="res://scenes/slimes/slime_fire.tscn" id="10_ynlwt"]
+[ext_resource type="PackedScene" uid="uid://bcjfkq2kbbyrr" path="res://scenes/slimes/slime_yin_yang.tscn" id="11_l1qiu"]
 [ext_resource type="PackedScene" uid="uid://dbktyy7pemcw1" path="res://scenes/slimes/slime_moss.tscn" id="11_q3gxm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oeq8d"]
@@ -104,7 +105,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.94423, 0, -41.6036)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43364, 0, -44.2953)
 
 [node name="SlimeWater" parent="." instance=ExtResource("4_85mtq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0168, 0, 4.05076)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0168, 0, -71.5289)
 push_magnitude = 0.05
 
 [node name="SlimeAsh" parent="." instance=ExtResource("5_xlo40")]
@@ -132,3 +133,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.74538, 0, 1.09007)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25187, 0, -3.92198)
 min_grow_time = 8.0
 max_grow_time = 10.0
+
+[node name="SlimeYinYang" parent="." instance=ExtResource("11_l1qiu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.805578, 0, 0)
