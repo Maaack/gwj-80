@@ -1,20 +1,39 @@
 class_name Slime
 extends CharacterBody3D
 
+
+const DISTANCE_TO_DIRECT_MOVE_COMPLETE: float = 0.5
+
 signal slime_touched(other_slime : Slime)
 signal departed
 
 @export var slime_type : Constants.SlimeType
 
 @export_group("Boid Rule Weights")
-@export var cohesion_weight: float = 0.0005
-@export var separation_weight: float = 0.01
-@export var alignment_weight: float = 0.000525
-@export var target_location_weight: float = 0.005
-@export var target_location_repel_weight: float = 0.1
-@export var pc_factor: float = 0.0005
-@export var pc_avoid_factor: float  = 0.01
-@export var pc_whistle_factor: float  = 0.01
+@export var cohesion_weight: float = 0.0005 :
+	get:
+		return cohesion_weight if use_weights else 0.0
+@export var separation_weight: float = 0.01 :
+	get:
+		return separation_weight if use_weights else 0.0
+@export var alignment_weight: float = 0.000525 :
+	get:
+		return alignment_weight if use_weights else 0.0
+@export var target_location_weight: float = 0.005 :
+	get:
+		return target_location_weight if use_weights else 0.0
+@export var target_location_repel_weight: float = 0.1 :
+	get:
+		return target_location_repel_weight if use_weights else 0.0
+@export var pc_factor: float = 0.0005 :
+	get:
+		return pc_factor if use_weights else 0.0
+@export var pc_avoid_factor: float  = 0.01 :
+	get:
+		return pc_avoid_factor if use_weights else 0.0
+@export var pc_whistle_factor: float  = 0.01 :
+	get:
+		return pc_whistle_factor if use_weights else 0.0
 
 @export_group("Boid Settings")
 @export var separation_distance: float = 3.5
@@ -38,8 +57,10 @@ var nearby_slimes: Array[Slime] = []
 var attract_locations: Array[Vector3] = []
 var repel_locations: Array[Vector3] = []
 var push_velocities: Array[Vector3] = []
+var direct_move_location := Vector3.ZERO
 var is_scattering: bool = false
 var is_idle: bool = false
+var use_weights: bool = true
 
 var _player: PlayerCharacter
 
@@ -100,7 +121,7 @@ func grow(new_mass : int = 1, grow_duration : float = 1.0) -> void:
 	slime_data.slime_mass = mass
 	var radius = pow(3/(4*PI)*mass*VOLUME_TO_RADIUS_MODIFER, 0.333)
 	var tween = create_tween()
-	tween.tween_property(slime_model, "scale", Vector3.ONE * radius, grow_duration)
+	tween.tween_property(slime_model, "scale", Vector3.ONE * radius, grow_duration).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.parallel().tween_property(sphere_shape, "radius", sphere_shape.radius * radius, grow_duration)
 	tween.parallel().tween_property(touch_sphere_shape, "radius", touch_sphere_shape.radius * radius, grow_duration)
 	await tween.finished
@@ -129,6 +150,13 @@ func _physics_process(delta: float) -> void:
 		var repulsion: Vector3 = calc_repel_location(repel_location)
 		repulsion.y = 0.0
 		velocity += repulsion
+
+	if not use_weights:
+		if global_position.distance_to(direct_move_location) > DISTANCE_TO_DIRECT_MOVE_COMPLETE:
+			var direction_to_direct_move: Vector3 = global_position.direction_to(direct_move_location)
+			velocity += (global_position.direction_to(direct_move_location)) * max_speed * speed_modifier
+		else:
+			velocity = Vector3.ZERO
 
 	if velocity.length() > (max_speed * speed_modifier):
 		velocity = velocity.normalized() * randf_range(min_speed * speed_modifier, max_speed * speed_modifier)

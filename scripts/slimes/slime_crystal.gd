@@ -24,23 +24,16 @@ func _ready() -> void:
 
 ## Keep track of the slimes that within the area and increase their cohesion and alignment.
 func _on_flocking_zone_body_entered(body: Node3D) -> void:
-	if body is not Slime or body == self:
-		return
+	super(body)
 
-	var slime: Slime = body
-	nearby_slimes.append(slime)
-
-	slime.cohesion_weight += cohesion_increase
-	slime.alignment_weight += alignment_increase
+	if body is Slime:
+		body.cohesion_weight += cohesion_increase
+		body.alignment_weight += alignment_increase
 
 
 ## Stop tracking slimes that leave the area and remove the cohesion and alignment increases.
 func _on_flocking_zone_body_exited(body: Node3D) -> void:
-	if body is not Slime:
-		return
+	super(body)
 
-	var slime: Slime = body
-	nearby_slimes.erase(slime)
-
-	slime.cohesion_weight -= cohesion_increase
-	slime.alignment_weight -= alignment_increase
+	body.cohesion_weight -= cohesion_increase
+	body.alignment_weight -= alignment_increase
