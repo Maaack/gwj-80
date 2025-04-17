@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://xf0awe3j8qd8"]
+
+[ext_resource type="Script" uid="uid://bqw0221hpwex6" path="res://scenes/game_scene/goal_row.gd" id="1_e8hkx"]
+
+[node name="GoalRow" type="HBoxContainer"]
+custom_minimum_size = Vector2(80, 24)
+script = ExtResource("1_e8hkx")
+
+[node name="SlimeCountLabel" type="Label" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+
+[node name="SlimeNameLabel" type="Label" parent="."]
+layout_mode = 2
