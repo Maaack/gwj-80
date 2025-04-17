@@ -70,8 +70,8 @@ func _on_slimes_touch(slime_1 : Slime, slime_2 : Slime) -> void:
 			slimes_combined.emit(slime_1.slime_type, slime_2.slime_type)
 			var total_mass = slime_1.mass + slime_2.mass
 			var slime_result = Constants.get_slime_instance(combo.slime_result)
-			slime_result.global_position = (slime_1.global_position + slime_2.global_position) / 2
 			add_child(slime_result)
+			slime_result.global_position = (slime_1.global_position + slime_2.global_position) / 2
 			slime_result.slime_data.slime_type_masses = _combine_slime_masses(slime_1, slime_2)
 			slime_2.depart(1.0, false)
 			slime_1.depart(1.0, false)
