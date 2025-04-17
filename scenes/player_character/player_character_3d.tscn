@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bkw66y13utj24"]
+[gd_scene load_steps=20 format=3 uid="uid://bkw66y13utj24"]
 
 [ext_resource type="Script" uid="uid://cbw777lrjulgr" path="res://scenes/player_character/player_character_3d.gd" id="1_ppdav"]
 [ext_resource type="PackedScene" uid="uid://du6sadv6lcq1j" path="res://scenes/player_character/player_character_model.tscn" id="2_u7jsy"]
 [ext_resource type="PackedScene" uid="uid://bvs8yjrgay5ob" path="res://scenes/player_character/custom_camera.tscn" id="3_u7jsy"]
+[ext_resource type="PackedScene" uid="uid://b7b2bo8oiniyt" path="res://assets/Art/3d/Notes.tscn" id="4_30y6k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b2or0"]
 
@@ -123,5 +124,14 @@ parameters/conditions/IsNotWalking = false
 parameters/conditions/IsOnFloor = false
 parameters/conditions/IsRunning = false
 parameters/conditions/IsWalking = false
+
+[node name="WhistlingStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+bus = &"SFX"
+
+[node name="WhistlingNotes3D" parent="." instance=ExtResource("4_30y6k")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+visible = false
 
 [editable path="PlayerCharacterModel"]

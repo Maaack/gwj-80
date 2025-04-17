@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgeh3m30gar0o"]
+[gd_scene load_steps=6 format=3 uid="uid://dgeh3m30gar0o"]
 
 [ext_resource type="Script" uid="uid://opg812lnvyu4" path="res://scripts/slimes/slime.gd" id="1_22mvs"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_5rpp1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
-radius = 0.63
+
+resource_local_to_scene = true
+radius = 0.7
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_22mvs"]
-radius = 13.0
+radius = 15.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5rpp1"]
+resource_local_to_scene = true
+radius = 1.0
 
 [node name="Slime" type="CharacterBody3D"]
 collision_layer = 2
@@ -17,6 +23,7 @@ script = ExtResource("1_22mvs")
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0746541, 0.495757, 0.16989)
+
 shape = SubResource("SphereShape3D_6nu0y")
 debug_color = Color(0.787219, 0.410982, 0.360379, 0.42)
 
@@ -24,6 +31,7 @@ debug_color = Color(0.787219, 0.410982, 0.360379, 0.42)
 unique_name_in_owner = true
 
 [node name="SlimeModel" parent="Pivot" instance=ExtResource("2_5rpp1")]
+unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="FlockingZone" type="Area3D" parent="."]
@@ -40,6 +48,16 @@ unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
 
+[node name="TouchZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="TouchCollisionShape3D" type="CollisionShape3D" parent="TouchZone"]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_5rpp1")
+
 [connection signal="body_entered" from="FlockingZone" to="." method="_on_flocking_zone_body_entered"]
 [connection signal="body_exited" from="FlockingZone" to="." method="_on_flocking_zone_body_exited"]
 [connection signal="timeout" from="UpdateAmbientDirectionTimer" to="." method="_on_update_ambient_direction_timer_timeout"]
+[connection signal="body_entered" from="TouchZone" to="." method="_on_touch_zone_body_entered"]

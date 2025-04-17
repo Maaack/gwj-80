@@ -1,0 +1,158 @@
+[gd_scene load_steps=12 format=4 uid="uid://cifbed1yk3ukf"]
+
+[ext_resource type="PackedScene" uid="uid://cnhyllg1xvnds" path="res://assets/Art/3d/Spawners/Fire.glb" id="1_0qxd3"]
+[ext_resource type="Texture2D" uid="uid://dev2sscs8fi2f" path="res://assets/Art/2d/TExtures/LAva.png" id="2_1pqun"]
+[ext_resource type="PackedScene" uid="uid://b7odqgv5vf8dq" path="res://assets/Art/3d/Rock/Buiding Rocks/Big_Rock.glb" id="3_2ek0u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a2ky8"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("2_1pqun")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_nsx1d"]
+_surfaces = [{
+"aabb": AABB(-1, 0.296068, -0.81126, 2, 0.306021, 1.62252),
+"format": 34896613377,
+"index_count": 90,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIABQABAAMABAACAAYABQADAAcACAAEAAYACQAFAAcACAAGAAoACQAHAAsACwAMAAkACwANAAwADgAIAAoADgAKAA8AEAAOAA8AEAAPABEAEgAQABEAEgARABMAFAASABMAFAATABUAFgAUABUAFgAVABcAGAAWABcAGAAXABkAGQAaABgAGQAbABoAGwAcABoAGwAdABwAHgAcAB0AHgAdAB8A"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("AADSoZgbAAD//6KHKA4AAP//0qGYGwAAAACihygOAAAAADnSSDgAAP//8VoAAAAA//850kg4AAAAAPFaAAAAAAAAkvP3VAAA//8cNy4BAAD//5Lz91QAAAAAHDcuAQAA//8AAGcPAAAAAAAAZw8AAAAA//+ncQAA/////6dxAAAAAP//V44AAP////9XjgAAAACS8werAAD//5LzB6sAAAAAOdK2xwAA//850rbHAAAAANKhZuQAAP//0qFm5AAAAACih9bxAAD//6KH1vEAAAAA8Vr//wAA///xWv//AAAAABw30P4AAP//HDfQ/gAAAAAAAJfwAAD//wAAl/AAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_x020m"]
+resource_name = "Fire_Plane"
+_surfaces = [{
+"aabb": AABB(-1, 0.296068, -0.81126, 2, 0.306021, 1.62252),
+"attribute_data": PackedByteArray("MI6Hf9eD//8wjv//14OHf/Xgh3+c1v//9eD//5zWh3+c1od/Q8z//5zW//9DzId/Q8yHf+vB//9DzP//68GHf+vBh3+St///68H//5K3h3+St4d/Oq3//5K3//86rYd/Oq2Hf+Gi//86rf//4aKHf+Gih3+ImP//4aL//4iYh3+ImId/MI7//4iY//8wjod///+Hf6b1////////pvWHf/Xg//9N64d/9eCHf03r//9N6///pvWHf03rh3+m9f//Jm///355h38mb4d/fnn//355///Xg4d/fnmHf9eD//8mb4d/zWT//yZv///NZId/"),
+"format": 34896613399,
+"index_count": 90,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkA"),
+"material": SubResource("StandardMaterial3D_a2ky8"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(2.2621, 1.99467, 0, 0),
+"vertex_count": 60,
+"vertex_data": PackedByteArray("AADSoZgb8iH//6KHKA7yIf//0qGYG/IhAACihygO8iEAAKKH1vFnMv//0qFm5Gcy//+ih9bxZzIAANKhZuRnMgAA0qFm5IAx//850rbHgDH//9KhZuSAMQAAOdK2x4AxAAA50rbHjC///5LzB6uML///OdK2x4wvAACS8werjC8AAJLzB6uOLP////9Xjo4s//+S8werjiwAAP//V46OLAAA//9Xjqoq/////6dxqir/////V46qKgAA//+ncaoqAAD//6dxuSj//5Lz91S5KP////+ncbkoAACS8/dUuSgAAJLz91RrJf//OdJIOGsl//+S8/dUayUAADnSSDhrJQAAOdJIOBUj///SoZgbFSP//znSSDgVIwAA0qGYGxUjAAAAAJfwljf//xw30P6WN///AACX8JY3AAAcN9D+ljf//6KH1vHyNQAA8Vr///I1AACih9bx8jX///Fa///yNf//8Vr//7E/AAAcN9D+sT8AAPFa//+xP///HDfQ/rE///8cNy4B+wQAAPFaAAD7BAAAHDcuAfsE///xWgAA+wT///FaAAAWHQAAoocoDhYdAADxWgAAFh3//6KHKA4WHQAAHDcuAY4a//8AAGcPjhr//xw3LgGOGgAAAABnD44aca9xr3Gvca9xr3Gvca9xr0ilSKVIpUilSKVIpUilSKUBpgGmAaYBpgGmAaYBpgGmd6d3p3end6d3p3end6d3p32pfal9qX2pfal9qX2pfamqqqqqqqqqqqqqqqqqqqqqzqvOq86rzqvOq86rzqvOq6Oto62jraOto62jraOto63crtyu3K7crtyu3K7crtyuwF/AX8BfwF/AX8BfwF/AXwuiC6ILoguiC6ILoguiC6KJdol2iXaJdol2iXaJdol2qEKoQqhCqEKoQqhCqEKoQtWx1bHVsdWx1bHVsdWx1bH1TPVM9Uz1TPVM9Uz1TPVM")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_nsx1d")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bl5o4"]
+albedo_texture = ExtResource("2_1pqun")
+
+[sub_resource type="QuadMesh" id="QuadMesh_jcsap"]
+material = SubResource("StandardMaterial3D_bl5o4")
+size = Vector2(8.295, 5.51)
+orientation = 1
+
+[sub_resource type="Animation" id="Animation_nwtm1"]
+resource_name = "Fire move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fire/Plane:mesh:surface_0/material:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.97),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fire/MeshInstance3D:mesh:material:uv1_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.2, -0.2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dj3df"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fire/Plane:mesh:surface_0/material:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fire/MeshInstance3D:mesh:material:uv1_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_71ivo"]
+_data = {
+&"Fire move": SubResource("Animation_nwtm1"),
+&"RESET": SubResource("Animation_dj3df")
+}
+
+[node name="Fire Spawner" type="Node3D"]
+
+[node name="Fire" parent="." instance=ExtResource("1_0qxd3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258408, 0, -6.37164)
+
+[node name="Plane" parent="Fire" index="0"]
+transform = Transform3D(-0.00150634, 0.0741363, 2.59147, -2.592, -0.0526655, 2.87829e-16, 0.0526439, -2.59094, 0.0741516, 0, 2.13922, 11.141)
+mesh = SubResource("ArrayMesh_x020m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Fire"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.245945, 7.53738)
+mesh = SubResource("QuadMesh_jcsap")
+
+[node name="Big_Rock" parent="." instance=ExtResource("3_2ek0u")]
+transform = Transform3D(1.02361, 0, 0, 0, 0.494085, 0, 0, 0, 0.494085, -0.0983839, 4.61128, 4.76805)
+
+[node name="Big_Rock5" parent="." instance=ExtResource("3_2ek0u")]
+transform = Transform3D(0.519042, 0, 0, 0, 0.428375, 0, 0, 0, 0.766232, -4.21685, -1.21569, 0.987281)
+
+[node name="Big_Rock6" parent="." instance=ExtResource("3_2ek0u")]
+transform = Transform3D(0.519042, 0, 0, 0, 0.428375, 0, 0, 0, 0.766232, 5.1932, -1.21569, 0.987281)
+
+[node name="Big_Rock7" parent="." instance=ExtResource("3_2ek0u")]
+transform = Transform3D(0.0866481, 0, -0.335412, 0, 0.200691, 0, 0.227206, 0, 0.127914, 2.91142, -1.57435, -1.32163)
+
+[node name="Big_Rock8" parent="." instance=ExtResource("3_2ek0u")]
+transform = Transform3D(-0.204311, 0, -0.19466, 0, 0.200691, 0, 0.131862, 0, -0.301613, 0.751426, -1.44368, -0.966651)
+
+[node name="Big_Rock9" parent="." instance=ExtResource("3_2ek0u")]
+transform = Transform3D(0.0227743, 0, -0.357397, 0, 0.200691, 0, 0.242099, 0, 0.0336203, -1.40291, -1.33008, -1.47087)
+
+[node name="Big_Rock2" parent="." instance=ExtResource("3_2ek0u")]
+transform = Transform3D(-0.0181781, 0.484971, 0.0920015, -0.873009, -0.000755994, -0.0492384, -0.0868645, -0.0938917, 0.475604, 2.59805, 2.61126, 4.76805)
+
+[node name="Big_Rock4" parent="." instance=ExtResource("3_2ek0u")]
+transform = Transform3D(0.816131, 0.106394, 0.0579939, -0.156732, 0.618058, 0.0746756, -0.0826712, -0.121417, 0.430944, 0.607301, 0.349303, 9.00573)
+
+[node name="Big_Rock3" parent="." instance=ExtResource("3_2ek0u")]
+transform = Transform3D(0.0054863, -0.495625, -0.0299382, -0.637984, -0.00076036, -0.0438299, 0.0646222, 0.034571, -0.43017, -2.32258, 2.61126, 5.7691)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_71ivo")
+}
+
+[editable path="Fire"]

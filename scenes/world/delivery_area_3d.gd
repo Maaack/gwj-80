@@ -9,13 +9,12 @@ signal slime_detected
 var slimes_detected : Array[Slime]
 
 func deliver():
+	if slimes_detected.size() == 0: return
 	for slime in slimes_detected:
 		var slime_data = slime.slime_data
-		var tween = create_tween()
-		tween.tween_property(slime, "scale", Vector3.ONE * 0.01, delivery_time)
-		await tween.finished
-		slime.queue_free()
-		slime_delivered.emit(slime.slime_data)
+		slime.depart(delivery_time)
+		await slime.departed
+		slime_delivered.emit(slime_data)
 
 func _on_body_entered(body : Node3D):
 	if body is Slime:

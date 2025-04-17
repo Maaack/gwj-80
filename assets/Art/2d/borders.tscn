@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://5w8bjpqnga0m"]
+
+[ext_resource type="Texture2D" uid="uid://dxxrdvj4dylko" path="res://assets/Art/2d/TreeBorder.png" id="1_g1by6"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_biwnh"]
+points = PackedVector3Array(-1.83111, -1.25611, -0.0286111, 1.83111, 1.26167, 0.0286111, 1.83111, 1.26167, -0.0286111, -1.83111, 1.26167, 0.0286111, 1.83111, -1.25611, 0.0286111, 1.83111, -1.25611, -0.0286111, -1.83111, 1.26167, -0.0286111, -1.83111, -1.25611, 0.0286111)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3n0n8"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_g1by6")
+disable_receive_shadows = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_is0w6"]
+size = Vector2(3.605, 2.455)
+orientation = 2
+
+[node name="Borders" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.978211, 0)
+shape = SubResource("ConvexPolygonShape3D_biwnh")
+
+[node name="Tree" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.978211, 0)
+material_override = SubResource("StandardMaterial3D_3n0n8")
+mesh = SubResource("PlaneMesh_is0w6")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcovi8758lfqx"]
+
+[ext_resource type="ArrayMesh" uid="uid://n1sia6is1uhm" path="res://assets/Art/3d/Rock/Pebblesobj.obj" id="1_eaegn"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Pebblesobj" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999211, 0, -0.0397132, 0, 1, 0, 0.0397132, 0, 0.999211, 0.03708, 0, 0.104316)
+mesh = ExtResource("1_eaegn")
