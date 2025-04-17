@@ -51,8 +51,8 @@ var mass : int = 1
 var speed_modifier: float = 1.0
 var external_velocity: Vector3 = Vector3.ZERO
 
-var default_collision_shape_radius: float
-var scale_tween: Tween
+#var default_collision_shape_radius: float
+#var scale_tween: Tween
 
 const VOLUME_TO_RADIUS_MODIFER : float = 4.18879
 
@@ -72,7 +72,7 @@ func _ready() -> void:
 	_player = get_tree().get_first_node_in_group("player")
 	update_ambient_direction_timer.wait_time = ambient_direction_update_cooldown
 	set_random_movement_direction()
-	default_collision_shape_radius = get_collision_shape_radius()
+	#default_collision_shape_radius = get_collision_shape_radius()
 
 	# This assignment may reverse when the slime spawner logic is determined.
 	slime_data.slime_type = slime_type
@@ -94,7 +94,7 @@ func depart(departure_time : float = 1.0, send_signal : bool = true) -> void:
 
 
 func grow(new_mass : int = 1, grow_duration : float = 1.0) -> void:
-	if is_busy(): return
+	if is_busy() or new_mass <= 0: return
 	is_growing = true
 	mass = new_mass
 	slime_data.slime_mass = mass
@@ -302,7 +302,7 @@ func _on_flocking_zone_body_exited(body: Node3D) -> void:
 #endregion
 
 
-func _on_touch_zone_body_entered(body) -> void:
+func _on_touch_zone_body_entered(body: Node3D) -> void:
 	if is_busy() : return
 	if body is Slime:
 		if body.is_busy() : return
@@ -326,47 +326,47 @@ func get_flocking_zone_radius() -> float:
 	return shape.radius
 
 
-func set_flocking_zone_radius(new_radius: float) -> void:
-	var shape: SphereShape3D = flocking_zone_collision_shape.shape
-	shape.radius = new_radius
+#func set_flocking_zone_radius(new_radius: float) -> void:
+	#var shape: SphereShape3D = flocking_zone_collision_shape.shape
+	#shape.radius = new_radius
 
 
-func get_collision_shape_radius() -> float:
-	var shape: SphereShape3D = collision_shape.shape
-	return shape.radius
+#func get_collision_shape_radius() -> float:
+	#var shape: SphereShape3D = collision_shape.shape
+	#return shape.radius
+#
+#
+#func set_collision_shape_radius(new_radius: float) -> void:
+	#var shape: SphereShape3D = collision_shape.shape
+	#shape.radius = new_radius
 
 
-func set_collision_shape_radius(new_radius: float) -> void:
-	var shape: SphereShape3D = collision_shape.shape
-	shape.radius = new_radius
+#func tween_scale(new_scale: Vector3, duration: float) -> void:
+	#if scale_tween and scale_tween.is_running():
+		#scale_tween.kill()
+	#scale_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	#scale_tween.tween_property(pivot, "scale", new_scale, duration)
 
 
-func tween_scale(new_scale: Vector3, duration: float) -> void:
-	if scale_tween and scale_tween.is_running():
-		scale_tween.kill()
-	scale_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	scale_tween.tween_property(pivot, "scale", new_scale, duration)
-
-
-func get_slime_scale() -> float:
-	return pivot.scale.x
-
-
-func set_slime_scale(new_scale: float, tweened: bool = true) -> void:
-	if pivot.scale.x == new_scale:
-		return
-
-	var clamped_scale: float = clampf(new_scale, min_scale, max_scale)
-	var clamped_scale_vec := Vector3(clamped_scale, clamped_scale, clamped_scale)
-
-	if tweened:
-		tween_scale(clamped_scale_vec, 0.75)
-	else:
-		pivot.scale = clamped_scale_vec
-
-	var current_radius: float = get_collision_shape_radius()
-	var new_radius: float = default_collision_shape_radius * clamped_scale
-	var radius_increase: float = new_radius - current_radius
-	set_collision_shape_radius(new_radius)
-	collision_shape.position.y += radius_increase
-	set_flocking_zone_radius(get_flocking_zone_radius() + radius_increase)
+#func get_slime_scale() -> float:
+	#return pivot.scale.x
+#
+#
+#func set_slime_scale(new_scale: float, tweened: bool = true) -> void:
+	#if pivot.scale.x == new_scale:
+		#return
+#
+	#var clamped_scale: float = clampf(new_scale, min_scale, max_scale)
+	#var clamped_scale_vec := Vector3(clamped_scale, clamped_scale, clamped_scale)
+#
+	#if tweened:
+		#tween_scale(clamped_scale_vec, 0.75)
+	#else:
+		#pivot.scale = clamped_scale_vec
+#
+	#var current_radius: float = get_collision_shape_radius()
+	#var new_radius: float = default_collision_shape_radius * clamped_scale
+	#var radius_increase: float = new_radius - current_radius
+	#set_collision_shape_radius(new_radius)
+	#collision_shape.position.y += radius_increase
+	#set_flocking_zone_radius(get_flocking_zone_radius() + radius_increase)

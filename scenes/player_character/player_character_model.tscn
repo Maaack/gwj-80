@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://du6sadv6lcq1j"]
+[gd_scene load_steps=3 format=3 uid="uid://du6sadv6lcq1j"]
 
 [ext_resource type="PackedScene" uid="uid://cf3dicswiy0ad" path="res://assets/Art/3d/PC/Character_MC.glb" id="1_i7w6j"]
+[ext_resource type="Material" uid="uid://ddmgpuvlxwhi" path="res://scenes/player_character/Player_Shader.tres" id="2_xm47j"]
 
 [node name="Character_MC" instance=ExtResource("1_i7w6j")]
 
@@ -70,10 +71,47 @@ bones/83/rotation = Quaternion(0.00823485, 0.999029, -0.0426054, 0.00759172)
 bones/84/rotation = Quaternion(3.51726e-09, -0.0159316, 1.27814e-09, 0.999873)
 
 [node name="Hat" parent="root/Skeleton3D" index="0"]
-transform = Transform3D(0.999995, 0.00322456, 1.6826e-07, -0.00322456, 0.999995, -1.24725e-05, -2.08383e-07, 1.25023e-05, 1, -0.0205375, 2.38419e-05, -7.17938e-05)
+transform = Transform3D(0.999785, -0.0207151, -0.00044451, 0.0206916, 0.999312, -0.0307732, 0.00108167, 0.0307574, 0.999526, 0.0474913, 0.133244, -0.160112)
+
+[node name="Hat" parent="root/Skeleton3D/Hat" index="0"]
+surface_material_override/0 = ExtResource("2_xm47j")
 
 [node name="NurbsPath_010" parent="root/Skeleton3D" index="1"]
-transform = Transform3D(0.999995, 0.00322456, 1.6826e-07, -0.00322456, 0.999995, -1.24725e-05, -2.08383e-07, 1.25023e-05, 1, -0.0205375, 2.38419e-05, -7.17938e-05)
+transform = Transform3D(0.999785, -0.0207151, -0.00044451, 0.0206916, 0.999312, -0.0307732, 0.00108167, 0.0307574, 0.999526, 0.0474913, 0.133244, -0.160112)
+
+[node name="NurbsPath_010" parent="root/Skeleton3D/NurbsPath_010" index="0"]
+surface_material_override/0 = ExtResource("2_xm47j")
 
 [node name="Cube" parent="root/Skeleton3D" index="2"]
-transform = Transform3D(0.997237, -0.0212092, 0.0711947, 0.0205918, 0.999744, 0.0093956, -0.0713757, -0.00790362, 0.997418, 0.104882, 0.00349903, 0.0314711)
+transform = Transform3D(1, -6.91835e-06, -3.81941e-10, -3.81941e-10, 7.10543e-15, -1, 6.91835e-06, 1, 4.46431e-15, -5.35512e-08, 4.06727, -0.261507)
+
+[node name="Cube" parent="root/Skeleton3D/Cube" index="0"]
+transform = Transform3D(1, -6.88082e-06, 6.91787e-06, -6.88005e-06, 0.00548034, 0.999985, -6.91863e-06, -0.999985, 0.00548034, 1.02948e-06, 0.14859, 3.84524)
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Belt" parent="root/Skeleton3D" index="3"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Circle_001" parent="root/Skeleton3D" index="4"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Circle_002" parent="root/Skeleton3D" index="5"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Circle_003" parent="root/Skeleton3D" index="6"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Eyes" parent="root/Skeleton3D" index="7"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Eyes_001" parent="root/Skeleton3D" index="8"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Low+Poly" parent="root/Skeleton3D" index="9"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Low+Poly_001" parent="root/Skeleton3D" index="10"]
+surface_material_override/0 = ExtResource("2_xm47j")
+
+[node name="Low+Poly_002" parent="root/Skeleton3D" index="11"]
+surface_material_override/0 = ExtResource("2_xm47j")

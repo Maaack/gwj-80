@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_yqygu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
+resource_local_to_scene = true
 radius = 0.63
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_22mvs"]
