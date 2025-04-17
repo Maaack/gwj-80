@@ -69,9 +69,14 @@ func _on_slimes_touch(slime_1 : Slime, slime_2 : Slime) -> void:
 			(slime_2.slime_type == combo.slime_1 and slime_1.slime_type == combo.slime_2):
 			slimes_combined.emit(slime_1.slime_type, slime_2.slime_type)
 			var total_mass = slime_1.mass + slime_2.mass
-			slime_1.slime_data.slime_type_masses = _combine_slime_masses(slime_1, slime_2)
+			var slime_result = Constants.get_slime_instance(combo.slime_result)
+			add_child(slime_result)
+			slime_result.global_position = (slime_1.global_position + slime_2.global_position) / 2
+			slime_result.slime_data.slime_type_masses = _combine_slime_masses(slime_1, slime_2)
 			slime_2.depart(1.0, false)
-			slime_1.grow(combo.slime_result, total_mass, 1.0)
+			slime_1.depart(1.0, false)
+			_on_slime_spawned(slime_result)
+			slime_result.grow(total_mass, 1.0)
 			GameState.get_journal_state().add_combination(combo)
 
 func _on_delivery_delay_timer_timeout():

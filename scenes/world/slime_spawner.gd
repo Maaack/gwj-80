@@ -3,7 +3,6 @@ extends Node3D
 
 signal slime_spawned(slime_node : Slime)
 
-@export var slime_scene : PackedScene
 @export var slime_type : Constants.SlimeType
 @export_range(0, 10) var spawn_radius : float = 2.5
 @export_range(0, 10) var spawn_delay : float = 0.25
@@ -12,14 +11,12 @@ signal slime_spawned(slime_node : Slime)
 @onready var _spawn_timer : Timer = $SpawnTimer
 
 func spawn():
-	if not slime_scene:
-		push_error("No slime scene set")
-		return
-	var slime_instance : Slime = slime_scene.instantiate()
+	var slime_instance : Slime = Constants.get_slime_instance(slime_type)
+	if slime_instance == null:
+		push_error("No instance created for slime type %d" % slime_type)
 	var rand_angle = randf_range(0, 2 * PI)
 	var rand_distance = randf_range(0, spawn_radius)
 	var normal_vector = Vector2.from_angle(rand_angle)
-	slime_instance.slime_type = slime_type
 	slime_instance.position = Vector3(normal_vector.x, 0, normal_vector.y) * rand_distance
 	add_child(slime_instance)
 	slime_spawned.emit(slime_instance)

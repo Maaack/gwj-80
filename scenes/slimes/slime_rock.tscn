@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_pk4ua"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
+resource_local_to_scene = true
 radius = 0.63
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_22mvs"]
@@ -17,6 +18,7 @@ radius = 1.0
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_31s8q")
+slime_type = 4
 min_speed = 1.0
 max_speed = 1.75
 external_velocity_weight = 0.5
@@ -60,3 +62,4 @@ shape = SubResource("SphereShape3D_31s8q")
 [connection signal="body_entered" from="FlockingZone" to="." method="_on_flocking_zone_body_entered"]
 [connection signal="body_exited" from="FlockingZone" to="." method="_on_flocking_zone_body_exited"]
 [connection signal="timeout" from="UpdateAmbientDirectionTimer" to="." method="_on_update_ambient_direction_timer_timeout"]
+[connection signal="body_entered" from="TouchZone" to="." method="_on_touch_zone_body_entered"]
