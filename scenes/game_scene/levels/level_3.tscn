@@ -1,32 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bj0asf8wpitb"]
+[gd_scene load_steps=3 format=3 uid="uid://bj0asf8wpitb"]
 
 [ext_resource type="PackedScene" uid="uid://c2o8tdtpcqsbb" path="res://scenes/world/world_3d.tscn" id="1_2n1f7"]
-[ext_resource type="PackedScene" uid="uid://bvhq1ebik4ldt" path="res://scenes/world/slime_spawner.tscn" id="2_6ehal"]
 [ext_resource type="Resource" uid="uid://byjphgdrq11r1" path="res://resources/data/objective_lists/level_3.tres" id="2_bm75r"]
 
 [node name="Level3" instance=ExtResource("1_2n1f7")]
 objective_list = ExtResource("2_bm75r")
 
-[node name="SlimeManager" parent="." index="0" node_paths=PackedStringArray("slime_spawners")]
-slime_spawners = [NodePath("../SlimeSpawner"), NodePath("../SlimeSpawner2"), NodePath("../SlimeSpawner3"), NodePath("../SlimeSpawner4")]
+[node name="SlimeManager" parent="." index="0"]
 slime_type_target = Dictionary[int, int]({
 1: 10,
 2: 10,
 3: 10,
 4: 10
 })
-
-[node name="SlimeSpawner" parent="." index="6" instance=ExtResource("2_6ehal")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 22, 15)
-
-[node name="SlimeSpawner2" parent="." index="7" instance=ExtResource("2_6ehal")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 22, 15)
-slime_type = 2
-
-[node name="SlimeSpawner3" parent="." index="8" instance=ExtResource("2_6ehal")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 22, 25)
-slime_type = 3
-
-[node name="SlimeSpawner4" parent="." index="9" instance=ExtResource("2_6ehal")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 22, 25)
-slime_type = 4
