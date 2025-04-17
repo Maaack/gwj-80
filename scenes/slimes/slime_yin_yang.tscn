@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcjfkq2kbbyrr"]
+
+[ext_resource type="Script" uid="uid://dedydiws6clh6" path="res://scripts/slimes/slime_yin_yang.gd" id="1_fv7a2"]
+[ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_qv12o"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
+resource_local_to_scene = true
+radius = 0.63
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_22mvs"]
+radius = 13.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l6sbr"]
+resource_local_to_scene = true
+radius = 1.0
+
+[sub_resource type="Curve3D" id="Curve3D_fv7a2"]
+closed = true
+
+[node name="SlimeYinYang" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_fv7a2")
+slime_type = 11
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0746541, 0.495757, 0.16989)
+shape = SubResource("SphereShape3D_6nu0y")
+debug_color = Color(0.787219, 0.410982, 0.360379, 0.42)
+
+[node name="Pivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="SlimeModel" parent="Pivot" instance=ExtResource("2_qv12o")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="FlockingZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="FlockingZoneCollisionShape" type="CollisionShape3D" parent="FlockingZone"]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_22mvs")
+
+[node name="UpdateAmbientDirectionTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[node name="TouchZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="TouchCollisionShape3D" type="CollisionShape3D" parent="TouchZone"]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_l6sbr")
+
+[node name="NearbySlimesPath" type="Path3D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve3D_fv7a2")
+
+[node name="PathFollow" type="PathFollow3D" parent="NearbySlimesPath"]
+unique_name_in_owner = true
+
+[node name="RadialPosEffectTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="RadialPosDurationTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="body_entered" from="FlockingZone" to="." method="_on_flocking_zone_body_entered"]
+[connection signal="body_exited" from="FlockingZone" to="." method="_on_flocking_zone_body_exited"]
+[connection signal="timeout" from="UpdateAmbientDirectionTimer" to="." method="_on_update_ambient_direction_timer_timeout"]
+[connection signal="timeout" from="RadialPosEffectTimer" to="." method="_on_radial_pos_effect_timer_timeout"]
+[connection signal="timeout" from="RadialPosDurationTimer" to="." method="_on_radial_pos_duration_timer_timeout"]
