@@ -11,7 +11,6 @@ extends CharacterBody3D
 @export_node_path("Node3D") var PlayerCharacterMesh: NodePath
 @onready var player_mesh : Node3D = get_node(PlayerCharacterMesh)
 @onready var whistling_player: AudioStreamPlayer3D = %WhistlingStreamPlayer3D
-@onready var whistling_notes: Node3D = %WhistlingNotes3D
 @onready var note_1_particles: GPUParticles3D = $Note1Particles3D
 @onready var note_2_particles: GPUParticles3D = $Note2Particles3D
 
