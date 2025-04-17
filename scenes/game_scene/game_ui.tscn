@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://chx0om5a7f6cv"]
+[gd_scene load_steps=11 format=3 uid="uid://chx0om5a7f6cv"]
 
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/scripts/pause_menu_controller.gd" id="1_onvsj"]
 [ext_resource type="PackedScene" uid="uid://cq7f7rqt63a7r" path="res://scenes/overlaid_menus/pause_menu.tscn" id="2_8qp3c"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://5b3ftriikvyt" path="res://scripts/level_list_state_manager.gd" id="7_wr4n6"]
 [ext_resource type="PackedScene" uid="uid://1yex1xs71fe0" path="res://scenes/overlaid_menus/game_won_menu.tscn" id="8_ukb12"]
 [ext_resource type="PackedScene" uid="uid://04du16hjyofj" path="res://scenes/overlaid_menus/level_lost_menu.tscn" id="9_i7m4m"]
+[ext_resource type="PackedScene" uid="uid://tcv64topdg6v" path="res://scenes/game_scene/journal_panel.tscn" id="10_onvsj"]
 [ext_resource type="PackedScene" uid="uid://djtgue80w6l2v" path="res://scenes/overlaid_menus/level_won_menu.tscn" id="10_rkfhe"]
 
 [node name="GameUI" type="Control"]
@@ -44,6 +45,18 @@ level_lost_scene = ExtResource("9_i7m4m")
 level_won_scene = ExtResource("10_rkfhe")
 
 [node name="GameWorldContainer" type="Node" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="JournalPanel" parent="Control" instance=ExtResource("10_onvsj")]
+layout_mode = 1
 
 [connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
 [connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
