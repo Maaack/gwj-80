@@ -7,8 +7,7 @@
 [node name="Level3" instance=ExtResource("1_2n1f7")]
 objective_list = ExtResource("2_bm75r")
 
-[node name="SlimeManager" parent="." index="0" node_paths=PackedStringArray("slime_spawners")]
-slime_spawners = [NodePath("../SlimeSpawner"), NodePath("../SlimeSpawner2"), NodePath("../SlimeSpawner3"), NodePath("../SlimeSpawner4")]
+[node name="SlimeManager" parent="." index="0"]
 slime_type_target = Dictionary[int, int]({
 1: 10,
 2: 10,
