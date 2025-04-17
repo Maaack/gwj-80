@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvhq1ebik4ldt"]
+[gd_scene load_steps=2 format=3 uid="uid://bvhq1ebik4ldt"]
 
 [ext_resource type="Script" uid="uid://bcob2ksvib5lm" path="res://scenes/world/slime_spawner.gd" id="1_6o2d5"]
-[ext_resource type="PackedScene" uid="uid://dgeh3m30gar0o" path="res://scenes/slimes/slime.tscn" id="2_8bqts"]
 
 [node name="SlimeSpawner" type="Node3D"]
 script = ExtResource("1_6o2d5")
-slime_scene = ExtResource("2_8bqts")
 slime_type = 1
 
 [node name="Marker3D" type="Marker3D" parent="."]
