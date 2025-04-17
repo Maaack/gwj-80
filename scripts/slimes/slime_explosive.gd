@@ -19,6 +19,7 @@ func _ready() -> void:
 func apply_effects_to_nearby_slimes() -> void:
 	for slime: Slime in nearby_slimes:
 		slime.add_external_velocity(_calculate_explosion_velocity(slime))
+		slime.split()
 	# TODO: Apply force to player
 	depart(0.25)
 

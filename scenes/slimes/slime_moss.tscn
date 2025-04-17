@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://d3hfsb384hf32"]
 
-[ext_resource type="Script" path="res://scripts/slimes/slime_moss.gd" id="1_523d8"]
+[ext_resource type="Script" uid="uid://c2dtdm8jff6gv" path="res://scripts/slimes/slime_moss.gd" id="1_523d8"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_mhb6w"]
 [ext_resource type="Texture2D" uid="uid://c5h7uqljbjb1i" path="res://assets/Art/3d/Slime/SLime_Eyes_Angry.png" id="3_kkmdk"]
 [ext_resource type="Texture2D" uid="uid://dq4fq8jt47oop" path="res://assets/Art/3d/Slime/Grass.png" id="4_h78cc"]
@@ -186,6 +186,7 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_523d8")
 slime_type = 8
+split_type = 2
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true

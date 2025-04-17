@@ -21,6 +21,7 @@ script = ExtResource("1_fmaks")
 push_magnitude = 0.001
 update_push_cooldown = 10.0
 slime_type = 1
+split_type = 2
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true

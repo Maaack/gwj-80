@@ -7,6 +7,8 @@ const DISTANCE_TO_DIRECT_MOVE_COMPLETE: float = 0.5
 signal slime_touched(other_slime : Slime)
 signal departed
 
+enum SplitType { NONE, SINGLE, MULTI }
+
 @export var slime_type : Constants.SlimeType
 
 @export_group("Boid Rule Weights")
@@ -49,9 +51,8 @@ signal departed
 @export var external_velocity_deceleration: float = 6.0
 @export var ambient_direction_update_cooldown: float = 5.0
 
-@export_category("Scale Settings")
-@export var min_scale: float = 0.25
-@export var max_scale: float = 4.0
+@export_group("Split Settings")
+@export var split_type: SplitType = SplitType.NONE
 
 var nearby_slimes: Array[Slime] = []
 var attract_locations: Array[Vector3] = []
@@ -128,6 +129,33 @@ func grow(new_mass : int = 1, grow_duration : float = 1.0) -> void:
 	tween.parallel().tween_property(touch_sphere_shape, "radius", _init_touch_sphere_shape_radius * radius, grow_duration)
 	await tween.finished
 	is_growing = false
+
+
+## Multi split type will cause the slime to create a new slime for each extra mass above 1.
+## Single split will create one new slime, if the mass is greater than 1.
+## The mass is then reduced by one per created slime.
+func split() -> void:
+	if split_type == SplitType.MULTI and mass > 2:
+		for i in mass:
+			create_new_slime(self)
+		grow()
+	elif split_type == SplitType.SINGLE and mass > 1:
+		create_new_slime(self)
+		grow(mass - 1)
+
+
+# TODO: Use a better location, and maybe give it an external force?  The placement
+# matters, because it will trigger touch collisions.
+## Create a new slime, of the same type of [param slime].  Set its position to be above
+## [param slime].
+func create_new_slime(slime: Slime) -> Slime:
+	var new_slime: Slime = Constants.get_slime_instance(slime.slime_type)
+	var new_position: Vector3 = slime.global_position + Vector3(0.0, 5.0, 0.0)
+	add_sibling(new_slime)
+	new_slime.global_position = new_position
+	new_slime.external_velocity = external_velocity
+
+	return new_slime
 
 
 func _physics_process(delta: float) -> void:
