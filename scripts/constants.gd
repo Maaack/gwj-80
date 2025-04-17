@@ -42,10 +42,24 @@ static var slime_type_scenes : Dictionary[SlimeType, String] = {
 	SlimeType.EXPLOSIVE: "uid://dtollnkgrdph8",
 	SlimeType.METAL: "uid://b5iybcpovkwdx",
 	SlimeType.ASH: "uid://rsvs5gnqqr8d",
-	SlimeType.MOSS: "uid://rsvs5gnqqr8d",
+	SlimeType.MOSS: "uid://d3hfsb384hf32",
 	SlimeType.MUD: "uid://hb7xi8e15pp6",
 	SlimeType.CRYSTAL: "uid://dbm1nj4nxxm1f",
 	SlimeType.YINYANG: "uid://rsvs5gnqqr8d",
+}
+
+static var slime_type_names : Dictionary[SlimeType, String] = {
+	SlimeType.WATER: "Water",
+	SlimeType.FIRE: "Fire",
+	SlimeType.VINE: "Vine",
+	SlimeType.ROCK: "Rock",
+	SlimeType.EXPLOSIVE: "Explosive",
+	SlimeType.METAL: "Metal",
+	SlimeType.ASH: "Ash",
+	SlimeType.MOSS: "Eco",
+	SlimeType.MUD: "Mud",
+	SlimeType.CRYSTAL: "Crystal",
+	SlimeType.YINYANG: "Balance",
 }
 
 static func new_slime_combination(slime_1 : SlimeType, slime_2 : SlimeType, slime_result : SlimeType) -> SlimeCombination:
@@ -60,3 +74,7 @@ static func get_slime_instance(slime_type : SlimeType) -> Slime:
 	var slime_path := slime_type_scenes[slime_type]
 	var slime_scene : PackedScene = load(slime_path)
 	return slime_scene.instantiate()
+
+static func get_slime_name(slime_type : SlimeType) -> String:
+	if slime_type not in slime_type_names: return "Any"
+	return slime_type_names[slime_type]
