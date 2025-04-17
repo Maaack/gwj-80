@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://t2e0c1vjuiws"]
+[gd_scene load_steps=4 format=3 uid="uid://t2e0c1vjuiws"]
 
 [ext_resource type="Script" uid="uid://dbfsbwnqqrlfi" path="res://scenes/world/delivery_area_3d.gd" id="1_rhxtb"]
+[ext_resource type="PackedScene" uid="uid://ctnjck76hupjm" path="res://assets/Art/3d/Ancient Items/PLatform.tscn" id="2_o5rgq"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_60jnk"]
 height = 6.0
@@ -13,3 +14,6 @@ script = ExtResource("1_rhxtb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_60jnk")
+
+[node name="PLatform" parent="." instance=ExtResource("2_o5rgq")]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 1.2568, -0.907726, 1.02775)
