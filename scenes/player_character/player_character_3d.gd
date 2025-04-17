@@ -95,7 +95,7 @@ func _physics_process(delta : float) -> void:
 		is_walking = true
 		
 	# Walk input, dash state and movement speed
-		if not Input.is_action_pressed("walk") and (is_walking == true ):
+		if not Input.is_action_pressed("walk") and (is_walking == true ) and (is_whistling == false):
 			movement_speed = run_speed
 			is_running = true
 		else: # Walk State and speed
