@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://db1eiu7s1453q"]
+
+[ext_resource type="PackedScene" uid="uid://dgeh3m30gar0o" path="res://scenes/slimes/slime.tscn" id="1_4vbd8"]
+[ext_resource type="Script" uid="uid://bgxl1eew7gaoq" path="res://scripts/slimes/slime_fire.gd" id="2_67uvt"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_67uvt"]
+resource_local_to_scene = true
+radius = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6l10v"]
+resource_local_to_scene = true
+radius = 1.0
+
+[node name="FireSlime" instance=ExtResource("1_4vbd8")]
+script = ExtResource("2_67uvt")
+shrink_amount = 0.15
+shrink_cooldown = 60.0
+fire_spread_distance = 1.5
+fire_spread_cooldown = 45.0
+max_spread_amount = 0.3
+slime_type = 2
+min_speed = 4.0
+max_speed = 6.0
+
+[node name="CollisionShape" parent="." index="0"]
+shape = SubResource("SphereShape3D_67uvt")
+
+[node name="TouchCollisionShape3D" parent="TouchZone" index="0"]
+shape = SubResource("SphereShape3D_6l10v")
+
+[node name="ShrinkTimer" type="Timer" parent="." index="5"]
+unique_name_in_owner = true
+
+[node name="SpreadTimer" type="Timer" parent="." index="6"]
+unique_name_in_owner = true
+one_shot = true
