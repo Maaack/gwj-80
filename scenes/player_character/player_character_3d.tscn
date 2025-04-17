@@ -223,7 +223,8 @@ bus = &"SFX"
 [node name="Note1Particles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 emitting = false
-lifetime = 6.0
+amount = 6
+lifetime = 4.0
 randomness = 0.3
 visibility_aabb = AABB(-4.5, -1, -4.5, 9, 12, 9)
 process_material = SubResource("ParticleProcessMaterial_5h263")
@@ -232,8 +233,8 @@ draw_pass_1 = SubResource("QuadMesh_ed2el")
 [node name="Note2Particles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 emitting = false
-amount = 4
-lifetime = 6.0
+amount = 3
+lifetime = 4.0
 randomness = 0.3
 visibility_aabb = AABB(-4.5, -1, -4.5, 9, 12, 9)
 process_material = SubResource("ParticleProcessMaterial_5h263")
