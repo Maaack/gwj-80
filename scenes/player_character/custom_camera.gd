@@ -6,6 +6,8 @@ extends Node3D
 @export var max_spring_length : float = 8.0
 @export var min_fov : float = 60.0
 @export var max_fov : float = 90.0
+@export var min_forward_slide : float = 0.0
+@export var max_forward_slide : float = 0.0
 @export_range(0, 1) var starting_v_ratio : float = 0.0 :
 	set(value):
 		starting_v_ratio = value
@@ -48,6 +50,7 @@ func _update_camera_position(delta : float, v_ratio : float) -> void:
 	var max_cam_v = deg_to_rad(max_cam_v_degrees)
 	camrot_v = min_cam_v + ((max_cam_v - min_cam_v) * v_ratio)
 	if not is_inside_tree(): return
+	$h/v.position.z = min_forward_slide + ((max_forward_slide - min_forward_slide) * v_ratio) 
 	$h.rotation.y += (camrot_h - $h.rotation.y) * delta * h_acceleration
 	$h/v.rotation.x += (camrot_v - $h/v.rotation.x) * delta * v_acceleration
 	$h/v/Arm.spring_length = -(min_spring_length + ((max_spring_length - min_spring_length) * v_ratio))
