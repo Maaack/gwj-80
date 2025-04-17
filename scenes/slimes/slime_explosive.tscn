@@ -58,3 +58,4 @@ shape = SubResource("SphereShape3D_c23ww")
 [connection signal="body_entered" from="FlockingZone" to="." method="_on_flocking_zone_body_entered"]
 [connection signal="body_exited" from="FlockingZone" to="." method="_on_flocking_zone_body_exited"]
 [connection signal="timeout" from="UpdateAmbientDirectionTimer" to="." method="_on_update_ambient_direction_timer_timeout"]
+[connection signal="body_entered" from="TouchZone" to="." method="_on_touch_zone_body_entered"]
