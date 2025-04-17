@@ -10,6 +10,7 @@
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
+cull_mode = 2
 albedo_texture = ExtResource("4_1wx6a")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g3nwc"]
