@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://yaml4wqvwlll"]
+
+[ext_resource type="PackedScene" uid="uid://bvhq1ebik4ldt" path="res://scenes/world/slime_spawner.tscn" id="1_icu1a"]
+[ext_resource type="PackedScene" uid="uid://cifbed1yk3ukf" path="res://assets/Art/3d/Spawners/fire_spawner.tscn" id="2_eamt8"]
+
+[node name="SlimeSpawner" instance=ExtResource("1_icu1a")]
+slime_type = 2
+
+[node name="Fire Spawner" parent="." index="2" instance=ExtResource("2_eamt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 3)

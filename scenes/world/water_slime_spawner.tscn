@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://i860ela8t0qg"]
+
+[ext_resource type="PackedScene" uid="uid://bvhq1ebik4ldt" path="res://scenes/world/slime_spawner.tscn" id="1_esd64"]
+
+[node name="WaterSlimeSpawner" instance=ExtResource("1_esd64")]

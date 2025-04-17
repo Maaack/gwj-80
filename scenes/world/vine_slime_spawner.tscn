@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4n16qg5j5o3c"]
+
+[ext_resource type="PackedScene" uid="uid://bvhq1ebik4ldt" path="res://scenes/world/slime_spawner.tscn" id="1_0iwuf"]
+[ext_resource type="PackedScene" uid="uid://b5scpa7ic2wf1" path="res://assets/Art/3d/Spawners/vine_spawner.tscn" id="2_kv31p"]
+
+[node name="VineSlimeSpawner" instance=ExtResource("1_0iwuf")]
+
+[node name="Vine Spawner" parent="." index="2" instance=ExtResource("2_kv31p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3)
