@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bkw66y13utj24"]
+[gd_scene load_steps=28 format=3 uid="uid://bkw66y13utj24"]
 
 [ext_resource type="Script" uid="uid://cbw777lrjulgr" path="res://scenes/player_character/player_character_3d.gd" id="1_ppdav"]
 [ext_resource type="PackedScene" uid="uid://du6sadv6lcq1j" path="res://scenes/player_character/player_character_model.tscn" id="2_u7jsy"]
 [ext_resource type="PackedScene" uid="uid://bvs8yjrgay5ob" path="res://scenes/player_character/custom_camera.tscn" id="3_u7jsy"]
-[ext_resource type="PackedScene" uid="uid://b7b2bo8oiniyt" path="res://assets/Art/3d/Notes.tscn" id="4_30y6k"]
+[ext_resource type="Texture2D" uid="uid://dojlh85ev64bp" path="res://assets/Art/2d/TExtures/note_1.png" id="5_nffne"]
+[ext_resource type="Texture2D" uid="uid://bd16qjki6x1wa" path="res://assets/Art/2d/TExtures/note_2.png" id="6_3832c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b2or0"]
 
@@ -67,6 +68,41 @@ states/Walk/position = Vector2(657, 99.642)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3832c"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_5h263"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_keuga"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_ed2el"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_dj1rg"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_u7jsy"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_30y6k"), "Jump", "Walk", SubResource("AnimationNodeStateMachineTransition_3lehg"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_nffne")]
 graph_offset = Vector2(-91, -71)
 
+[sub_resource type="Curve" id="Curve_nffne"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.12337, -2), 0.0, 0.0, 0, 0, Vector2(0.249749, 2), 0.0, 0.0, 0, 0, Vector2(0.384152, -2), 0.0, 0.0, 0, 0, Vector2(0.500502, 2), 0.0, 0.0, 0, 0, Vector2(0.637914, -2), 0.0, 0.0, 0, 0, Vector2(0.750251, 2), 0.0, 0.0, 0, 0, Vector2(0.883651, -2), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 9
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_3832c"]
+curve_y = SubResource("Curve_nffne")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5h263"]
+spread = 180.0
+flatness = 1.0
+initial_velocity_max = 1.0
+directional_velocity_min = 1.0
+directional_velocity_max = 1.0
+directional_velocity_curve = SubResource("CurveXYZTexture_3832c")
+gravity = Vector3(0, 0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_keuga"]
+transparency = 1
+albedo_texture = ExtResource("5_nffne")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_ed2el"]
+material = SubResource("StandardMaterial3D_keuga")
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dj1rg"]
+transparency = 1
+albedo_texture = ExtResource("6_3832c")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_d2drt"]
+material = SubResource("StandardMaterial3D_dj1rg")
+size = Vector2(0.5, 0.5)
+
 [node name="PlayerCharacter3D" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 3
@@ -129,9 +165,23 @@ parameters/conditions/IsWalking = false
 unique_name_in_owner = true
 bus = &"SFX"
 
-[node name="WhistlingNotes3D" parent="." instance=ExtResource("4_30y6k")]
-unique_name_in_owner = true
+[node name="Note1Particles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-visible = false
+emitting = false
+lifetime = 6.0
+randomness = 0.3
+visibility_aabb = AABB(-4.5, -1, -4.5, 9, 12, 9)
+process_material = SubResource("ParticleProcessMaterial_5h263")
+draw_pass_1 = SubResource("QuadMesh_ed2el")
+
+[node name="Note2Particles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+emitting = false
+amount = 4
+lifetime = 6.0
+randomness = 0.3
+visibility_aabb = AABB(-4.5, -1, -4.5, 9, 12, 9)
+process_material = SubResource("ParticleProcessMaterial_5h263")
+draw_pass_1 = SubResource("QuadMesh_d2drt")
 
 [editable path="PlayerCharacterModel"]

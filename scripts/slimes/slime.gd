@@ -25,39 +25,62 @@ signal departed
 @export_group("Movement Settings")
 @export var min_speed: float = 2.0
 @export var max_speed: float = 3.0
-@export var turn_speed: float = 3.0
+@export var turn_speed: float = 1.0
+@export var external_velocity_weight: float = 1.0
 @export var external_velocity_deceleration: float = 6.0
+@export var ambient_direction_update_cooldown: float = 5.0
+
+@export_category("Scale Settings")
+@export var min_scale: float = 0.25
+@export var max_scale: float = 4.0
 
 var nearby_slimes: Array[Slime] = []
 var attract_locations: Array[Vector3] = []
 var repel_locations: Array[Vector3] = []
+var push_velocities: Array[Vector3] = []
 var is_scattering: bool = false
+var is_idle: bool = false
+
+var _player: PlayerCharacter
+
 var is_departing: bool = false
 var is_growing: bool = false
 var _pc: Node3D
 var mass : int = 1
 
+var speed_modifier: float = 1.0
 var external_velocity: Vector3 = Vector3.ZERO
+
+var default_collision_shape_radius: float
+var scale_tween: Tween
+
 const VOLUME_TO_RADIUS_MODIFER : float = 4.18879
 
 @onready var pivot: Node3D = %Pivot
 @onready var slime_model: Node3D = %SlimeModel
-@onready var collision_shape: CollisionShape3D = %CollisionShape3D
+@onready var collision_shape: CollisionShape3D = %CollisionShape
+@onready var flocking_zone_collision_shape: CollisionShape3D = %FlockingZoneCollisionShape
 @onready var sphere_shape: SphereShape3D = collision_shape.shape
 @onready var touch_collision_shape: CollisionShape3D = %TouchCollisionShape3D
 @onready var touch_sphere_shape: SphereShape3D = touch_collision_shape.shape
+@onready var update_ambient_direction_timer: Timer = %UpdateAmbientDirectionTimer
 
 var slime_data : SlimeData = SlimeData.new()
 
 ## Sets a random initial velocity
 func _ready() -> void:
-	velocity = Vector3(randf(), 0.0, randf())
-	velocity = velocity.normalized() * max_speed
+	_player = get_tree().get_first_node_in_group("player")
+	update_ambient_direction_timer.wait_time = ambient_direction_update_cooldown
+	set_random_movement_direction()
+	default_collision_shape_radius = get_collision_shape_radius()
+
 	# This assignment may reverse when the slime spawner logic is determined.
 	slime_data.slime_type = slime_type
 
+
 func is_busy():
 	return is_departing or is_growing
+
 
 func depart(departure_time : float = 1.0, send_signal : bool = true) -> void:
 	if is_busy(): return
@@ -69,12 +92,13 @@ func depart(departure_time : float = 1.0, send_signal : bool = true) -> void:
 	if send_signal:
 		departed.emit()
 
+
 func grow(new_type : Constants.SlimeType, new_mass : int = 1, grow_duration : float = 1.0) -> void:
 	if is_busy(): return
 	is_growing = true
 	mass = new_mass
 	slime_data.slime_mass = mass
-	var radius = pow(3/(4*PI)*mass*VOLUME_TO_RADIUS_MODIFER, 0.333) 
+	var radius = pow(3/(4*PI)*mass*VOLUME_TO_RADIUS_MODIFER, 0.333)
 	var tween = create_tween()
 	tween.tween_property(slime_model, "scale", Vector3.ONE * radius, grow_duration)
 	tween.parallel().tween_property(sphere_shape, "radius", sphere_shape.radius * radius, grow_duration)
@@ -83,6 +107,7 @@ func grow(new_type : Constants.SlimeType, new_mass : int = 1, grow_duration : fl
 	slime_type = new_type
 	slime_data.slime_type = slime_type
 	is_growing = false
+
 
 func _physics_process(delta: float) -> void:
 	var cohesion: Vector3 = calc_cohesion()
@@ -107,13 +132,23 @@ func _physics_process(delta: float) -> void:
 		repulsion.y = 0.0
 		velocity += repulsion
 
-	if velocity.length() > max_speed:
-		velocity = velocity.normalized() * randf_range(min_speed, max_speed)
+	if velocity.length() > (max_speed * speed_modifier):
+		velocity = velocity.normalized() * randf_range(min_speed * speed_modifier, max_speed * speed_modifier)
+
+	for push_velocity: Vector3 in push_velocities:
+		velocity += push_velocity
+
+	# NOTE: This would be more efficient if checked when these conditions change, rather than every physics update.
+	if not is_idle and nearby_slimes.is_empty() and attract_locations.is_empty() and repel_locations.is_empty():
+		if update_ambient_direction_timer.is_stopped():
+			update_ambient_direction_timer.start()
+	elif not update_ambient_direction_timer.is_stopped():
+		update_ambient_direction_timer.stop()
 
 	# Rotate the model to face the movement direction, limited by the turn speed.
-	pivot.rotation.y = move_toward(pivot.rotation.y, atan2(-velocity.x, -velocity.z), turn_speed * delta)
+	pivot.rotation.y = lerpf(pivot.rotation.y, atan2(-velocity.x, -velocity.z), turn_speed * delta)
 
-	velocity += external_velocity
+	velocity += external_velocity * external_velocity_weight
 	# Decelerate gradually, simulating linear drag.
 	if is_on_floor():
 		external_velocity = external_velocity.move_toward(Vector3.ZERO, external_velocity_deceleration * 2 * delta)
@@ -277,3 +312,63 @@ func _on_touch_zone_body_entered(body) -> void:
 
 func add_external_velocity(ext_velocity: Vector3) -> void:
 	external_velocity += ext_velocity
+
+
+func set_random_movement_direction() -> void:
+	velocity = Vector3(randf(), 0.0, randf())
+	velocity = velocity.normalized() * max_speed * speed_modifier
+
+
+func _on_update_ambient_direction_timer_timeout() -> void:
+	set_random_movement_direction()
+
+
+func get_flocking_zone_radius() -> float:
+	var shape: SphereShape3D = flocking_zone_collision_shape.shape
+	return shape.radius
+
+
+func set_flocking_zone_radius(new_radius: float) -> void:
+	var shape: SphereShape3D = flocking_zone_collision_shape.shape
+	shape.radius = new_radius
+
+
+func get_collision_shape_radius() -> float:
+	var shape: SphereShape3D = collision_shape.shape
+	return shape.radius
+
+
+func set_collision_shape_radius(new_radius: float) -> void:
+	var shape: SphereShape3D = collision_shape.shape
+	shape.radius = new_radius
+
+
+func tween_scale(new_scale: Vector3, duration: float) -> void:
+	if scale_tween and scale_tween.is_running():
+		scale_tween.kill()
+	scale_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	scale_tween.tween_property(pivot, "scale", new_scale, duration)
+
+
+func get_slime_scale() -> float:
+	return pivot.scale.x
+
+
+func set_slime_scale(new_scale: float, tweened: bool = true) -> void:
+	if pivot.scale.x == new_scale:
+		return
+
+	var clamped_scale: float = clampf(new_scale, min_scale, max_scale)
+	var clamped_scale_vec := Vector3(clamped_scale, clamped_scale, clamped_scale)
+
+	if tweened:
+		tween_scale(clamped_scale_vec, 0.75)
+	else:
+		pivot.scale = clamped_scale_vec
+
+	var current_radius: float = get_collision_shape_radius()
+	var new_radius: float = default_collision_shape_radius * clamped_scale
+	var radius_increase: float = new_radius - current_radius
+	set_collision_shape_radius(new_radius)
+	collision_shape.position.y += radius_increase
+	set_flocking_zone_radius(get_flocking_zone_radius() + radius_increase)
