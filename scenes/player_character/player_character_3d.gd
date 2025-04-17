@@ -12,6 +12,8 @@ extends CharacterBody3D
 @onready var player_mesh : Node3D = get_node(PlayerCharacterMesh)
 @onready var whistling_player: AudioStreamPlayer3D = %WhistlingStreamPlayer3D
 @onready var whistling_notes: Node3D = %WhistlingNotes3D
+@onready var note_1_particles: GPUParticles3D = $Note1Particles3D
+@onready var note_2_particles: GPUParticles3D = $Note2Particles3D
 
 # Gamplay mechanics and Inspector tweakables
 @export var gravity : float = 9.8
@@ -56,11 +58,13 @@ func _input(event) -> void:
 	if event.is_action_pressed("attract_slimes"):
 		is_whistling = true
 		whistling_player.play()
-		whistling_notes.show()
+		note_1_particles.emitting = true
+		note_2_particles.emitting = true
 	elif event.is_action_released("attract_slimes"):
 		is_whistling = false
 		whistling_player.stop()
-		whistling_notes.hide()
+		note_1_particles.emitting = false
+		note_2_particles.emitting = false
 
 func _physics_process(delta : float) -> void:
 	if stop_movement_inputs:
