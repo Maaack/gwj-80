@@ -1,9 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://chmccuk7p15xd"]
+[gd_scene load_steps=23 format=3 uid="uid://chmccuk7p15xd"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_rr1rn"]
 [ext_resource type="Script" uid="uid://cph2gh7wgxmfj" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_sr523"]
 [ext_resource type="PackedScene" uid="uid://b407hglpv7jh" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_ixa71"]
 [ext_resource type="PackedScene" uid="uid://b880417tsk74b" path="res://scenes/credits/credits.tscn" id="4_2k5l7"]
+[ext_resource type="Environment" uid="uid://bqkr5wdp86m68" path="res://assets/Terrain Data/WorldENV.tres" id="5_2k5l7"]
+[ext_resource type="PackedScene" uid="uid://cipi3crxlygbg" path="res://assets/Terrain Data/Terrain.tscn" id="6_vsp5b"]
+[ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="7_6xh1d"]
+[ext_resource type="PackedScene" uid="uid://btgpwpis350si" path="res://assets/Art/3d/mc.tscn" id="8_vsp5b"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -349,6 +353,9 @@ states/Start/position = Vector2(82, 123)
 transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
 graph_offset = Vector2(-180.277, 49)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_dhrx6"]
+viewport_path = NodePath("SubViewport")
+
 [node name="MainMenu" instance=ExtResource("1_rr1rn")]
 script = ExtResource("2_sr523")
 level_select_packed_scene = null
@@ -365,6 +372,9 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
+
+[node name="BackgroundTextureRect" parent="." index="4"]
+texture = SubResource("ViewportTexture_dhrx6")
 
 [node name="VersionContainer" parent="VersionMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
@@ -410,5 +420,92 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 32
 
+[node name="SubViewport" type="SubViewport" parent="." index="11"]
+screen_space_aa = 1
+size = Vector2i(907, 512)
+
+[node name="Node3D" type="Node3D" parent="SubViewport" index="0"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/Node3D" index="0"]
+environment = ExtResource("5_2k5l7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/Node3D" index="1"]
+transform = Transform3D(-0.838285, -0.545191, -0.00673008, 0.436304, -0.678161, 0.591385, -0.326982, 0.492813, 0.806361, 0, 0, 0)
+light_color = Color(0.883496, 0.770237, 0.44655, 1)
+light_energy = 1.323
+shadow_enabled = true
+
+[node name="Test_World" parent="SubViewport/Node3D" index="2" instance=ExtResource("6_vsp5b")]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/Node3D" index="3"]
+transform = Transform3D(-0.127756, -0.199629, 0.971508, 0.0195127, 0.978839, 0.203701, -0.991614, 0.0449807, -0.121157, -3.03769, 21.5902, 28.2023)
+
+[node name="Node3D" parent="SubViewport/Node3D" index="4" instance=ExtResource("7_6xh1d")]
+transform = Transform3D(0.285588, 0, 0.958353, 0, 1, 0, -0.958353, 0, 0.285588, -11.3753, 19.4495, 25.1747)
+
+[node name="SLime" parent="SubViewport/Node3D/Node3D" index="0"]
+transform = Transform3D(0.632184, 0, 0, 0, 0.632184, 0, 0, 0, 0.632184, 0.289345, 0.089735, 0.264322)
+
+[node name="Skeleton3D" parent="SubViewport/Node3D/Node3D/SLime/Armature" index="0"]
+bones/0/position = Vector3(-0.250711, -0.133827, 0.406895)
+bones/1/position = Vector3(-0.208588, 0.496868, 0.42035)
+bones/1/scale = Vector3(1, 1, 1)
+
+[node name="Node3D2" parent="SubViewport/Node3D" index="5" instance=ExtResource("7_6xh1d")]
+transform = Transform3D(0.340742, 0.000349186, 0.940158, -0.00026412, 1, -0.000275697, -0.940158, -0.000154393, 0.340742, -18.598, 18.4175, 28.5417)
+
+[node name="Skeleton3D" parent="SubViewport/Node3D/Node3D2/SLime/Armature" index="0"]
+bones/0/position = Vector3(-0.250711, -0.133827, 0.406895)
+bones/1/position = Vector3(-0.208588, 0.496868, 0.42035)
+bones/1/scale = Vector3(1, 1, 1)
+
+[node name="Sphere" parent="SubViewport/Node3D/Node3D2/SLime/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.981387, -5.78617e-05, -0.192042, 4.80294e-05, 1, -5.58537e-05, 0.192042, 4.55907e-05, 0.981387, 10.7813, 2.12651, 14.438)
+
+[node name="Node3D3" parent="SubViewport/Node3D" index="6" instance=ExtResource("7_6xh1d")]
+transform = Transform3D(-0.57779, 0, 0.741457, 0, 0.94, 0, -0.741457, 0, -0.57779, -6.87375, 19.6514, 31.3387)
+
+[node name="SLime" parent="SubViewport/Node3D/Node3D3" index="0"]
+transform = Transform3D(0.632184, 0, 0, 0, 0.632184, 0, 0, 0, 0.632184, 0.289345, 0.089735, 0.264322)
+
+[node name="Skeleton3D" parent="SubViewport/Node3D/Node3D3/SLime/Armature" index="0"]
+bones/0/position = Vector3(-0.250711, -0.133827, 0.406895)
+bones/1/position = Vector3(-0.208588, 0.496868, 0.42035)
+bones/1/scale = Vector3(1, 1, 1)
+
+[node name="Sphere" parent="SubViewport/Node3D/Node3D3/SLime/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1.23946, 0, 0.374615, 0, 1.29483, 0, -0.374615, 0, 1.23946, -1.26986, 0.346835, -1.91591)
+
+[node name="MC" parent="SubViewport/Node3D" index="7" instance=ExtResource("8_vsp5b")]
+transform = Transform3D(-0.558643, 0, 0.332292, 0, 0.65, 0, -0.332292, 0, -0.558643, -7.46327, 19.438, 32.5342)
+
+[node name="Skeleton3D" parent="SubViewport/Node3D/MC/Character_MC/root" index="0"]
+bones/14/rotation = Quaternion(-8.43221e-09, 0.707107, 0.707107, -5.33851e-08)
+bones/15/rotation = Quaternion(-8.43214e-09, 0.707107, 0.707107, -5.33851e-08)
+bones/32/rotation = Quaternion(4.08138e-08, 0.707107, 0.707107, -5.33851e-08)
+bones/51/rotation = Quaternion(3.19102e-09, -0.564537, 1.03657e-08, 0.825408)
+bones/79/rotation = Quaternion(0.805106, -0.0720245, -0.58717, 0.0429869)
+
+[node name="Hat" parent="SubViewport/Node3D/MC/Character_MC/root/Skeleton3D" index="0"]
+transform = Transform3D(0.999714, -0.0239374, -0.000345544, 0.0239154, 0.999241, -0.0307622, 0.00108165, 0.0307451, 0.999527, 0.0675993, 0.133436, -0.160042)
+
+[node name="NurbsPath_010" parent="SubViewport/Node3D/MC/Character_MC/root/Skeleton3D" index="1"]
+transform = Transform3D(0.999714, -0.0239374, -0.000345544, 0.0239154, 0.999241, -0.0307622, 0.00108165, 0.0307451, 0.999527, 0.0675993, 0.133436, -0.160042)
+
+[node name="Cube" parent="SubViewport/Node3D/MC/Character_MC/root/Skeleton3D" index="2"]
+transform = Transform3D(1, -2.85826e-06, -3.81993e-10, -3.82111e-10, -4.12013e-08, -1, 2.85826e-06, 1, -4.12013e-08, 1.86263e-08, 4.06727, -0.261506)
+
+[node name="AnimationPlayer" parent="SubViewport/Node3D/MC/Character_MC" index="1"]
+autoplay = "Homescreen"
+
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+
+[editable path="SubViewport/Node3D/Node3D"]
+[editable path="SubViewport/Node3D/Node3D/SLime"]
+[editable path="SubViewport/Node3D/Node3D2"]
+[editable path="SubViewport/Node3D/Node3D2/SLime"]
+[editable path="SubViewport/Node3D/Node3D3"]
+[editable path="SubViewport/Node3D/Node3D3/SLime"]
+[editable path="SubViewport/Node3D/MC"]
+[editable path="SubViewport/Node3D/MC/Character_MC"]

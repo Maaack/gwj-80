@@ -1,0 +1,65 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://bqkr5wdp86m68"]
+
+[ext_resource type="Shader" uid="uid://drg1lqmegtrga" path="res://assets/Terrain Data/Terrain.gdshader" id="1_b18lh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tqjbk"]
+shader = ExtResource("1_b18lh")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(0.78062, 0.614767, 0.0406256, 1)
+shader_parameter/sun_sunset_color = Color(0.997157, 0.504585, 0.438163, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_doiey"]
+sky_material = SubResource("ShaderMaterial_tqjbk")
+
+[resource]
+background_mode = 2
+background_color = Color(0.69817, 0.565005, 0.59728, 1)
+sky = SubResource("Sky_doiey")
+ambient_light_source = 3
+ambient_light_color = Color(0.291697, 0.566127, 0.758627, 1)
+ambient_light_energy = 5.05
+reflected_light_source = 2
+tonemap_mode = 3
+tonemap_exposure = 1.08
+tonemap_white = 2.87
+glow_enabled = true
+glow_intensity = 0.26
+glow_bloom = 0.13
+glow_hdr_scale = 2.04
+fog_enabled = true
+fog_light_color = Color(0.278117, 0.664948, 0.979748, 1)
+fog_light_energy = 0.22
+fog_sun_scatter = 0.51
+fog_density = 0.015
+fog_aerial_perspective = 1.0
+fog_sky_affect = 0.0
+fog_height = 1.6
+fog_height_density = -0.016
+adjustment_enabled = true
+adjustment_contrast = 1.08
+adjustment_saturation = 1.42
