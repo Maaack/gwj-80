@@ -70,4 +70,4 @@ shape = SubResource("SphereShape3D_v6ve1")
 [connection signal="timeout" from="UpdateAmbientDirectionTimer" to="." method="_on_update_ambient_direction_timer_timeout"]
 [connection signal="timeout" from="ShrinkTimer" to="." method="_on_shrink_timer_timeout"]
 [connection signal="timeout" from="SpreadTimer" to="." method="_on_spread_timer_timeout"]
-[connection signal="body_exited" from="TouchZone" to="." method="_on_touch_zone_body_exited"]
+[connection signal="body_entered" from="TouchZone" to="." method="_on_touch_zone_body_entered"]
