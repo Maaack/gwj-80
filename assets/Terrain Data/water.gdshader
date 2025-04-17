@@ -1,16 +1,14 @@
 shader_type spatial;
 
-uniform sampler2D caustics_texture : hint_black;
-uniform sampler2D color_gradient : hint_albedo;
-uniform sampler2D distort_noise : hint_black;
+uniform sampler2D caustics_texture ;
+uniform sampler2D color_gradient ;
+uniform sampler2D distort_noise ;
 
 uniform float flow_speed = 0.3;
 uniform float vignette_size = 0.3;
 uniform float vignette_blend = 0.1;
 uniform float distort_strength = 0.1;
 uniform float disc_speed = 0.5;
-
-const float TAU = 6.283185307;
 
 vec2 polar_coordinates(vec2 uv, vec2 center, float zoom, float repeat)
 {

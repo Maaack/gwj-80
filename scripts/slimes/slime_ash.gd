@@ -31,6 +31,7 @@ func apply_effects_to_nearby_slimes() -> void:
 
 func remove_effects_from_slimes(slimes: Array[Slime]) -> void:
 	for slime: Slime in slimes:
+		if not is_instance_valid(slime): continue
 		slime.is_scattering = false
 
 
