@@ -22,6 +22,7 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_fv7a2")
 slime_type = 11
+split_type = 1
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true

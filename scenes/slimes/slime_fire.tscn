@@ -188,6 +188,7 @@ script = ExtResource("1_v6ve1")
 slime_type = 2
 min_speed = 4.0
 max_speed = 6.0
+split_type = 2
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
