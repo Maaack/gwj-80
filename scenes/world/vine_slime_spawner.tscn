@@ -6,4 +6,4 @@
 [node name="VineSlimeSpawner" instance=ExtResource("1_0iwuf")]
 
 [node name="Vine Spawner" parent="." index="2" instance=ExtResource("2_kv31p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -1.3)
