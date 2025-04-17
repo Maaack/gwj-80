@@ -30,18 +30,22 @@ animation = &"whistle"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5h263"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"IsWalking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_keuga"]
+xfade_time = 0.25
 advance_mode = 2
 advance_condition = &"IsNotWalking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ed2el"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"IsRunning"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dj1rg"]
+xfade_time = 0.25
 advance_mode = 2
 advance_condition = &"IsNotRunning"
 
@@ -62,26 +66,32 @@ advance_mode = 2
 advance_condition = &"IsInAir"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d2drt"]
+xfade_time = 0.25
 advance_mode = 2
 advance_condition = &"IsWhistling"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tp44r"]
+xfade_time = 0.25
 advance_mode = 2
 advance_condition = &"IsNotWhistling"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q8fn6"]
+xfade_time = 0.25
 advance_mode = 2
 advance_condition = &"IsNotWalking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nr0vy"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"IsWalking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vs441"]
+xfade_time = 0.25
 advance_mode = 2
 advance_condition = &"IsNotWhistling"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_um4vq"]
+xfade_time = 0.25
 advance_mode = 2
 advance_condition = &"IsWhistling"
 
