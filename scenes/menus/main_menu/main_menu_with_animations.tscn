@@ -474,10 +474,10 @@ bones/1/position = Vector3(-0.208588, 0.496868, 0.42035)
 bones/1/scale = Vector3(1, 1, 1)
 
 [node name="Sphere" parent="SubViewport/Node3D/Node3D3/SLime/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1.23946, 0, 0.374615, 0, 1.29483, 0, -0.374615, 0, 1.23946, -1.26986, 0.346835, -1.91591)
+transform = Transform3D(1.10879, 0, 0.335122, 0, 1.15832, 0, -0.335122, 0, 1.10879, -1.21226, 1.37734, -1.87105)
 
 [node name="MC" parent="SubViewport/Node3D" index="7" instance=ExtResource("8_vsp5b")]
-transform = Transform3D(-0.558643, 0, 0.332292, 0, 0.65, 0, -0.332292, 0, -0.558643, -7.46327, 19.438, 32.5342)
+transform = Transform3D(-0.558643, 0, 0.332292, 0, 0.65, 0, -0.332292, 0, -0.558643, -7.46327, 19.9465, 32.5342)
 
 [node name="Skeleton3D" parent="SubViewport/Node3D/MC/Character_MC/root" index="0"]
 bones/14/rotation = Quaternion(-8.43221e-09, 0.707107, 0.707107, -5.33851e-08)
@@ -487,13 +487,13 @@ bones/51/rotation = Quaternion(3.19102e-09, -0.564537, 1.03657e-08, 0.825408)
 bones/79/rotation = Quaternion(0.805106, -0.0720245, -0.58717, 0.0429869)
 
 [node name="Hat" parent="SubViewport/Node3D/MC/Character_MC/root/Skeleton3D" index="0"]
-transform = Transform3D(0.999714, -0.0239374, -0.000345544, 0.0239154, 0.999241, -0.0307622, 0.00108165, 0.0307451, 0.999527, 0.0675993, 0.133436, -0.160042)
+transform = Transform3D(0.999713, -0.0239373, -0.000345566, 0.0239154, 0.99924, -0.030762, 0.00108167, 0.030745, 0.999527, 0.0675989, 0.133438, -0.160042)
 
 [node name="NurbsPath_010" parent="SubViewport/Node3D/MC/Character_MC/root/Skeleton3D" index="1"]
-transform = Transform3D(0.999714, -0.0239374, -0.000345544, 0.0239154, 0.999241, -0.0307622, 0.00108165, 0.0307451, 0.999527, 0.0675993, 0.133436, -0.160042)
+transform = Transform3D(0.999713, -0.0239373, -0.000345566, 0.0239154, 0.99924, -0.030762, 0.00108167, 0.030745, 0.999527, 0.0675989, 0.133438, -0.160042)
 
 [node name="Cube" parent="SubViewport/Node3D/MC/Character_MC/root/Skeleton3D" index="2"]
-transform = Transform3D(1, -2.85826e-06, -3.81993e-10, -3.82111e-10, -4.12013e-08, -1, 2.85826e-06, 1, -4.12013e-08, 1.86263e-08, 4.06727, -0.261506)
+transform = Transform3D(0.999991, -0.00334893, 0.0023971, 0.00339497, 0.999804, -0.0194711, -0.00233143, 0.0194791, 0.999807, -0.00809102, 0.134336, -0.0797924)
 
 [node name="AnimationPlayer" parent="SubViewport/Node3D/MC/Character_MC" index="1"]
 autoplay = "Homescreen"
