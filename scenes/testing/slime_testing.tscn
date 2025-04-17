@@ -1,12 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://chsmnfd4o7tj4"]
+[gd_scene load_steps=18 format=3 uid="uid://chsmnfd4o7tj4"]
 
-[ext_resource type="PackedScene" uid="uid://dgeh3m30gar0o" path="res://scenes/slimes/slime.tscn" id="1_oeq8d"]
 [ext_resource type="PackedScene" uid="uid://dtollnkgrdph8" path="res://scenes/slimes/slime_explosive.tscn" id="2_yi86t"]
 [ext_resource type="PackedScene" uid="uid://b5iybcpovkwdx" path="res://scenes/slimes/slime_metal.tscn" id="3_qva8q"]
 [ext_resource type="PackedScene" uid="uid://dc01qmly3uoig" path="res://scenes/slimes/slime_water.tscn" id="4_85mtq"]
 [ext_resource type="PackedScene" uid="uid://rsvs5gnqqr8d" path="res://scenes/slimes/slime_ash.tscn" id="5_xlo40"]
 [ext_resource type="PackedScene" uid="uid://dbm1nj4nxxm1f" path="res://scenes/slimes/slime_crystal.tscn" id="6_lqwsc"]
 [ext_resource type="PackedScene" uid="uid://c6w5jfswaercw" path="res://scenes/slimes/slime_vine.tscn" id="7_403j6"]
+[ext_resource type="PackedScene" uid="uid://xa7j2wqcqeyr" path="res://scenes/slimes/slime_rock.tscn" id="8_bdrux"]
+[ext_resource type="PackedScene" uid="uid://hb7xi8e15pp6" path="res://scenes/slimes/slime_mud.tscn" id="9_25rhk"]
+[ext_resource type="PackedScene" uid="uid://dppp4c2wn6eny" path="res://scenes/slimes/slime_fire.tscn" id="10_ynlwt"]
+[ext_resource type="PackedScene" uid="uid://dbktyy7pemcw1" path="res://scenes/slimes/slime_moss.tscn" id="11_q3gxm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oeq8d"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -94,37 +97,14 @@ size = Vector3(1, 10, 50)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 35, 0)
 current = true
 
-[node name="Slime" parent="." instance=ExtResource("1_oeq8d")]
-
-[node name="Slime2" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56541, 0, 0)
-
-[node name="Slime3" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71578, 0, 1.52902)
-
-[node name="Slime4" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.97)
-
-[node name="Camera3D" type="Camera3D" parent="Slime4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3)
-
-[node name="Slime5" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23586, 0, 2.70158)
-
-[node name="Slime6" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60744, 0, 0)
-
-[node name="Slime7" parent="." instance=ExtResource("1_oeq8d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.97431)
-
 [node name="SlimeExplosive" parent="." instance=ExtResource("2_yi86t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04358, 0, -42.1121)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.94423, 0, -41.6036)
 
 [node name="SlimeMetal" parent="." instance=ExtResource("3_qva8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43364, 0, -44.2953)
 
 [node name="SlimeWater" parent="." instance=ExtResource("4_85mtq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94905, 0, 4.29871)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0168, 0, 4.05076)
 push_magnitude = 0.05
 
 [node name="SlimeAsh" parent="." instance=ExtResource("5_xlo40")]
@@ -134,4 +114,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62126, 0, -44.8966)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.31288, 0, 5.86265)
 
 [node name="SlimeVine" parent="." instance=ExtResource("7_403j6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.78427, 0, 3.40182)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0353, 0, 3.40182)
+
+[node name="SlimeRock" parent="." instance=ExtResource("8_bdrux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.6155)
+
+[node name="SlimeMud" parent="." instance=ExtResource("9_25rhk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.26276, 0, -49.9299)
+
+[node name="SlimeFire" parent="." instance=ExtResource("10_ynlwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0146, 0, 2.24656)
+
+[node name="SlimeFire2" parent="." instance=ExtResource("10_ynlwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.74538, 0, 1.09007)
+
+[node name="SlimeMoss" parent="." instance=ExtResource("11_q3gxm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25187, 0, -3.92198)
+min_grow_time = 8.0
+max_grow_time = 10.0

@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://hb7xi8e15pp6"]
+[gd_scene load_steps=6 format=3 uid="uid://dbktyy7pemcw1"]
 
-[ext_resource type="Script" uid="uid://d1a0ocdj6famc" path="res://scripts/slimes/slime_mud.gd" id="1_mesks"]
-[ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_yqygu"]
+[ext_resource type="Script" uid="uid://c2dtdm8jff6gv" path="res://scripts/slimes/slime_moss.gd" id="1_523d8"]
+[ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_mhb6w"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
 resource_local_to_scene = true
@@ -10,15 +10,15 @@ radius = 0.63
 [sub_resource type="SphereShape3D" id="SphereShape3D_22mvs"]
 radius = 13.0
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_mesks"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_523d8"]
 resource_local_to_scene = true
 radius = 1.0
 
-[node name="SlimeMud" type="CharacterBody3D"]
+[node name="SlimeMoss" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_mesks")
-slime_type = 9
+script = ExtResource("1_523d8")
+slime_type = 8
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
@@ -29,7 +29,7 @@ debug_color = Color(0.787219, 0.410982, 0.360379, 0.42)
 [node name="Pivot" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="SlimeModel" parent="Pivot" instance=ExtResource("2_yqygu")]
+[node name="SlimeModel" parent="Pivot" instance=ExtResource("2_mhb6w")]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
@@ -42,11 +42,6 @@ collision_mask = 2
 unique_name_in_owner = true
 shape = SubResource("SphereShape3D_22mvs")
 
-[node name="UpdateAmbientDirectionTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 5.0
-one_shot = true
-
 [node name="TouchZone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 0
@@ -54,8 +49,18 @@ collision_mask = 2
 
 [node name="TouchCollisionShape3D" type="CollisionShape3D" parent="TouchZone"]
 unique_name_in_owner = true
-shape = SubResource("SphereShape3D_mesks")
+shape = SubResource("SphereShape3D_523d8")
+
+[node name="UpdateAmbientDirectionTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[node name="GrowTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
 
 [connection signal="body_entered" from="FlockingZone" to="." method="_on_flocking_zone_body_entered"]
 [connection signal="body_exited" from="FlockingZone" to="." method="_on_flocking_zone_body_exited"]
 [connection signal="timeout" from="UpdateAmbientDirectionTimer" to="." method="_on_update_ambient_direction_timer_timeout"]
+[connection signal="timeout" from="GrowTimer" to="." method="_on_grow_timer_timeout"]

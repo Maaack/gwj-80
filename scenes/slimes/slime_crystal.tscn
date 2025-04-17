@@ -185,6 +185,7 @@ radius = 1.0
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_4amgv")
+slime_type = 10
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
