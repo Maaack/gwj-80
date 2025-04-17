@@ -39,4 +39,5 @@ func slime_masses_removed(slime_mass_types : Dictionary[Constants.SlimeType, int
 		slime_removed(slime_type, slime_mass_types[slime_type])
 
 func _ready():
+	await get_tree().create_timer(1.0).timeout
 	refresh_slime_spawns()

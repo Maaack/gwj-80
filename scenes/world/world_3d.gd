@@ -19,6 +19,7 @@ func _get_total_slimes_delivered() -> int:
 	return total_slimes
 
 func _check_objectives_completed() -> bool:
+	if objective_list == null: return false
 	for objective_data in objective_list.objectives:
 		var slime_type = objective_data.slime_type
 		if slime_type == Constants.SlimeType.NONE:

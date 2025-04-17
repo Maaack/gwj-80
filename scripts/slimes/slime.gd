@@ -82,8 +82,10 @@ const VOLUME_TO_RADIUS_MODIFER : float = 4.18879
 @onready var collision_shape: CollisionShape3D = %CollisionShape
 @onready var flocking_zone_collision_shape: CollisionShape3D = %FlockingZoneCollisionShape
 @onready var sphere_shape: SphereShape3D = collision_shape.shape
+@onready var _init_sphere_shape_radius: float = sphere_shape.radius
 @onready var touch_collision_shape: CollisionShape3D = %TouchCollisionShape3D
 @onready var touch_sphere_shape: SphereShape3D = touch_collision_shape.shape
+@onready var _init_touch_sphere_shape_radius: float = touch_sphere_shape.radius
 @onready var update_ambient_direction_timer: Timer = %UpdateAmbientDirectionTimer
 
 var slime_data : SlimeData = SlimeData.new()
@@ -122,8 +124,8 @@ func grow(new_mass : int = 1, grow_duration : float = 1.0) -> void:
 	var radius = pow(3/(4*PI)*mass*VOLUME_TO_RADIUS_MODIFER, 0.333)
 	var tween = create_tween()
 	tween.tween_property(slime_model, "scale", Vector3.ONE * radius, grow_duration).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	tween.parallel().tween_property(sphere_shape, "radius", sphere_shape.radius * radius, grow_duration)
-	tween.parallel().tween_property(touch_sphere_shape, "radius", touch_sphere_shape.radius * radius, grow_duration)
+	tween.parallel().tween_property(sphere_shape, "radius", _init_sphere_shape_radius * radius, grow_duration)
+	tween.parallel().tween_property(touch_sphere_shape, "radius", _init_touch_sphere_shape_radius * radius, grow_duration)
 	await tween.finished
 	is_growing = false
 

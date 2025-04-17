@@ -134,3 +134,5 @@ func _physics_process(delta : float) -> void:
 	animation_tree["parameters/conditions/IsNotWalking"] = !is_walking
 	animation_tree["parameters/conditions/IsRunning"] = is_running
 	animation_tree["parameters/conditions/IsNotRunning"] = !is_running
+	animation_tree["parameters/conditions/IsWhistling"] = is_whistling
+	animation_tree["parameters/conditions/IsNotWhistling"] = !is_whistling
