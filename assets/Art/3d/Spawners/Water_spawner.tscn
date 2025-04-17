@@ -1,0 +1,260 @@
+[gd_scene load_steps=9 format=3 uid="uid://dpxu7mbmh5lu3"]
+
+[ext_resource type="PackedScene" uid="uid://cls745n3axol8" path="res://assets/Art/3d/water.tscn" id="1_hhljr"]
+[ext_resource type="PackedScene" uid="uid://c663vj28gs3tj" path="res://assets/Art/3d/Rock/Buiding Rocks/small_rock.tscn" id="2_aqjcx"]
+[ext_resource type="PackedScene" uid="uid://8oegd3uceapk" path="res://assets/Art/3d/Tree/lillypad.tscn" id="3_m6aae"]
+[ext_resource type="Texture2D" uid="uid://dkvptqcg4r8uh" path="res://assets/Art/2d/TExtures/Foliage/Gaint Red paintbrush.png" id="4_1wx6a"]
+[ext_resource type="Texture2D" uid="uid://c5n8cijd7km6l" path="res://assets/Art/2d/TExtures/Foliage/Purple plant.png" id="5_uw0qb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nt4fy"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("4_1wx6a")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g3nwc"]
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5v5y"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("5_uw0qb")
+
+[node name="WaterSlimeSpawn" type="Node3D"]
+
+[node name="Node3D" parent="." instance=ExtResource("1_hhljr")]
+transform = Transform3D(0.511862, 0, 0, 0, 0.511862, 0, 0, 0, 0.511862, -0.00327253, 0.177314, -0.00599027)
+
+[node name="Small_Rock" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(0.197986, 0, 0, 0, 0.157092, 0, 0, 0, 0.227827, -1.04192, -0.222032, -0.124911)
+
+[node name="Small_Rock2" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(0.197986, 0, 0, 0, 0.157092, 0, 0, 0, 0.227827, -1.04192, -0.222032, 0.474639)
+
+[node name="Small_Rock3" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(0.197986, 0, 0, 0, 0.157092, 0, 0, 0, 0.227827, -0.777807, -0.222032, 1.05046)
+
+[node name="Small_Rock4" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(0.197986, 0, 0, 0, 0.157092, 0, 0, 0, 0.227827, -0.925718, -0.222032, -0.712037)
+
+[node name="Small_Rock5" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(0.197986, 0, 0, 0, 0.157092, 0, 0, 0, 0.227827, -0.578773, -0.222032, -1.06097)
+
+[node name="Small_Rock6" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(-0.186952, 0, -0.0268556, 0, 0.157092, 0, 0.0216046, 0, -0.232391, 1.01776, -0.222032, -0.046834)
+
+[node name="Small_Rock7" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(-0.186952, 0, -0.0268556, 0, 0.157092, 0, 0.0216046, 0, -0.232391, 0.957943, -0.222032, -0.64242)
+
+[node name="Small_Rock8" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(-0.186952, 0, -0.0268556, 0, 0.157092, 0, 0.0216046, 0, -0.232391, 0.638135, -0.222032, -1.17954)
+
+[node name="Small_Rock9" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(-0.186952, 0, -0.0268556, 0, 0.157092, 0, 0.0216046, 0, -0.232391, 0.960898, -0.222032, 0.55176)
+
+[node name="Small_Rock10" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(-0.186952, 0, -0.0268556, 0, 0.157092, 0, 0.0216046, 0, -0.232391, 0.651057, -0.222032, 0.944215)
+
+[node name="Small_Rock14" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(0.190718, 0, -0.109597, 0, 0.157092, 0, 0.145452, 0, 0.143706, -0.336339, -0.222032, -1.15421)
+
+[node name="Small_Rock15" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(0.190718, 0, -0.109597, 0, 0.157092, 0, 0.145452, 0, 0.143706, 0.123416, -0.222032, -1.18956)
+
+[node name="Small_Rock11" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(-0.196756, 0, -0.00330015, 0, 0.157092, 0, 0.00284013, 0, -0.228625, 0.335615, -0.222032, 0.984036)
+
+[node name="Small_Rock16" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(-0.192363, 0, 0.108189, 0, 0.157092, 0, -0.142362, 0, -0.146187, 0.0943756, -0.222032, 1.0813)
+
+[node name="Small_Rock17" parent="Node3D" instance=ExtResource("2_aqjcx")]
+transform = Transform3D(-0.192363, 0, 0.108189, 0, 0.157092, 0, -0.142362, 0, -0.146187, -0.364888, -0.222032, 1.12427)
+
+[node name="Lillypad" parent="Node3D" instance=ExtResource("3_m6aae")]
+transform = Transform3D(0.371618, 0, 0, 0, 0.371618, 0, 0, 0, 0.371618, 0, 0.0600405, 0.0198101)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.29386, 0, 0, 0, 0.29386, 0, 0, 0, 0.29386, 0, 0.423601, -0.69835)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0231992, 0, -0.292943, 0, 0.29386, 0, 0.292943, 0, 0.0231992, 0, 0.423601, -0.69835)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.29386, 0, 0, 0, 0.29386, 0, 0, 0, 0.29386, -0.437493, 0.423601, -0.69835)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0231992, 0, -0.292943, 0, 0.29386, 0, 0.292943, 0, 0.0231992, -0.437493, 0.423601, -0.69835)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.29386, 0, 0, 0, 0.29386, 0, 0, 0, 0.29386, -0.614198, 0.423601, -0.426935)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0231992, 0, -0.292943, 0, 0.29386, 0, 0.292943, 0, 0.0231992, -0.614198, 0.423601, -0.426935)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.29386, 0, 0, 0, 0.29386, 0, 0, 0, 0.29386, -0.669739, 0.423601, -0.106381)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0231992, 0, -0.292943, 0, 0.29386, 0, 0.292943, 0, 0.0231992, -0.669739, 0.423601, -0.106381)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.24215, 0, 0, 0, 0.24215, 0, 0, 0, 0.24215, 0.692363, 0.327138, -0.109941)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0191168, 0, -0.241394, 0, 0.24215, 0, 0.241394, 0, 0.0191168, 0.692363, 0.327138, -0.109941)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.24215, 0, 0, 0, 0.24215, 0, 0, 0, 0.24215, 0.692363, 0.327138, 0.196046)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D27" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.015985, 0, -0.241621, 0, 0.24215, 0, 0.241621, 0, 0.015985, 0.692363, 0.327138, 0.196046)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D28" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.24215, 0, 0, 0, 0.24215, 0, 0, 0, 0.24215, -0.689554, 0.327138, 0.196046)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D29" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.015985, 0, -0.241621, 0, 0.24215, 0, 0.241621, 0, 0.015985, -0.689554, 0.327138, 0.196046)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D30" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.24215, 0, 0, 0, 0.24215, 0, 0, 0, 0.24215, 0.182349, 0.327138, -0.582815)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D31" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.015985, 0, -0.241621, 0, 0.24215, 0, 0.241621, 0, 0.015985, 0.182349, 0.327138, -0.582815)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D32" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.24215, 0, 0, 0, 0.24215, 0, 0, 0, 0.24215, 0.760221, 0.327138, 0.493529)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D33" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.015985, 0, -0.241621, 0, 0.24215, 0, 0.241621, 0, 0.015985, 0.760221, 0.327138, 0.493529)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D34" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.24215, 0, 0, 0, 0.24215, 0, 0, 0, 0.24215, -0.784666, 0.327138, 0.493529)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D35" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.015985, 0, -0.241621, 0, 0.24215, 0, 0.241621, 0, 0.015985, -0.784666, 0.327138, 0.493529)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D36" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.24215, 0, 0, 0, 0.24215, 0, 0, 0, 0.24215, -0.498865, 0.376109, 0.747248)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D37" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.015985, 0, -0.241621, 0, 0.24215, 0, 0.241621, 0, 0.015985, -0.498865, 0.376109, 0.747248)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D38" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.24215, 0, 0, 0, 0.24215, 0, 0, 0, 0.24215, -0.752352, 0.376109, -0.432894)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D39" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.015985, 0, -0.241621, 0, 0.24215, 0, 0.241621, 0, 0.015985, -0.752352, 0.376109, -0.432894)
+material_override = SubResource("StandardMaterial3D_w5v5y")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0191168, 0, -0.241394, 0, 0.24215, 0, 0.241394, 0, 0.0191168, 0.692363, 0.327138, 0.196046)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.24215, 0, 0, 0, 0.24215, 0, 0, 0, 0.24215, 0.473224, 0.327138, -0.483317)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0191168, 0, -0.241394, 0, 0.24215, 0, 0.241394, 0, 0.0191168, 0.473224, 0.327138, -0.483317)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.29386, 0, 0, 0, 0.29386, 0, 0, 0, 0.29386, 0.412148, 0.423601, 0.708006)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0231992, 0, -0.292943, 0, 0.29386, 0, 0.292943, 0, 0.0231992, 0.412148, 0.423601, 0.708006)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.29386, 0, 0, 0, 0.29386, 0, 0, 0, 0.29386, -0.610076, 0.340918, 0.46716)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0231992, 0, -0.292943, 0, 0.29386, 0, 0.292943, 0, 0.0231992, -0.610076, 0.340918, 0.46716)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0151666, 0, -0.236053, 0, 0.197941, 0, 0.191513, 0, 0.0186939, -0.0820168, 0.340918, 0.76581)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0185213, 0, -0.288265, 0, 0.241723, 0, 0.233874, 0, 0.0228287, -0.762314, 0.340918, 0.158356)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.29386, 0, 0, 0, 0.241723, 0, 0, 0, 0.234421, 0.0519058, 0.340918, 0.699434)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0185213, 0, -0.288265, 0, 0.241723, 0, 0.233874, 0, 0.0228287, 0.0519058, 0.340918, 0.699434)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.22514, 0, 0, 0, 0.185195, 0, 0, 0, 0.179601, -0.442436, 0.340918, 0.699434)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
+
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0141901, 0, -0.220854, 0, 0.185195, 0, 0.179182, 0, 0.0174902, -0.442436, 0.340918, 0.699434)
+material_override = SubResource("StandardMaterial3D_nt4fy")
+mesh = SubResource("PlaneMesh_g3nwc")
