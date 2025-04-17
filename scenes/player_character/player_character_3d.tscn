@@ -149,6 +149,14 @@ transform = Transform3D(0.99999, 0.0044613, 2.14869e-07, -0.00446131, 0.99999, -
 transform = Transform3D(0.99999, 0.0044613, 2.14869e-07, -0.00446131, 0.99999, -1.66001e-05, -2.88739e-07, 1.66001e-05, 1, -0.0284308, 4.86374e-05, -9.5427e-05)
 
 [node name="CustomCamera" parent="." instance=ExtResource("3_u7jsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+min_cam_v_degrees = 10.0
+max_cam_v_degrees = 45.0
+max_spring_length = 20.0
+min_forward_slide = 2.0
+max_forward_slide = 6.0
+starting_v_ratio = 0.5
+v_sensitivity = 0.0
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../PlayerCharacterModel")

@@ -93,7 +93,7 @@ func depart(departure_time : float = 1.0, send_signal : bool = true) -> void:
 		departed.emit()
 
 
-func grow(new_type : Constants.SlimeType, new_mass : int = 1, grow_duration : float = 1.0) -> void:
+func grow(new_mass : int = 1, grow_duration : float = 1.0) -> void:
 	if is_busy(): return
 	is_growing = true
 	mass = new_mass
@@ -104,8 +104,6 @@ func grow(new_type : Constants.SlimeType, new_mass : int = 1, grow_duration : fl
 	tween.parallel().tween_property(sphere_shape, "radius", sphere_shape.radius * radius, grow_duration)
 	tween.parallel().tween_property(touch_sphere_shape, "radius", touch_sphere_shape.radius * radius, grow_duration)
 	await tween.finished
-	slime_type = new_type
-	slime_data.slime_type = slime_type
 	is_growing = false
 
 

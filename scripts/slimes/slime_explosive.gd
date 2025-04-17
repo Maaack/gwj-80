@@ -20,6 +20,7 @@ func apply_effects_to_nearby_slimes() -> void:
 	for slime: Slime in nearby_slimes:
 		slime.add_external_velocity(_calculate_explosion_velocity(slime))
 	# TODO: Apply force to player
+	depart(0.25)
 
 
 func _calculate_explosion_velocity(other_node: Node3D) -> Vector3:

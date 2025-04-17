@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bgxl1eew7gaoq" path="res://scripts/slimes/slime_fire.gd" id="1_v6ve1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
+resource_local_to_scene = true
 radius = 0.63
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_22mvs"]
@@ -17,6 +18,7 @@ radius = 1.0
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_v6ve1")
+slime_type = 2
 min_speed = 4.0
 max_speed = 6.0
 
@@ -68,3 +70,4 @@ shape = SubResource("SphereShape3D_v6ve1")
 [connection signal="timeout" from="UpdateAmbientDirectionTimer" to="." method="_on_update_ambient_direction_timer_timeout"]
 [connection signal="timeout" from="ShrinkTimer" to="." method="_on_shrink_timer_timeout"]
 [connection signal="timeout" from="SpreadTimer" to="." method="_on_spread_timer_timeout"]
+[connection signal="body_exited" from="TouchZone" to="." method="_on_touch_zone_body_exited"]
