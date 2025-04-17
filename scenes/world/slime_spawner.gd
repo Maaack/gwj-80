@@ -11,9 +11,6 @@ signal slime_spawned(slime_node : Slime)
 @export var queued_to_spawn : int = 0
 @onready var _spawn_timer : Timer = $SpawnTimer
 
-func queue_spawn(count : int = 1):
-	queued_to_spawn += count
-
 func spawn():
 	if not slime_scene:
 		push_error("No slime scene set")
@@ -31,14 +28,18 @@ func spawn():
 	tween.tween_property(slime_instance, "scale", Vector3.ONE, spawn_duration)
 
 func _process_queue():
-	if not _spawn_timer.is_stopped(): return
+	if not _spawn_timer or not _spawn_timer.is_stopped(): return
 	if queued_to_spawn < 1: return
 	spawn()
 	queued_to_spawn -= 1
 	_spawn_timer.start(spawn_delay)
 
+func queue_spawn(count : int = 1):
+	queued_to_spawn += count
+	_process_queue()
+
 func _on_spawn_timer_timeout():
 	_process_queue()
 
 func _ready():
-	_process_queue()
+	_process_queue.call_deferred()
