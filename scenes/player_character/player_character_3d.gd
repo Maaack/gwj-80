@@ -58,7 +58,9 @@ func _input(event) -> void:
 		is_whistling = true
 		whistling_player.play()
 		note_1_particles.emitting = true
-		note_2_particles.emitting = true
+		await get_tree().create_timer(0.25).timeout
+		if is_whistling:
+			note_2_particles.emitting = true
 	elif event.is_action_released("attract_slimes"):
 		is_whistling = false
 		whistling_player.stop()
