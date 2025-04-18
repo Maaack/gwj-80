@@ -7,10 +7,11 @@ signal slime_spawned(slime_node : Slime)
 @export_range(0, 10) var spawn_radius : float = 2.5
 @export_range(0, 10) var spawn_delay : float = 0.25
 @export_range(0, 10) var spawn_duration : float = 1.0
+@export_range(1, 10) var max_spawn_mass : int = 3
 @export var queued_to_spawn : int = 0
 @onready var _spawn_timer : Timer = $SpawnTimer
 
-func spawn():
+func spawn(slime_mass : int = 1):
 	var slime_instance : Slime = Constants.get_slime_instance(slime_type)
 	if slime_instance == null:
 		push_error("No instance created for slime type %d" % slime_type)
@@ -18,6 +19,7 @@ func spawn():
 	var rand_distance = randf_range(0, spawn_radius)
 	var normal_vector = Vector2.from_angle(rand_angle)
 	slime_instance.position = Vector3(normal_vector.x, 0, normal_vector.y) * rand_distance
+	slime_instance.mass = slime_mass
 	add_child(slime_instance)
 	slime_instance.set_data_type_masses()
 	slime_spawned.emit(slime_instance)
@@ -28,8 +30,10 @@ func spawn():
 func _process_queue():
 	if not _spawn_timer or not _spawn_timer.is_stopped(): return
 	if queued_to_spawn < 1: return
-	spawn()
-	queued_to_spawn -= 1
+	var max_mass : int = min(queued_to_spawn, max_spawn_mass)
+	var final_mass = (randi() % max_mass) + 1
+	spawn(final_mass)
+	queued_to_spawn -= final_mass
 	_spawn_timer.start(spawn_delay)
 
 func queue_spawn(count : int = 1):
