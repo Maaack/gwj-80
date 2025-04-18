@@ -6,6 +6,7 @@ const DISTANCE_TO_DIRECT_MOVE_COMPLETE: float = 0.5
 
 signal slime_touched(other_slime : Slime)
 signal departed
+signal slime_split(other_slime : Slime)
 
 enum SplitType { NONE, SINGLE, MULTI }
 
@@ -172,7 +173,7 @@ func create_new_slime(slime: Slime) -> Slime:
 	add_sibling(new_slime)
 	new_slime.global_position = new_position
 	new_slime.external_velocity = external_velocity
-
+	slime_split.emit(new_slime)
 	return new_slime
 
 
