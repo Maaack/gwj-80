@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://tcv64topdg6v"]
+[gd_scene load_steps=4 format=3 uid="uid://tcv64topdg6v"]
 
 [ext_resource type="Script" uid="uid://bqneheiwro372" path="res://scenes/game_scene/journal_panel.gd" id="1_8jtbd"]
 [ext_resource type="Texture2D" uid="uid://drupexiewywk6" path="res://assets/Art/2d/TExtures/SLime.png" id="1_pjfiw"]
+[ext_resource type="Script" uid="uid://b7jjlfwvmxobw" path="res://scripts/custom_button.gd" id="3_7gocn"]
 
 [node name="JournalPanel" type="PanelContainer"]
 visible = false
@@ -159,7 +160,9 @@ alignment = 1
 [node name="PrevButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "<"
+script = ExtResource("3_7gocn")
 
 [node name="NextButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = ">"
+script = ExtResource("3_7gocn")

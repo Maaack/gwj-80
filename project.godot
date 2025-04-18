@@ -42,6 +42,7 @@ player=""
 
 [gui]
 
+common/snap_controls_to_pixels=false
 theme/custom="uid://bxjiw3b5i82d3"
 
 [input]

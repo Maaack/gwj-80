@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://04du16hjyofj"]
+[gd_scene load_steps=4 format=3 uid="uid://04du16hjyofj"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/extras/scenes/overlaid_menus/level_lost_menu.tscn" id="1_wvmyj"]
-[ext_resource type="Script" path="res://scenes/overlaid_menus/level_lost_menu.gd" id="2_v0vqr"]
+[ext_resource type="PackedScene" uid="uid://dkq3nhkmhu4je" path="res://addons/maaacks_game_template/extras/scenes/overlaid_menus/level_lost_menu.tscn" id="1_wvmyj"]
+[ext_resource type="Script" uid="uid://bvmf14a41ymr5" path="res://scenes/overlaid_menus/level_lost_menu.gd" id="2_v0vqr"]
+[ext_resource type="Script" uid="uid://b7jjlfwvmxobw" path="res://scripts/custom_button.gd" id="3_v0vqr"]
 
 [node name="LevelLostMenu" instance=ExtResource("1_wvmyj")]
 script = ExtResource("2_v0vqr")
+
+[node name="ExitButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
+script = ExtResource("3_v0vqr")
+
+[node name="MainMenuButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
+script = ExtResource("3_v0vqr")
+
+[node name="CloseButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="2"]
+script = ExtResource("3_v0vqr")
