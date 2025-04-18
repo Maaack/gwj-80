@@ -19,6 +19,7 @@ func spawn():
 	var normal_vector = Vector2.from_angle(rand_angle)
 	slime_instance.position = Vector3(normal_vector.x, 0, normal_vector.y) * rand_distance
 	add_child(slime_instance)
+	slime_instance.set_data_type_masses()
 	slime_spawned.emit(slime_instance)
 	slime_instance.scale = Vector3.ONE * 0.01
 	var tween = create_tween()

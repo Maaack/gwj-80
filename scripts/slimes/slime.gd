@@ -117,6 +117,9 @@ func _ready() -> void:
 func is_busy():
 	return is_departing or is_growing
 
+func set_data_type_masses():
+	slime_data.slime_type_masses.clear()
+	slime_data.slime_type_masses = slime_data.get_slime_type_masses()
 
 func depart(departure_time : float = 1.0, send_signal : bool = true) -> void:
 	if is_busy(): return
@@ -148,13 +151,15 @@ func grow(new_mass : int = 1, grow_duration : float = 1.0) -> void:
 ## Single split will create one new slime, if the mass is greater than 1.
 ## The mass is then reduced by one per created slime.
 func split() -> void:
-	if split_type == SplitType.MULTI and mass > 2:
-		for i in mass:
+	var true_mass = slime_data.get_true_mass()
+	if true_mass > 1:
+		if split_type == SplitType.MULTI:
+			for i in true_mass:
+				create_new_slime(self)
+			grow()
+		elif split_type == SplitType.SINGLE:
 			create_new_slime(self)
-		grow()
-	elif split_type == SplitType.SINGLE and mass > 1:
-		create_new_slime(self)
-		grow(mass - 1)
+			grow(mass - 1)
 
 
 # TODO: Use a better location, and maybe give it an external force?  The placement
