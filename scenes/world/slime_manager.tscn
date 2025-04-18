@@ -4,3 +4,4 @@
 
 [node name="SlimeManager" type="Node"]
 script = ExtResource("1_07fg4")
+respawn_delay = 6.0
