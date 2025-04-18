@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://hb7xi8e15pp6"]
 
 [ext_resource type="Script" uid="uid://d1a0ocdj6famc" path="res://scripts/slimes/slime_mud.gd" id="1_mesks"]
-[ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_yqygu"]
-[ext_resource type="PackedScene" uid="uid://dctf57s33kdcy" path="res://scenes/slimes/alerted_indicator.tscn" id="3_yqygu"]
+[ext_resource type="PackedScene" uid="uid://ctf1o4yv5fkvd" path="res://scenes/slimes/Dirt.tscn" id="2_yqygu"]
+[ext_resource type="PackedScene" path="res://scenes/slimes/alerted_indicator.tscn" id="3_yqygu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
 resource_local_to_scene = true
@@ -31,9 +31,8 @@ debug_color = Color(0.787219, 0.410982, 0.360379, 0.42)
 [node name="Pivot" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="SlimeModel" parent="Pivot" instance=ExtResource("2_yqygu")]
+[node name="Slime" parent="Pivot" instance=ExtResource("2_yqygu")]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="FlockingZone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
