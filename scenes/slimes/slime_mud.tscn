@@ -31,7 +31,7 @@ debug_color = Color(0.787219, 0.410982, 0.360379, 0.42)
 [node name="Pivot" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="Slime" parent="Pivot" instance=ExtResource("2_yqygu")]
+[node name="SlimeModel" parent="Pivot" instance=ExtResource("2_yqygu")]
 unique_name_in_owner = true
 
 [node name="FlockingZone" type="Area3D" parent="."]
