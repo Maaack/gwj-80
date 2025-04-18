@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcjfkq2kbbyrr"]
+[gd_scene load_steps=8 format=3 uid="uid://bcjfkq2kbbyrr"]
 
 [ext_resource type="Script" uid="uid://dedydiws6clh6" path="res://scripts/slimes/slime_yin_yang.gd" id="1_fv7a2"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_qv12o"]
+[ext_resource type="PackedScene" uid="uid://dctf57s33kdcy" path="res://scenes/slimes/alerted_indicator.tscn" id="3_qv12o"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
 resource_local_to_scene = true
@@ -74,6 +75,10 @@ one_shot = true
 [node name="RadialPosDurationTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="AlertedIndicator" parent="." instance=ExtResource("3_qv12o")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75984, 0)
 
 [connection signal="body_entered" from="FlockingZone" to="." method="_on_flocking_zone_body_entered"]
 [connection signal="body_exited" from="FlockingZone" to="." method="_on_flocking_zone_body_exited"]
