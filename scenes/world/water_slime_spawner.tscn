@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://i860ela8t0qg"]
 
 [ext_resource type="PackedScene" uid="uid://bvhq1ebik4ldt" path="res://scenes/world/slime_spawner.tscn" id="1_esd64"]
-[ext_resource type="PackedScene" path="res://assets/Art/3d/Spawners/Water_spawner.tscn" id="2_i7wkn"]
+[ext_resource type="PackedScene" uid="uid://dpxu7mbmh5lu3" path="res://assets/Art/3d/Spawners/Water_spawner.tscn" id="2_i7wkn"]
 
 [node name="WaterSlimeSpawner" instance=ExtResource("1_esd64")]
 

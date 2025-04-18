@@ -113,7 +113,7 @@ _data = {
 [node name="Fire Spawner" type="Node3D"]
 
 [node name="Fire" parent="." instance=ExtResource("1_0qxd3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258408, 0, -6.37164)
+transform = Transform3D(0.435825, 0, 0, 0, 0.435825, 0, 0, 0, 0.435825, 0.099637, 0.192023, -1.86551)
 
 [node name="Plane" parent="Fire" index="0"]
 transform = Transform3D(-0.00150634, 0.0741363, 2.59147, -2.592, -0.0526655, 2.87829e-16, 0.0526439, -2.59094, 0.0741516, 0, 2.13922, 11.141)
@@ -124,35 +124,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.245945, 7.53738)
 mesh = SubResource("QuadMesh_jcsap")
 
 [node name="Big_Rock" parent="." instance=ExtResource("3_2ek0u")]
-transform = Transform3D(1.02361, 0, 0, 0, 0.494085, 0, 0, 0, 0.494085, -0.0983839, 4.61128, 4.76805)
+transform = Transform3D(0.446115, 0, 0, 0, 0.215335, 0, 0, 0, 0.215335, 0.16938, 2.20173, 2.98944)
 
 [node name="Big_Rock5" parent="." instance=ExtResource("3_2ek0u")]
-transform = Transform3D(0.519042, 0, 0, 0, 0.428375, 0, 0, 0, 0.766232, -4.21685, -1.21569, 0.987281)
+transform = Transform3D(0.226211, 0, 0, 0, 0.186696, 0, 0, 0, 0.333943, -1.62555, -0.337805, 1.34169)
 
 [node name="Big_Rock6" parent="." instance=ExtResource("3_2ek0u")]
-transform = Transform3D(0.519042, 0, 0, 0, 0.428375, 0, 0, 0, 0.766232, 5.1932, -1.21569, 0.987281)
+transform = Transform3D(0.226211, 0, 0, 0, 0.186696, 0, 0, 0, 0.333943, 2.47558, -0.337805, 1.34169)
 
 [node name="Big_Rock7" parent="." instance=ExtResource("3_2ek0u")]
-transform = Transform3D(0.0866481, 0, -0.335412, 0, 0.200691, 0, 0.227206, 0, 0.127914, 2.91142, -1.57435, -1.32163)
+transform = Transform3D(0.0377634, 0, -0.146181, 0, 0.0874661, 0, 0.099022, 0, 0.0557481, 1.48113, -0.494118, 0.335409)
 
 [node name="Big_Rock8" parent="." instance=ExtResource("3_2ek0u")]
-transform = Transform3D(-0.204311, 0, -0.19466, 0, 0.200691, 0, 0.131862, 0, -0.301613, 0.751426, -1.44368, -0.966651)
+transform = Transform3D(-0.0890438, 0, -0.0848377, 0, 0.0874661, 0, 0.0574687, 0, -0.13145, 0.539748, -0.437168, 0.490118)
 
 [node name="Big_Rock9" parent="." instance=ExtResource("3_2ek0u")]
-transform = Transform3D(0.0227743, 0, -0.357397, 0, 0.200691, 0, 0.242099, 0, 0.0336203, -1.40291, -1.33008, -1.47087)
+transform = Transform3D(0.00992561, 0, -0.155762, 0, 0.0874661, 0, 0.105513, 0, 0.0146526, -0.399165, -0.387659, 0.270366)
 
 [node name="Big_Rock2" parent="." instance=ExtResource("3_2ek0u")]
-transform = Transform3D(-0.0181781, 0.484971, 0.0920015, -0.873009, -0.000755994, -0.0492384, -0.0868645, -0.0938917, 0.475604, 2.59805, 2.61126, 4.76805)
+transform = Transform3D(-0.00792247, 0.211362, 0.0400965, -0.380479, -0.000329481, -0.0214593, -0.0378577, -0.0409203, 0.20728, 1.34455, 1.33008, 2.98944)
 
 [node name="Big_Rock4" parent="." instance=ExtResource("3_2ek0u")]
-transform = Transform3D(0.816131, 0.106394, 0.0579939, -0.156732, 0.618058, 0.0746756, -0.0826712, -0.121417, 0.430944, 0.607301, 0.349303, 9.00573)
+transform = Transform3D(0.35569, 0.0463692, 0.0252752, -0.0683077, 0.269365, 0.0325455, -0.0360302, -0.0529165, 0.187816, 0.476935, 0.344258, 4.83633)
 
 [node name="Big_Rock3" parent="." instance=ExtResource("3_2ek0u")]
-transform = Transform3D(0.0054863, -0.495625, -0.0299382, -0.637984, -0.00076036, -0.0438299, 0.0646222, 0.034571, -0.43017, -2.32258, 2.61126, 5.7691)
+transform = Transform3D(0.00239107, -0.216006, -0.0130478, -0.278049, -0.000331384, -0.0191022, 0.028164, 0.0150669, -0.187479, -0.799981, 1.33008, 3.42573)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_71ivo")
 }
+autoplay = "Fire move"
 
 [editable path="Fire"]

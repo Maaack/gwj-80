@@ -25,7 +25,7 @@ albedo_texture = ExtResource("5_uw0qb")
 [node name="WaterSlimeSpawn" type="Node3D"]
 
 [node name="Node3D" parent="." instance=ExtResource("1_hhljr")]
-transform = Transform3D(0.511862, 0, 0, 0, 0.511862, 0, 0, 0, 0.511862, -0.00327253, 0.177314, -0.00599027)
+transform = Transform3D(0.844077, 0, 0, 0, 0.844077, 0, 0, 0, 0.844077, -0.00327253, 0.177314, -0.00599027)
 
 [node name="Small_Rock" parent="Node3D" instance=ExtResource("2_aqjcx")]
 transform = Transform3D(0.197986, 0, 0, 0, 0.157092, 0, 0, 0, 0.227827, -1.04192, -0.222032, -0.124911)

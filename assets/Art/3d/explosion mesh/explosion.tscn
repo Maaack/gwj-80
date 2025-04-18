@@ -1,0 +1,161 @@
+[gd_scene load_steps=12 format=3 uid="uid://clsgokiiukahq"]
+
+[ext_resource type="PackedScene" uid="uid://76cilgmitqls" path="res://assets/Art/3d/explosion mesh/Explosion.glb" id="1_f005a"]
+[ext_resource type="Texture2D" uid="uid://c265fwbhr5lmo" path="res://assets/Art/3d/explosion mesh/Explosion_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png" id="2_13op5"]
+[ext_resource type="Texture2D" uid="uid://c1rjsx8kft8lr" path="res://assets/Art/3d/explosion mesh/Explosion_DefaultMaterial_Emission.png" id="3_pxrx4"]
+[ext_resource type="Texture2D" uid="uid://dytj5vgn6q6yg" path="res://assets/Art/3d/explosion mesh/Particle.png" id="4_13op5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6emw"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = ExtResource("2_13op5")
+emission_enabled = true
+emission = Color(0.752949, 0.194423, 0.118113, 1)
+emission_energy_multiplier = 1.9
+emission_texture = ExtResource("3_pxrx4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxrx4"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_13op5")
+albedo_texture_force_srgb = true
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o6emw"]
+material = SubResource("StandardMaterial3D_pxrx4")
+size = Vector2(0.48, 0.6)
+orientation = 2
+
+[sub_resource type="Gradient" id="Gradient_wiw7k"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_wiw7k"]
+resource_name = "Explosion"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion/Sphere:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.97),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.324548, 0.324548, 0.324548), Vector3(1.875, 1.875, 1.875)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Explosion/Sphere:surface_material_override/0:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.97),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explosion/CPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_epbds"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion/Sphere:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.324548, 0.324548, 0.324548)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Explosion/Sphere:surface_material_override/0:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explosion/CPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cbxxb"]
+_data = {
+&"Explosion": SubResource("Animation_wiw7k"),
+&"RESET": SubResource("Animation_epbds")
+}
+
+[node name="Explosion" type="Node3D"]
+
+[node name="Explosion" parent="." instance=ExtResource("1_f005a")]
+transform = Transform3D(0.34204, 0, 0, 0, 0.34204, 0, 0, 0, 0.34204, 0.0376946, 0.121269, -0.0246837)
+
+[node name="Sphere" parent="Explosion" index="0"]
+transform = Transform3D(0.324548, 0, 0, 0, 0.324548, 0, 0, 0, 0.324548, 0.00198023, -0.101429, 0.0842913)
+surface_material_override/0 = SubResource("StandardMaterial3D_o6emw")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Explosion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.54941e-05, 0, -0.013619)
+amount = 4
+lifetime = 0.58
+one_shot = true
+speed_scale = 0.25
+explosiveness = 1.0
+randomness = 0.02
+lifetime_randomness = 0.48
+mesh = SubResource("PlaneMesh_o6emw")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 34.99, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 2.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, 0)
+spread = 110.45
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 1.1
+radial_accel_min = 8.45
+radial_accel_max = 21.95
+tangential_accel_max = 2.35
+damping_max = 1.245
+color_ramp = SubResource("Gradient_wiw7k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cbxxb")
+}
+
+[editable path="Explosion"]
