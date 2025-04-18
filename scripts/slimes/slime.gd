@@ -389,7 +389,7 @@ func add_external_velocity(ext_velocity: Vector3) -> void:
 
 
 func set_random_movement_direction() -> void:
-	velocity = Vector3(randf(), 0.0, randf())
+	velocity = Vector3(randf_range(-1.0, 1.0), 0.0, randf_range(-1.0, 1.0))
 	velocity = velocity.normalized() * max_speed * speed_modifier
 
 
