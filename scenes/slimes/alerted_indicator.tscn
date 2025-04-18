@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dctf57s33kdcy"]
 
-[ext_resource type="Texture2D" uid="uid://rvdjxq6ihsyp" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Double/keyboard_exclamation_outline.png" id="1_gk3lq"]
+[ext_resource type="Texture2D" uid="uid://cx7eguqklpodb" path="res://assets/Art/3d/Slime/Mark.png" id="1_gk3lq"]
 
 [node name="AlertedIndicator" type="Sprite3D"]
 modulate = Color(1, 1, 1, 0)
