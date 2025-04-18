@@ -158,11 +158,9 @@ func split() -> void:
 			for i in range(true_mass - 1):
 				create_new_slime(self)
 			grow()
-			set_data_type_masses()
 		elif split_type == SplitType.SINGLE:
 			create_new_slime(self)
 			grow(true_mass - 1)
-			set_data_type_masses()
 
 
 # TODO: Use a better location, and maybe give it an external force?  The placement
@@ -175,6 +173,9 @@ func create_new_slime(slime: Slime) -> Slime:
 	add_sibling(new_slime)
 	new_slime.global_position = new_position
 	new_slime.external_velocity = external_velocity
+	var new_type_masses = slime.slime_data.get_random_type_masses()
+	new_slime.slime_data.slime_type_masses = new_type_masses
+	slime.slime_data.subtract_type_masses(new_type_masses)
 	slime_split.emit(new_slime)
 	return new_slime
 
