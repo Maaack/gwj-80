@@ -136,3 +136,11 @@ func _physics_process(delta : float) -> void:
 	animation_tree["parameters/conditions/IsNotRunning"] = !is_running
 	animation_tree["parameters/conditions/IsWhistling"] = is_whistling
 	animation_tree["parameters/conditions/IsNotWhistling"] = !is_whistling
+
+func _on_area_3d_body_entered(body):
+	if body is Slime:
+		body._pc = self
+
+func _on_area_3d_body_exited(body):
+	if body is Slime:
+		body._pc = null

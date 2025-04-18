@@ -364,16 +364,11 @@ func _on_flocking_zone_body_entered(body: Node3D) -> void:
 		return
 	if body is Slime:
 		nearby_slimes.append(body)
-	if body is PlayerCharacter:
-		_pc = body
-
 
 ## Stop tracking slimes that leave the area.
 func _on_flocking_zone_body_exited(body: Node3D) -> void:
 	if body is Slime and body in nearby_slimes:
 		nearby_slimes.erase(body)
-	if body is PlayerCharacter and _pc == body:
-		_pc = null
 
 #endregion
 
