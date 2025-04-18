@@ -10,9 +10,10 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("1_g1by6")
-disable_receive_shadows = true
+albedo_texture_force_srgb = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_is0w6"]
+material = SubResource("StandardMaterial3D_3n0n8")
 size = Vector2(3.605, 2.455)
 orientation = 2
 
@@ -26,5 +27,5 @@ shape = SubResource("ConvexPolygonShape3D_biwnh")
 
 [node name="Tree" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.978211, 0)
-material_override = SubResource("StandardMaterial3D_3n0n8")
 mesh = SubResource("PlaneMesh_is0w6")
+surface_material_override/0 = SubResource("StandardMaterial3D_3n0n8")
