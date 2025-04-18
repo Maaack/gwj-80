@@ -155,12 +155,14 @@ func split() -> void:
 	var true_mass = slime_data.get_true_mass()
 	if true_mass > 1:
 		if split_type == SplitType.MULTI:
-			for i in true_mass:
+			for i in range(true_mass - 1):
 				create_new_slime(self)
 			grow()
+			set_data_type_masses()
 		elif split_type == SplitType.SINGLE:
 			create_new_slime(self)
-			grow(mass - 1)
+			grow(true_mass - 1)
+			set_data_type_masses()
 
 
 # TODO: Use a better location, and maybe give it an external force?  The placement
