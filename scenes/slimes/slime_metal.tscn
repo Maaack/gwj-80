@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5iybcpovkwdx"]
+[gd_scene load_steps=14 format=3 uid="uid://b5iybcpovkwdx"]
 
 [ext_resource type="Script" uid="uid://3uu1o1e5j8b2" path="res://scripts/slimes/slime_metal.gd" id="1_31s8q"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="1_gwy1k"]
 [ext_resource type="Texture2D" uid="uid://c5h7uqljbjb1i" path="res://assets/Art/3d/Slime/SLime_Eyes_Angry.png" id="3_4w7y0"]
 [ext_resource type="Texture2D" uid="uid://bhxk5kmc8mpcd" path="res://assets/Art/3d/Slime/Metal.png" id="4_8bit7"]
 [ext_resource type="Texture2D" uid="uid://bpyifld1qffep" path="res://assets/Art/3d/Slime/Mouth_default.png" id="5_rsrpr"]
+[ext_resource type="PackedScene" uid="uid://dctf57s33kdcy" path="res://scenes/slimes/alerted_indicator.tscn" id="6_8bit7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
 resource_local_to_scene = true
@@ -228,6 +229,10 @@ collision_mask = 2
 [node name="TouchCollisionShape3D" type="CollisionShape3D" parent="TouchZone"]
 unique_name_in_owner = true
 shape = SubResource("SphereShape3D_pf3dq")
+
+[node name="AlertedIndicator" parent="." instance=ExtResource("6_8bit7")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75984, 0)
 
 [connection signal="body_entered" from="FlockingZone" to="." method="_on_flocking_zone_body_entered"]
 [connection signal="body_exited" from="FlockingZone" to="." method="_on_flocking_zone_body_exited"]

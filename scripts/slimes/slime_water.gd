@@ -31,12 +31,10 @@ func apply_effects_to_nearby_slimes() -> void:
 
 ## Stop tracking slimes that leave the area and remove the push effect from them.
 func _on_flocking_zone_body_exited(body: Node3D) -> void:
-	if body is not Slime:
-		return
+	super(body)
 
-	var slime: Slime = body
-	nearby_slimes.erase(body)
-	slime.push_velocities.erase(last_push_velocity)
+	if body is Slime:
+		body.push_velocities.erase(last_push_velocity)
 
 
 func _on_update_push_timer_timeout() -> void:

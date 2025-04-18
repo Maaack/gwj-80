@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bkw66y13utj24"]
+[gd_scene load_steps=36 format=3 uid="uid://bkw66y13utj24"]
 
 [ext_resource type="Script" uid="uid://cbw777lrjulgr" path="res://scenes/player_character/player_character_3d.gd" id="1_ppdav"]
 [ext_resource type="PackedScene" uid="uid://du6sadv6lcq1j" path="res://scenes/player_character/player_character_model.tscn" id="2_u7jsy"]
@@ -20,22 +20,32 @@ animation = &"Run"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nffne"]
 animation = &"walk"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3832c"]
+animation = &"WalkandWhis"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5h263"]
+animation = &"whistle"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3832c"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5h263"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"IsWalking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_keuga"]
+xfade_time = 0.25
 advance_mode = 2
 advance_condition = &"IsNotWalking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ed2el"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"IsRunning"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dj1rg"]
+xfade_time = 0.25
 advance_mode = 2
 advance_condition = &"IsNotRunning"
 
@@ -55,6 +65,36 @@ advance_condition = &"IsOnFloor"
 advance_mode = 2
 advance_condition = &"IsInAir"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d2drt"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"IsWhistling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tp44r"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"IsNotWhistling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q8fn6"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"IsNotWalking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nr0vy"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"IsWalking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vs441"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"IsNotWhistling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_um4vq"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"IsWhistling"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_d2drt"]
 states/End/position = Vector2(1191.33, 99.7778)
 states/Idle/node = SubResource("AnimationNodeAnimation_u7jsy")
@@ -65,7 +105,11 @@ states/Run/node = SubResource("AnimationNodeAnimation_3lehg")
 states/Run/position = Vector2(887.667, 98.8518)
 states/Walk/node = SubResource("AnimationNodeAnimation_nffne")
 states/Walk/position = Vector2(657, 99.642)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3832c"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_5h263"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_keuga"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_ed2el"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_dj1rg"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_u7jsy"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_30y6k"), "Jump", "Walk", SubResource("AnimationNodeStateMachineTransition_3lehg"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_nffne")]
+states/WalkandWhis/node = SubResource("AnimationNodeAnimation_3832c")
+states/WalkandWhis/position = Vector2(657.963, 242.333)
+states/whistle/node = SubResource("AnimationNodeAnimation_5h263")
+states/whistle/position = Vector2(437.222, 242.333)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3832c"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_5h263"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_keuga"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_ed2el"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_dj1rg"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_u7jsy"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_30y6k"), "Jump", "Walk", SubResource("AnimationNodeStateMachineTransition_3lehg"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_nffne"), "Walk", "WalkandWhis", SubResource("AnimationNodeStateMachineTransition_d2drt"), "WalkandWhis", "Walk", SubResource("AnimationNodeStateMachineTransition_tp44r"), "WalkandWhis", "whistle", SubResource("AnimationNodeStateMachineTransition_q8fn6"), "whistle", "WalkandWhis", SubResource("AnimationNodeStateMachineTransition_nr0vy"), "whistle", "Idle", SubResource("AnimationNodeStateMachineTransition_vs441"), "Idle", "whistle", SubResource("AnimationNodeStateMachineTransition_um4vq")]
 graph_offset = Vector2(-91, -71)
 
 [sub_resource type="Curve" id="Curve_nffne"]
@@ -213,9 +257,11 @@ anim_player = NodePath("../PlayerCharacterModel/AnimationPlayer")
 parameters/conditions/IsInAir = false
 parameters/conditions/IsNotRunning = false
 parameters/conditions/IsNotWalking = false
+parameters/conditions/IsNotWhistling = false
 parameters/conditions/IsOnFloor = false
 parameters/conditions/IsRunning = false
 parameters/conditions/IsWalking = false
+parameters/conditions/IsWhistling = false
 
 [node name="WhistlingStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
@@ -224,7 +270,8 @@ bus = &"SFX"
 [node name="Note1Particles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 emitting = false
-lifetime = 6.0
+amount = 6
+lifetime = 4.0
 randomness = 0.3
 visibility_aabb = AABB(-4.5, -1, -4.5, 9, 12, 9)
 process_material = SubResource("ParticleProcessMaterial_5h263")
@@ -233,8 +280,8 @@ draw_pass_1 = SubResource("QuadMesh_ed2el")
 [node name="Note2Particles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 emitting = false
-amount = 4
-lifetime = 6.0
+amount = 3
+lifetime = 4.0
 randomness = 0.3
 visibility_aabb = AABB(-4.5, -1, -4.5, 9, 12, 9)
 process_material = SubResource("ParticleProcessMaterial_5h263")

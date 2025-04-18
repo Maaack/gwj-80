@@ -1,20 +1,41 @@
 class_name Slime
 extends CharacterBody3D
 
+
+const DISTANCE_TO_DIRECT_MOVE_COMPLETE: float = 0.5
+
 signal slime_touched(other_slime : Slime)
 signal departed
+
+enum SplitType { NONE, SINGLE, MULTI }
 
 @export var slime_type : Constants.SlimeType
 
 @export_group("Boid Rule Weights")
-@export var cohesion_weight: float = 0.0005
-@export var separation_weight: float = 0.01
-@export var alignment_weight: float = 0.000525
-@export var target_location_weight: float = 0.005
-@export var target_location_repel_weight: float = 0.1
-@export var pc_factor: float = 0.0005
-@export var pc_avoid_factor: float  = 0.01
-@export var pc_whistle_factor: float  = 0.01
+@export var cohesion_weight: float = 0.0005 :
+	get:
+		return cohesion_weight if use_weights else 0.0
+@export var separation_weight: float = 0.01 :
+	get:
+		return separation_weight if use_weights else 0.0
+@export var alignment_weight: float = 0.000525 :
+	get:
+		return alignment_weight if use_weights else 0.0
+@export var target_location_weight: float = 0.005 :
+	get:
+		return target_location_weight if use_weights else 0.0
+@export var target_location_repel_weight: float = 0.1 :
+	get:
+		return target_location_repel_weight if use_weights else 0.0
+@export var pc_factor: float = 0.0005 :
+	get:
+		return pc_factor if use_weights else 0.0
+@export var pc_avoid_factor: float  = 0.01 :
+	get:
+		return pc_avoid_factor if use_weights else 0.0
+@export var pc_whistle_factor: float  = 0.01 :
+	get:
+		return pc_whistle_factor if use_weights else 0.0
 
 @export_group("Boid Settings")
 @export var separation_distance: float = 3.5
@@ -30,21 +51,31 @@ signal departed
 @export var external_velocity_deceleration: float = 6.0
 @export var ambient_direction_update_cooldown: float = 5.0
 
-@export_category("Scale Settings")
-@export var min_scale: float = 0.25
-@export var max_scale: float = 4.0
+@export_group("Split Settings")
+@export var split_type: SplitType = SplitType.NONE
 
 var nearby_slimes: Array[Slime] = []
 var attract_locations: Array[Vector3] = []
 var repel_locations: Array[Vector3] = []
 var push_velocities: Array[Vector3] = []
+var direct_move_location := Vector3.ZERO
 var is_scattering: bool = false
 var is_idle: bool = false
+var use_weights: bool = true
 
 var _player: PlayerCharacter
 
 var is_departing: bool = false
 var is_growing: bool = false
+var is_alerted: bool = false :
+	set(value):
+		is_alerted = value
+		if not is_node_ready():
+			await ready
+		if is_alerted:
+			_tween_alert_opacity(1.0, 0.25)
+		else:
+			_tween_alert_opacity(0.0, 0.25)
 var _pc: Node3D
 var mass : int = 1
 
@@ -53,6 +84,7 @@ var external_velocity: Vector3 = Vector3.ZERO
 
 #var default_collision_shape_radius: float
 #var scale_tween: Tween
+var alert_opacity_tween: Tween
 
 const VOLUME_TO_RADIUS_MODIFER : float = 4.18879
 
@@ -61,9 +93,13 @@ const VOLUME_TO_RADIUS_MODIFER : float = 4.18879
 @onready var collision_shape: CollisionShape3D = %CollisionShape
 @onready var flocking_zone_collision_shape: CollisionShape3D = %FlockingZoneCollisionShape
 @onready var sphere_shape: SphereShape3D = collision_shape.shape
+@onready var _init_sphere_shape_radius: float = sphere_shape.radius
 @onready var touch_collision_shape: CollisionShape3D = %TouchCollisionShape3D
 @onready var touch_sphere_shape: SphereShape3D = touch_collision_shape.shape
+@onready var _init_touch_sphere_shape_radius: float = touch_sphere_shape.radius
 @onready var update_ambient_direction_timer: Timer = %UpdateAmbientDirectionTimer
+@onready var alerted_indicator: Sprite3D = %AlertedIndicator
+@onready var _init_alerted_indicator_y_pos: float = alerted_indicator.position.y
 
 var slime_data : SlimeData = SlimeData.new()
 
@@ -100,11 +136,39 @@ func grow(new_mass : int = 1, grow_duration : float = 1.0) -> void:
 	slime_data.slime_mass = mass
 	var radius = pow(3/(4*PI)*mass*VOLUME_TO_RADIUS_MODIFER, 0.333)
 	var tween = create_tween()
-	tween.tween_property(slime_model, "scale", Vector3.ONE * radius, grow_duration)
-	tween.parallel().tween_property(sphere_shape, "radius", sphere_shape.radius * radius, grow_duration)
-	tween.parallel().tween_property(touch_sphere_shape, "radius", touch_sphere_shape.radius * radius, grow_duration)
+	tween.tween_property(slime_model, "scale", Vector3.ONE * radius, grow_duration).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(alerted_indicator, "position:y", _init_alerted_indicator_y_pos * radius, grow_duration)
+	tween.parallel().tween_property(sphere_shape, "radius", _init_sphere_shape_radius * radius, grow_duration)
+	tween.parallel().tween_property(touch_sphere_shape, "radius", _init_touch_sphere_shape_radius * radius, grow_duration)
 	await tween.finished
 	is_growing = false
+
+
+## Multi split type will cause the slime to create a new slime for each extra mass above 1.
+## Single split will create one new slime, if the mass is greater than 1.
+## The mass is then reduced by one per created slime.
+func split() -> void:
+	if split_type == SplitType.MULTI and mass > 2:
+		for i in mass:
+			create_new_slime(self)
+		grow()
+	elif split_type == SplitType.SINGLE and mass > 1:
+		create_new_slime(self)
+		grow(mass - 1)
+
+
+# TODO: Use a better location, and maybe give it an external force?  The placement
+# matters, because it will trigger touch collisions.
+## Create a new slime, of the same type of [param slime].  Set its position to be above
+## [param slime].
+func create_new_slime(slime: Slime) -> Slime:
+	var new_slime: Slime = Constants.get_slime_instance(slime.slime_type)
+	var new_position: Vector3 = slime.global_position + Vector3(0.0, 5.0, 0.0)
+	add_sibling(new_slime)
+	new_slime.global_position = new_position
+	new_slime.external_velocity = external_velocity
+
+	return new_slime
 
 
 func _physics_process(delta: float) -> void:
@@ -129,6 +193,13 @@ func _physics_process(delta: float) -> void:
 		var repulsion: Vector3 = calc_repel_location(repel_location)
 		repulsion.y = 0.0
 		velocity += repulsion
+
+	if not use_weights:
+		if global_position.distance_to(direct_move_location) > DISTANCE_TO_DIRECT_MOVE_COMPLETE:
+			var direction_to_direct_move: Vector3 = global_position.direction_to(direct_move_location)
+			velocity += (global_position.direction_to(direct_move_location)) * max_speed * speed_modifier
+		else:
+			velocity = Vector3.ZERO
 
 	if velocity.length() > (max_speed * speed_modifier):
 		velocity = velocity.normalized() * randf_range(min_speed * speed_modifier, max_speed * speed_modifier)
@@ -265,9 +336,14 @@ func calc_direction_to_pc() -> Vector3:
 	if _pc:
 		var final_factor = pc_factor
 		if _pc.is_whistling:
+			is_alerted = true
 			final_factor += pc_whistle_factor
+		elif is_alerted:
+			is_alerted = false
 		return global_position.direction_to(_pc.global_position) * final_factor
 	else:
+		if is_alerted:
+			is_alerted = false
 		return Vector3.ZERO
 
 func calc_pc_separation() -> Vector3:
@@ -324,6 +400,13 @@ func _on_update_ambient_direction_timer_timeout() -> void:
 func get_flocking_zone_radius() -> float:
 	var shape: SphereShape3D = flocking_zone_collision_shape.shape
 	return shape.radius
+
+
+func _tween_alert_opacity(new_opacity: float, duration: float) -> void:
+	if alert_opacity_tween and alert_opacity_tween.is_running():
+		alert_opacity_tween.kill()
+	alert_opacity_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	alert_opacity_tween.tween_property(alerted_indicator, "modulate:a", new_opacity, duration)
 
 
 #func set_flocking_zone_radius(new_radius: float) -> void:

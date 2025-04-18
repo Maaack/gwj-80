@@ -22,26 +22,18 @@ func _process(delta: float) -> void:
 
 ## Keep track of the slimes that within the area.
 func _on_flocking_zone_body_entered(body: Node3D) -> void:
-	if body is not Slime or body == self:
-		return
+	super(body)
 
-	var slime: Slime = body
-	nearby_slimes.append(slime)
-
-	if slime is SlimeWater:
+	if body is SlimeWater:
 		num_water_nearby += 1
 
 
 ## Stop tracking slimes that leave the area and reset the grow time if there
 ## are no water slimes nearby.
 func _on_flocking_zone_body_exited(body: Node3D) -> void:
-	if body is not Slime:
-		return
+	super(body)
 
-	var slime: Slime = body
-	nearby_slimes.erase(slime)
-
-	if slime is SlimeWater:
+	if body is SlimeWater:
 		num_water_nearby -= 1
 		if num_water_nearby <= 0:
 			current_growth_time = 0.0

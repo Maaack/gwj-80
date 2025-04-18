@@ -40,14 +40,3 @@ func _on_grow_timer_timeout() -> void:
 
 func grow_slime(slime: Slime) -> void:
 	slime.set_slime_scale(slime.get_slime_scale() + growth_amount)
-
-
-# TODO: Use a better location, and maybe give it an external force?  The placement
-# matters, because it will trigger touch collisions.
-## Create a new slime, of the same type of [param slime].  Set its position to be above
-## [param slime].
-func create_new_slime(slime: Slime) -> void:
-	var new_slime: Slime = Constants.get_slime_instance(slime.slime_type)
-	var new_position: Vector3 = slime.global_position + Vector3(0.0, 5.0, 0.0)
-	add_sibling(new_slime)
-	new_slime.global_position = new_position

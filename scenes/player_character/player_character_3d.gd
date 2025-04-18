@@ -58,7 +58,9 @@ func _input(event) -> void:
 		is_whistling = true
 		whistling_player.play()
 		note_1_particles.emitting = true
-		note_2_particles.emitting = true
+		await get_tree().create_timer(0.25).timeout
+		if is_whistling:
+			note_2_particles.emitting = true
 	elif event.is_action_released("attract_slimes"):
 		is_whistling = false
 		whistling_player.stop()
@@ -132,3 +134,5 @@ func _physics_process(delta : float) -> void:
 	animation_tree["parameters/conditions/IsNotWalking"] = !is_walking
 	animation_tree["parameters/conditions/IsRunning"] = is_running
 	animation_tree["parameters/conditions/IsNotRunning"] = !is_running
+	animation_tree["parameters/conditions/IsWhistling"] = is_whistling
+	animation_tree["parameters/conditions/IsNotWhistling"] = !is_whistling

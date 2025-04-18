@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dc01qmly3uoig"]
+[gd_scene load_steps=7 format=3 uid="uid://dc01qmly3uoig"]
 
 [ext_resource type="Script" uid="uid://crpkhgtvqgdn7" path="res://scripts/slimes/slime_water.gd" id="1_fmaks"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_bc6p0"]
+[ext_resource type="PackedScene" uid="uid://dctf57s33kdcy" path="res://scenes/slimes/alerted_indicator.tscn" id="3_bc6p0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
 resource_local_to_scene = true
@@ -21,6 +22,7 @@ script = ExtResource("1_fmaks")
 push_magnitude = 0.001
 update_push_cooldown = 10.0
 slime_type = 1
+split_type = 2
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
@@ -60,6 +62,10 @@ collision_mask = 2
 [node name="TouchCollisionShape3D" type="CollisionShape3D" parent="TouchZone"]
 unique_name_in_owner = true
 shape = SubResource("SphereShape3D_fmaks")
+
+[node name="AlertedIndicator" parent="." instance=ExtResource("3_bc6p0")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75984, 0)
 
 [connection signal="body_entered" from="FlockingZone" to="." method="_on_flocking_zone_body_entered"]
 [connection signal="body_exited" from="FlockingZone" to="." method="_on_flocking_zone_body_exited"]
