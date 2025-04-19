@@ -164,8 +164,6 @@ func _on_area_3d_body_entered(body):
 	if body is Slime:
 		body._pc = self
 		observed_slimes.append(body)
-		if body.slime_type > 2:
-			print("body entered %d" % body.slime_type)
 
 func _on_area_3d_body_exited(body):
 	if body is Slime:
