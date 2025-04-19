@@ -63,59 +63,70 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = 373.0
+offset_top = -360.0
 offset_right = 300.0
-offset_bottom = 973.0
+offset_bottom = 240.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8jtbd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="SlimeNameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Slime Name"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+[node name="DiscoveredContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_right = 24
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("1_pjfiw")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="DescriptionLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
 text = "Slime description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
 fit_content = true
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 16
@@ -123,14 +134,14 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 columns = 4
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Combo
@@ -139,7 +150,7 @@ Slime 2
 Slime Result"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Combo
@@ -148,7 +159,7 @@ Slime 2
 Slime Result"
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Combo
@@ -157,7 +168,7 @@ Slime 2
 Slime Result"
 horizontal_alignment = 1
 
-[node name="Label4" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Combo
@@ -166,7 +177,7 @@ Slime 2
 Slime Result"
 horizontal_alignment = 1
 
-[node name="Label5" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Combo
@@ -175,7 +186,7 @@ Slime 2
 Slime Result"
 horizontal_alignment = 1
 
-[node name="Label6" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Combo
@@ -184,7 +195,7 @@ Slime 2
 Slime Result"
 horizontal_alignment = 1
 
-[node name="Label7" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="Label7" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Combo
@@ -193,7 +204,7 @@ Slime 2
 Slime Result"
 horizontal_alignment = 1
 
-[node name="Label8" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+[node name="Label8" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Combo
@@ -202,17 +213,38 @@ Slime 2
 Slime Result"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="ProgressContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ProgressContainer"]
+layout_mode = 2
+text = "Discovery Progress"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer/ProgressContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 256
 alignment = 1
 
-[node name="PrevButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="PrevButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "<"
 script = ExtResource("3_7gocn")
 
-[node name="NextButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="PageLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NextButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = ">"
 script = ExtResource("3_7gocn")
@@ -221,3 +253,9 @@ script = ExtResource("3_7gocn")
 libraries = {
 &"": SubResource("AnimationLibrary_emiv2")
 }
+
+[node name="RefreshTimer" type="Timer" parent="."]
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/PrevButton" to="." method="_on_prev_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="timeout" from="RefreshTimer" to="." method="_on_refresh_timer_timeout"]
