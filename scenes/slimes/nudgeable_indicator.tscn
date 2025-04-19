@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk3mqxfsapt2s"]
+
+[ext_resource type="Texture2D" uid="uid://cx7eguqklpodb" path="res://assets/Art/3d/Slime/Mark.png" id="1_kekl4"]
+
+[node name="NudgeableIndicator" type="Sprite3D"]
+modulate = Color(0.250818, 0.250818, 0.250818, 0)
+billboard = 1
+texture = ExtResource("1_kekl4")

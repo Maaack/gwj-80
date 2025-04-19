@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3hfsb384hf32"]
+[gd_scene load_steps=15 format=3 uid="uid://d3hfsb384hf32"]
 
 [ext_resource type="Script" uid="uid://c2dtdm8jff6gv" path="res://scripts/slimes/slime_moss.gd" id="1_523d8"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_mhb6w"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dq4fq8jt47oop" path="res://assets/Art/3d/Slime/Grass.png" id="4_h78cc"]
 [ext_resource type="Texture2D" uid="uid://bpyifld1qffep" path="res://assets/Art/3d/Slime/Mouth_default.png" id="5_jmjq3"]
 [ext_resource type="PackedScene" uid="uid://dctf57s33kdcy" path="res://scenes/slimes/alerted_indicator.tscn" id="6_h78cc"]
+[ext_resource type="PackedScene" uid="uid://dk3mqxfsapt2s" path="res://scenes/slimes/nudgeable_indicator.tscn" id="7_jmjq3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
 resource_local_to_scene = true
@@ -236,6 +237,10 @@ unique_name_in_owner = true
 one_shot = true
 
 [node name="AlertedIndicator" parent="." instance=ExtResource("6_h78cc")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75984, 0)
+
+[node name="NudgeableIndicator" parent="." instance=ExtResource("7_jmjq3")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75984, 0)
 

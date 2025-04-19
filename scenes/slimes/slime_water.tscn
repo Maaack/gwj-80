@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dc01qmly3uoig"]
+[gd_scene load_steps=8 format=3 uid="uid://dc01qmly3uoig"]
 
 [ext_resource type="Script" uid="uid://crpkhgtvqgdn7" path="res://scripts/slimes/slime_water.gd" id="1_fmaks"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_bc6p0"]
 [ext_resource type="PackedScene" uid="uid://dctf57s33kdcy" path="res://scenes/slimes/alerted_indicator.tscn" id="3_bc6p0"]
+[ext_resource type="PackedScene" uid="uid://dk3mqxfsapt2s" path="res://scenes/slimes/nudgeable_indicator.tscn" id="4_twey5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
 resource_local_to_scene = true
@@ -64,6 +65,10 @@ unique_name_in_owner = true
 shape = SubResource("SphereShape3D_fmaks")
 
 [node name="AlertedIndicator" parent="." instance=ExtResource("3_bc6p0")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75984, 0)
+
+[node name="NudgeableIndicator" parent="." instance=ExtResource("4_twey5")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75984, 0)
 

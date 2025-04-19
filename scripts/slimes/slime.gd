@@ -78,9 +78,21 @@ var is_alerted: bool = false :
 		if not is_node_ready():
 			await ready
 		if is_alerted:
+			nudgeable_indicator.visible = false
 			_tween_alert_opacity(1.0, 0.25)
 		else:
 			_tween_alert_opacity(0.0, 0.25)
+			nudgeable_indicator.visible = true
+var is_nudgeable: bool = false :
+	set(value):
+		is_nudgeable = value
+		if not is_node_ready():
+			await ready
+		if is_nudgeable:
+			_tween_nudgeable_opacity(1.0, 0.25)
+		else:
+			_tween_nudgeable_opacity(0.0, 0.25)
+
 var _pc: Node3D
 var mass : int = 1
 
@@ -90,6 +102,7 @@ var external_velocity: Vector3 = Vector3.ZERO
 #var default_collision_shape_radius: float
 #var scale_tween: Tween
 var alert_opacity_tween: Tween
+var nudgeable_opacity_tween: Tween
 
 const VOLUME_TO_RADIUS_MODIFER : float = 4.18879
 
@@ -103,8 +116,11 @@ const VOLUME_TO_RADIUS_MODIFER : float = 4.18879
 @onready var touch_sphere_shape: SphereShape3D = touch_collision_shape.shape
 @onready var _init_touch_sphere_shape_radius: float = touch_sphere_shape.radius
 @onready var update_ambient_direction_timer: Timer = %UpdateAmbientDirectionTimer
+
 @onready var alerted_indicator: Sprite3D = %AlertedIndicator
 @onready var _init_alerted_indicator_y_pos: float = alerted_indicator.position.y
+@onready var nudgeable_indicator: Sprite3D = %NudgeableIndicator
+@onready var _init_nudgeable_indicator_y_pos: float = nudgeable_indicator.position.y
 
 var slime_data : SlimeData = SlimeData.new()
 
@@ -146,7 +162,8 @@ func grow(new_mass : int = 1, grow_duration : float = 1.0) -> void:
 	var radius = pow(3/(4*PI)*mass*VOLUME_TO_RADIUS_MODIFER, 0.333)
 	var tween = create_tween()
 	tween.tween_property(slime_model, "scale", Vector3.ONE * radius, grow_duration).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	tween.tween_property(alerted_indicator, "position:y", _init_alerted_indicator_y_pos * radius, grow_duration)
+	tween.parallel().tween_property(alerted_indicator, "position:y", _init_alerted_indicator_y_pos * radius, grow_duration)
+	tween.parallel().tween_property(nudgeable_indicator, "position:y", _init_nudgeable_indicator_y_pos * radius, grow_duration)
 	tween.parallel().tween_property(sphere_shape, "radius", _init_sphere_shape_radius * radius, grow_duration)
 	tween.parallel().tween_property(touch_sphere_shape, "radius", _init_touch_sphere_shape_radius * radius, grow_duration)
 	await tween.finished
@@ -417,6 +434,13 @@ func _tween_alert_opacity(new_opacity: float, duration: float) -> void:
 		alert_opacity_tween.kill()
 	alert_opacity_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	alert_opacity_tween.tween_property(alerted_indicator, "modulate:a", new_opacity, duration)
+
+
+func _tween_nudgeable_opacity(new_opacity: float, duration: float) -> void:
+	if nudgeable_opacity_tween and nudgeable_opacity_tween.is_running():
+		nudgeable_opacity_tween.kill()
+	nudgeable_opacity_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	nudgeable_opacity_tween.tween_property(nudgeable_indicator, "modulate:a", new_opacity, duration)
 
 
 func _bound_speed() -> void:
