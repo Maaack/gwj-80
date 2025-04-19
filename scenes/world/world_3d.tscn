@@ -1,187 +1,17 @@
-[gd_scene load_steps=37 format=3 uid="uid://c2o8tdtpcqsbb"]
+[gd_scene load_steps=11 format=3 uid="uid://c2o8tdtpcqsbb"]
 
 [ext_resource type="Script" uid="uid://dlph8i25t6tyd" path="res://scenes/world/world_3d.gd" id="1_d5rq0"]
-[ext_resource type="Texture2D" uid="uid://wg2pobv5s5ln" path="res://assets/Art/2d/TExtures/Grass_foil.png" id="2_d5rq0"]
 [ext_resource type="PackedScene" uid="uid://dkl3lq1qfby3p" path="res://scenes/world/slime_manager.tscn" id="2_xd1ql"]
 [ext_resource type="Environment" uid="uid://bqkr5wdp86m68" path="res://assets/Terrain Data/WorldENV.tres" id="3_6ng0t"]
-[ext_resource type="Texture2D" uid="uid://olr4yblw5wlc" path="res://assets/Art/2d/TExtures/Grass_Mid.png" id="3_xihs3"]
-[ext_resource type="Texture2D" uid="uid://c5n8cijd7km6l" path="res://assets/Art/2d/TExtures/Foliage/Purple plant.png" id="5_4m75t"]
-[ext_resource type="Script" uid="uid://dbndw8p05yam7" path="res://addons/terrain_3d/utils/terrain_3d_objects.gd" id="5_v17g1"]
-[ext_resource type="Texture2D" uid="uid://dkvptqcg4r8uh" path="res://assets/Art/2d/TExtures/Foliage/Gaint Red paintbrush.png" id="6_mchqb"]
-[ext_resource type="Texture2D" uid="uid://bbajgthgst7a2" path="res://assets/Art/2d/TExtures/Foliage/Tulip.png" id="7_xd1ql"]
 [ext_resource type="PackedScene" uid="uid://bkw66y13utj24" path="res://scenes/player_character/player_character_3d.tscn" id="7_xihs3"]
-[ext_resource type="Texture2D" uid="uid://cywdadd7vk500" path="res://assets/Art/2d/TExtures/Foliage/Daisy.png" id="8_j5uvd"]
-[ext_resource type="Texture2D" uid="uid://bffi4d4878oah" path="res://assets/Art/2d/TExtures/Dirt_Mid.png" id="10_wvsbj"]
-[ext_resource type="Texture2D" uid="uid://dr07jkykcausk" path="res://scenes/world/grass_tex_normal.png" id="11_xfsq8"]
 [ext_resource type="PackedScene" uid="uid://t2e0c1vjuiws" path="res://scenes/world/delivery_area_3d.tscn" id="12_mchqb"]
-[ext_resource type="Texture2D" uid="uid://b34eme4t205pj" path="res://scenes/world/dirt_tex_normal.png" id="13_pnpac"]
 [ext_resource type="PackedScene" uid="uid://i860ela8t0qg" path="res://scenes/world/water_slime_spawner.tscn" id="14_wc6xc"]
 [ext_resource type="PackedScene" uid="uid://g8bm0p3pcnvc" path="res://scenes/world/rock_slime_spawner.tscn" id="15_6ng0t"]
 [ext_resource type="PackedScene" uid="uid://yaml4wqvwlll" path="res://scenes/world/fire_slime_spawner.tscn" id="16_k68x3"]
 [ext_resource type="PackedScene" uid="uid://c4n16qg5j5o3c" path="res://scenes/world/vine_slime_spawner.tscn" id="17_6ng0t"]
 
-[sub_resource type="Gradient" id="Gradient_436ug"]
-offsets = PackedFloat32Array(0.2, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_3twl5"]
-noise_type = 2
-frequency = 0.03
-cellular_jitter = 3.0
-cellular_return_type = 0
-domain_warp_enabled = true
-domain_warp_type = 1
-domain_warp_amplitude = 50.0
-domain_warp_fractal_type = 2
-domain_warp_fractal_lacunarity = 1.5
-domain_warp_fractal_gain = 1.0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5kixi"]
-seamless = true
-color_ramp = SubResource("Gradient_436ug")
-noise = SubResource("FastNoiseLite_3twl5")
-
-[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_wc6xc"]
-_shader_parameters = {
-&"bias_distance": 512.0,
-&"blend_sharpness": 0.87,
-&"depth_blur": 0.0,
-&"enable_macro_variation": true,
-&"enable_projection": true,
-&"height_blending": true,
-&"macro_variation1": Color(1, 1, 1, 1),
-&"macro_variation2": Color(1, 1, 1, 1),
-&"macro_variation_slope": 0.333,
-&"mipmap_bias": 1.0,
-&"noise1_angle": 0.0,
-&"noise1_offset": Vector2(0.5, 0.5),
-&"noise1_scale": 0.04,
-&"noise2_scale": 0.076,
-&"noise3_scale": 0.225,
-&"noise_texture": SubResource("NoiseTexture2D_5kixi"),
-&"projection_angular_division": 2.0,
-&"projection_threshold": 0.8,
-&"world_space_normal_blend": true
-}
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qinp4"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(0.552956, 0.552956, 0.552956, 1)
-albedo_texture = ExtResource("2_d5rq0")
-
-[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_qinp4"]
-name = "Grass"
-generated_type = 1
-height_offset = 0.5
-cast_shadows = 0
-material_override = SubResource("StandardMaterial3D_qinp4")
-generated_faces = 3
-generated_size = Vector2(1.615, 0.96)
-last_lod = 0
-last_shadow_lod = 0
-lod0_range = 128.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yb06a"]
-transparency = 4
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("5_4m75t")
-backlight_enabled = true
-backlight = Color(0.5, 0.5, 0.5, 1)
-distance_fade_mode = 1
-distance_fade_min_distance = 128.0
-distance_fade_max_distance = 96.0
-
-[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_ltq76"]
-id = 1
-generated_type = 1
-height_offset = 0.5
-material_override = SubResource("StandardMaterial3D_yb06a")
-last_lod = 0
-last_shadow_lod = 0
-lod0_range = 128.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kciyk"]
-transparency = 4
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("6_mchqb")
-backlight_enabled = true
-backlight = Color(0.5, 0.5, 0.5, 1)
-distance_fade_mode = 1
-distance_fade_min_distance = 128.0
-distance_fade_max_distance = 96.0
-
-[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_u0g67"]
-id = 2
-generated_type = 1
-height_offset = 0.5
-material_override = SubResource("StandardMaterial3D_kciyk")
-last_lod = 0
-last_shadow_lod = 0
-lod0_range = 128.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5jobe"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("7_xd1ql")
-backlight_enabled = true
-backlight = Color(0.5, 0.5, 0.5, 1)
-distance_fade_mode = 1
-distance_fade_min_distance = 128.0
-distance_fade_max_distance = 96.0
-
-[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_on3vb"]
-id = 3
-generated_type = 1
-height_offset = 0.5
-material_override = SubResource("StandardMaterial3D_5jobe")
-last_lod = 0
-last_shadow_lod = 0
-lod0_range = 128.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5cadv"]
-transparency = 4
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("8_j5uvd")
-backlight_enabled = true
-backlight = Color(0.5, 0.5, 0.5, 1)
-distance_fade_mode = 1
-distance_fade_min_distance = 128.0
-distance_fade_max_distance = 96.0
-
-[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_vo0j0"]
-id = 4
-generated_type = 1
-height_offset = 0.5
-material_override = SubResource("StandardMaterial3D_5cadv")
-last_lod = 0
-last_shadow_lod = 0
-lod0_range = 128.0
-
-[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_vo0j0"]
-name = "Grass_Tex"
-albedo_texture = ExtResource("3_xihs3")
-normal_texture = ExtResource("11_xfsq8")
-
-[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_ghnch"]
-name = "Dirt2"
-id = 1
-albedo_texture = ExtResource("10_wvsbj")
-normal_texture = ExtResource("13_pnpac")
-
-[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_6ng0t"]
-mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_qinp4"), SubResource("Terrain3DMeshAsset_ltq76"), SubResource("Terrain3DMeshAsset_u0g67"), SubResource("Terrain3DMeshAsset_on3vb"), SubResource("Terrain3DMeshAsset_vo0j0")])
-texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_vo0j0"), SubResource("Terrain3DTextureAsset_ghnch")])
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_v17g1"]
+data = PackedVector3Array(-41, -16, 41, 41, -16, 41, 41, -16, -41, 41, 16, 41, 41, 16, -41, 41, -16, -41, 41, 16, -41, 41, 16, 41, -41, 16, -41, 41, -16, -41, 41, 16, -41, -41, 16, -41, 41, -16, 41, 41, 16, 41, 41, -16, -41, 41, 16, 41, 41, -16, 41, -41, -16, 41, -41, -16, 41, -41, -16, -41, -41, 16, -41, -41, 16, -41, 41, 16, 41, -41, 16, 41, -41, 16, 41, 41, 16, 41, -41, -16, 41, -41, 16, -41, -41, 16, 41, -41, -16, 41, 41, -16, -41, -41, 16, -41, -41, -16, -41, -41, -16, 41, 41, -16, -41, -41, -16, -41, -40, -15, 40, 40, 15, 40, -40, 15, 40, -40, 15, 40, 40, 15, 40, -40, 15, -40, -40, -15, 40, -40, 15, 40, -40, 15, -40, 40, -15, -40, 40, -15, 40, -40, -15, 40, -40, -15, -40, -40, 15, -40, 40, -15, -40, -40, -15, 40, 40, -15, 40, 40, 15, 40, 40, -15, -40, 40, 15, 40, 40, -15, 40, -40, 15, -40, 40, 15, -40, 40, -15, -40, -40, -15, -40, 40, -15, -40, -40, -15, 40, -40, 15, -40, 40, 15, 40, 40, 15, -40, 40, -15, -40, 40, 15, -40, 40, 15, 40, -40, 15, -40, -40, -15, -40, -40, -15, 40)
 
 [node name="World3D" type="Node3D"]
 script = ExtResource("1_d5rq0")
@@ -201,17 +31,6 @@ environment = ExtResource("3_6ng0t")
 [node name="PlayerCharacter3D" parent="." instance=ExtResource("7_xihs3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, 6.87112)
 
-[node name="Terrain3D" type="Terrain3D" parent="."]
-data_directory = "res://assets/Terrain Data"
-material = SubResource("Terrain3DMaterial_wc6xc")
-assets = SubResource("Terrain3DAssets_6ng0t")
-top_level = true
-metadata/_edit_lock_ = true
-
-[node name="Terrain3DObjects" type="Node3D" parent="Terrain3D"]
-script = ExtResource("5_v17g1")
-metadata/_custom_type_script = "uid://dbndw8p05yam7"
-
 [node name="DeliveryArea3D" parent="." instance=ExtResource("12_mchqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.6591, 26)
 
@@ -220,15 +39,29 @@ wait_time = 2.0
 one_shot = true
 
 [node name="WaterSlimeSpawner" parent="." instance=ExtResource("14_wc6xc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 22, 11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 22, 4)
 
 [node name="RockSlimeSpawner" parent="." instance=ExtResource("15_6ng0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 22, 11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 19, 72)
 
 [node name="FireSlimeSpawner" parent="." instance=ExtResource("16_k68x3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 22, 31)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -30, 22, 3)
 
 [node name="VineSlimeSpawner" parent="." instance=ExtResource("17_6ng0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 22, 28)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29, 22, 69)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33, 36.469)
+size = Vector3(82, 32, 82)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+operation = 2
+size = Vector3(80, 30, 80)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CSGBakedCollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33, 36.469)
+shape = SubResource("ConcavePolygonShape3D_v17g1")
 
 [connection signal="timeout" from="DeliveryDelayTimer" to="." method="_on_delivery_delay_timer_timeout"]
