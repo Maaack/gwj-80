@@ -48,6 +48,10 @@ func _on_slime_delivered(slime_data : SlimeData):
 
 func _on_slime_spawned(slime_node : Slime) -> void:
 	slime_node.reparent(self)
+	# Slimes inherit their rotation from the original parent, which causes them to look in the wrong direction.
+	# This clears the relevant rotation.
+	# NOTE: This is a band-aid fix, it doesn't address the core problem.
+	slime_node.rotation.y = 0.0
 	slime_node.slime_touched.connect(_on_slimes_touch.bind(slime_node))
 	slime_node.departed.connect(_on_slime_departed.bind(slime_node.slime_data))
 	slime_node.slime_split.connect(_on_slime_spawned)
