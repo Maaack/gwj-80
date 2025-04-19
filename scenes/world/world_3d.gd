@@ -46,9 +46,6 @@ func _on_slime_delivered(slime_data : SlimeData):
 	slime_delivered.emit(slime_data.slime_type, slimes_submitted[slime_data.slime_type])
 	_check_level_won()
 
-func _on_slime_detected():
-	$DeliveryDelayTimer.start()
-
 func _on_slime_spawned(slime_node : Slime) -> void:
 	slime_node.reparent(self)
 	slime_node.slime_touched.connect(_on_slimes_touch.bind(slime_node))
@@ -85,9 +82,6 @@ func _on_slimes_touch(slime_1 : Slime, slime_2 : Slime) -> void:
 			slime_result.grow(total_mass, 1.0)
 			GameState.get_journal_state().add_combination(combo)
 
-func _on_delivery_delay_timer_timeout():
-	delivery_area.deliver()
-
 func _on_player_character_3d_slime_type_observed(slime_type, amount):
 	GameState.get_journal_state().add_slime_progress(slime_type, amount)
 
@@ -95,10 +89,11 @@ func _ready():
 	level_state = GameState.get_level_state(scene_file_path)
 	if delivery_area:
 		delivery_area.slime_delivered.connect(_on_slime_delivered)
-		delivery_area.slime_detected.connect(_on_slime_detected)
 	for child in get_children():
 		if child is SlimeSpawner:
 			child.slime_spawned.connect(_on_slime_spawned)
+		if child is DeliveryInteractable:
+			child.interacted.connect(delivery_area.deliver)
 
 func _exit_tree():
 	GlobalState.save()
