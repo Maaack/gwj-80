@@ -318,12 +318,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[connection signal="body_entered" from="InteractionZone" to="." method="_on_interaction_zone_body_entered"]
-[connection signal="body_exited" from="InteractionZone" to="." method="_on_interaction_zone_body_exited"]
-
 [node name="DiscoverTimer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="body_entered" from="InteractionZone" to="." method="_on_interaction_zone_body_entered"]
+[connection signal="body_exited" from="InteractionZone" to="." method="_on_interaction_zone_body_exited"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
 [connection signal="timeout" from="BoundsCheckTimer" to="." method="_on_bounds_check_timer_timeout"]

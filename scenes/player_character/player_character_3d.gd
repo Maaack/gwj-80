@@ -109,6 +109,8 @@ func _input(event) -> void:
 		if interactable:
 			if interactable.has_method(&"interact"):
 				interactable.call(&"interact")
+		else:
+			_nudge_nearest_slime()
 
 
 func _physics_process(delta : float) -> void:
@@ -284,4 +286,3 @@ func _on_discover_timer_timeout():
 	for slime_type in slime_type_count:
 		var disovery_progress : float = slime_type_count[slime_type] * 0.0025
 		slime_type_observed.emit(slime_type, disovery_progress)
-
