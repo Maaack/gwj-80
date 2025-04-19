@@ -29,29 +29,29 @@ shadow_enabled = true
 environment = ExtResource("3_6ng0t")
 
 [node name="PlayerCharacter3D" parent="." instance=ExtResource("7_xihs3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, 6.87112)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, -26.1289)
 
 [node name="DeliveryArea3D" parent="." instance=ExtResource("12_mchqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.6591, 26)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -5.3409, -1)
 
 [node name="DeliveryDelayTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
 [node name="WaterSlimeSpawner" parent="." instance=ExtResource("14_wc6xc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 22, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, -2, -29)
 
 [node name="RockSlimeSpawner" parent="." instance=ExtResource("15_6ng0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 19, 72)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 34, -2, 37)
 
 [node name="FireSlimeSpawner" parent="." instance=ExtResource("16_k68x3")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -30, 22, 3)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -30, -2, -30)
 
 [node name="VineSlimeSpawner" parent="." instance=ExtResource("17_6ng0t")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29, 22, 69)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29, -2, 36)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33, 36.469)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 3.469)
 size = Vector3(82, 32, 82)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
@@ -61,7 +61,7 @@ size = Vector3(80, 30, 80)
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CSGBakedCollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33, 36.469)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 3.469)
 shape = SubResource("ConcavePolygonShape3D_v17g1")
 
 [connection signal="timeout" from="DeliveryDelayTimer" to="." method="_on_delivery_delay_timer_timeout"]
