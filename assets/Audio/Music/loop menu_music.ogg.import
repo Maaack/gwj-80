@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dvu3ty12ba1em"
+path="res://.godot/imported/loop menu_music.ogg-5e42e2bddf0ba4e689983b23dd8e9657.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Audio/Music/loop menu_music.ogg"
+dest_files=["res://.godot/imported/loop menu_music.ogg-5e42e2bddf0ba4e689983b23dd8e9657.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
