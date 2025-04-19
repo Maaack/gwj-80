@@ -1,5 +1,6 @@
 extends Node3D
 
+@export var disabled : bool = false
 @export var min_cam_v_degrees : float = -10 
 @export var max_cam_v_degrees : float = 40
 @export var min_spring_length : float = 4.0
@@ -33,6 +34,7 @@ func _exit_tree():
 	Input.set_mouse_mode(init_mouse_mode)
 
 func _input(event):
+	if disabled: return
 	if event is InputEventMouseMotion:
 	
 		camrot_h += -event.relative.x * h_sensitivity

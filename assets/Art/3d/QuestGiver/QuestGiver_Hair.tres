@@ -6,16 +6,16 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_k8ecu")
-shader_parameter/ToonRampOffset = 0.511
-shader_parameter/ToonRampSmoothness = 0.05
+shader_parameter/ToonRampOffset = 0.601
+shader_parameter/ToonRampSmoothness = 0.129
 shader_parameter/ToonRampTinting = Color(0, 0, 0, 1)
-shader_parameter/RimPower = 3.37
+shader_parameter/RimPower = 4.483
 shader_parameter/RimCutOff = 0.449
 shader_parameter/RimSmoothness = 0.297
-shader_parameter/RimLightBrightness = 1.124
-shader_parameter/SubSurfDistortion = 0.0
-shader_parameter/SubSurfTint = Color(0.50103, 0.120114, 0.261471, 1)
-shader_parameter/SubSurfBrightness = 0.416
+shader_parameter/RimLightBrightness = 23.034
+shader_parameter/SubSurfDistortion = 1.91
+shader_parameter/SubSurfTint = Color(0.762636, 0.498035, 0.560209, 1)
+shader_parameter/SubSurfBrightness = 1.54
 shader_parameter/SubSurfCutoff = 0.478
 shader_parameter/SubSurfSmoothness = 0.05
 shader_parameter/Texture = ExtResource("2_yx7i6")

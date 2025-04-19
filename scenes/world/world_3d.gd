@@ -3,11 +3,13 @@ extends Node3D
 
 signal level_won
 signal slimes_combined(slime_type_1: Constants.SlimeType, slime_type_2: Constants.SlimeType)
+signal slime_delivered(slime_type: Constants.SlimeType, total_delivered: int)
 
 @export var objective_list : ObjectiveList
 
 @onready var delivery_area : DeliveryArea3D = $DeliveryArea3D
 @onready var slime_manager : SlimeManager = $SlimeManager
+@onready var pc : PlayerCharacter = %PlayerCharacter3D
 
 var level_state : LevelState
 var slimes_submitted : Dictionary[Constants.SlimeType, int] = {}
@@ -41,10 +43,8 @@ func _on_slime_delivered(slime_data : SlimeData):
 	if not slimes_submitted.has(slime_data.slime_type):
 		slimes_submitted[slime_data.slime_type] = 0
 	slimes_submitted[slime_data.slime_type] += 1
+	slime_delivered.emit(slime_data.slime_type, slimes_submitted[slime_data.slime_type])
 	_check_level_won()
-
-func _on_slime_detected():
-	$DeliveryDelayTimer.start()
 
 func _on_slime_spawned(slime_node : Slime) -> void:
 	slime_node.reparent(self)
@@ -82,17 +82,18 @@ func _on_slimes_touch(slime_1 : Slime, slime_2 : Slime) -> void:
 			slime_result.grow(total_mass, 1.0)
 			GameState.get_journal_state().add_combination(combo)
 
-func _on_delivery_delay_timer_timeout():
-	delivery_area.deliver()
+func _on_player_character_3d_slime_type_observed(slime_type, amount):
+	GameState.get_journal_state().add_slime_progress(slime_type, amount)
 
 func _ready():
 	level_state = GameState.get_level_state(scene_file_path)
 	if delivery_area:
 		delivery_area.slime_delivered.connect(_on_slime_delivered)
-		delivery_area.slime_detected.connect(_on_slime_detected)
 	for child in get_children():
 		if child is SlimeSpawner:
 			child.slime_spawned.connect(_on_slime_spawned)
+		if child is DeliveryInteractable:
+			child.interacted.connect(delivery_area.deliver)
 
 func _exit_tree():
 	GlobalState.save()
