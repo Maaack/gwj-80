@@ -3,6 +3,7 @@ extends Node3D
 
 signal level_won
 signal slimes_combined(slime_type_1: Constants.SlimeType, slime_type_2: Constants.SlimeType)
+signal slime_delivered(slime_type: Constants.SlimeType, total_delivered: int)
 
 @export var objective_list : ObjectiveList
 
@@ -42,6 +43,7 @@ func _on_slime_delivered(slime_data : SlimeData):
 	if not slimes_submitted.has(slime_data.slime_type):
 		slimes_submitted[slime_data.slime_type] = 0
 	slimes_submitted[slime_data.slime_type] += 1
+	slime_delivered.emit(slime_data.slime_type, slimes_submitted[slime_data.slime_type])
 	_check_level_won()
 
 func _on_slime_detected():
