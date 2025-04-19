@@ -19,7 +19,6 @@ script = ExtResource("1_nwcsa")
 [node name="v" type="Node3D" parent="h"]
 
 [node name="Arm" type="SpringArm3D" parent="h/v"]
-collision_mask = 0
 margin = 0.5
 
 [node name="Camera3D" type="Camera3D" parent="h/v/Arm"]

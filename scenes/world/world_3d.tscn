@@ -30,7 +30,7 @@ environment = ExtResource("3_6ng0t")
 
 [node name="PlayerCharacter3D" parent="." instance=ExtResource("7_xihs3")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2105, 0.260458, -103.599)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2105, 0.260458, -65.599)
 
 [node name="DeliveryArea3D" parent="." instance=ExtResource("12_mchqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.907927, -1)
@@ -60,7 +60,6 @@ water_spawn = NodePath("../WaterSlimeSpawner")
 fire_spawn = NodePath("../FireSlimeSpawner")
 vine_spawn = NodePath("../VineSlimeSpawner")
 rock_spawn = NodePath("../RockSlimeSpawner")
-
 
 [node name="Terrain" parent="." instance=ExtResource("11_4m75t")]
 
