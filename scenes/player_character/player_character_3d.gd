@@ -4,6 +4,8 @@
 class_name PlayerCharacter
 extends CharacterBody3D
 
+signal slime_type_observed(slime_type: Constants.SlimeType, amount: float)
+
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var playback : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 
@@ -14,6 +16,7 @@ extends CharacterBody3D
 @onready var note_1_particles: GPUParticles3D = $Note1Particles3D
 @onready var note_2_particles: GPUParticles3D = $Note2Particles3D
 @onready var fade_rect: ColorRect = %FadeRect
+@onready var camera: Node3D = $CustomCamera
 
 # Gamplay mechanics and Inspector tweakables
 @export var gravity : float = 9.8
@@ -55,10 +58,16 @@ var acceleration : float
 var selected_outfit : Node3D
 var stop_movement_inputs : bool = false
 var is_whistling : bool = false
+var is_journaling : bool = false :
+	set(value):
+		is_journaling = value
+		if is_inside_tree():
+			camera.disabled = is_journaling
 var initial_position: Vector3
 
 # Tweens
 var fade_tween: Tween
+var observed_slimes : Array[Slime]
 
 
 func _ready() -> void:
@@ -66,6 +75,7 @@ func _ready() -> void:
 	initial_position = global_position
 
 func _input(event) -> void:
+	if is_journaling : return
 	if event.is_action_pressed("attract_slimes"):
 		is_whistling = true
 		whistling_player.play()
@@ -96,6 +106,7 @@ func _physics_process(delta : float) -> void:
 		#vertical_velocity = -get_floor_normal() * gravity / 3
 		vertical_velocity = Vector3.DOWN * gravity / 10
 
+	if is_journaling: return
 #	Jump input and Mechanics
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		vertical_velocity = Vector3.UP * jump_force
@@ -152,11 +163,14 @@ func _physics_process(delta : float) -> void:
 func _on_area_3d_body_entered(body):
 	if body is Slime:
 		body._pc = self
+		observed_slimes.append(body)
+		if body.slime_type > 2:
+			print("body entered %d" % body.slime_type)
 
 func _on_area_3d_body_exited(body):
 	if body is Slime:
 		body._pc = null
-
+		observed_slimes.erase(body)
 
 ## If the player is outside of the bounds, reset their position to their initial spawn location.
 func _on_bounds_check_timer_timeout() -> void:
@@ -180,3 +194,15 @@ func _tween_respawn() -> void:
 	fade_tween.tween_callback(_reset_position)
 	fade_tween.set_ease(Tween.EASE_IN)
 	fade_tween.tween_property(fade_rect, "self_modulate:a", 0.0, fade_transition_duration / 2)
+
+
+func _on_discover_timer_timeout():
+	var slime_type_count : Dictionary[Constants.SlimeType, int]
+	for observed_slime in observed_slimes:
+		var slime_type = observed_slime.slime_type
+		if slime_type not in slime_type_count:
+			slime_type_count[slime_type] = 0
+		slime_type_count[slime_type] += 1
+	for slime_type in slime_type_count:
+		var disovery_progress : float = slime_type_count[slime_type] * 0.0025
+		slime_type_observed.emit(slime_type, disovery_progress)

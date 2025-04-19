@@ -8,6 +8,7 @@ signal slimes_combined(slime_type_1: Constants.SlimeType, slime_type_2: Constant
 
 @onready var delivery_area : DeliveryArea3D = $DeliveryArea3D
 @onready var slime_manager : SlimeManager = $SlimeManager
+@onready var pc : PlayerCharacter = %PlayerCharacter3D
 
 var level_state : LevelState
 var slimes_submitted : Dictionary[Constants.SlimeType, int] = {}
@@ -84,6 +85,9 @@ func _on_slimes_touch(slime_1 : Slime, slime_2 : Slime) -> void:
 
 func _on_delivery_delay_timer_timeout():
 	delivery_area.deliver()
+
+func _on_player_character_3d_slime_type_observed(slime_type, amount):
+	GameState.get_journal_state().add_slime_progress(slime_type, amount)
 
 func _ready():
 	level_state = GameState.get_level_state(scene_file_path)

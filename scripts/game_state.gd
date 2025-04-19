@@ -12,6 +12,7 @@ const FILE_PATH = "res://scripts/game_state.gd"
 
 static func get_journal_state() -> JournalState:
 	var game_state := get_game_state()
+	if game_state == null: return null
 	return game_state.journal_state
 
 static func get_level_state(level_state_key : String) -> LevelState:
