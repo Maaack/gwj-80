@@ -5,6 +5,8 @@ class_name PlayerCharacter
 extends CharacterBody3D
 
 signal slime_type_observed(slime_type: Constants.SlimeType, amount: float)
+signal interaction_entered
+signal interaction_exited
 
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var playback : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
@@ -68,6 +70,13 @@ var initial_position: Vector3
 # Tweens
 var fade_tween: Tween
 var observed_slimes : Array[Slime]
+var interactable : Node3D :
+	set(value):
+		interactable = value
+		if interactable:
+			interaction_entered.emit()
+		else:
+			interaction_exited.emit()
 
 
 func _ready() -> void:
@@ -88,6 +97,10 @@ func _input(event) -> void:
 		whistling_player.stop()
 		note_1_particles.emitting = false
 		note_2_particles.emitting = false
+	if event.is_action_pressed("interact"):
+		if interactable:
+			if interactable.has_method(&"interact"):
+				interactable.call(&"interact")
 
 func _physics_process(delta : float) -> void:
 	if stop_movement_inputs:

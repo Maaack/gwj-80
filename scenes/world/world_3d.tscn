@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bkw66y13utj24" path="res://scenes/player_character/player_character_3d.tscn" id="7_xihs3"]
 [ext_resource type="PackedScene" uid="uid://e0giym03e6sp" path="res://assets/FinalMAp.tscn" id="11_4m75t"]
 [ext_resource type="PackedScene" uid="uid://t2e0c1vjuiws" path="res://scenes/world/delivery_area_3d.tscn" id="12_mchqb"]
+[ext_resource type="PackedScene" uid="uid://r2k1hf583lo6" path="res://scenes/world/delivery_interactable.tscn" id="12_xd1ql"]
 [ext_resource type="PackedScene" uid="uid://i860ela8t0qg" path="res://scenes/world/water_slime_spawner.tscn" id="14_wc6xc"]
 [ext_resource type="PackedScene" uid="uid://g8bm0p3pcnvc" path="res://scenes/world/rock_slime_spawner.tscn" id="15_6ng0t"]
 [ext_resource type="PackedScene" uid="uid://yaml4wqvwlll" path="res://scenes/world/fire_slime_spawner.tscn" id="16_k68x3"]
@@ -34,10 +35,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2105, 0.260458, -65.599)
 [node name="DeliveryArea3D" parent="." instance=ExtResource("12_mchqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.907927, -1)
 
-[node name="DeliveryDelayTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
 [node name="WaterSlimeSpawner" parent="." instance=ExtResource("14_wc6xc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1.60039, -30)
 
@@ -52,5 +49,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30, 1
 
 [node name="Terrain" parent="." instance=ExtResource("11_4m75t")]
 
+[node name="DeliveryInteractable" parent="." instance=ExtResource("12_xd1ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
+
+[node name="DeliveryInteractable2" parent="." instance=ExtResource("12_xd1ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7)
+
 [connection signal="slime_type_observed" from="PlayerCharacter3D" to="." method="_on_player_character_3d_slime_type_observed"]
-[connection signal="timeout" from="DeliveryDelayTimer" to="." method="_on_delivery_delay_timer_timeout"]
