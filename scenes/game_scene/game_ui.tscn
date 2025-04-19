@@ -70,3 +70,5 @@ offset_right = 137.0
 offset_bottom = 34.5
 
 [connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
+[connection signal="journal_closed" from="Control/JournalPanel" to="." method="_on_journal_panel_journal_closed"]
+[connection signal="journal_opened" from="Control/JournalPanel" to="." method="_on_journal_panel_journal_opened"]

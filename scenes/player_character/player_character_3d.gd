@@ -14,6 +14,7 @@ extends CharacterBody3D
 @onready var note_1_particles: GPUParticles3D = $Note1Particles3D
 @onready var note_2_particles: GPUParticles3D = $Note2Particles3D
 @onready var fade_rect: ColorRect = %FadeRect
+@onready var camera: Node3D = $CustomCamera
 
 # Gamplay mechanics and Inspector tweakables
 @export var gravity : float = 9.8
@@ -55,6 +56,11 @@ var acceleration : float
 var selected_outfit : Node3D
 var stop_movement_inputs : bool = false
 var is_whistling : bool = false
+var is_journaling : bool = false :
+	set(value):
+		is_journaling = value
+		if is_inside_tree():
+			camera.disabled = is_journaling
 var initial_position: Vector3
 
 # Tweens
@@ -66,6 +72,7 @@ func _ready() -> void:
 	initial_position = global_position
 
 func _input(event) -> void:
+	if is_journaling : return
 	if event.is_action_pressed("attract_slimes"):
 		is_whistling = true
 		whistling_player.play()
@@ -96,6 +103,7 @@ func _physics_process(delta : float) -> void:
 		#vertical_velocity = -get_floor_normal() * gravity / 3
 		vertical_velocity = Vector3.DOWN * gravity / 10
 
+	if is_journaling: return
 #	Jump input and Mechanics
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		vertical_velocity = Vector3.UP * jump_force
