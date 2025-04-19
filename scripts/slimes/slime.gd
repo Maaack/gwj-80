@@ -123,6 +123,7 @@ func is_busy():
 	return is_departing or is_growing
 
 func set_data_type_masses():
+	slime_data.slime_mass = mass
 	slime_data.slime_type_masses.clear()
 	slime_data.slime_type_masses = slime_data.get_slime_type_masses()
 

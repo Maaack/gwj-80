@@ -7,7 +7,7 @@ signal slime_spawned(slime_node : Slime)
 @export_range(0, 10) var spawn_radius : float = 2.5
 @export_range(0, 10) var spawn_delay : float = 0.25
 @export_range(0, 10) var spawn_duration : float = 1.0
-@export_range(1, 10) var max_spawn_mass : int = 3
+@export_range(1, 10) var max_spawn_mass : int = 5
 @export var queued_to_spawn : int = 0
 @onready var _spawn_timer : Timer = $SpawnTimer
 
@@ -19,8 +19,8 @@ func spawn(slime_mass : int = 1):
 	var rand_distance = randf_range(0, spawn_radius)
 	var normal_vector = Vector2.from_angle(rand_angle)
 	slime_instance.position = Vector3(normal_vector.x, 0, normal_vector.y) * rand_distance
-	slime_instance.mass = slime_mass
 	add_child(slime_instance)
+	slime_instance.grow(slime_mass)
 	slime_instance.set_data_type_masses()
 	slime_spawned.emit(slime_instance)
 	slime_instance.scale = Vector3.ONE * 0.01
