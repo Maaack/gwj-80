@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds320ldtui7xo"]
+[gd_scene load_steps=5 format=3 uid="uid://ds320ldtui7xo"]
 
 [ext_resource type="PackedScene" uid="uid://bgkgl4i14rlm6" path="res://assets/Art/3d/Building/Building.glb" id="1_vlf6u"]
 
@@ -8,25 +8,29 @@ size = Vector3(11.5143, 7.7417, 16.87)
 [sub_resource type="BoxShape3D" id="BoxShape3D_xe700"]
 size = Vector3(0.631081, 7.7417, 0.585062)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_76mdc"]
+size = Vector3(10, 10, 18)
+
 [node name="Node3D" type="Node3D"]
 
-[node name="Building" parent="." instance=ExtResource("1_vlf6u")]
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.474746, 0, 0.664852)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Building"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67926, 4.05331, -0.0901339)
 shape = SubResource("BoxShape3D_vlf6u")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="Building"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/StaticBody3D2"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.36868, 4.05331, 11.0724)
 shape = SubResource("BoxShape3D_xe700")
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="Building"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/StaticBody3D3"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.873901, 4.05331, 10.7294)
 shape = SubResource("BoxShape3D_xe700")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -1, 8, 1.19209e-07)
+shape = SubResource("BoxShape3D_76mdc")
+
+[node name="Building" parent="." instance=ExtResource("1_vlf6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.474746, 0, 0.664852)
