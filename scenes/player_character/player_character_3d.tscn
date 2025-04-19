@@ -1,8 +1,9 @@
-[gd_scene load_steps=38 format=3 uid="uid://bkw66y13utj24"]
+[gd_scene load_steps=39 format=3 uid="uid://bkw66y13utj24"]
 
 [ext_resource type="Script" uid="uid://cbw777lrjulgr" path="res://scenes/player_character/player_character_3d.gd" id="1_ppdav"]
 [ext_resource type="PackedScene" uid="uid://du6sadv6lcq1j" path="res://scenes/player_character/player_character_model.tscn" id="2_u7jsy"]
 [ext_resource type="PackedScene" uid="uid://bvs8yjrgay5ob" path="res://scenes/player_character/custom_camera.tscn" id="3_u7jsy"]
+[ext_resource type="AudioStream" uid="uid://ctdm3vyqhm6qw" path="res://assets/Audio/Music/Slime_whistle_02.ogg" id="4_nffne"]
 [ext_resource type="Texture2D" uid="uid://dojlh85ev64bp" path="res://assets/Art/2d/TExtures/note_1.png" id="5_nffne"]
 [ext_resource type="Texture2D" uid="uid://bd16qjki6x1wa" path="res://assets/Art/2d/TExtures/note_2.png" id="6_3832c"]
 
@@ -271,7 +272,11 @@ parameters/conditions/IsWhistling = false
 
 [node name="WhistlingStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
+stream = ExtResource("4_nffne")
+volume_db = -80.0
+autoplay = true
 bus = &"SFX"
+parameters/looping = true
 
 [node name="Note1Particles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)

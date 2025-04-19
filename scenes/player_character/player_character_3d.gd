@@ -91,20 +91,27 @@ func _ready() -> void:
 	direction = Vector3.BACK.rotated(Vector3.UP, $CustomCamera/h.global_transform.basis.get_euler().y)
 	initial_position = global_position
 
+func _start_whistling() -> void:
+	is_whistling = true
+	whistling_player.volume_db = 0
+	note_1_particles.emitting = true
+	await get_tree().create_timer(0.25).timeout
+	if is_whistling:
+		note_2_particles.emitting = true
+
+func _stop_whistling() -> void:
+	is_whistling = false
+	var tween = create_tween()
+	tween.tween_property(whistling_player, "volume_db", -80, 0.2)
+	note_1_particles.emitting = false
+	note_2_particles.emitting = false
+
 func _input(event) -> void:
 	if is_journaling : return
 	if event.is_action_pressed("attract_slimes"):
-		is_whistling = true
-		whistling_player.play()
-		note_1_particles.emitting = true
-		await get_tree().create_timer(0.25).timeout
-		if is_whistling:
-			note_2_particles.emitting = true
+		_start_whistling()
 	elif event.is_action_released("attract_slimes"):
-		is_whistling = false
-		whistling_player.stop()
-		note_1_particles.emitting = false
-		note_2_particles.emitting = false
+		_stop_whistling()
 	if event.is_action_pressed("interact"):
 		if interactable:
 			if interactable.has_method(&"interact"):
