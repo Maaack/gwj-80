@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b407hglpv7jh" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_ixa71"]
 [ext_resource type="PackedScene" uid="uid://b880417tsk74b" path="res://scenes/credits/credits.tscn" id="4_2k5l7"]
 [ext_resource type="Environment" uid="uid://bqkr5wdp86m68" path="res://assets/Terrain Data/WorldENV.tres" id="5_2k5l7"]
-[ext_resource type="Script" path="res://scripts/custom_button.gd" id="6_dhrx6"]
+[ext_resource type="Script" uid="uid://b7jjlfwvmxobw" path="res://scripts/custom_button.gd" id="6_dhrx6"]
 [ext_resource type="PackedScene" uid="uid://cipi3crxlygbg" path="res://assets/Terrain Data/Terrain.tscn" id="6_vsp5b"]
 [ext_resource type="AudioStream" uid="uid://dvu3ty12ba1em" path="res://assets/Audio/Music/loop menu_music.ogg" id="6_xkrf4"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="7_6xh1d"]
@@ -378,6 +378,7 @@ parameters/conditions/intro_done = false
 
 [node name="BackgroundMusicPlayer" parent="." index="3"]
 stream = ExtResource("6_xkrf4")
+parameters/looping = true
 
 [node name="BackgroundTextureRect" parent="." index="4"]
 texture = SubResource("ViewportTexture_dhrx6")

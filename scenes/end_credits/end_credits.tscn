@@ -12,6 +12,7 @@ main_menu_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
 
 [node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("3_bfvdl")]
 stream = ExtResource("4_2v40y")
+parameters/looping = true
 
 [node name="BackgroundColor" type="ColorRect" parent="." index="1"]
 layout_mode = 1
