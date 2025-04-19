@@ -51,6 +51,10 @@ enum SplitType { NONE, SINGLE, MULTI }
 @export var external_velocity_deceleration: float = 6.0
 @export var ambient_direction_update_cooldown: float = 5.0
 
+@export_category("Bounding Box")
+@export var min_bounds := Vector3(-40.0, 0.0, -40.0)
+@export var max_bounds := Vector3(40.0, 0.0, 40.0)
+
 @export_group("Split Settings")
 @export var split_type: SplitType = SplitType.NONE
 
@@ -201,8 +205,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity = Vector3.ZERO
 
-	if velocity.length() > (max_speed * speed_modifier):
-		velocity = velocity.normalized() * randf_range(min_speed * speed_modifier, max_speed * speed_modifier)
+	_bound_speed()
 
 	for push_velocity: Vector3 in push_velocities:
 		velocity += push_velocity
@@ -213,6 +216,8 @@ func _physics_process(delta: float) -> void:
 			update_ambient_direction_timer.start()
 	elif not update_ambient_direction_timer.is_stopped():
 		update_ambient_direction_timer.stop()
+
+	_bound_xz_position()
 
 	# Rotate the model to face the movement direction, limited by the turn speed.
 	pivot.rotation.y = lerpf(pivot.rotation.y, atan2(-velocity.x, -velocity.z), turn_speed * delta)
@@ -407,6 +412,35 @@ func _tween_alert_opacity(new_opacity: float, duration: float) -> void:
 		alert_opacity_tween.kill()
 	alert_opacity_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	alert_opacity_tween.tween_property(alerted_indicator, "modulate:a", new_opacity, duration)
+
+
+func _bound_speed() -> void:
+	if velocity.length() > (max_speed * speed_modifier):
+		velocity = velocity.normalized() * randf_range(min_speed * speed_modifier, max_speed * speed_modifier)
+
+
+## If the slime is outside of the bounding box, update its velocity to send it
+## towards the boundary.
+func _bound_xz_position() -> void:
+	var x_updated: bool = false
+	var z_updated: bool = false
+
+	if global_position.x < min_bounds.x:
+		velocity.x = max_speed * speed_modifier
+		x_updated = true
+	elif global_position.x > max_bounds.x:
+		velocity.x = -max_speed * speed_modifier
+		x_updated = true
+
+	if global_position.z < min_bounds.z:
+		velocity.z = max_speed * speed_modifier
+		z_updated = true
+	elif global_position.z > max_bounds.z:
+		velocity.z = -max_speed * speed_modifier
+		z_updated = true
+
+	if x_updated and z_updated:
+		_bound_speed()
 
 
 #func set_flocking_zone_radius(new_radius: float) -> void:
