@@ -34,6 +34,6 @@ func _on_flocking_zone_body_entered(body: Node3D) -> void:
 ## Stop tracking slimes that leave the area and remove the cohesion and alignment increases.
 func _on_flocking_zone_body_exited(body: Node3D) -> void:
 	super(body)
-
-	body.cohesion_weight -= cohesion_increase
-	body.alignment_weight -= alignment_increase
+	if body is Slime:
+		body.cohesion_weight -= cohesion_increase
+		body.alignment_weight -= alignment_increase

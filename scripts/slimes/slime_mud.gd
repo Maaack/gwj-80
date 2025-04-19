@@ -12,8 +12,8 @@ extends Slime
 ## Keep track of the slimes that within the area.
 func _on_flocking_zone_body_entered(body: Node3D) -> void:
 	super(body)
-
-	body.speed_modifier = speed_mod_for_others
+	if body is Slime:
+		body.speed_modifier = speed_mod_for_others
 
 
 ## Stop tracking slimes that leave the area and reset the grow time if there
