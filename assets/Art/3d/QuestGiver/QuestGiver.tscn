@@ -79,19 +79,20 @@ bones/92/rotation = Quaternion(-0.0200438, 0.99659, -0.0796352, 0.00800708)
 bones/93/rotation = Quaternion(1.63482e-08, -0.00123419, -1.00665e-07, 0.999999)
 
 [node name="Hair" parent="Quest Giver/root/Skeleton3D" index="0"]
-transform = Transform3D(0.999943, 0.0106774, -0.000208059, -0.0106779, 0.999941, -0.00190911, 0.000187531, 0.00191113, 0.999998, 0.0186682, 6.28405, -0.429619)
+transform = Transform3D(0.999943, 0.0106774, -0.000208652, -0.0106778, 0.999941, -0.00190902, 0.000188372, 0.00191104, 0.999998, 0.0186688, 6.28405, -0.429619)
 
 [node name="Hair" parent="Quest Giver/root/Skeleton3D/Hair" index="0"]
+transform = Transform3D(1, 1.20752e-09, -1.45519e-11, 5.15087e-10, 1, 0, -4.36557e-11, -3.49246e-10, 1, -6.4224e-06, -6.38962e-05, -0.0339702)
 surface_material_override/0 = ExtResource("2_dot4x")
 
 [node name="Hair Tie" parent="Quest Giver/root/Skeleton3D" index="1"]
-transform = Transform3D(0.999943, 0.0106778, -0.000207822, -0.0106782, 0.999941, -0.00190918, 0.000187424, 0.00191124, 0.999998, 0.050421, 6.2093, -0.456521)
+transform = Transform3D(0.999943, 0.0106778, -0.000207822, -0.0106782, 0.999941, -0.00190903, 0.000187426, 0.00191109, 0.999998, 0.0504211, 6.20929, -0.456522)
 
 [node name="Hair Tie" parent="Quest Giver/root/Skeleton3D/Hair Tie" index="0"]
 surface_material_override/0 = ExtResource("3_o1iad")
 
 [node name="Jacket" parent="Quest Giver/root/Skeleton3D" index="2"]
-transform = Transform3D(0.999989, 0.00463561, -0.000215377, -0.00463597, 0.999988, -0.00167584, 0.000207606, 0.00167682, 0.999998, -0.0121612, 4.218, 0.11502)
+transform = Transform3D(0.999989, 0.00463562, -0.000215377, -0.00463598, 0.999988, -0.00167583, 0.000207606, 0.00167681, 0.999998, -0.0121611, 4.218, 0.11502)
 
 [node name="Jacket" parent="Quest Giver/root/Skeleton3D/Jacket" index="0"]
 surface_material_override/0 = ExtResource("3_o1iad")
