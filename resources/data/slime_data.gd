@@ -25,12 +25,12 @@ func get_random_type_masses(target_mass := 1) -> Dictionary[Constants.SlimeType,
 	var total_random_mass : int = 0
 	while target_mass > total_random_mass:
 		for slime_type in slime_type_masses:
-			var remaining_mass = target_mass - total_random_mass
-			var random_mass = randi() % (slime_type_masses[slime_type] + 1)
+			var remaining_mass = min(slime_type_masses[slime_type], target_mass - total_random_mass)
+			var random_mass = randi() % (remaining_mass + 1)
 			if random_mass == 0: continue
 			random_type_masses[slime_type] = random_mass
 			total_random_mass += random_mass
-			if total_random_mass >= target_mass : break
+			if target_mass <= total_random_mass : break
 	return random_type_masses
 
 func subtract_type_masses(type_masses : Dictionary[Constants.SlimeType, int]) -> void:
