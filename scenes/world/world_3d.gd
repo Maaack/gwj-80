@@ -50,6 +50,7 @@ func _on_slime_spawned(slime_node : Slime) -> void:
 	slime_node.reparent(self)
 	slime_node.slime_touched.connect(_on_slimes_touch.bind(slime_node))
 	slime_node.departed.connect(_on_slime_departed.bind(slime_node.slime_data))
+	slime_node.slime_split.connect(_on_slime_spawned)
 	slime_manager.slime_added(slime_node.slime_type)
 
 func _on_slime_departed(slime_data : SlimeData) -> void:

@@ -6,6 +6,7 @@ const DISTANCE_TO_DIRECT_MOVE_COMPLETE: float = 0.5
 
 signal slime_touched(other_slime : Slime)
 signal departed
+signal slime_split(other_slime : Slime)
 
 enum SplitType { NONE, SINGLE, MULTI }
 
@@ -121,6 +122,9 @@ func _ready() -> void:
 func is_busy():
 	return is_departing or is_growing
 
+func set_data_type_masses():
+	slime_data.slime_type_masses.clear()
+	slime_data.slime_type_masses = slime_data.get_slime_type_masses()
 
 func depart(departure_time : float = 1.0, send_signal : bool = true) -> void:
 	if is_busy(): return
@@ -152,13 +156,15 @@ func grow(new_mass : int = 1, grow_duration : float = 1.0) -> void:
 ## Single split will create one new slime, if the mass is greater than 1.
 ## The mass is then reduced by one per created slime.
 func split() -> void:
-	if split_type == SplitType.MULTI and mass > 2:
-		for i in mass:
+	var true_mass = slime_data.get_true_mass()
+	if true_mass > 1:
+		if split_type == SplitType.MULTI:
+			for i in range(true_mass - 1):
+				create_new_slime(self)
+			grow()
+		elif split_type == SplitType.SINGLE:
 			create_new_slime(self)
-		grow()
-	elif split_type == SplitType.SINGLE and mass > 1:
-		create_new_slime(self)
-		grow(mass - 1)
+			grow(true_mass - 1)
 
 
 # TODO: Use a better location, and maybe give it an external force?  The placement
@@ -171,7 +177,10 @@ func create_new_slime(slime: Slime) -> Slime:
 	add_sibling(new_slime)
 	new_slime.global_position = new_position
 	new_slime.external_velocity = external_velocity
-
+	var new_type_masses = slime.slime_data.get_random_type_masses()
+	new_slime.slime_data.slime_type_masses = new_type_masses
+	slime.slime_data.subtract_type_masses(new_type_masses)
+	slime_split.emit(new_slime)
 	return new_slime
 
 
@@ -369,16 +378,11 @@ func _on_flocking_zone_body_entered(body: Node3D) -> void:
 		return
 	if body is Slime:
 		nearby_slimes.append(body)
-	if body is PlayerCharacter:
-		_pc = body
-
 
 ## Stop tracking slimes that leave the area.
 func _on_flocking_zone_body_exited(body: Node3D) -> void:
 	if body is Slime and body in nearby_slimes:
 		nearby_slimes.erase(body)
-	if body is PlayerCharacter and _pc == body:
-		_pc = null
 
 #endregion
 

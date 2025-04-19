@@ -3,6 +3,7 @@ extends Node
 
 @export var slime_spawners : Array[SlimeSpawner]
 @export var slime_type_target : Dictionary[Constants.SlimeType, int]
+@export_range(0, 30) var respawn_delay : float = 10.0
 var slimes_type_count : Dictionary[Constants.SlimeType, int]
 
 func refresh_slime_spawns() -> void:
@@ -32,6 +33,8 @@ func slime_removed(slime_type : Constants.SlimeType, count : int = 1) -> void:
 	if slime_type not in slimes_type_count:
 		slimes_type_count[slime_type] = 0
 	slimes_type_count[slime_type] -= count
+	if respawn_delay > 0:
+		await get_tree().create_timer(respawn_delay, true).timeout
 	refresh_slime_spawns()
 
 func slime_masses_removed(slime_mass_types : Dictionary[Constants.SlimeType, int] = {}) -> void:
