@@ -6,6 +6,7 @@ extends PanelContainer
 @export var objective_list : ObjectiveList :
 	set(value):
 		objective_list = value
+		delivered_list.clear()
 		if is_inside_tree():
 			refresh_objectives()
 @export var delivered_list : Dictionary[Constants.SlimeType, int]

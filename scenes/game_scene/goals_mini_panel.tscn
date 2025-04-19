@@ -12,7 +12,6 @@ offset_right = 2.0
 offset_bottom = 1.0
 grow_vertical = 2
 script = ExtResource("1_wds8u")
-delivered_list = null
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
