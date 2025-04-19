@@ -5,10 +5,10 @@
 [node name="GoalRow" type="HBoxContainer"]
 custom_minimum_size = Vector2(80, 24)
 script = ExtResource("1_e8hkx")
-slime_goal = null
 
 [node name="SlimeCountLabel" type="Label" parent="."]
 layout_mode = 2
+text = "0 / 1"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2

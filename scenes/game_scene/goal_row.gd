@@ -4,7 +4,7 @@ extends HBoxContainer
 
 const GOAL_TEXT : String = "%d / %d"
 
-@export var slime_count : int = 1 :
+@export var slime_count : int = 0 :
 	set(value):
 		slime_count = value
 		if is_inside_tree():
