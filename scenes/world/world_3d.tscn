@@ -30,7 +30,7 @@ environment = ExtResource("3_6ng0t")
 
 [node name="PlayerCharacter3D" parent="." instance=ExtResource("7_xihs3")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2105, 0.260458, -65.599)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1578, 0.260458, -68.3791)
 
 [node name="DeliveryArea3D" parent="." instance=ExtResource("12_mchqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.907927, -1)
