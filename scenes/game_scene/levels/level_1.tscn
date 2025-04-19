@@ -8,5 +8,6 @@ objective_list = ExtResource("2_2hhcp")
 
 [node name="SlimeManager" parent="." index="0"]
 slime_type_target = Dictionary[int, int]({
-1: 10
+1: 20,
+2: 20
 })

@@ -6,13 +6,13 @@
 [sub_resource type="Resource" id="Resource_sdkcc"]
 script = ExtResource("1_ttmr1")
 slime_type = 1
-slime_count = 4
+slime_count = 5
 metadata/_custom_type_script = "uid://ba0t0vst1rfh"
 
 [sub_resource type="Resource" id="Resource_ttmr1"]
 script = ExtResource("1_ttmr1")
 slime_type = 2
-slime_count = 4
+slime_count = 5
 metadata/_custom_type_script = "uid://ba0t0vst1rfh"
 
 [resource]
