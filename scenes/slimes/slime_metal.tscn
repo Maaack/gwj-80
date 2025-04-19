@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b5iybcpovkwdx"]
+[gd_scene load_steps=15 format=3 uid="uid://b5iybcpovkwdx"]
 
 [ext_resource type="Script" uid="uid://3uu1o1e5j8b2" path="res://scripts/slimes/slime_metal.gd" id="1_31s8q"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="1_gwy1k"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bhxk5kmc8mpcd" path="res://assets/Art/3d/Slime/Metal.png" id="4_8bit7"]
 [ext_resource type="Texture2D" uid="uid://bpyifld1qffep" path="res://assets/Art/3d/Slime/Mouth_default.png" id="5_rsrpr"]
 [ext_resource type="PackedScene" uid="uid://dctf57s33kdcy" path="res://scenes/slimes/alerted_indicator.tscn" id="6_8bit7"]
+[ext_resource type="PackedScene" uid="uid://dk3mqxfsapt2s" path="res://scenes/slimes/nudgeable_indicator.tscn" id="7_rsrpr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
 resource_local_to_scene = true
@@ -231,6 +232,10 @@ unique_name_in_owner = true
 shape = SubResource("SphereShape3D_pf3dq")
 
 [node name="AlertedIndicator" parent="." instance=ExtResource("6_8bit7")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75984, 0)
+
+[node name="NudgeableIndicator" parent="." instance=ExtResource("7_rsrpr")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75984, 0)
 

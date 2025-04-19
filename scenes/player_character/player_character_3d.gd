@@ -14,6 +14,7 @@ extends CharacterBody3D
 @onready var note_1_particles: GPUParticles3D = $Note1Particles3D
 @onready var note_2_particles: GPUParticles3D = $Note2Particles3D
 @onready var fade_rect: ColorRect = %FadeRect
+@onready var interaction_zone: Area3D = %InteractionZone
 
 # Gamplay mechanics and Inspector tweakables
 @export var gravity : float = 9.8
@@ -27,6 +28,9 @@ extends CharacterBody3D
 @export_category("Bounding Box")
 @export var min_bounds := Vector3(-80.0, 0.0, -80.0)
 @export var max_bounds := Vector3(80.0, 0.0, 80.0)
+
+@export_category("Nudge Settings")
+@export var nudge_strength := Vector3(4.0, 4.0, 4.0)
 
 # Animation node names
 var roll_node_name : String= "Roll"
@@ -60,6 +64,10 @@ var initial_position: Vector3
 # Tweens
 var fade_tween: Tween
 
+# Nearby slimes
+var interactable_slimes: Array[Slime] = []
+var last_highlighted_slime: Slime
+
 
 func _ready() -> void:
 	direction = Vector3.BACK.rotated(Vector3.UP, $CustomCamera/h.global_transform.basis.get_euler().y)
@@ -78,8 +86,12 @@ func _input(event) -> void:
 		whistling_player.stop()
 		note_1_particles.emitting = false
 		note_2_particles.emitting = false
+	elif event.is_action_pressed("interact"):
+		_nudge_nearest_slime()
 
 func _physics_process(delta : float) -> void:
+	_highlight_closest_slime()
+
 	if stop_movement_inputs:
 		return
 	var on_floor := is_on_floor() # State control for is jumping/falling/landing
@@ -123,7 +135,10 @@ func _physics_process(delta : float) -> void:
 		#player_mesh.rotation.y = lerp_angle(player_mesh.rotation.y, $Camroot/h.rotation.y, delta * angular_acceleration)
 
 	#else: # Normal turn movement mechanics
-	player_mesh.rotation.y = lerp_angle(player_mesh.rotation.y, atan2(direction.x, direction.z) - rotation.y, delta * angular_acceleration)
+	var new_rotation: float = lerp_angle(player_mesh.rotation.y, atan2(direction.x, direction.z) - rotation.y, delta * angular_acceleration)
+	player_mesh.rotation.y = new_rotation
+	interaction_zone.rotation.y = new_rotation
+
 
 	horizontal_velocity = horizontal_velocity.lerp(direction.normalized() * movement_speed, acceleration * delta)
 
@@ -180,3 +195,57 @@ func _tween_respawn() -> void:
 	fade_tween.tween_callback(_reset_position)
 	fade_tween.set_ease(Tween.EASE_IN)
 	fade_tween.tween_property(fade_rect, "self_modulate:a", 0.0, fade_transition_duration / 2)
+
+
+func _on_interaction_zone_body_entered(body: Node3D) -> void:
+	if body is Slime:
+		interactable_slimes.append(body)
+
+
+func _on_interaction_zone_body_exited(body: Node3D) -> void:
+	if body is Slime:
+		interactable_slimes.erase(body)
+		body.is_nudgeable = false
+		if body == last_highlighted_slime:
+			last_highlighted_slime.is_nudgeable = false
+			last_highlighted_slime = null
+
+
+func _nudge_nearest_slime() -> void:
+	if interactable_slimes.is_empty():
+		return
+
+	var closest_slime: Slime = _get_closest_slime()
+
+	var direction: Vector3 = global_position.direction_to(closest_slime.global_position)
+	closest_slime.add_external_velocity(direction * nudge_strength)
+
+
+func _is_closer_to_player(slime_a: Slime, slime_b: Slime) -> bool:
+	var dist_a: float = global_position.distance_to(slime_a.global_position)
+	var dist_b: float = global_position.distance_to(slime_b.global_position)
+
+	return dist_a < dist_b
+
+
+func _get_closest_slime() -> Slime:
+	return interactable_slimes.reduce(
+		func(closest_slime: Slime, current_slime: Slime) -> Slime:
+		return current_slime if _is_closer_to_player(current_slime, closest_slime) else closest_slime
+	)
+
+
+## Show the nudgeable indicator of the closest slime and store the slime,
+## so the indicator can be hidden if it leaves the area or is no longer the closest.
+func _highlight_closest_slime() -> void:
+	if interactable_slimes.is_empty():
+		return
+
+	var closest_slime: Slime = _get_closest_slime()
+	if last_highlighted_slime == null:
+		last_highlighted_slime = closest_slime
+		closest_slime.is_nudgeable = true
+	elif closest_slime != last_highlighted_slime:
+		last_highlighted_slime.is_nudgeable = false
+		last_highlighted_slime = closest_slime
+		closest_slime.is_nudgeable = true
