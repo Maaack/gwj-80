@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn115nioe6w8v"]
+
+[ext_resource type="PackedScene" uid="uid://c2o8tdtpcqsbb" path="res://scenes/world/world_3d.tscn" id="1_njj6t"]
+[ext_resource type="Resource" uid="uid://bgd3tc4gtffic" path="res://resources/data/objective_lists/level_5.tres" id="2_njj6t"]
+
+[node name="Level5" instance=ExtResource("1_njj6t")]
+objective_list = ExtResource("2_njj6t")
+
+[node name="SlimeManager" parent="." index="0"]
+slime_type_target = Dictionary[int, int]({
+1: 20,
+2: 20,
+3: 20,
+4: 20
+})
