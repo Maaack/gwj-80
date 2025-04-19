@@ -4,6 +4,8 @@
 class_name PlayerCharacter
 extends CharacterBody3D
 
+signal slime_type_observed(slime_type: Constants.SlimeType, amount: float)
+
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var playback : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 
@@ -65,6 +67,7 @@ var initial_position: Vector3
 
 # Tweens
 var fade_tween: Tween
+var observed_slimes : Array[Slime]
 
 
 func _ready() -> void:
@@ -160,11 +163,14 @@ func _physics_process(delta : float) -> void:
 func _on_area_3d_body_entered(body):
 	if body is Slime:
 		body._pc = self
+		observed_slimes.append(body)
+		if body.slime_type > 2:
+			print("body entered %d" % body.slime_type)
 
 func _on_area_3d_body_exited(body):
 	if body is Slime:
 		body._pc = null
-
+		observed_slimes.erase(body)
 
 ## If the player is outside of the bounds, reset their position to their initial spawn location.
 func _on_bounds_check_timer_timeout() -> void:
@@ -188,3 +194,15 @@ func _tween_respawn() -> void:
 	fade_tween.tween_callback(_reset_position)
 	fade_tween.set_ease(Tween.EASE_IN)
 	fade_tween.tween_property(fade_rect, "self_modulate:a", 0.0, fade_transition_duration / 2)
+
+
+func _on_discover_timer_timeout():
+	var slime_type_count : Dictionary[Constants.SlimeType, int]
+	for observed_slime in observed_slimes:
+		var slime_type = observed_slime.slime_type
+		if slime_type not in slime_type_count:
+			slime_type_count[slime_type] = 0
+		slime_type_count[slime_type] += 1
+	for slime_type in slime_type_count:
+		var disovery_progress : float = slime_type_count[slime_type] * 0.0025
+		slime_type_observed.emit(slime_type, disovery_progress)

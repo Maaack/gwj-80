@@ -86,6 +86,9 @@ func _on_slimes_touch(slime_1 : Slime, slime_2 : Slime) -> void:
 func _on_delivery_delay_timer_timeout():
 	delivery_area.deliver()
 
+func _on_player_character_3d_slime_type_observed(slime_type, amount):
+	GameState.get_journal_state().add_slime_progress(slime_type, amount)
+
 func _ready():
 	level_state = GameState.get_level_state(scene_file_path)
 	if delivery_area:

@@ -191,4 +191,5 @@ fire_spawn = NodePath("../FireSlimeSpawner")
 vine_spawn = NodePath("../VineSlimeSpawner")
 rock_spawn = NodePath("../RockSlimeSpawner")
 
+[connection signal="slime_type_observed" from="PlayerCharacter3D" to="." method="_on_player_character_3d_slime_type_observed"]
 [connection signal="timeout" from="DeliveryDelayTimer" to="." method="_on_delivery_delay_timer_timeout"]
