@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://tcv64topdg6v"]
+[gd_scene load_steps=11 format=3 uid="uid://tcv64topdg6v"]
 
 [ext_resource type="Script" uid="uid://bqneheiwro372" path="res://scenes/game_scene/journal_panel.gd" id="1_8jtbd"]
-[ext_resource type="Texture2D" uid="uid://drupexiewywk6" path="res://assets/Art/2d/TExtures/SLime.png" id="1_pjfiw"]
-[ext_resource type="Script" path="res://scripts/custom_button.gd" id="3_7gocn"]
+[ext_resource type="Theme" uid="uid://dq6jkl8ylvsn2" path="res://assets/Journal Theme.tres" id="1_v72eh"]
+[ext_resource type="Script" uid="uid://b7jjlfwvmxobw" path="res://scripts/custom_button.gd" id="3_7gocn"]
+[ext_resource type="Texture2D" uid="uid://p54mdr5bb81s" path="res://assets/Art/2d/TExtures/WaterSlime_J.png" id="3_v72eh"]
+[ext_resource type="Texture2D" uid="uid://0hcg7a6mbmgj" path="res://assets/Art/2d/TExtures/Arrow Left.png" id="5_vhhe8"]
+[ext_resource type="Texture2D" uid="uid://be1hee551o5o7" path="res://assets/Art/2d/TExtures/Arrow Right.png" id="7_1svu2"]
 
 [sub_resource type="Animation" id="Animation_emiv2"]
 resource_name = "CLOSE"
@@ -62,12 +65,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
+offset_left = -344.5
 offset_top = 380.0
-offset_right = 300.0
+offset_right = 344.5
 offset_bottom = 980.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_v72eh")
 script = ExtResource("1_8jtbd")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -111,7 +115,7 @@ theme_override_constants/margin_right = 24
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_pjfiw")
+texture = ExtResource("3_v72eh")
 expand_mode = 2
 stretch_mode = 5
 
@@ -237,7 +241,8 @@ alignment = 1
 
 [node name="PrevButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "<"
+icon = ExtResource("5_vhhe8")
+flat = true
 script = ExtResource("3_7gocn")
 
 [node name="PageLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
@@ -246,7 +251,8 @@ layout_mode = 2
 
 [node name="NextButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = ">"
+icon = ExtResource("7_1svu2")
+flat = true
 script = ExtResource("3_7gocn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dq6jkl8ylvsn2"]
+
+[ext_resource type="FontFile" uid="uid://d2g5kua0l6cp5" path="res://assets/HechoAMano-Regular.ttf" id="1_wkgsr"]
+[ext_resource type="Texture2D" uid="uid://dgcjw2tsskuld" path="res://assets/Art/2d/TExtures/Page.png" id="2_qkwcy"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c10ox"]
+texture = ExtResource("2_qkwcy")
+
+[resource]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/fonts/font = ExtResource("1_wkgsr")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_c10ox")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
