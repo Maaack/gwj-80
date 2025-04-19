@@ -1,11 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://tcv64topdg6v"]
+[gd_scene load_steps=8 format=3 uid="uid://tcv64topdg6v"]
 
 [ext_resource type="Script" uid="uid://bqneheiwro372" path="res://scenes/game_scene/journal_panel.gd" id="1_8jtbd"]
 [ext_resource type="Texture2D" uid="uid://drupexiewywk6" path="res://assets/Art/2d/TExtures/SLime.png" id="1_pjfiw"]
-[ext_resource type="Script" uid="uid://b7jjlfwvmxobw" path="res://scripts/custom_button.gd" id="3_7gocn"]
+[ext_resource type="Script" path="res://scripts/custom_button.gd" id="3_7gocn"]
+
+[sub_resource type="Animation" id="Animation_emiv2"]
+resource_name = "CLOSE"
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(60, -0.25, 0, 0.6, 139, 733, -0.566667, -3, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6)
+}
+
+[sub_resource type="Animation" id="Animation_7gocn"]
+resource_name = "OPEN"
+length = 0.8
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(740, -0.25, 0, 0.9, -4, 60, -0.466667, -218, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
+}
+
+[sub_resource type="Animation" id="Animation_4qgqk"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_emiv2"]
+_data = {
+&"CLOSE": SubResource("Animation_emiv2"),
+&"OPEN": SubResource("Animation_7gocn"),
+&"RESET": SubResource("Animation_4qgqk")
+}
 
 [node name="JournalPanel" type="PanelContainer"]
-visible = false
 custom_minimum_size = Vector2(600, 600)
 anchors_preset = 8
 anchor_left = 0.5
@@ -13,9 +63,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -300.0
+offset_top = 373.0
 offset_right = 300.0
-offset_bottom = 300.0
+offset_bottom = 973.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8jtbd")
@@ -166,3 +216,8 @@ script = ExtResource("3_7gocn")
 layout_mode = 2
 text = ">"
 script = ExtResource("3_7gocn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_emiv2")
+}
