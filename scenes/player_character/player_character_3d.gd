@@ -13,6 +13,7 @@ extends CharacterBody3D
 @onready var whistling_player: AudioStreamPlayer3D = %WhistlingStreamPlayer3D
 @onready var note_1_particles: GPUParticles3D = $Note1Particles3D
 @onready var note_2_particles: GPUParticles3D = $Note2Particles3D
+@onready var fade_rect: ColorRect = %FadeRect
 
 # Gamplay mechanics and Inspector tweakables
 @export var gravity : float = 9.8
@@ -21,6 +22,11 @@ extends CharacterBody3D
 @export var run_speed : float = 5.5
 @export var dash_power : float = 12 # Controls roll and big attack speed boosts
 @export var character_model : Node3D
+@export var fade_transition_duration: float = 1.0
+
+@export_category("Bounding Box")
+@export var min_bounds := Vector3(-80.0, 0.0, -80.0)
+@export var max_bounds := Vector3(80.0, 0.0, 80.0)
 
 # Animation node names
 var roll_node_name : String= "Roll"
@@ -49,9 +55,15 @@ var acceleration : float
 var selected_outfit : Node3D
 var stop_movement_inputs : bool = false
 var is_whistling : bool = false
+var initial_position: Vector3
+
+# Tweens
+var fade_tween: Tween
+
 
 func _ready() -> void:
 	direction = Vector3.BACK.rotated(Vector3.UP, $CustomCamera/h.global_transform.basis.get_euler().y)
+	initial_position = global_position
 
 func _input(event) -> void:
 	if event.is_action_pressed("attract_slimes"):
@@ -72,22 +84,22 @@ func _physics_process(delta : float) -> void:
 		return
 	var on_floor := is_on_floor() # State control for is jumping/falling/landing
 	var h_rot : float = $CustomCamera/h.global_transform.basis.get_euler().y
-	
+
 	movement_speed = 0
 	angular_acceleration = 10
 	acceleration = 15
 
 	# Gravity mechanics and prevent slope-sliding
-	if not is_on_floor(): 
+	if not is_on_floor():
 		vertical_velocity += Vector3.DOWN * gravity * 2 * delta
-	else: 
+	else:
 		#vertical_velocity = -get_floor_normal() * gravity / 3
 		vertical_velocity = Vector3.DOWN * gravity / 10
-	
+
 #	Jump input and Mechanics
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		vertical_velocity = Vector3.UP * jump_force
-		
+
 	# Movement input, state and mechanics. *Note: movement stops if attacking
 	if (Input.is_action_pressed("move_forward") ||  Input.is_action_pressed("move_backward") ||  Input.is_action_pressed("move_left") ||  Input.is_action_pressed("move_right")):
 		direction = Vector3(Input.get_action_strength("move_left") - Input.get_action_strength("move_right"),
@@ -95,7 +107,7 @@ func _physics_process(delta : float) -> void:
 					Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward"))
 		direction = direction.rotated(Vector3.UP, h_rot).normalized()
 		is_walking = true
-		
+
 	# Walk input, dash state and movement speed
 		if not Input.is_action_pressed("walk") and (is_walking == true ) and (is_whistling == false):
 			movement_speed = run_speed
@@ -103,29 +115,29 @@ func _physics_process(delta : float) -> void:
 		else: # Walk State and speed
 			movement_speed = walk_speed
 			is_running = false
-	else: 
+	else:
 		is_walking = false
 		is_running = false
-	
+
 	#if Input.is_action_pressed("aim"):  # Aim/Strafe input and  mechanics
 		#player_mesh.rotation.y = lerp_angle(player_mesh.rotation.y, $Camroot/h.rotation.y, delta * angular_acceleration)
 
 	#else: # Normal turn movement mechanics
 	player_mesh.rotation.y = lerp_angle(player_mesh.rotation.y, atan2(direction.x, direction.z) - rotation.y, delta * angular_acceleration)
-	
+
 	horizontal_velocity = horizontal_velocity.lerp(direction.normalized() * movement_speed, acceleration * delta)
-	
+
 	# The Physics Sauce. Movement, gravity and velocity in a perfect dance.
 	velocity.z = horizontal_velocity.z + vertical_velocity.z
 	velocity.x = horizontal_velocity.x + vertical_velocity.x
 	velocity.y = vertical_velocity.y
-	
+
 	move_and_slide()
 
 	# ========= State machine controls =========
-	# The booleans of the on_floor, is_walking etc, trigger the 
+	# The booleans of the on_floor, is_walking etc, trigger the
 	# advanced conditions of the AnimationTree, controlling animation paths
-	
+
 	# on_floor manages jumps and falls
 	animation_tree["parameters/conditions/IsOnFloor"] = on_floor
 	animation_tree["parameters/conditions/IsInAir"] = !on_floor
@@ -144,3 +156,27 @@ func _on_area_3d_body_entered(body):
 func _on_area_3d_body_exited(body):
 	if body is Slime:
 		body._pc = null
+
+
+## If the player is outside of the bounds, reset their position to their initial spawn location.
+func _on_bounds_check_timer_timeout() -> void:
+	if global_position.x < min_bounds.x or global_position.x > max_bounds.x \
+			or global_position.z < min_bounds.z or global_position.z > max_bounds.z:
+		_tween_respawn()
+
+
+func _reset_position() -> void:
+	global_position = initial_position
+
+
+## Fade the screen to black, move the character to their initial spawn location,
+## and then unfade the screen.
+func _tween_respawn() -> void:
+	if fade_tween and fade_tween.is_running():
+		fade_tween.kill()
+
+	fade_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	fade_tween.tween_property(fade_rect, "self_modulate:a", 1.0, fade_transition_duration / 2)
+	fade_tween.tween_callback(_reset_position)
+	fade_tween.set_ease(Tween.EASE_IN)
+	fade_tween.tween_property(fade_rect, "self_modulate:a", 0.0, fade_transition_duration / 2)
