@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://4aqshmi61csr"]
+[gd_scene load_steps=4 format=3 uid="uid://4aqshmi61csr"]
 
 [ext_resource type="PackedScene" uid="uid://c2o8tdtpcqsbb" path="res://scenes/world/world_3d.tscn" id="1_8dk0s"]
 [ext_resource type="Resource" uid="uid://cfjwu5fn5thwn" path="res://resources/data/objective_lists/level_6.tres" id="2_8dk0s"]
+[ext_resource type="AudioStream" uid="uid://dcgvsirc0m81y" path="res://assets/Audio/Music/loop mix_d.ogg" id="3_wu208"]
 
 [node name="Level6" instance=ExtResource("1_8dk0s")]
 objective_list = ExtResource("2_8dk0s")
 
-[node name="SlimeManager" parent="." index="0"]
+[node name="BackgroundMusicPlayer" parent="." index="0"]
+stream = ExtResource("3_wu208")
+
+[node name="SlimeManager" parent="." index="1"]
 slime_type_target = Dictionary[int, int]({
 1: 20,
 2: 20,

@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2o8tdtpcqsbb"]
+[gd_scene load_steps=14 format=3 uid="uid://c2o8tdtpcqsbb"]
 
 [ext_resource type="Script" uid="uid://dlph8i25t6tyd" path="res://scenes/world/world_3d.gd" id="1_d5rq0"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="2_mchqb"]
 [ext_resource type="PackedScene" uid="uid://dkl3lq1qfby3p" path="res://scenes/world/slime_manager.tscn" id="2_xd1ql"]
 [ext_resource type="Environment" uid="uid://bqkr5wdp86m68" path="res://assets/Terrain Data/WorldENV.tres" id="3_6ng0t"]
+[ext_resource type="AudioStream" uid="uid://dq1a6idlypxnr" path="res://assets/Audio/Music/loop mix_a.ogg" id="3_xd1ql"]
 [ext_resource type="PackedScene" uid="uid://bkw66y13utj24" path="res://scenes/player_character/player_character_3d.tscn" id="7_xihs3"]
 [ext_resource type="PackedScene" uid="uid://e0giym03e6sp" path="res://assets/FinalMAp.tscn" id="11_4m75t"]
 [ext_resource type="PackedScene" uid="uid://t2e0c1vjuiws" path="res://scenes/world/delivery_area_3d.tscn" id="12_mchqb"]
@@ -14,6 +16,11 @@
 
 [node name="World3D" type="Node3D"]
 script = ExtResource("1_d5rq0")
+
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("2_mchqb")]
+stream = ExtResource("3_xd1ql")
+volume_db = -10.0
+parameters/looping = true
 
 [node name="SlimeManager" parent="." node_paths=PackedStringArray("slime_spawners") instance=ExtResource("2_xd1ql")]
 slime_spawners = [NodePath("../WaterSlimeSpawner"), NodePath("../RockSlimeSpawner"), NodePath("../FireSlimeSpawner"), NodePath("../VineSlimeSpawner")]
