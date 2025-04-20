@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxk2q71hgfrba"]
+[gd_scene load_steps=8 format=3 uid="uid://cxk2q71hgfrba"]
 
 [ext_resource type="PackedScene" uid="uid://d0s26rubacfa3" path="res://scenes/overlaid_menus/overlaid_menu.tscn" id="1_cmye3"]
 [ext_resource type="Texture2D" uid="uid://c5704rjrc232v" path="res://assets/images/tutorial/water-slime-2.png" id="2_0cguh"]
 [ext_resource type="Texture2D" uid="uid://bi8ejo0gt1yk3" path="res://assets/images/tutorial/platform.png" id="3_m6hqc"]
 [ext_resource type="Texture2D" uid="uid://cmn2kwfpcymky" path="res://assets/images/tutorial/chest.png" id="4_bkxg7"]
 [ext_resource type="Texture2D" uid="uid://bbw2go2gma6cm" path="res://assets/images/tutorial/corner-arrow.svg" id="5_rp71i"]
+[ext_resource type="Texture2D" uid="uid://dax12yeik4y4h" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Default/mouse_right.png" id="6_bkxg7"]
+[ext_resource type="Texture2D" uid="uid://tsf0thpmgxgf" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/keyboard_e.svg" id="6_m6hqc"]
 
 [node name="Tutorial1" instance=ExtResource("1_cmye3")]
 pauses_game = true
@@ -73,3 +75,17 @@ offset_right = 678.0
 offset_bottom = 305.0
 texture = ExtResource("5_rp71i")
 stretch_mode = 5
+
+[node name="MouseRight" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="5"]
+offset_left = 707.5
+offset_top = 488.0
+offset_right = 771.5
+offset_bottom = 552.0
+texture = ExtResource("6_bkxg7")
+
+[node name="KeyboardE" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="6"]
+offset_left = 707.5
+offset_top = 423.0
+offset_right = 771.5
+offset_bottom = 487.0
+texture = ExtResource("6_m6hqc")
