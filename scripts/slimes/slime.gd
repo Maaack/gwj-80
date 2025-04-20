@@ -239,7 +239,7 @@ func _physics_process(delta: float) -> void:
 		velocity += push_velocity
 
 	# NOTE: This would be more efficient if checked when these conditions change, rather than every physics update.
-	if not is_idle and nearby_slimes.is_empty() and attract_locations.is_empty() and repel_locations.is_empty():
+	if not is_idle and nearby_slimes.is_empty() and attract_locations.is_empty() and repel_locations.is_empty() and _pc == null:
 		if update_ambient_direction_timer.is_stopped():
 			update_ambient_direction_timer.start()
 	elif not update_ambient_direction_timer.is_stopped():
