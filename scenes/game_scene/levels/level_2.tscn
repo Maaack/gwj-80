@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://djdupyw551qy3"]
+[gd_scene load_steps=6 format=3 uid="uid://djdupyw551qy3"]
 
-[ext_resource type="PackedScene" uid="uid://c2o8tdtpcqsbb" path="res://scenes/world/world_3d.tscn" id="1_irplr"]
-[ext_resource type="Resource" uid="uid://c0yxtctchpoxf" path="res://resources/data/objective_lists/level_2.tres" id="2_irplr"]
-[ext_resource type="AudioStream" uid="uid://cjxaajhm6qdh5" path="res://assets/Audio/Music/loop mix_b.ogg" id="3_irplr"]
+[ext_resource type="PackedScene" uid="uid://c2o8tdtpcqsbb" path="res://scenes/world/world_3d.tscn" id="1_8dmsi"]
+[ext_resource type="Resource" uid="uid://c0yxtctchpoxf" path="res://resources/data/objective_lists/level_2.tres" id="2_jvc20"]
+[ext_resource type="PackedScene" uid="uid://d0un8u0y0qkgu" path="res://scenes/tutorials/tutorial_3.tscn" id="3_sa2n4"]
+[ext_resource type="PackedScene" uid="uid://bylbl3dxfie7h" path="res://scenes/tutorials/tutorial_4.tscn" id="4_3uuw3"]
+[ext_resource type="AudioStream" uid="uid://cjxaajhm6qdh5" path="res://assets/Audio/Music/loop mix_b.ogg" id="5_sgww6"]
 
-[node name="Level2" instance=ExtResource("1_irplr")]
-objective_list = ExtResource("2_irplr")
+[node name="Level2" instance=ExtResource("1_8dmsi")]
+objective_list = ExtResource("2_jvc20")
+tutorial_scenes = Array[PackedScene]([ExtResource("3_sa2n4"), ExtResource("4_3uuw3")])
 
 [node name="BackgroundMusicPlayer" parent="." index="0"]
-stream = ExtResource("3_irplr")
+stream = ExtResource("5_sgww6")
 
 [node name="SlimeManager" parent="." index="1"]
 slime_type_target = Dictionary[int, int]({

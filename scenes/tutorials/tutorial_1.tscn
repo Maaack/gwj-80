@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxk2q71hgfrba"]
+
+[ext_resource type="PackedScene" uid="uid://d0s26rubacfa3" path="res://scenes/overlaid_menus/overlaid_menu.tscn" id="1_cmye3"]
+[ext_resource type="Texture2D" uid="uid://c5704rjrc232v" path="res://assets/images/tutorial/water-slime-2.png" id="2_0cguh"]
+[ext_resource type="Texture2D" uid="uid://bi8ejo0gt1yk3" path="res://assets/images/tutorial/platform.png" id="3_m6hqc"]
+[ext_resource type="Texture2D" uid="uid://cmn2kwfpcymky" path="res://assets/images/tutorial/chest.png" id="4_bkxg7"]
+[ext_resource type="Texture2D" uid="uid://bbw2go2gma6cm" path="res://assets/images/tutorial/corner-arrow.svg" id="5_rp71i"]
+[ext_resource type="Texture2D" uid="uid://8m016ff4uyn4" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/mouse_right.svg" id="6_bkxg7"]
+[ext_resource type="Texture2D" uid="uid://tsf0thpmgxgf" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/keyboard_e.svg" id="6_m6hqc"]
+
+[node name="Tutorial1" instance=ExtResource("1_cmye3")]
+pauses_game = true
+
+[node name="MenuPanelContainer" parent="." index="1"]
+offset_left = -419.5
+offset_top = -302.0
+offset_right = 419.5
+offset_bottom = 302.0
+
+[node name="TitleMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="0"]
+visible = false
+
+[node name="TitleLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin" index="0"]
+text = ""
+
+[node name="DescriptionMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="1"]
+visible = true
+
+[node name="Control" type="Control" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin" index="1"]
+layout_mode = 2
+
+[node name="Water-slime-2" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="0"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 240.0
+offset_bottom = 217.0
+texture = ExtResource("2_0cguh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Platform" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="1"]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 168.0
+offset_right = 508.0
+offset_bottom = 385.0
+texture = ExtResource("3_m6hqc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Chest" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="2"]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 335.0
+offset_right = 775.0
+offset_bottom = 552.0
+texture = ExtResource("4_bkxg7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Corner-arrow" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="3"]
+layout_mode = 0
+offset_left = 359.0
+offset_top = 87.0
+offset_right = 407.0
+offset_bottom = 135.0
+texture = ExtResource("5_rp71i")
+stretch_mode = 5
+
+[node name="Corner-arrow2" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="4"]
+layout_mode = 0
+offset_left = 630.0
+offset_top = 257.0
+offset_right = 678.0
+offset_bottom = 305.0
+texture = ExtResource("5_rp71i")
+stretch_mode = 5
+
+[node name="MouseRight" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="5"]
+offset_left = 707.5
+offset_top = 488.0
+offset_right = 771.5
+offset_bottom = 552.0
+texture = ExtResource("6_bkxg7")
+
+[node name="KeyboardE" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="6"]
+offset_left = 707.5
+offset_top = 423.0
+offset_right = 771.5
+offset_bottom = 487.0
+texture = ExtResource("6_m6hqc")

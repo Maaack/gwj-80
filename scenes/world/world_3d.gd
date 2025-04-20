@@ -6,6 +6,7 @@ signal slimes_combined(slime_type_1: Constants.SlimeType, slime_type_2: Constant
 signal slime_delivered(slime_type: Constants.SlimeType, total_delivered: int)
 
 @export var objective_list : ObjectiveList
+@export var tutorial_scenes : Array[PackedScene]
 
 @onready var delivery_area : DeliveryArea3D = $DeliveryArea3D
 @onready var slime_manager : SlimeManager = $SlimeManager
@@ -89,6 +90,17 @@ func _on_slimes_touch(slime_1 : Slime, slime_2 : Slime) -> void:
 func _on_player_character_3d_slime_type_observed(slime_type, amount):
 	GameState.get_journal_state().add_slime_progress(slime_type, amount)
 
+func open_tutorials():
+	for tutorial_scene in tutorial_scenes:
+		var tutorial_menu : OverlaidMenu = tutorial_scene.instantiate()
+		if tutorial_menu == null:
+			push_warning("Tutorial failed to open %s" % tutorial_scene)
+			return
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().current_scene.call_deferred("add_child", tutorial_menu)
+		await tutorial_menu.tree_exited
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _ready():
 	level_state = GameState.get_level_state(scene_file_path)
 	if delivery_area:
@@ -98,6 +110,8 @@ func _ready():
 			child.slime_spawned.connect(_on_slime_spawned)
 		if child is DeliveryInteractable:
 			child.interacted.connect(delivery_area.deliver)
+	await get_tree().create_timer(1, false).timeout
+	open_tutorials()
 
 func _exit_tree():
 	GlobalState.save()

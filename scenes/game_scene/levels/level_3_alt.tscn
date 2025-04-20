@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbny0hpe2hvyg"]
+
+[ext_resource type="PackedScene" uid="uid://c2o8tdtpcqsbb" path="res://scenes/world/world_3d.tscn" id="1_mf3pk"]
+[ext_resource type="Resource" uid="uid://b4m8pu3ccgfi6" path="res://resources/data/objective_lists/level_3_alt.tres" id="2_mf3pk"]
+[ext_resource type="AudioStream" uid="uid://ccitc3gio2pjg" path="res://assets/Audio/Music/loop mix_c.ogg" id="3_84jpv"]
+[ext_resource type="PackedScene" uid="uid://c13wc5cobjonn" path="res://scenes/tutorials/tutorial_5.tscn" id="3_yv64l"]
+
+[node name="Level3" instance=ExtResource("1_mf3pk")]
+objective_list = ExtResource("2_mf3pk")
+tutorial_scenes = Array[PackedScene]([ExtResource("3_yv64l")])
+
+[node name="BackgroundMusicPlayer" parent="." index="0"]
+stream = ExtResource("3_84jpv")
+
+[node name="SlimeManager" parent="." index="1"]
+slime_type_target = Dictionary[int, int]({
+1: 20,
+2: 20,
+3: 20,
+4: 20
+})
