@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2055ptmvxc8d"]
+
+[ext_resource type="Theme" uid="uid://dq6jkl8ylvsn2" path="res://assets/Journal Theme.tres" id="1_oxkw2"]
+[ext_resource type="Script" uid="uid://datg1yeywfnry" path="res://scripts/slime_combination_display.gd" id="2_g040a"]
+[ext_resource type="Texture2D" uid="uid://drupexiewywk6" path="res://assets/Art/2d/TExtures/SLime.png" id="2_jmpir"]
+
+[node name="SlimeCombinationDisplay" type="HBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_oxkw2")
+alignment = 1
+script = ExtResource("2_g040a")
+
+[node name="SlimeOneContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(52, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="SlimeOneLabel" type="Label" parent="SlimeOneContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Slime 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlimeOneTexture" type="TextureRect" parent="SlimeOneContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_jmpir")
+expand_mode = 1
+
+[node name="PlusLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlimeTwoContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(52, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="SlimeTwoLabel" type="Label" parent="SlimeTwoContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Slime 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlimeTwoTexture" type="TextureRect" parent="SlimeTwoContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_jmpir")
+expand_mode = 1
+
+[node name="EqualsLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResultContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(52, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="ResultLabel" type="Label" parent="ResultContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Result"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResultTexture" type="TextureRect" parent="ResultContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_jmpir")
+expand_mode = 1

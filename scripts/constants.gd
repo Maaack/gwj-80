@@ -78,3 +78,13 @@ static func get_slime_instance(slime_type : SlimeType) -> Slime:
 static func get_slime_name(slime_type : SlimeType) -> String:
 	if slime_type not in slime_type_names: return "Any"
 	return slime_type_names[slime_type]
+
+
+static func get_relevant_combinations(slime_type: SlimeType) -> Array[SlimeCombination]:
+	var relevant_combinations: Array[SlimeCombination] = []
+
+	for combination: SlimeCombination in combinations:
+		if combination.has_slime(slime_type):
+			relevant_combinations.append(combination)
+
+	return relevant_combinations

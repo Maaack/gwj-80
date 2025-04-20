@@ -188,6 +188,8 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_31s8q")
 slime_type = 6
+min_speed = 0.0
+max_speed = 0.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
@@ -239,9 +241,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75984, 0)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75984, 0)
 
+[node name="OutOfBoundsDespawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 20.0
+
 [connection signal="body_entered" from="FlockingZone" to="." method="_on_flocking_zone_body_entered"]
 [connection signal="body_exited" from="FlockingZone" to="." method="_on_flocking_zone_body_exited"]
 [connection signal="timeout" from="UpdateAmbientDirectionTimer" to="." method="_on_update_ambient_direction_timer_timeout"]
+[connection signal="timeout" from="OutOfBoundsDespawnTimer" to="." method="_on_out_of_bounds_despawn_timer_timeout"]
 
 [editable path="Pivot/SlimeModel"]
 [editable path="Pivot/SlimeModel/SLime"]
