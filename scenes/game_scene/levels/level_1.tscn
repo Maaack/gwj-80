@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://g6bpfoo0jy77"]
+[gd_scene load_steps=5 format=3 uid="uid://g6bpfoo0jy77"]
 
 [ext_resource type="PackedScene" uid="uid://c2o8tdtpcqsbb" path="res://scenes/world/world_3d.tscn" id="1_0nr2a"]
 [ext_resource type="Resource" uid="uid://bo5xs7cl2lqc6" path="res://resources/data/objective_lists/level_1.tres" id="2_2hhcp"]
+[ext_resource type="PackedScene" uid="uid://cxk2q71hgfrba" path="res://scenes/tutorials/tutorial_1.tscn" id="3_y0mvw"]
+[ext_resource type="PackedScene" uid="uid://c6vw8hvsjqeqd" path="res://scenes/tutorials/tutorial_2.tscn" id="4_w6i3l"]
 
 [node name="Level1" instance=ExtResource("1_0nr2a")]
 objective_list = ExtResource("2_2hhcp")
+tutorial_scenes = Array[PackedScene]([ExtResource("3_y0mvw"), ExtResource("4_w6i3l")])
 
 [node name="SlimeManager" parent="." index="1"]
 slime_type_target = Dictionary[int, int]({
