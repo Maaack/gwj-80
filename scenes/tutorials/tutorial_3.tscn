@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c0us62dkt1ojr" path="res://assets/images/tutorial/kicked.png" id="3_tvsbb"]
 [ext_resource type="Texture2D" uid="uid://bbw2go2gma6cm" path="res://assets/images/tutorial/corner-arrow.svg" id="4_gopvu"]
 [ext_resource type="Texture2D" uid="uid://deqm8dmgxk3te" path="res://assets/images/tutorial/kickable.png" id="5_ct3k1"]
-[ext_resource type="Texture2D" uid="uid://dax12yeik4y4h" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Default/mouse_right.png" id="6_vqthm"]
+[ext_resource type="Texture2D" uid="uid://8m016ff4uyn4" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/mouse_right.svg" id="6_77ja0"]
 [ext_resource type="Texture2D" uid="uid://tsf0thpmgxgf" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/keyboard_e.svg" id="7_sh316"]
 
 [node name="Tutorial4" instance=ExtResource("1_o2hd4")]
@@ -79,17 +79,15 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="MouseRight" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="5"]
-layout_mode = 0
-offset_left = 469.5
-offset_top = 418.0
-offset_right = 533.5
-offset_bottom = 482.0
-texture = ExtResource("6_vqthm")
+offset_left = 471.0
+offset_top = 414.0
+offset_right = 535.0
+offset_bottom = 478.0
+texture = ExtResource("6_77ja0")
 
 [node name="KeyboardE" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="6"]
-layout_mode = 0
-offset_left = 469.5
-offset_top = 353.0
-offset_right = 533.5
-offset_bottom = 417.0
+offset_left = 471.0
+offset_top = 349.0
+offset_right = 535.0
+offset_bottom = 413.0
 texture = ExtResource("7_sh316")

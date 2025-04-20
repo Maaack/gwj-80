@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bi8ejo0gt1yk3" path="res://assets/images/tutorial/platform.png" id="3_m6hqc"]
 [ext_resource type="Texture2D" uid="uid://cmn2kwfpcymky" path="res://assets/images/tutorial/chest.png" id="4_bkxg7"]
 [ext_resource type="Texture2D" uid="uid://bbw2go2gma6cm" path="res://assets/images/tutorial/corner-arrow.svg" id="5_rp71i"]
-[ext_resource type="Texture2D" uid="uid://dax12yeik4y4h" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Default/mouse_right.png" id="6_bkxg7"]
+[ext_resource type="Texture2D" uid="uid://8m016ff4uyn4" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/mouse_right.svg" id="6_bkxg7"]
 [ext_resource type="Texture2D" uid="uid://tsf0thpmgxgf" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/keyboard_e.svg" id="6_m6hqc"]
 
 [node name="Tutorial1" instance=ExtResource("1_cmye3")]

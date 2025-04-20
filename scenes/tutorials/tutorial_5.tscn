@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://c13wc5cobjonn"]
+
+[ext_resource type="PackedScene" uid="uid://d0s26rubacfa3" path="res://scenes/overlaid_menus/overlaid_menu.tscn" id="1_i7wuw"]
+[ext_resource type="Texture2D" uid="uid://vq2t3xaixtd2" path="res://assets/images/tutorial/mc-alone.png" id="2_l4pwu"]
+[ext_resource type="Texture2D" uid="uid://3jj1iqvon47n" path="res://assets/images/tutorial/journal.png" id="3_i7wuw"]
+[ext_resource type="Texture2D" uid="uid://bbw2go2gma6cm" path="res://assets/images/tutorial/corner-arrow.svg" id="4_3vtt1"]
+[ext_resource type="Texture2D" uid="uid://b3ywad8unqd3h" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/mouse_scroll.svg" id="5_t2pw5"]
+
+[node name="Tutorial5" instance=ExtResource("1_i7wuw")]
+pauses_game = true
+
+[node name="MenuPanelContainer" parent="." index="1"]
+offset_left = -295.0
+offset_top = -302.0
+offset_right = 295.0
+offset_bottom = 302.0
+
+[node name="TitleMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="0"]
+visible = false
+
+[node name="TitleLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin" index="0"]
+text = ""
+
+[node name="DescriptionMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="1"]
+visible = true
+
+[node name="Control" type="Control" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin" index="1"]
+layout_mode = 2
+
+[node name="Water-slime-2" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="0"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 240.0
+offset_bottom = 217.0
+texture = ExtResource("2_l4pwu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="explosive-slive" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="1"]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 232.0
+offset_right = 507.0
+offset_bottom = 449.0
+texture = ExtResource("3_i7wuw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Corner-arrow" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="2"]
+layout_mode = 0
+offset_left = 310.5
+offset_top = 147.0
+offset_right = 358.5
+offset_bottom = 195.0
+texture = ExtResource("4_3vtt1")
+stretch_mode = 5
+
+[node name="MouseScroll" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="3"]
+layout_mode = 0
+offset_left = 439.5
+offset_top = 385.0
+offset_right = 503.5
+offset_bottom = 449.0
+texture = ExtResource("5_t2pw5")

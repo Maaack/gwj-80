@@ -83,10 +83,10 @@ offset_right = 502.5
 offset_bottom = 385.0
 texture = ExtResource("6_xpao5")
 
-[node name="MouseLeft" type="TextureRect" parent="." index="2"]
+[node name="MouseLeft2" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="6"]
 layout_mode = 0
-offset_left = 945.0
-offset_top = 559.0
-offset_right = 1009.0
-offset_bottom = 623.0
+offset_left = 708.5
+offset_top = 485.0
+offset_right = 772.5
+offset_bottom = 549.0
 texture = ExtResource("6_xpao5")
