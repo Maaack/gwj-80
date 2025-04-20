@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://chx0om5a7f6cv"]
+[gd_scene load_steps=14 format=3 uid="uid://chx0om5a7f6cv"]
 
 [ext_resource type="Script" uid="uid://r5tx58gfw4vr" path="res://scenes/game_scene/game_ui.gd" id="1_bmy5n"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/scripts/pause_menu_controller.gd" id="1_onvsj"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://04du16hjyofj" path="res://scenes/overlaid_menus/level_lost_menu.tscn" id="9_i7m4m"]
 [ext_resource type="PackedScene" uid="uid://tcv64topdg6v" path="res://scenes/game_scene/journal_panel.tscn" id="10_onvsj"]
 [ext_resource type="PackedScene" uid="uid://djtgue80w6l2v" path="res://scenes/overlaid_menus/level_won_menu.tscn" id="10_rkfhe"]
+[ext_resource type="Script" uid="uid://b8o4cqxgs68lu" path="res://scripts/notification_container.gd" id="11_3re04"]
 [ext_resource type="PackedScene" uid="uid://dj7utvhx2i1r6" path="res://scenes/game_scene/goals_mini_panel.tscn" id="11_8qp3c"]
 
 [node name="GameUI" type="Control"]
@@ -68,6 +69,12 @@ offset_left = -8.0
 offset_top = -34.5
 offset_right = 137.0
 offset_bottom = 34.5
+
+[node name="NotificationContainer" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_3re04")
 
 [node name="InteractPanel" type="Panel" parent="Control"]
 unique_name_in_owner = true
