@@ -29,7 +29,8 @@ layout_mode = 2
 
 [node name="Water-slime-2" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="0"]
 layout_mode = 0
-offset_right = 224.0
+offset_left = 16.0
+offset_right = 240.0
 offset_bottom = 217.0
 texture = ExtResource("2_0cguh")
 expand_mode = 1
@@ -37,9 +38,9 @@ stretch_mode = 5
 
 [node name="Platform" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="1"]
 layout_mode = 0
-offset_left = 278.0
+offset_left = 284.0
 offset_top = 168.0
-offset_right = 502.0
+offset_right = 508.0
 offset_bottom = 385.0
 texture = ExtResource("3_m6hqc")
 expand_mode = 1

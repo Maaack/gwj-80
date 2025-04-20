@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0un8u0y0qkgu"]
+
+[ext_resource type="PackedScene" uid="uid://d0s26rubacfa3" path="res://scenes/overlaid_menus/overlaid_menu.tscn" id="1_glh2s"]
+[ext_resource type="Texture2D" uid="uid://ke13tatlv8g" path="res://assets/images/tutorial/goals.png" id="2_babdd"]
+[ext_resource type="Texture2D" uid="uid://c0us62dkt1ojr" path="res://assets/images/tutorial/kicked.png" id="3_glh2s"]
+[ext_resource type="Texture2D" uid="uid://bbw2go2gma6cm" path="res://assets/images/tutorial/corner-arrow.svg" id="4_0tgqi"]
+[ext_resource type="Texture2D" uid="uid://deqm8dmgxk3te" path="res://assets/images/tutorial/kickable.png" id="5_babdd"]
+
+[node name="Tutorial4" instance=ExtResource("1_glh2s")]
+pauses_game = true
+
+[node name="MenuPanelContainer" parent="." index="1"]
+offset_left = -419.5
+offset_top = -302.0
+offset_right = 419.5
+offset_bottom = 302.0
+
+[node name="TitleMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="0"]
+visible = false
+
+[node name="TitleLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin" index="0"]
+text = ""
+
+[node name="DescriptionMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="1"]
+visible = true
+
+[node name="Control" type="Control" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin" index="1"]
+layout_mode = 2
+
+[node name="Goals" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="0"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 240.0
+offset_bottom = 217.0
+texture = ExtResource("2_babdd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="explosive-slive" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="1"]
+layout_mode = 0
+offset_left = 313.5
+offset_top = 265.0
+offset_right = 537.5
+offset_bottom = 482.0
+texture = ExtResource("3_glh2s")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Corner-arrow" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="2"]
+layout_mode = 0
+offset_left = 119.5
+offset_top = 258.0
+offset_right = 167.5
+offset_bottom = 306.0
+rotation = 1.5708
+texture = ExtResource("4_0tgqi")
+stretch_mode = 5
+
+[node name="Corner-arrow2" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="3"]
+layout_mode = 0
+offset_left = 425.5
+offset_top = 150.0
+offset_right = 473.5
+offset_bottom = 198.0
+texture = ExtResource("4_0tgqi")
+stretch_mode = 5
+flip_h = true
+
+[node name="fire-slime" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="4"]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 7.0
+offset_right = 775.0
+offset_bottom = 224.0
+texture = ExtResource("5_babdd")
+expand_mode = 1
+stretch_mode = 5

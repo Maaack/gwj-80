@@ -27,19 +27,20 @@ visible = true
 [node name="Control" type="Control" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin" index="1"]
 layout_mode = 2
 
-[node name="Water-slime-2" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="0"]
+[node name="mc-alone" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="0"]
 layout_mode = 0
-offset_right = 224.0
+offset_left = 16.0
+offset_right = 240.0
 offset_bottom = 217.0
 texture = ExtResource("2_1k6s1")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Platform" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="1"]
+[node name="mc-alone-singing" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="1"]
 layout_mode = 0
-offset_left = 278.0
+offset_left = 283.0
 offset_top = 168.0
-offset_right = 502.0
+offset_right = 507.0
 offset_bottom = 385.0
 texture = ExtResource("3_xpao5")
 expand_mode = 1
@@ -63,7 +64,8 @@ offset_bottom = 305.0
 texture = ExtResource("5_rnc0n")
 stretch_mode = 5
 
-[node name="Chest" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="4"]
+[node name="mc-singing" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="4"]
+layout_mode = 0
 offset_left = 551.0
 offset_top = 335.0
 offset_right = 775.0
