@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://opg812lnvyu4" path="res://scripts/slimes/slime.gd" id="1_kn5r0"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_7crtb"]
-[ext_resource type="Texture2D" uid="uid://c5h7uqljbjb1i" path="res://assets/Art/3d/Slime/SLime_Eyes_Angry.png" id="3_jpr74"]
+[ext_resource type="Texture2D" uid="uid://c4pifxb02vxkv" path="res://assets/Art/3d/Slime/SLime_Eyes_==.png" id="3_kn5r0"]
 [ext_resource type="Texture2D" uid="uid://d1w5g0xuofqaj" path="res://assets/Art/3d/Slime/Dirt.png" id="4_inmly"]
-[ext_resource type="Texture2D" uid="uid://bpyifld1qffep" path="res://assets/Art/3d/Slime/Mouth_default.png" id="5_ewql0"]
+[ext_resource type="Texture2D" uid="uid://c8spfvk36d7jq" path="res://assets/Art/3d/Slime/SLime_Mouth_H.png" id="5_kn5r0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
 radius = 0.7
@@ -13,7 +13,8 @@ radius = 0.7
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("3_jpr74")
+no_depth_test = true
+albedo_texture = ExtResource("3_kn5r0")
 
 [sub_resource type="Shader" id="Shader_g7edl"]
 code = "shader_type spatial;
@@ -171,7 +172,7 @@ shader_parameter/Texture = ExtResource("4_inmly")
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("5_ewql0")
+albedo_texture = ExtResource("5_kn5r0")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_22mvs"]
 radius = 7.5
