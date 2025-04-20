@@ -121,6 +121,7 @@ const VOLUME_TO_RADIUS_MODIFER : float = 4.18879
 @onready var _init_alerted_indicator_y_pos: float = alerted_indicator.position.y
 @onready var nudgeable_indicator: Sprite3D = %NudgeableIndicator
 @onready var _init_nudgeable_indicator_y_pos: float = nudgeable_indicator.position.y
+@onready var out_of_bounds_despawn_timer: Timer = %OutOfBoundsDespawnTimer
 
 var slime_data : SlimeData = SlimeData.new()
 
@@ -470,6 +471,15 @@ func _bound_xz_position() -> void:
 
 	if x_updated and z_updated:
 		_bound_speed()
+
+	if (x_updated or z_updated) and out_of_bounds_despawn_timer.is_stopped():
+		out_of_bounds_despawn_timer.start()
+	elif not x_updated and not z_updated and not out_of_bounds_despawn_timer.is_stopped():
+		out_of_bounds_despawn_timer.stop()
+
+
+func _on_out_of_bounds_despawn_timer_timeout() -> void:
+	depart()
 
 
 #func set_flocking_zone_radius(new_radius: float) -> void:
