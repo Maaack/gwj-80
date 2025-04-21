@@ -14,7 +14,7 @@ extends Node3D
 		starting_v_ratio = value
 		_update_camera_position(1.0, starting_v_ratio)
 @export_group("Sensitivities")
-@export var joystick_sensitivity : float = 20
+@export var joystick_sensitivity_mod : float = 10
 @export var h_sensitivity : float = .01
 @export var v_sensitivity : float = .01
 @export var scroll_sensitivity : float = .01
@@ -39,13 +39,9 @@ func _input(event):
 	
 		camrot_h += -event.relative.x * h_sensitivity
 		camrot_v += event.relative.y * v_sensitivity
-
-	if event is InputEventMouseButton:
-		match event.button_index:
-			MOUSE_BUTTON_WHEEL_DOWN:
-				camrot_v += scroll_sensitivity
-			MOUSE_BUTTON_WHEEL_UP:
-				camrot_v -= scroll_sensitivity
+	
+	var scroll_action = Input.get_action_strength("look_up") - Input.get_action_strength("look_down")
+	camrot_v += scroll_sensitivity * scroll_action
 
 func _update_camera_position(delta : float, v_ratio : float) -> void:
 	var min_cam_v = deg_to_rad(min_cam_v_degrees)
@@ -59,8 +55,8 @@ func _update_camera_position(delta : float, v_ratio : float) -> void:
 	$h/v/Arm/Camera3D.fov = min_fov + ((max_fov - min_fov) * v_ratio)
 
 func _joystick_input():
+	var joystick_sensitivity = Config.get_config(AppSettings.INPUT_SECTION, "JoypadSensitivity", 1.0) * joystick_sensitivity_mod
 	if (Input.is_action_pressed("look_up") ||  Input.is_action_pressed("look_down") ||  Input.is_action_pressed("look_left") ||  Input.is_action_pressed("look_right")):
-		
 		joyview.x = Input.get_action_strength("look_left") - Input.get_action_strength("look_right")
 		joyview.y = Input.get_action_strength("look_up") - Input.get_action_strength("look_down")
 		camrot_h += joyview.x * joystick_sensitivity * h_sensitivity

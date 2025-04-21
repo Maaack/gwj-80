@@ -430,6 +430,7 @@
 
 [node name="Controls" instance=ExtResource("1_i27v5")]
 script = ExtResource("2_hyv0n")
+remapping_mode = 1
 
 [node name="InputIconMapper" parent="." index="0"]
 prioritized_strings = Array[String](["color"])
@@ -1299,4 +1300,9 @@ ends_with = ".svg"
 not_ends_with = "outline.svg"
 
 [node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" index="1"]
+visible = false
 expand_icon = true
+
+[node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" index="2"]
+visible = true
+custom_minimum_size = Vector2(400, 480)
