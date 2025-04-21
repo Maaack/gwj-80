@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bm48ts7vnndus" path="res://assets/Art/2d/TExtures/Nudge.png" id="1_kekl4"]
 
 [node name="NudgeableIndicator" type="Sprite3D"]
-modulate = Color(0.250818, 0.250818, 0.250818, 0)
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0)
+modulate = Color(0.25098, 0.25098, 0.25098, 0)
 billboard = 1
 texture = ExtResource("1_kekl4")
+region_rect = Rect2(-0.51, 0, 0, 0)
