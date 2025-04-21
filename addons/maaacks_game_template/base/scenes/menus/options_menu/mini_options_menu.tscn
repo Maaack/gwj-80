@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/toggle_option_control.tscn" id="4_b20fb"]
 
 [node name="MiniOptionsMenu" type="VBoxContainer"]
-custom_minimum_size = Vector2(400, 260)
+custom_minimum_size = Vector2(400, 300)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -23,6 +23,37 @@ theme_override_constants/separation = 8
 alignment = 1
 script = ExtResource("1_32vm2")
 audio_control_scene = ExtResource("2_kpc65")
+
+[node name="MouseSensitivityControl" parent="." instance=ExtResource("2_kpc65")]
+layout_mode = 2
+option_name = "Mouse Sensitivity"
+option_section = 1
+key = "MouseSensitivity"
+section = "InputSettings"
+
+[node name="OptionLabel" parent="MouseSensitivityControl" index="0"]
+text = "Mouse Sensitivity :"
+
+[node name="HSlider" parent="MouseSensitivityControl" index="1"]
+min_value = 0.25
+max_value = 2.0
+value = 0.25
+tick_count = 8
+
+[node name="JoypadSensitivityControl" parent="." instance=ExtResource("2_kpc65")]
+layout_mode = 2
+option_name = "Joypad Sensitivity"
+option_section = 1
+key = "JoypadSensitivity"
+section = "InputSettings"
+
+[node name="OptionLabel" parent="JoypadSensitivityControl" index="0"]
+text = "Joypad Sensitivity :"
+
+[node name="HSlider" parent="JoypadSensitivityControl" index="1"]
+min_value = 0.25
+max_value = 2.0
+tick_count = 8
 
 [node name="AudioControlContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
@@ -49,3 +80,6 @@ section = "VideoSettings"
 
 [connection signal="setting_changed" from="MuteControl" to="." method="_on_mute_control_setting_changed"]
 [connection signal="setting_changed" from="FullscreenControl" to="." method="_on_fullscreen_control_setting_changed"]
+
+[editable path="MouseSensitivityControl"]
+[editable path="JoypadSensitivityControl"]

@@ -37,8 +37,8 @@ func _input(event):
 	if disabled: return
 	if event is InputEventMouseMotion:
 	
-		camrot_h += -event.relative.x * h_sensitivity
-		camrot_v += event.relative.y * v_sensitivity
+		camrot_h += -event.relative.x * h_sensitivity * Config.get_config(AppSettings.INPUT_SECTION, "MouseSensitivity", 1.0)
+		camrot_v += event.relative.y * v_sensitivity * Config.get_config(AppSettings.INPUT_SECTION, "MouseSensitivity", 1.0)
 	
 	var scroll_action = Input.get_action_strength("look_up") - Input.get_action_strength("look_down")
 	camrot_v += scroll_sensitivity * scroll_action
