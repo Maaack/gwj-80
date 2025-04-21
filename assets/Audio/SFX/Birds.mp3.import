@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Birds.mp3-7ffa489a0ad80d1e09cd0b2d6dd7c2c8.mp
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
