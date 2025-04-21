@@ -291,5 +291,7 @@ func _on_discover_timer_timeout():
 			slime_type_count[slime_type] = 0
 		slime_type_count[slime_type] += 1
 	for slime_type in slime_type_count:
-		var disovery_progress : float = slime_type_count[slime_type] * 0.0025
+		var disovery_progress : float = slime_type_count[slime_type] * 0.004
+		if slime_type == Constants.SlimeType.EXPLOSIVE:
+			disovery_progress *= 4
 		slime_type_observed.emit(slime_type, disovery_progress)
