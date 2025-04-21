@@ -41,6 +41,7 @@ func _refresh_page() -> void:
 		if journal_state.has_slime(page):
 			%DiscoveredContainer.show()
 			%ProgressContainer.hide()
+			%TextureRect.texture = Constants.get_slime_sketch(page)
 			_update_combination_container()
 		else:
 			%DiscoveredContainer.hide()
