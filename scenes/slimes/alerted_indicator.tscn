@@ -5,4 +5,5 @@
 [node name="AlertedIndicator" type="Sprite3D"]
 modulate = Color(1, 1, 1, 0)
 billboard = 1
+render_priority = 1
 texture = ExtResource("1_gk3lq")
