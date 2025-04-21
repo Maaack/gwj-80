@@ -65,17 +65,17 @@ static var slime_type_names : Dictionary[SlimeType, String] = {
 
 # TODO: Update UIDs to use the real icons.
 static var slime_type_icons: Dictionary[SlimeType, String] = {
-	SlimeType.WATER: "uid://drupexiewywk6",
-	SlimeType.FIRE: "uid://drupexiewywk6",
-	SlimeType.VINE: "uid://drupexiewywk6",
-	SlimeType.ROCK: "uid://drupexiewywk6",
-	SlimeType.EXPLOSIVE: "uid://drupexiewywk6",
-	SlimeType.METAL: "uid://drupexiewywk6",
-	SlimeType.ASH: "uid://drupexiewywk6",
-	SlimeType.MOSS: "uid://drupexiewywk6",
-	SlimeType.MUD: "uid://drupexiewywk6",
-	SlimeType.CRYSTAL: "uid://drupexiewywk6",
-	SlimeType.YINYANG: "uid://drupexiewywk6",
+	SlimeType.WATER: "uid://bqoaoiy523b8r",
+	SlimeType.FIRE: "uid://bn03fhhnru5xa",
+	SlimeType.VINE: "uid://vf7ojp3gblq5",
+	SlimeType.ROCK: "uid://cr2oj3p16ccds",
+	SlimeType.EXPLOSIVE: "uid://c0aphyrpahl1k",
+	SlimeType.METAL: "uid://woxi0xeh7vbd",
+	SlimeType.ASH: "uid://du5g8wy5k6ihe",
+	SlimeType.MOSS: "uid://baydccatgwhyf",
+	SlimeType.MUD: "uid://jtae8rr2box6",
+	SlimeType.CRYSTAL: "uid://b8t36wiqmismf",
+	SlimeType.YINYANG: "uid://r1tdjetsw6hv",
 }
 
 static func new_slime_combination(slime_1 : SlimeType, slime_2 : SlimeType, slime_result : SlimeType) -> SlimeCombination:
