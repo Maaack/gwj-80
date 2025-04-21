@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://dtollnkgrdph8"]
+[gd_scene load_steps=38 format=4 uid="uid://dtollnkgrdph8"]
 
 [ext_resource type="Script" uid="uid://bn0efvyiditbq" path="res://scripts/slimes/slime_explosive.gd" id="1_c23ww"]
 [ext_resource type="PackedScene" uid="uid://cj0owc5s8ub2x" path="res://assets/Art/3d/Slime/SLime_BOmb.glb" id="2_5btpe"]
@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://c1rjsx8kft8lr" path="res://assets/Art/3d/explosion mesh/Explosion_DefaultMaterial_Emission.png" id="10_ojqrv"]
 [ext_resource type="Texture2D" uid="uid://dytj5vgn6q6yg" path="res://assets/Art/3d/explosion mesh/Particle.png" id="11_aba74"]
 [ext_resource type="Texture2D" uid="uid://rywodacqw8iv" path="res://assets/Art/3d/explosion mesh/Explosion_DefaultMaterial_Normal.png" id="11_ojqrv"]
+[ext_resource type="AudioStream" uid="uid://battmu2pgrhno" path="res://assets/Audio/SFX/explosion.wav" id="12_o8muw"]
+[ext_resource type="AudioStream" uid="uid://c6xatx8i1ddli" path="res://assets/Audio/SFX/explosion_4.wav" id="13_o8muw"]
+[ext_resource type="AudioStream" uid="uid://kuqpgct81b25" path="res://assets/Audio/SFX/explosion_3.wav" id="14_wpgur"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
 resource_local_to_scene = true
@@ -252,6 +255,13 @@ emission = Color(0.752949, 0.194423, 0.118113, 1)
 emission_energy_multiplier = 1.9
 emission_texture = ExtResource("10_ojqrv")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d4ry1"]
+random_pitch = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("12_o8muw")
+stream_1/stream = ExtResource("14_wpgur")
+stream_2/stream = ExtResource("13_o8muw")
+
 [sub_resource type="Gradient" id="Gradient_hk7ki"]
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
 
@@ -326,6 +336,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Explosion/AudioStreamPlayer3D:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_epbds"]
 length = 0.001
@@ -363,7 +385,19 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Explosion/AudioStreamPlayer3D:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cbxxb"]
@@ -376,6 +410,7 @@ _data = {
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_c23ww")
+explosion_delay = 6.0
 slime_type = 5
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
@@ -446,6 +481,7 @@ unique_name_in_owner = true
 wait_time = 20.0
 
 [node name="Explosion" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46541, 0)
 
 [node name="Sphere" type="MeshInstance3D" parent="Explosion"]
 transform = Transform3D(0.324548, 0, 0, 0, 0.324548, 0, 0, 0, 0.324548, 0, 0, 0)
@@ -453,8 +489,12 @@ mesh = SubResource("ArrayMesh_pkeud")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_fjk0b")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Explosion"]
+stream = SubResource("AudioStreamRandomizer_d4ry1")
+
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Explosion"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.595708, 0)
+emitting = false
 lifetime = 0.58
 one_shot = true
 speed_scale = 0.25
