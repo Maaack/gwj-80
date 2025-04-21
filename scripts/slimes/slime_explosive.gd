@@ -3,7 +3,7 @@ extends Slime
 
 ## A slime that launches nearby slimes away after a short delay from its creation.
 
-
+@onready var _explosion_animation_player : AnimationPlayer = %ExplosionAnimationPlayer
 @export var explosion_delay: float = 3.0
 @export var explosion_force: float = 15.0
 
@@ -21,7 +21,11 @@ func apply_effects_to_nearby_slimes() -> void:
 		slime.add_external_velocity(_calculate_explosion_velocity(slime))
 		slime.split()
 	# TODO: Apply force to player
-	depart(0.25)
+	var tween = create_tween()
+	tween.tween_property(slime_model, "scale", Vector3.ONE * 0.01, 0.25)
+	_explosion_animation_player.play(&"Explosion")
+	await get_tree().create_timer(2, false).timeout
+	depart(0.1)
 
 
 func _calculate_explosion_velocity(other_node: Node3D) -> Vector3:
