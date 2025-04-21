@@ -39,6 +39,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="explosive-slive" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="1"]
+modulate = Color(0.941365, 0.941365, 0.941365, 1)
 layout_mode = 0
 offset_left = 313.5
 offset_top = 265.0
@@ -60,10 +61,10 @@ stretch_mode = 5
 
 [node name="Corner-arrow2" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="3"]
 layout_mode = 0
-offset_left = 425.5
-offset_top = 150.0
-offset_right = 473.5
-offset_bottom = 198.0
+offset_left = 399.5
+offset_top = 155.0
+offset_right = 447.5
+offset_bottom = 203.0
 texture = ExtResource("4_gopvu")
 stretch_mode = 5
 flip_h = true
@@ -79,6 +80,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="MouseRight" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="5"]
+layout_mode = 0
 offset_left = 471.0
 offset_top = 414.0
 offset_right = 535.0
@@ -86,8 +88,18 @@ offset_bottom = 478.0
 texture = ExtResource("6_77ja0")
 
 [node name="KeyboardE" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="6"]
+layout_mode = 0
 offset_left = 471.0
 offset_top = 349.0
 offset_right = 535.0
 offset_bottom = 413.0
 texture = ExtResource("7_sh316")
+
+[node name="Label2" type="Label" parent="." index="2"]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 155.0
+offset_right = 714.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 32
+text = "Nudge"

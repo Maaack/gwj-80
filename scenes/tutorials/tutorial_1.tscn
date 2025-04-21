@@ -49,6 +49,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Chest" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="2"]
+modulate = Color(0.900705, 0.900705, 0.900705, 1)
 layout_mode = 0
 offset_left = 551.0
 offset_top = 335.0
@@ -77,6 +78,7 @@ texture = ExtResource("5_rp71i")
 stretch_mode = 5
 
 [node name="MouseRight" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="5"]
+layout_mode = 0
 offset_left = 707.5
 offset_top = 488.0
 offset_right = 771.5
@@ -84,8 +86,27 @@ offset_bottom = 552.0
 texture = ExtResource("6_bkxg7")
 
 [node name="KeyboardE" type="TextureRect" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="6"]
+layout_mode = 0
 offset_left = 707.5
 offset_top = 423.0
 offset_right = 771.5
 offset_bottom = 487.0
 texture = ExtResource("6_m6hqc")
+
+[node name="Label" type="Label" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="7"]
+layout_mode = 0
+offset_left = 331.5
+offset_top = 31.0
+offset_right = 438.5
+offset_bottom = 76.0
+theme_override_font_sizes/font_size = 32
+text = "Gather"
+
+[node name="Label2" type="Label" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="8"]
+layout_mode = 0
+offset_left = 601.5
+offset_top = 202.0
+offset_right = 710.5
+offset_bottom = 247.0
+theme_override_font_sizes/font_size = 32
+text = "Deliver"

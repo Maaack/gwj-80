@@ -74,3 +74,11 @@ offset_bottom = 224.0
 texture = ExtResource("3_s0twm")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Label2" type="Label" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="5"]
+offset_left = 260.5
+offset_top = 81.0
+offset_right = 533.5
+offset_bottom = 126.0
+theme_override_font_sizes/font_size = 32
+text = "Control the chaos"

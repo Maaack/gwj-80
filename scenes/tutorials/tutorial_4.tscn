@@ -91,3 +91,11 @@ offset_top = 287.0
 offset_right = 642.5
 offset_bottom = 415.0
 texture = ExtResource("6_lbd7y")
+
+[node name="Label2" type="Label" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="7"]
+offset_left = 300.5
+offset_top = 448.0
+offset_right = 490.5
+offset_bottom = 493.0
+theme_override_font_sizes/font_size = 32
+text = "This is fine..."

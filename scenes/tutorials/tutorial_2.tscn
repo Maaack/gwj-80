@@ -90,3 +90,19 @@ offset_top = 485.0
 offset_right = 772.5
 offset_bottom = 549.0
 texture = ExtResource("6_xpao5")
+
+[node name="Label" type="Label" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="7"]
+offset_left = 331.5
+offset_top = 31.0
+offset_right = 438.5
+offset_bottom = 76.0
+theme_override_font_sizes/font_size = 32
+text = "Whistle"
+
+[node name="Label2" type="Label" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin/Control" index="8"]
+offset_left = 601.5
+offset_top = 202.0
+offset_right = 710.5
+offset_bottom = 247.0
+theme_override_font_sizes/font_size = 32
+text = "Attract"
