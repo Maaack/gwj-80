@@ -1,16 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://chx4skxp7tgbu"]
 
 [ext_resource type="PackedScene" uid="uid://dvlpyy6ml8tjq" path="res://assets/Art/3d/Slime/SLime.glb" id="1_u1n8k"]
-[ext_resource type="Texture2D" uid="uid://b5f67sm1ppjsw" path="res://assets/Art/3d/Slime/Eyes_Defualt.png" id="2_haggc"]
 [ext_resource type="Shader" uid="uid://maj0snw8f56l" path="res://scenes/player_character/Toon.gdshader" id="2_y83dd"]
 [ext_resource type="Texture2D" uid="uid://dg5bmo1nvybng" path="res://assets/Art/3d/Slime/SLime_Material.001_BaseColor-Material.png" id="3_haggc"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_haggc"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-no_depth_test = true
-albedo_texture = ExtResource("2_haggc")
+[ext_resource type="Texture2D" uid="uid://bpyifld1qffep" path="res://assets/Art/3d/Slime/Mouth_default.png" id="4_haggc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m7gbv"]
 render_priority = 0
@@ -29,6 +22,12 @@ shader_parameter/SubSurfCutoff = 0.5
 shader_parameter/SubSurfSmoothness = 0.05
 shader_parameter/Texture = ExtResource("3_haggc")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m7gbv"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("4_haggc")
+
 [node name="Node3D" type="Node3D"]
 
 [node name="SLime" parent="." instance=ExtResource("1_u1n8k")]
@@ -39,9 +38,12 @@ bones/0/position = Vector3(-0.250711, -0.133827, 0.406895)
 bones/1/position = Vector3(-0.169712, 0.590945, 0.474417)
 bones/1/scale = Vector3(1, 1, 1)
 
-[node name="Sphere" parent="SLime/Armature/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_haggc")
-surface_material_override/1 = SubResource("ShaderMaterial_m7gbv")
+[node name="Eyes" parent="SLime/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0711138)
+
+[node name="Sphere" parent="SLime/Armature/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_m7gbv")
+surface_material_override/1 = SubResource("StandardMaterial3D_m7gbv")
 
 [node name="AnimationPlayer" parent="SLime" index="1"]
 autoplay = "Idle"

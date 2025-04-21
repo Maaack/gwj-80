@@ -15,7 +15,7 @@ albedo_color = Color(0.0214346, 0.0214346, 0.0214346, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83ws6"]
 albedo_color = Color(0.399596, 0.330616, 0.257856, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txhwt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78yyk"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
@@ -156,7 +156,7 @@ void light() {
 	SPECULAR_LIGHT = ambientLightOutput;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dp8ss"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u6pen"]
 render_priority = 0
 shader = SubResource("Shader_8uoeh")
 shader_parameter/ToonRampOffset = 0.511
@@ -173,7 +173,7 @@ shader_parameter/SubSurfCutoff = 0.5
 shader_parameter/SubSurfSmoothness = 0.05
 shader_parameter/Texture = ExtResource("4_2dhj3")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xbe1"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6pen"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
@@ -198,22 +198,30 @@ unique_name_in_owner = true
 [node name="SlimeModel" parent="Pivot" instance=ExtResource("2_sgbni")]
 transform = Transform3D(-0.653133, 0, 0.0600376, 0, 0.655887, 0, -0.0600376, 0, -0.653133, 0.0589509, 0, 0.00646806)
 
+[node name="Skeleton3D" parent="Pivot/SlimeModel/Armature" index="0"]
+bones/0/position = Vector3(-0.250711, -0.133827, 0.406895)
+bones/1/position = Vector3(-0.169712, 0.590945, 0.474417)
+bones/1/scale = Vector3(1, 1, 1)
+
 [node name="Circle" parent="Pivot/SlimeModel/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.756952, -4.42378e-09, 1.39698e-09, 5.87897e-09, 0.756953, 0, -1.39698e-09, 7.45058e-09, 0.756953, -0.169257, 1.57579, 0.340779)
+transform = Transform3D(0.756952, -6.28643e-09, 1.39698e-09, 4.94765e-09, 0.756952, 7.45058e-09, -1.39698e-09, 1.49012e-08, 0.756953, -0.130381, 1.66987, 0.394847)
 
 [node name="Circle" parent="Pivot/SlimeModel/Armature/Skeleton3D/Circle" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_yfft1")
 
 [node name="BézierCurve" parent="Pivot/SlimeModel/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1.00075, -5.8486e-09, 1.84693e-09, 7.77248e-09, 1.00075, 0, -1.84693e-09, 9.85027e-09, 1.00075, -0.467967, 2.06207, 0.339872)
+transform = Transform3D(1.00075, -8.31116e-09, 1.84693e-09, 6.5412e-09, 1.00075, 9.85027e-09, -1.84693e-09, 1.97005e-08, 1.00075, -0.42909, 2.15615, 0.39394)
 
 [node name="BézierCurve" parent="Pivot/SlimeModel/Armature/Skeleton3D/BézierCurve" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_83ws6")
 
-[node name="Sphere" parent="Pivot/SlimeModel/Armature/Skeleton3D" index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_txhwt")
-surface_material_override/1 = SubResource("ShaderMaterial_dp8ss")
-surface_material_override/2 = SubResource("StandardMaterial3D_4xbe1")
+[node name="Eyes" parent="Pivot/SlimeModel/Armature/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, 0.00441475, 0, 0.0480269)
+surface_material_override/0 = SubResource("StandardMaterial3D_78yyk")
+
+[node name="Sphere" parent="Pivot/SlimeModel/Armature/Skeleton3D" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_u6pen")
+surface_material_override/1 = SubResource("StandardMaterial3D_u6pen")
 
 [node name="FlockingZone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

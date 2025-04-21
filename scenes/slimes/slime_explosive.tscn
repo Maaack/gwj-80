@@ -176,7 +176,7 @@ shader_parameter/SubSurfCutoff = 0.5
 shader_parameter/SubSurfSmoothness = 0.05
 shader_parameter/Texture = ExtResource("4_um5lw")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ojqrv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_um5lw"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
@@ -220,10 +220,12 @@ transform = Transform3D(1.00075, -5.8486e-09, 1.84693e-09, 7.77248e-09, 1.00075,
 [node name="BézierCurve" parent="Pivot/SlimeModel/Armature/Skeleton3D/BézierCurve" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_lec15")
 
-[node name="Sphere" parent="Pivot/SlimeModel/Armature/Skeleton3D" index="2"]
+[node name="Eyes" parent="Pivot/SlimeModel/Armature/Skeleton3D" index="2"]
 surface_material_override/0 = SubResource("StandardMaterial3D_xrsw5")
-surface_material_override/1 = SubResource("ShaderMaterial_8e618")
-surface_material_override/2 = SubResource("StandardMaterial3D_ojqrv")
+
+[node name="Sphere" parent="Pivot/SlimeModel/Armature/Skeleton3D" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_8e618")
+surface_material_override/1 = SubResource("StandardMaterial3D_um5lw")
 
 [node name="FlockingZone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
