@@ -465,7 +465,7 @@ shadow_enabled = true
 transform = Transform3D(-0.127756, -0.199629, 0.971508, 0.0195127, 0.978839, 0.203701, -0.991614, 0.0449807, -0.121157, -3.03769, 21.5902, 28.2023)
 
 [node name="Node3D" parent="SubViewport/Node3D" index="4" instance=ExtResource("7_6xh1d")]
-transform = Transform3D(0.285588, 0, 0.958353, 0, 1, 0, -0.958353, 0, 0.285588, -11.3753, 19.4495, 25.1747)
+transform = Transform3D(0.285588, 0, 0.958353, 0, 1, 0, -0.958353, 0, 0.285588, -11.3753, 19.4495, 21.7884)
 
 [node name="SLime" parent="SubViewport/Node3D/Node3D" index="0"]
 transform = Transform3D(0.632184, 0, 0, 0, 0.632184, 0, 0, 0, 0.632184, 0.289345, 0.089735, 0.264322)
@@ -474,25 +474,22 @@ transform = Transform3D(0.632184, 0, 0, 0, 0.632184, 0, 0, 0, 0.632184, 0.289345
 bones/1/position = Vector3(-0.208588, 0.496868, 0.42035)
 
 [node name="Node3D2" parent="SubViewport/Node3D" index="5" instance=ExtResource("7_6xh1d")]
-transform = Transform3D(0.340742, 0.000349186, 0.940158, -0.00026412, 1, -0.000275697, -0.940158, -0.000154393, 0.340742, -18.598, 18.4175, 28.5417)
+transform = Transform3D(0.399858, 0, 1.06177, 0, 1.44675, 0, -1.34181, 0, 0.316405, -7.82006, 19.4495, 26.9673)
+
+[node name="SLime" parent="SubViewport/Node3D/Node3D2" index="0"]
+transform = Transform3D(0.632184, 0, 0, 0, 0.632184, 0, 0, 0, 0.632184, 0.289345, 0.089735, 0.264322)
 
 [node name="Skeleton3D" parent="SubViewport/Node3D/Node3D2/SLime/Armature" index="0"]
 bones/1/position = Vector3(-0.208588, 0.496868, 0.42035)
 
-[node name="Sphere" parent="SubViewport/Node3D/Node3D2/SLime/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.981387, -5.78617e-05, -0.192042, 4.80294e-05, 1, -5.58537e-05, 0.192042, 4.55907e-05, 0.981387, 10.7813, 2.12651, 14.438)
-
 [node name="Node3D3" parent="SubViewport/Node3D" index="6" instance=ExtResource("7_6xh1d")]
-transform = Transform3D(-0.57779, 0, 0.741457, 0, 0.94, 0, -0.741457, 0, -0.57779, -6.87375, 19.6514, 31.3387)
+transform = Transform3D(-0.792624, 0, 0.801247, 0, 1.12705, 0, -0.801247, 0, -0.792624, -7.50285, 20.2477, 32.5095)
 
 [node name="SLime" parent="SubViewport/Node3D/Node3D3" index="0"]
 transform = Transform3D(0.632184, 0, 0, 0, 0.632184, 0, 0, 0, 0.632184, 0.289345, 0.089735, 0.264322)
 
 [node name="Skeleton3D" parent="SubViewport/Node3D/Node3D3/SLime/Armature" index="0"]
 bones/1/position = Vector3(-0.208588, 0.496868, 0.42035)
-
-[node name="Sphere" parent="SubViewport/Node3D/Node3D3/SLime/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1.10879, 0, 0.335122, 0, 1.15832, 0, -0.335122, 0, 1.10879, -1.21226, 1.37734, -1.87105)
 
 [node name="MC" parent="SubViewport/Node3D" index="7" instance=ExtResource("8_vsp5b")]
 transform = Transform3D(-0.558643, 0, 0.332292, 0, 0.65, 0, -0.332292, 0, -0.558643, -7.46327, 19.9465, 32.5342)
