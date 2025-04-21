@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2vfxk7gnbaso"]
+
+[ext_resource type="Texture2D" uid="uid://drupexiewywk6" path="res://assets/Art/2d/TExtures/SLime.png" id="1_6q3hv"]
+[ext_resource type="Script" uid="uid://cm0jqxy60ikqm" path="res://scripts/notification.gd" id="1_ojyuk"]
+
+[node name="Notification" type="PanelContainer"]
+offset_right = 248.0
+offset_bottom = 54.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_ojyuk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_6q3hv")
+expand_mode = 1
+
+[node name="Message" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Slime Type discovered!"
+vertical_alignment = 1
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]

@@ -62,6 +62,22 @@ static var slime_type_names : Dictionary[SlimeType, String] = {
 	SlimeType.YINYANG: "Balance",
 }
 
+
+# TODO: Update UIDs to use the real icons.
+static var slime_type_icons: Dictionary[SlimeType, String] = {
+	SlimeType.WATER: "uid://drupexiewywk6",
+	SlimeType.FIRE: "uid://drupexiewywk6",
+	SlimeType.VINE: "uid://drupexiewywk6",
+	SlimeType.ROCK: "uid://drupexiewywk6",
+	SlimeType.EXPLOSIVE: "uid://drupexiewywk6",
+	SlimeType.METAL: "uid://drupexiewywk6",
+	SlimeType.ASH: "uid://drupexiewywk6",
+	SlimeType.MOSS: "uid://drupexiewywk6",
+	SlimeType.MUD: "uid://drupexiewywk6",
+	SlimeType.CRYSTAL: "uid://drupexiewywk6",
+	SlimeType.YINYANG: "uid://drupexiewywk6",
+}
+
 static func new_slime_combination(slime_1 : SlimeType, slime_2 : SlimeType, slime_result : SlimeType) -> SlimeCombination:
 	var slime_combination : = SlimeCombination.new()
 	slime_combination.slime_1 = slime_1
@@ -78,6 +94,12 @@ static func get_slime_instance(slime_type : SlimeType) -> Slime:
 static func get_slime_name(slime_type : SlimeType) -> String:
 	if slime_type not in slime_type_names: return "Any"
 	return slime_type_names[slime_type]
+
+
+static func get_slime_icon(slime_type: SlimeType) -> Texture2D:
+	if slime_type not in slime_type_icons: return load("uid://drupexiewywk6")
+	var icon_path: String = slime_type_icons[slime_type]
+	return load(icon_path)
 
 
 static func get_relevant_combinations(slime_type: SlimeType) -> Array[SlimeCombination]:

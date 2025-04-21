@@ -1,13 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfetxfuxwlk1p"]
+[gd_scene load_steps=7 format=3 uid="uid://cfetxfuxwlk1p"]
 
+[ext_resource type="Script" uid="uid://boo22jf6hn2cc" path="res://scripts/quest_giver.gd" id="1_dot4x"]
 [ext_resource type="PackedScene" uid="uid://or5eompav04b" path="res://assets/Art/3d/QuestGiver/Quest Giver.glb" id="1_ljld7"]
 [ext_resource type="Material" uid="uid://7dove364tbfv" path="res://assets/Art/3d/QuestGiver/QuestGiver_Hair.tres" id="2_dot4x"]
 [ext_resource type="Material" uid="uid://0ebfq5klmi2x" path="res://assets/Art/3d/QuestGiver/QuestGiver.tres" id="3_o1iad"]
 
-[node name="QuetGiver" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ljld7"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o1iad"]
+radius = 4.0
+
+[node name="QuetGiver" type="StaticBody3D"]
+script = ExtResource("1_dot4x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_ljld7")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_o1iad")
 
 [node name="Quest Giver" parent="." instance=ExtResource("1_ljld7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.834915, -1.19209e-07, -0.830765)
+transform = Transform3D(0.738573, 0, 0, 0, 0.738572, 0, 0, 0, 0.738573, -0.617, 0, -0.614)
 
 [node name="root" parent="Quest Giver" index="0"]
 transform = Transform3D(0.37, 0, 0, 0, 0.37, 0, 0, 0, 0.37, 0.930377, -0.0440708, 0.70856)
@@ -126,5 +146,8 @@ bones/70/rotation = Quaternion(-0.256711, -0.0490095, -0.181011, 0.948121)
 
 [node name="AnimationPlayer" parent="Quest Giver" index="2"]
 autoplay = "Action"
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
 
 [editable path="Quest Giver"]
