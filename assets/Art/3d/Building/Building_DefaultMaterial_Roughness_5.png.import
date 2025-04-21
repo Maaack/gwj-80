@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bt4vqpj1ko3gt"
 path.s3tc="res://.godot/imported/Building_DefaultMaterial_Roughness_5.png-2a0648497063155e1218584b82379f9f.s3tc.ctex"
+path.etc2="res://.godot/imported/Building_DefaultMaterial_Roughness_5.png-2a0648497063155e1218584b82379f9f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Art/3d/Building/Building_DefaultMaterial_Roughness_5.png"
-dest_files=["res://.godot/imported/Building_DefaultMaterial_Roughness_5.png-2a0648497063155e1218584b82379f9f.s3tc.ctex"]
+dest_files=["res://.godot/imported/Building_DefaultMaterial_Roughness_5.png-2a0648497063155e1218584b82379f9f.s3tc.ctex", "res://.godot/imported/Building_DefaultMaterial_Roughness_5.png-2a0648497063155e1218584b82379f9f.etc2.ctex"]
 
 [params]
 

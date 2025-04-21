@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b23ys0mlwjw8u"
 path.s3tc="res://.godot/imported/treev2_Tree_cape.png-7f966bd26e6ac243328a35e7ebde7da2.s3tc.ctex"
+path.etc2="res://.godot/imported/treev2_Tree_cape.png-7f966bd26e6ac243328a35e7ebde7da2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Art/3d/Tree/treev2_Tree_cape.png"
-dest_files=["res://.godot/imported/treev2_Tree_cape.png-7f966bd26e6ac243328a35e7ebde7da2.s3tc.ctex"]
+dest_files=["res://.godot/imported/treev2_Tree_cape.png-7f966bd26e6ac243328a35e7ebde7da2.s3tc.ctex", "res://.godot/imported/treev2_Tree_cape.png-7f966bd26e6ac243328a35e7ebde7da2.etc2.ctex"]
 
 [params]
 

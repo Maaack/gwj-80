@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bm48ts7vnndus"
 path.s3tc="res://.godot/imported/Nudge.png-4b2e23e9dbb4f3f8ce6d86e16a5f572d.s3tc.ctex"
+path.etc2="res://.godot/imported/Nudge.png-4b2e23e9dbb4f3f8ce6d86e16a5f572d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Art/2d/TExtures/Nudge.png"
-dest_files=["res://.godot/imported/Nudge.png-4b2e23e9dbb4f3f8ce6d86e16a5f572d.s3tc.ctex"]
+dest_files=["res://.godot/imported/Nudge.png-4b2e23e9dbb4f3f8ce6d86e16a5f572d.s3tc.ctex", "res://.godot/imported/Nudge.png-4b2e23e9dbb4f3f8ce6d86e16a5f572d.etc2.ctex"]
 
 [params]
 

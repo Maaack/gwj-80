@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://crwgtarjmqp70"
 path.s3tc="res://.godot/imported/Vines_vines.png-db5f46c0725d893387850efcf0b72d26.s3tc.ctex"
+path.etc2="res://.godot/imported/Vines_vines.png-db5f46c0725d893387850efcf0b72d26.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Art/3d/Tree/Vines_vines.png"
-dest_files=["res://.godot/imported/Vines_vines.png-db5f46c0725d893387850efcf0b72d26.s3tc.ctex"]
+dest_files=["res://.godot/imported/Vines_vines.png-db5f46c0725d893387850efcf0b72d26.s3tc.ctex", "res://.godot/imported/Vines_vines.png-db5f46c0725d893387850efcf0b72d26.etc2.ctex"]
 
 [params]
 

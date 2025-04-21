@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4pifxb02vxkv"
 path.s3tc="res://.godot/imported/SLime_Eyes_==.png-ab4bbee57d537788b84ac0bb50d05dac.s3tc.ctex"
+path.etc2="res://.godot/imported/SLime_Eyes_==.png-ab4bbee57d537788b84ac0bb50d05dac.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Art/3d/Slime/SLime_Eyes_==.png"
-dest_files=["res://.godot/imported/SLime_Eyes_==.png-ab4bbee57d537788b84ac0bb50d05dac.s3tc.ctex"]
+dest_files=["res://.godot/imported/SLime_Eyes_==.png-ab4bbee57d537788b84ac0bb50d05dac.s3tc.ctex", "res://.godot/imported/SLime_Eyes_==.png-ab4bbee57d537788b84ac0bb50d05dac.etc2.ctex"]
 
 [params]
 

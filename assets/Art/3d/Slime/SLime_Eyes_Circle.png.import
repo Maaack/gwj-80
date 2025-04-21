@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtf05dngx26bu"
 path.s3tc="res://.godot/imported/SLime_Eyes_Circle.png-892005a572436b2e2988dfa25eaabff8.s3tc.ctex"
+path.etc2="res://.godot/imported/SLime_Eyes_Circle.png-892005a572436b2e2988dfa25eaabff8.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Art/3d/Slime/SLime_Eyes_Circle.png"
-dest_files=["res://.godot/imported/SLime_Eyes_Circle.png-892005a572436b2e2988dfa25eaabff8.s3tc.ctex"]
+dest_files=["res://.godot/imported/SLime_Eyes_Circle.png-892005a572436b2e2988dfa25eaabff8.s3tc.ctex", "res://.godot/imported/SLime_Eyes_Circle.png-892005a572436b2e2988dfa25eaabff8.etc2.ctex"]
 
 [params]
 

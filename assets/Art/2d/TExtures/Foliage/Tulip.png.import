@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbajgthgst7a2"
 path.s3tc="res://.godot/imported/Tulip.png-48419d9ac7d73f4ff786c21037124f4b.s3tc.ctex"
+path.etc2="res://.godot/imported/Tulip.png-48419d9ac7d73f4ff786c21037124f4b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Art/2d/TExtures/Foliage/Tulip.png"
-dest_files=["res://.godot/imported/Tulip.png-48419d9ac7d73f4ff786c21037124f4b.s3tc.ctex"]
+dest_files=["res://.godot/imported/Tulip.png-48419d9ac7d73f4ff786c21037124f4b.s3tc.ctex", "res://.godot/imported/Tulip.png-48419d9ac7d73f4ff786c21037124f4b.etc2.ctex"]
 
 [params]
 

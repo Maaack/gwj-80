@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgbfs7dag5c8k"
 path.s3tc="res://.godot/imported/treev2_Material.001_BaseColor-Material.png-7acb868f480ffb2a44a22894c1a95a5f.s3tc.ctex"
+path.etc2="res://.godot/imported/treev2_Material.001_BaseColor-Material.png-7acb868f480ffb2a44a22894c1a95a5f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Art/3d/Tree/treev2_Material.001_BaseColor-Material.png"
-dest_files=["res://.godot/imported/treev2_Material.001_BaseColor-Material.png-7acb868f480ffb2a44a22894c1a95a5f.s3tc.ctex"]
+dest_files=["res://.godot/imported/treev2_Material.001_BaseColor-Material.png-7acb868f480ffb2a44a22894c1a95a5f.s3tc.ctex", "res://.godot/imported/treev2_Material.001_BaseColor-Material.png-7acb868f480ffb2a44a22894c1a95a5f.etc2.ctex"]
 
 [params]
 

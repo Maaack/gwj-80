@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bv1mtwfmq8ch0"
 path.s3tc="res://.godot/imported/Fence_Plank_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-63d7d0da4b83e17d5d38be3d79bc457b.s3tc.ctex"
+path.etc2="res://.godot/imported/Fence_Plank_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-63d7d0da4b83e17d5d38be3d79bc457b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Art/3d/Plank/Fence_Plank_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png"
-dest_files=["res://.godot/imported/Fence_Plank_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-63d7d0da4b83e17d5d38be3d79bc457b.s3tc.ctex"]
+dest_files=["res://.godot/imported/Fence_Plank_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-63d7d0da4b83e17d5d38be3d79bc457b.s3tc.ctex", "res://.godot/imported/Fence_Plank_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-63d7d0da4b83e17d5d38be3d79bc457b.etc2.ctex"]
 
 [params]
 

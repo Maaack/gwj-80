@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dkvptqcg4r8uh"
 path.s3tc="res://.godot/imported/Gaint Red paintbrush.png-cb7670192a8552f1e0ff3ca37ac67d24.s3tc.ctex"
+path.etc2="res://.godot/imported/Gaint Red paintbrush.png-cb7670192a8552f1e0ff3ca37ac67d24.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Art/2d/TExtures/Foliage/Gaint Red paintbrush.png"
-dest_files=["res://.godot/imported/Gaint Red paintbrush.png-cb7670192a8552f1e0ff3ca37ac67d24.s3tc.ctex"]
+dest_files=["res://.godot/imported/Gaint Red paintbrush.png-cb7670192a8552f1e0ff3ca37ac67d24.s3tc.ctex", "res://.godot/imported/Gaint Red paintbrush.png-cb7670192a8552f1e0ff3ca37ac67d24.etc2.ctex"]
 
 [params]
 

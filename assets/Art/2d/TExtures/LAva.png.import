@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dev2sscs8fi2f"
 path.s3tc="res://.godot/imported/LAva.png-becc7879d0ba9dd4037f9bf51eda407e.s3tc.ctex"
+path.etc2="res://.godot/imported/LAva.png-becc7879d0ba9dd4037f9bf51eda407e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Art/2d/TExtures/LAva.png"
-dest_files=["res://.godot/imported/LAva.png-becc7879d0ba9dd4037f9bf51eda407e.s3tc.ctex"]
+dest_files=["res://.godot/imported/LAva.png-becc7879d0ba9dd4037f9bf51eda407e.s3tc.ctex", "res://.godot/imported/LAva.png-becc7879d0ba9dd4037f9bf51eda407e.etc2.ctex"]
 
 [params]
 

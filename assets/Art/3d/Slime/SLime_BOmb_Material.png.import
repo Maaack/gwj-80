@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://87gea5bnflh0"
 path.s3tc="res://.godot/imported/SLime_BOmb_Material.png-c6f52816a58a7d48d4bd06de7471be29.s3tc.ctex"
+path.etc2="res://.godot/imported/SLime_BOmb_Material.png-c6f52816a58a7d48d4bd06de7471be29.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Art/3d/Slime/SLime_BOmb_Material.png"
-dest_files=["res://.godot/imported/SLime_BOmb_Material.png-c6f52816a58a7d48d4bd06de7471be29.s3tc.ctex"]
+dest_files=["res://.godot/imported/SLime_BOmb_Material.png-c6f52816a58a7d48d4bd06de7471be29.s3tc.ctex", "res://.godot/imported/SLime_BOmb_Material.png-c6f52816a58a7d48d4bd06de7471be29.etc2.ctex"]
 
 [params]
 

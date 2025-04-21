@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://djbm0jq0q3kci"
 path.s3tc="res://.godot/imported/swamp tree_Material.png-b0d3d032cc2981ac847fbc4bf6dfbaaf.s3tc.ctex"
+path.etc2="res://.godot/imported/swamp tree_Material.png-b0d3d032cc2981ac847fbc4bf6dfbaaf.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Art/3d/Tree/swamp tree_Material.png"
-dest_files=["res://.godot/imported/swamp tree_Material.png-b0d3d032cc2981ac847fbc4bf6dfbaaf.s3tc.ctex"]
+dest_files=["res://.godot/imported/swamp tree_Material.png-b0d3d032cc2981ac847fbc4bf6dfbaaf.s3tc.ctex", "res://.godot/imported/swamp tree_Material.png-b0d3d032cc2981ac847fbc4bf6dfbaaf.etc2.ctex"]
 
 [params]
 

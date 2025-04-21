@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://qatbjiv6kr32"
 path.s3tc="res://.godot/imported/crystal.png-fbf30e10a19bc538aca02f21272a05e2.s3tc.ctex"
+path.etc2="res://.godot/imported/crystal.png-fbf30e10a19bc538aca02f21272a05e2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Art/3d/Slime/crystal.png"
-dest_files=["res://.godot/imported/crystal.png-fbf30e10a19bc538aca02f21272a05e2.s3tc.ctex"]
+dest_files=["res://.godot/imported/crystal.png-fbf30e10a19bc538aca02f21272a05e2.s3tc.ctex", "res://.godot/imported/crystal.png-fbf30e10a19bc538aca02f21272a05e2.etc2.ctex"]
 
 [params]
 

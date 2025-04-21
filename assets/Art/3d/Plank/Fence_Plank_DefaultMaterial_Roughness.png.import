@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://0g2086lc66ds"
 path.s3tc="res://.godot/imported/Fence_Plank_DefaultMaterial_Roughness.png-0826afee0b6270832b130af9f2730561.s3tc.ctex"
+path.etc2="res://.godot/imported/Fence_Plank_DefaultMaterial_Roughness.png-0826afee0b6270832b130af9f2730561.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Art/3d/Plank/Fence_Plank_DefaultMaterial_Roughness.png"
-dest_files=["res://.godot/imported/Fence_Plank_DefaultMaterial_Roughness.png-0826afee0b6270832b130af9f2730561.s3tc.ctex"]
+dest_files=["res://.godot/imported/Fence_Plank_DefaultMaterial_Roughness.png-0826afee0b6270832b130af9f2730561.s3tc.ctex", "res://.godot/imported/Fence_Plank_DefaultMaterial_Roughness.png-0826afee0b6270832b130af9f2730561.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4n4dnx8drb7m"
 path.s3tc="res://.godot/imported/Vines.png-9969d4bd1cf5f760f6da5a072e96acc5.s3tc.ctex"
+path.etc2="res://.godot/imported/Vines.png-9969d4bd1cf5f760f6da5a072e96acc5.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Art/3d/Slime/Vines.png"
-dest_files=["res://.godot/imported/Vines.png-9969d4bd1cf5f760f6da5a072e96acc5.s3tc.ctex"]
+dest_files=["res://.godot/imported/Vines.png-9969d4bd1cf5f760f6da5a072e96acc5.s3tc.ctex", "res://.godot/imported/Vines.png-9969d4bd1cf5f760f6da5a072e96acc5.etc2.ctex"]
 
 [params]
 

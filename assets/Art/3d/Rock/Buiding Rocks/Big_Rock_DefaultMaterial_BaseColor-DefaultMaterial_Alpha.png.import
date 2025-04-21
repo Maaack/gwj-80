@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmsy7diwcg7oa"
 path.s3tc="res://.godot/imported/Big_Rock_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-734a2119bde08cf1a7ee976502a8f377.s3tc.ctex"
+path.etc2="res://.godot/imported/Big_Rock_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-734a2119bde08cf1a7ee976502a8f377.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Art/3d/Rock/Buiding Rocks/Big_Rock_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png"
-dest_files=["res://.godot/imported/Big_Rock_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-734a2119bde08cf1a7ee976502a8f377.s3tc.ctex"]
+dest_files=["res://.godot/imported/Big_Rock_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-734a2119bde08cf1a7ee976502a8f377.s3tc.ctex", "res://.godot/imported/Big_Rock_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-734a2119bde08cf1a7ee976502a8f377.etc2.ctex"]
 
 [params]
 

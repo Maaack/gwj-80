@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c265fwbhr5lmo"
 path.s3tc="res://.godot/imported/Explosion_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-30ccd96804c1fdcd41424d6b0e082d31.s3tc.ctex"
+path.etc2="res://.godot/imported/Explosion_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-30ccd96804c1fdcd41424d6b0e082d31.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Art/3d/explosion mesh/Explosion_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png"
-dest_files=["res://.godot/imported/Explosion_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-30ccd96804c1fdcd41424d6b0e082d31.s3tc.ctex"]
+dest_files=["res://.godot/imported/Explosion_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-30ccd96804c1fdcd41424d6b0e082d31.s3tc.ctex", "res://.godot/imported/Explosion_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-30ccd96804c1fdcd41424d6b0e082d31.etc2.ctex"]
 
 [params]
 

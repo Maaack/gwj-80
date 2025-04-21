@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dg2v53a6k5ma0"
 path.s3tc="res://.godot/imported/Fire_Slime.png-feb4db6e7c5c716bca36d768f52aa62b.s3tc.ctex"
+path.etc2="res://.godot/imported/Fire_Slime.png-feb4db6e7c5c716bca36d768f52aa62b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Art/3d/Slime/Fire_Slime.png"
-dest_files=["res://.godot/imported/Fire_Slime.png-feb4db6e7c5c716bca36d768f52aa62b.s3tc.ctex"]
+dest_files=["res://.godot/imported/Fire_Slime.png-feb4db6e7c5c716bca36d768f52aa62b.s3tc.ctex", "res://.godot/imported/Fire_Slime.png-feb4db6e7c5c716bca36d768f52aa62b.etc2.ctex"]
 
 [params]
 

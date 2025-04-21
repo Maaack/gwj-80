@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c76pr2otfc1co"
 path.s3tc="res://.godot/imported/Stairs_LongS_Material_2.png-6de4a8ea00ace23c6c89941a4d53558d.s3tc.ctex"
+path.etc2="res://.godot/imported/Stairs_LongS_Material_2.png-6de4a8ea00ace23c6c89941a4d53558d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Art/3d/Stairs/Stairs_LongS_Material_2.png"
-dest_files=["res://.godot/imported/Stairs_LongS_Material_2.png-6de4a8ea00ace23c6c89941a4d53558d.s3tc.ctex"]
+dest_files=["res://.godot/imported/Stairs_LongS_Material_2.png-6de4a8ea00ace23c6c89941a4d53558d.s3tc.ctex", "res://.godot/imported/Stairs_LongS_Material_2.png-6de4a8ea00ace23c6c89941a4d53558d.etc2.ctex"]
 
 [params]
 

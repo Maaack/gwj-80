@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bffi4d4878oah"
 path.bptc="res://.godot/imported/Dirt_Mid.png-681a662ceff5e132657a6e02f522082f.bptc.ctex"
+path.astc="res://.godot/imported/Dirt_Mid.png-681a662ceff5e132657a6e02f522082f.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Art/2d/TExtures/Dirt_Mid.png"
-dest_files=["res://.godot/imported/Dirt_Mid.png-681a662ceff5e132657a6e02f522082f.bptc.ctex"]
+dest_files=["res://.godot/imported/Dirt_Mid.png-681a662ceff5e132657a6e02f522082f.bptc.ctex", "res://.godot/imported/Dirt_Mid.png-681a662ceff5e132657a6e02f522082f.astc.ctex"]
 
 [params]
 

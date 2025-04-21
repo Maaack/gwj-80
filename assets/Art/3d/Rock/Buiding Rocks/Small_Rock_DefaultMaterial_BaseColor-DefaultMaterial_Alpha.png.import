@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwicbmi2se4ye"
 path.s3tc="res://.godot/imported/Small_Rock_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-83ab8309371b9e27a36dd912a6a08f23.s3tc.ctex"
+path.etc2="res://.godot/imported/Small_Rock_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-83ab8309371b9e27a36dd912a6a08f23.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Art/3d/Rock/Buiding Rocks/Small_Rock_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png"
-dest_files=["res://.godot/imported/Small_Rock_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-83ab8309371b9e27a36dd912a6a08f23.s3tc.ctex"]
+dest_files=["res://.godot/imported/Small_Rock_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-83ab8309371b9e27a36dd912a6a08f23.s3tc.ctex", "res://.godot/imported/Small_Rock_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png-83ab8309371b9e27a36dd912a6a08f23.etc2.ctex"]
 
 [params]
 

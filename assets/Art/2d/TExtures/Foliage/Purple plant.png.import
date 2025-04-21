@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5n8cijd7km6l"
 path.s3tc="res://.godot/imported/Purple plant.png-0cfaa78749df638c7170c2e5bc390b21.s3tc.ctex"
+path.etc2="res://.godot/imported/Purple plant.png-0cfaa78749df638c7170c2e5bc390b21.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Art/2d/TExtures/Foliage/Purple plant.png"
-dest_files=["res://.godot/imported/Purple plant.png-0cfaa78749df638c7170c2e5bc390b21.s3tc.ctex"]
+dest_files=["res://.godot/imported/Purple plant.png-0cfaa78749df638c7170c2e5bc390b21.s3tc.ctex", "res://.godot/imported/Purple plant.png-0cfaa78749df638c7170c2e5bc390b21.etc2.ctex"]
 
 [params]
 
