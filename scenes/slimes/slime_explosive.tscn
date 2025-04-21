@@ -1,11 +1,11 @@
-[gd_scene load_steps=38 format=4 uid="uid://dtollnkgrdph8"]
+[gd_scene load_steps=39 format=4 uid="uid://dtollnkgrdph8"]
 
 [ext_resource type="Script" uid="uid://bn0efvyiditbq" path="res://scripts/slimes/slime_explosive.gd" id="1_c23ww"]
 [ext_resource type="PackedScene" uid="uid://cj0owc5s8ub2x" path="res://assets/Art/3d/Slime/SLime_BOmb.glb" id="2_5btpe"]
 [ext_resource type="Texture2D" uid="uid://dtf05dngx26bu" path="res://assets/Art/3d/Slime/SLime_Eyes_Circle.png" id="3_watnq"]
 [ext_resource type="Texture2D" uid="uid://8ragilk7x54d" path="res://assets/Art/3d/Slime/explosion.png" id="4_um5lw"]
 [ext_resource type="Texture2D" uid="uid://d2k723vd5d56l" path="res://assets/Art/3d/Slime/SLime_Mouth_ Angry D.png" id="5_502jm"]
-[ext_resource type="PackedScene" path="res://scenes/slimes/alerted_indicator.tscn" id="6_watnq"]
+[ext_resource type="PackedScene" uid="uid://dctf57s33kdcy" path="res://scenes/slimes/alerted_indicator.tscn" id="6_watnq"]
 [ext_resource type="PackedScene" uid="uid://dk3mqxfsapt2s" path="res://scenes/slimes/nudgeable_indicator.tscn" id="7_um5lw"]
 [ext_resource type="Texture2D" uid="uid://c265fwbhr5lmo" path="res://assets/Art/3d/explosion mesh/Explosion_DefaultMaterial_BaseColor-DefaultMaterial_Alpha.png" id="9_8e618"]
 [ext_resource type="Texture2D" uid="uid://bv57oqt275txt" path="res://assets/Art/3d/explosion mesh/Explosion_DefaultMaterial_Metallic-DefaultMaterial_Roughness.png" id="10_8e618"]
@@ -45,7 +45,7 @@ code = "shader_type spatial;
 
 #define USE_SUBSURFACESCATTERING 1
 
-render_mode 
+render_mode
 	#if USE_DISABLE_CULL
 		cull_disabled;
 	#else
@@ -73,13 +73,13 @@ uniform vec3      ToonRampTinting:    source_color;
 	uniform float     SubSurfCutoff:      hint_range(0.0, 1.0) = 0.5;
 	uniform float     SubSurfSmoothness:  hint_range(0.0, 1.0) = 0.05;
 	uniform sampler2D SubSurfTexture:  source_color, hint_default_white;
-	
+
 #endif
 
 group_uniforms Texture;
 #if (USE_SMOOTH_PIXELART || !USE_PIXELART)
 	uniform sampler2D Texture:            source_color, filter_linear_mipmap_anisotropic;
-#else 
+#else
 	uniform sampler2D Texture:            source_color, filter_nearest_mipmap_anisotropic;
 #endif
 
@@ -94,23 +94,23 @@ group_uniforms Texture;
 		vec2 ddx = dFdx(uv);
 		vec2 ddy = dFdy(uv);
 		vec2 lxy = sqrt(ddx * ddx + ddy * ddy);
-		
+
 		vec2 uv_pixels = uv / pixel_size;
-		
+
 		vec2 uv_pixels_floor = round(uv_pixels) - vec2(0.5f);
 		vec2 uv_dxy_pixels = uv_pixels - uv_pixels_floor;
-		
+
 		uv_dxy_pixels = clamp((uv_dxy_pixels - vec2(0.5f)) * pixel_size / lxy + vec2(0.5f), 0.0f, 1.0f);
-		
+
 		uv = uv_pixels_floor * pixel_size;
-		
+
 		return textureGrad(smp, uv + uv_dxy_pixels * pixel_size, ddx, ddy);
 	}
 #endif
 
 void fragment() {
 	vec4 textureColor;
-	
+
 	#if USE_SMOOTH_PIXELART
 		vec2 tex_size = 1.0f / vec2(textureSize(Texture, 0));
 		textureColor = texture_point_smooth(Texture, UV, tex_size);
@@ -129,41 +129,41 @@ void light() {
 	// Diffuse Shading
 	float d =  dot(NORMAL,LIGHT) * 0.5 + 0.5;
 	float toonRamp = smoothstep(ToonRampOffset, ToonRampOffset + ToonRampSmoothness, d);
-	
+
 	// Shadows
 	toonRamp *= ATTENUATION;
-	
+
 	vec3 toonRampOutput = LIGHT_COLOR * toonRamp;
 	vec3 ambientLightOutput = ALBEDO * ToonRampTinting;
 	DIFFUSE_LIGHT += clamp((toonRampOutput - ambientLightOutput), vec3(0.0), vec3(1.0));
-	
-	
+
+
 	#if USE_RIM
 		float fresnel = fresnel(RimPower, NORMAL, VIEW);
 		float d2 = dot(NORMAL, LIGHT);
 		d2 *= fresnel;
 		d2 = smoothstep(RimCutOff, RimCutOff + RimSmoothness, d2);
-		
+
 		vec3 rimOutput =  d2 * RimLightBrightness * ALBEDO;
-		
+
 		DIFFUSE_LIGHT += rimOutput;
 	#endif
-	
-	
-	
+
+
+
 	#if USE_SUBSURFACESCATTERING
 		float subSurfBack = dot(VIEW, -(LIGHT + NORMAL * SubSurfDistortion));
 		float subSurfFront = dot(VIEW, LIGHT - NORMAL * SubSurfDistortion);
 		subSurfBack = max(subSurfBack, 0.0);
 		subSurfFront = max(subSurfFront, 0.0);
-		
-		float subSurfScattering = smoothstep(SubSurfCutoff, SubSurfCutoff + SubSurfSmoothness, subSurfBack + subSurfFront); 
-		
+
+		float subSurfScattering = smoothstep(SubSurfCutoff, SubSurfCutoff + SubSurfSmoothness, subSurfBack + subSurfFront);
+
 		vec3 subSurfColor = SubSurfTint * texture(SubSurfTexture, UV).rgb;
 		DIFFUSE_LIGHT += subSurfScattering * SubSurfBrightness * subSurfColor;
-	#endif         
-          
-	
+	#endif
+
+
 	SPECULAR_LIGHT = ambientLightOutput;
 }"
 
@@ -212,7 +212,7 @@ emission_texture = ExtResource("10_ojqrv")
 normal_enabled = true
 normal_texture = ExtResource("11_ojqrv")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_mdd6t"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_o8muw"]
 _surfaces = [{
 "aabb": AABB(-0.764826, -0.869838, -0.945952, 1.68953, 1.75058, 1.8436),
 "format": 34896613377,
@@ -244,7 +244,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("XFB72nV4QBO2dS0r+4MODzWLTOz/mcBIk3j//1KA1yzAXjEUvYnYPLhxrNP4osU0wF4xFL2JtkdcUHvadXhcCQNFge67oxQdNYtM7P+Z9he4cazT+KJbFpN4//9SgA4UuHGs0/iid/gDRYHuu6Mp/pN4//9SgHf/A0WB7rujDytcUHvadXiFMJN4//9SgIsw3xGVggMmtBtIzLGalUn8IT0OnHzwZ/woCs3+OKq6UStXuMueJNUCQD0OnHzwZ6MsUkdqnHYXCADKvCV4XCIKE4RrbfdOOb8WfXLyL30QwBAUuYUjNU41AYp/hODC5KEvsio032vr0jExamlioPxnP3sjuWlN74tAi1sfKy2jGD3wbuGCAABqBfF4uMlbDdUU0ktwXBUl8iCBAeXTcF3ICbsOohSFYLo0KzUuIQBGnx51pV4NiIRPA4Too2IVVfca3b0UR+t/BBwP5qJmPaPyJSmpea2ESPwm7dKwycNYzxkuu87wB3LJNob6TciBevwun6Wq2MSSJEV5hinQ//8XQsJ4fh+N59A7uw6iFIVgEDKpCeuttMp4MWcUf0uZxgI4AABdzuWRwx6BAeXTcF3wEdqaDZfKCVYXJ0mRrI1IlQN8EbGuOUQ4DNA+B+AZV88CyglPWXFYMSZAOs9cRU4AHkw+AADudtZCF2LfD/1XRyVKgVAc8XDPGcScwyuWQBAHz5x1SMpAHwjOzvpGvUkcDE25zxf8cPQSUYFFDXmtaxv5vcwHDqlII///h2hFfvAhpNKZhlBg+iWim/26w1SoJ758jv3EUPoqV40y/P6EIk/mzknWc7LNRpKlBebnxxY96N06s1HI/DxZ2t9gI9CDMpqXEWSW2ZI38oeaid/5nju9XD+LaN9LPqNGdCz7ysk5zEAoK/yoNEJMPgAA7natRUka60ZHk48zyglPWXFYdyVwG196SakfMwMwqt5SjCEJ0D4H4BlXQQu6AQmLMInxMvkGo1bVnEcw5R20YdN/GipXjTL8/oR+ODWLTOz/ma84k3j//1KAyS+2dS0r+4MZyMBeMRS9if3AUYFFDXmtScG2dS0r+4P+QEqBUBzxcF8+wF4xFL2J70og2O4nsHweQz+5EJhR30AskRNIw/mjx6Q0RItZenBPunqUlbTCkEmo/Y0NrXiGV7dh0JoGy3pDuuJ12LMhou2uwqPquQWgua7wR+6xz7mCSsFNgKL2lEpSipq4bL1PH6eVUYi0OrNHS1XOkzDHN8DLvzha24mo/aUyheesmHx8ecpd+ZPkRetsm0BDvj/IhzXSQ2O4slkXs+o/la2MOb64TrlC/TWn3Elun01QWpzoUmrIpkP5zYJSmdpHZAK6IFn30UGGNp7mhOFi92UPPUekRVl4pRNL15nGZaKx8WLWvAu8CUeiydApZ1ERs6/IkB3+TDatBkF9tmce87UHIc7EzC/s45k1AdS7r0xM96RMSiKYGUcpWDxayIIqQYSgoU5QtcdQCsi8SArO2TsU4Gdoz8dleRS/dpBqp9Zq1ZLYXWmO3mLQhMZvTH02kn1G7HGIPOl1+A+Uh8JERppSTOqrDVsBpw95F8Esc4/Ec1ICqABMA6jlT5qn/dF+HrDcByPy4Ccv5xZjvYcRx78jK0S/UzVfXqM06mI+Nx5d")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_mdd6t")
+shadow_mesh = SubResource("ArrayMesh_o8muw")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjk0b"]
 transparency = 1
@@ -297,6 +297,37 @@ billboard_keep_scale = true
 material = SubResource("StandardMaterial3D_pxrx4")
 size = Vector2(0.48, 0.6)
 orientation = 2
+
+[sub_resource type="Animation" id="Animation_o8muw"]
+resource_name = "Countdown"
+length = 6.0
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/SlimeModel/Armature:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.625, 0.75, 2, 2.125, 2.25, 3.5, 3.625, 3.75, 4, 4.125, 4.25, 4.5, 4.625, 4.75, 5, 5.125, 5.25, 5.375, 5.5, 5.625, 5.75, 5.875, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.6, 0.6, 0.6), Vector3(0.6, 0.6, 0.6), Vector3(0.75, 0.75, 0.75), Vector3(0.6, 0.6, 0.6), Vector3(0.6, 0.6, 0.6), Vector3(0.75, 0.75, 0.75), Vector3(0.6, 0.6, 0.6), Vector3(0.6, 0.6, 0.6), Vector3(0.85, 0.85, 0.85), Vector3(0.6, 0.6, 0.6), Vector3(0.6, 0.6, 0.6), Vector3(0.85, 0.85, 0.85), Vector3(0.6, 0.6, 0.6), Vector3(0.6, 0.6, 0.6), Vector3(0.85, 0.85, 0.85), Vector3(0.6, 0.6, 0.6), Vector3(0.6, 0.6, 0.6), Vector3(0.85, 0.85, 0.85), Vector3(0.6, 0.6, 0.6), Vector3(1, 1, 1), Vector3(0.6, 0.6, 0.6), Vector3(1, 1, 1), Vector3(0.6, 0.6, 0.6), Vector3(1, 1, 1), Vector3(0.6, 0.6, 0.6)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"explode"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_wiw7k"]
 resource_name = "Explosion"
@@ -399,9 +430,22 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pivot/SlimeModel/Armature:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6, 0.6, 0.6)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cbxxb"]
 _data = {
+&"Countdown": SubResource("Animation_o8muw"),
 &"Explosion": SubResource("Animation_wiw7k"),
 &"RESET": SubResource("Animation_epbds")
 }
@@ -427,16 +471,21 @@ unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0589509, 0, 0.00646806)
 
 [node name="Armature" parent="Pivot/SlimeModel" index="0"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.155607, 0.150589, -0.704985)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0.155607, 0.150589, -0.365451)
+
+[node name="Skeleton3D" parent="Pivot/SlimeModel/Armature" index="0"]
+bones/0/position = Vector3(-0.250711, -0.133827, 0.406895)
+bones/1/position = Vector3(-0.169712, 0.590945, 0.474417)
+bones/1/scale = Vector3(1, 1, 1)
 
 [node name="Circle" parent="Pivot/SlimeModel/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.756952, -4.42378e-09, 1.39698e-09, 5.87897e-09, 0.756953, 0, -1.39698e-09, 7.45058e-09, 0.756953, -0.169257, 1.57579, 0.340779)
+transform = Transform3D(0.756952, -4.42378e-09, 1.39698e-09, 4.94765e-09, 0.756953, 0, -1.39698e-09, 7.45058e-09, 0.756953, -0.130381, 1.66987, 0.394847)
 
 [node name="Circle" parent="Pivot/SlimeModel/Armature/Skeleton3D/Circle" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ev6xt")
 
 [node name="BézierCurve" parent="Pivot/SlimeModel/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1.00075, -5.8486e-09, 1.84693e-09, 7.77248e-09, 1.00075, 0, -1.84693e-09, 9.85027e-09, 1.00075, -0.467967, 2.06207, 0.339872)
+transform = Transform3D(1.00075, -5.8486e-09, 1.84693e-09, 6.5412e-09, 1.00075, 0, -1.84693e-09, 9.85027e-09, 1.00075, -0.42909, 2.15615, 0.39394)
 
 [node name="BézierCurve" parent="Pivot/SlimeModel/Armature/Skeleton3D/BézierCurve" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_lec15")
@@ -512,6 +561,7 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_cbxxb")
 }
+autoplay = "Countdown"
 
 [connection signal="body_entered" from="FlockingZone" to="." method="_on_flocking_zone_body_entered"]
 [connection signal="body_exited" from="FlockingZone" to="." method="_on_flocking_zone_body_exited"]

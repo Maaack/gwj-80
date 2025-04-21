@@ -13,13 +13,12 @@ var is_exploding: bool = false
 
 func _ready() -> void:
 	super()
-	get_tree().create_timer(explosion_delay, false).timeout.connect(apply_effects_to_nearby_slimes)
 	explosion_radius = get_flocking_zone_radius()
 
 func is_busy() -> bool:
 	return super.is_busy() or is_exploding
 
-func apply_effects_to_nearby_slimes() -> void:
+func explode() -> void:
 	if is_busy(): return
 	is_exploding = true
 	for slime: Slime in nearby_slimes:
@@ -33,6 +32,8 @@ func apply_effects_to_nearby_slimes() -> void:
 	is_exploding = false
 	depart(0.1)
 
+func apply_effects_to_nearby_slimes() -> void:
+	explode()
 
 func _calculate_explosion_velocity(other_node: Node3D) -> Vector3:
 	var distance: float = global_position.distance_to(other_node.global_position)
