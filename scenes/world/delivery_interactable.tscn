@@ -1,13 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://r2k1hf583lo6"]
+[gd_scene load_steps=7 format=3 uid="uid://r2k1hf583lo6"]
 
 [ext_resource type="Script" uid="uid://dfxd3be6lmrrm" path="res://scenes/world/delivery_interactable.gd" id="1_0s0h2"]
 [ext_resource type="PackedScene" uid="uid://ld17blvffcfp" path="res://assets/Art/3d/Chest/chest.tscn" id="1_ddqyk"]
+[ext_resource type="Texture2D" uid="uid://dfmmr0up4tnvv" path="res://assets/Art/2d/TExtures/timer.png" id="3_1kihy"]
+[ext_resource type="FontFile" uid="uid://d2g5kua0l6cp5" path="res://assets/HechoAMano-Regular.ttf" id="3_gvwsr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v4xmg"]
+size = Vector3(2.15, 2, 2.1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0s0h2"]
 radius = 3.0
 
-[node name="DeliveryInteractable" type="Node3D"]
+[node name="DeliveryInteractable" type="StaticBody3D"]
 script = ExtResource("1_0s0h2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.894, -0.05)
+shape = SubResource("BoxShape3D_v4xmg")
 
 [node name="Chest" parent="." instance=ExtResource("1_ddqyk")]
 
@@ -19,7 +28,29 @@ collision_mask = 2
 shape = SubResource("SphereShape3D_0s0h2")
 
 [node name="CooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 10.0
+
+[node name="TimerIcon" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 3, 0)
+visible = false
+offset = Vector2(-175, 0)
+billboard = 1
+texture = ExtResource("3_1kihy")
+
+[node name="CooldownLabel" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
+offset = Vector2(100, 0)
+billboard = 1
+render_priority = 1
+outline_render_priority = 0
+text = "3.5"
+font = ExtResource("3_gvwsr")
+font_size = 172
+outline_size = 32
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
