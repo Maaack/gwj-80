@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://d1a0ocdj6famc" path="res://scripts/slimes/slime_mud.gd" id="1_mesks"]
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_yqygu"]
-[ext_resource type="Texture2D" uid="uid://c5h7uqljbjb1i" path="res://assets/Art/3d/Slime/SLime_Eyes_Angry.png" id="3_0lisk"]
+[ext_resource type="Texture2D" uid="uid://b6h2eo7tuuclh" path="res://assets/Art/3d/Slime/SLime_Eyes_half.png" id="3_2g4aq"]
 [ext_resource type="PackedScene" uid="uid://dctf57s33kdcy" path="res://scenes/slimes/alerted_indicator.tscn" id="3_yqygu"]
 [ext_resource type="Texture2D" uid="uid://d1w5g0xuofqaj" path="res://assets/Art/3d/Slime/Dirt.png" id="4_2g4aq"]
-[ext_resource type="Texture2D" uid="uid://bpyifld1qffep" path="res://assets/Art/3d/Slime/Mouth_default.png" id="5_prg7o"]
+[ext_resource type="Texture2D" uid="uid://c8spfvk36d7jq" path="res://assets/Art/3d/Slime/SLime_Mouth_H.png" id="5_prg7o"]
 [ext_resource type="PackedScene" uid="uid://dk3mqxfsapt2s" path="res://scenes/slimes/nudgeable_indicator.tscn" id="7_2g4aq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6nu0y"]
@@ -16,7 +16,7 @@ radius = 0.63
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("3_0lisk")
+albedo_texture = ExtResource("3_2g4aq")
 
 [sub_resource type="Shader" id="Shader_g7edl"]
 code = "shader_type spatial;
@@ -170,7 +170,7 @@ shader_parameter/SubSurfCutoff = 0.5
 shader_parameter/SubSurfSmoothness = 0.05
 shader_parameter/Texture = ExtResource("4_2g4aq")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lrv4y"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4iwe"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
@@ -203,11 +203,13 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Sphere" parent="Pivot/SlimeModel/SLime/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, -0.0102396, -0.0116708, 0.00671297)
+[node name="Eyes" parent="Pivot/SlimeModel/SLime/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_3mr13")
-surface_material_override/1 = SubResource("ShaderMaterial_h4iwe")
-surface_material_override/2 = SubResource("StandardMaterial3D_lrv4y")
+
+[node name="Sphere" parent="Pivot/SlimeModel/SLime/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, -0.0102396, -0.0116708, 0.00671297)
+surface_material_override/0 = SubResource("ShaderMaterial_h4iwe")
+surface_material_override/1 = SubResource("StandardMaterial3D_h4iwe")
 
 [node name="FlockingZone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

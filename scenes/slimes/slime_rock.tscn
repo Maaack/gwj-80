@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://chx4skxp7tgbu" path="res://assets/Art/3d/Slime/Slime.tscn" id="2_pk4ua"]
 [ext_resource type="Texture2D" uid="uid://c5h7uqljbjb1i" path="res://assets/Art/3d/Slime/SLime_Eyes_Angry.png" id="3_bopyr"]
 [ext_resource type="Texture2D" uid="uid://82so53n7pui" path="res://assets/Art/3d/Slime/Rock.png" id="4_xleip"]
-[ext_resource type="Texture2D" uid="uid://bpyifld1qffep" path="res://assets/Art/3d/Slime/Mouth_default.png" id="5_r7m5k"]
+[ext_resource type="Texture2D" uid="uid://c4q2y8bed0mwm" path="res://assets/Art/3d/Slime/SLime_Mouth_V.png" id="5_r7m5k"]
 [ext_resource type="PackedScene" uid="uid://dctf57s33kdcy" path="res://scenes/slimes/alerted_indicator.tscn" id="6_xleip"]
 [ext_resource type="PackedScene" uid="uid://dk3mqxfsapt2s" path="res://scenes/slimes/nudgeable_indicator.tscn" id="7_r7m5k"]
 
@@ -170,7 +170,7 @@ shader_parameter/SubSurfCutoff = 0.5
 shader_parameter/SubSurfSmoothness = 0.05
 shader_parameter/Texture = ExtResource("4_xleip")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0mb5x"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0poo"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
@@ -205,11 +205,13 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Sphere" parent="Pivot/SlimeModel/SLime/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, -0.0102396, -0.0116708, 0.00671297)
+[node name="Eyes" parent="Pivot/SlimeModel/SLime/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ykxcs")
-surface_material_override/1 = SubResource("ShaderMaterial_d0poo")
-surface_material_override/2 = SubResource("StandardMaterial3D_0mb5x")
+
+[node name="Sphere" parent="Pivot/SlimeModel/SLime/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, -0.0102396, -0.0116708, 0.00671297)
+surface_material_override/0 = SubResource("ShaderMaterial_d0poo")
+surface_material_override/1 = SubResource("StandardMaterial3D_d0poo")
 
 [node name="FlockingZone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
