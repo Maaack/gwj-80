@@ -37,7 +37,6 @@ text = "Mouse Sensitivity :"
 [node name="HSlider" parent="MouseSensitivityControl" index="1"]
 min_value = 0.25
 max_value = 2.0
-value = 0.25
 tick_count = 8
 
 [node name="JoypadSensitivityControl" parent="." instance=ExtResource("2_kpc65")]
