@@ -36,3 +36,4 @@ func refresh_objectives() -> void:
 			else:
 				goal_row.slime_count = 0
 			goal_row.slime_name = Constants.get_slime_name(goal.slime_type)
+			goal_row.slime_icon = Constants.get_slime_icon(goal.slime_type)

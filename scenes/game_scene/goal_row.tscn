@@ -11,7 +11,11 @@ layout_mode = 2
 text = "0 / 1"
 
 [node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_mode = 1
 
 [node name="SlimeNameLabel" type="Label" parent="."]
 layout_mode = 2
