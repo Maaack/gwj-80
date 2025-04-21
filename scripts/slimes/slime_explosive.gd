@@ -9,14 +9,19 @@ extends Slime
 
 var explosion_radius: float = 10.0
 
+var is_exploding: bool = false
 
 func _ready() -> void:
 	super()
 	get_tree().create_timer(explosion_delay, false).timeout.connect(apply_effects_to_nearby_slimes)
 	explosion_radius = get_flocking_zone_radius()
 
+func is_busy() -> bool:
+	return super.is_busy() or is_exploding
 
 func apply_effects_to_nearby_slimes() -> void:
+	if is_busy(): return
+	is_exploding = true
 	for slime: Slime in nearby_slimes:
 		slime.add_external_velocity(_calculate_explosion_velocity(slime))
 		slime.split()
