@@ -47,7 +47,7 @@ func _on_slime_delivered(slime_data : SlimeData):
 	slime_delivered.emit(slime_data.slime_type, slimes_submitted[slime_data.slime_type])
 	_check_level_won()
 
-func _on_slime_spawned(slime_node : Slime) -> void:
+func _on_slime_spawned(slime_node : Slime, adds_mass : bool = true) -> void:
 	slime_node.reparent(self)
 	# Slimes inherit their rotation from the original parent, which causes them to look in the wrong direction.
 	# This clears the relevant rotation.
@@ -55,8 +55,9 @@ func _on_slime_spawned(slime_node : Slime) -> void:
 	slime_node.rotation.y = 0.0
 	slime_node.slime_touched.connect(_on_slimes_touch.bind(slime_node))
 	slime_node.departed.connect(_on_slime_departed.bind(slime_node.slime_data))
-	slime_node.slime_split.connect(_on_slime_spawned)
-	slime_manager.slime_added(slime_node.slime_type, slime_node.mass)
+	slime_node.slime_split.connect(_on_slime_spawned.bind(false))
+	if adds_mass:
+		slime_manager.slime_added(slime_node.slime_type, slime_node.mass)
 
 func _on_slime_departed(slime_data : SlimeData) -> void:
 	slime_manager.slime_masses_removed(slime_data.get_slime_type_masses())
