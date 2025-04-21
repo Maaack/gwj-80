@@ -5,6 +5,7 @@ signal interacted
 
 var is_cooldown : bool = false
 
+@onready var timer_icon: Sprite3D = %TimerIcon
 @onready var cooldown_timer: Timer = %CooldownTimer
 @onready var cooldown_label: Label3D = %CooldownLabel
 
@@ -29,9 +30,11 @@ func interact():
 	interacted.emit()
 	$CooldownTimer.start()
 	cooldown_label.show()
+	timer_icon.show()
 	is_cooldown = true
 
 func _on_cooldown_timer_timeout():
 	is_cooldown = false
 	cooldown_label.hide()
+	timer_icon.hide()
 	$Area3D/CollisionShape3D.disabled = false
