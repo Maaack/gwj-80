@@ -5,7 +5,7 @@ extends Slime
 
 
 @export var radial_position_effect_cooldown: float = 45.0
-@export var radial_position_effect_duration: float = 12.0
+@export var radial_position_effect_duration: float = 15.0
 
 var affected_slimes: Array[Slime] = []
 
@@ -24,7 +24,7 @@ func _ready() -> void:
 	radial_pos_effect_timer.start()
 
 	var num_points: int = 12
-	var radius: float = get_flocking_zone_radius() / 2.0
+	var radius: float = get_flocking_zone_radius()
 
 	nearby_slimes_path.curve = Curve3D.new()
 	for i: int in num_points:
@@ -49,9 +49,10 @@ func give_position_target_to_slime(slime: Slime, new_position: Vector3) -> void:
 
 ## Tell all affected slimes to start using their movement rules again.
 func remove_effect_from_slimes() -> void:
-	for i in affected_slimes.size():
-		var slime: Slime = affected_slimes.pop_back()
-		slime.use_weights = true
+	for slime: Slime in affected_slimes:
+		if slime and is_instance_valid(slime):
+			slime.use_weights = true
+	affected_slimes.clear()
 
 
 func _on_radial_pos_effect_timer_timeout() -> void:
