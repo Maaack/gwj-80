@@ -63,6 +63,21 @@ static var slime_type_names : Dictionary[SlimeType, String] = {
 }
 
 
+static var slime_type_descriptions: Dictionary[SlimeType, String] = {
+	SlimeType.WATER: "Like the current of a river, water slimes push nearby slimes in the direction they are moving.  This makes them slow to change direction when they gather in groups.",
+	SlimeType.FIRE: "Fire slimes are fast moving creatures that rely on each other to stay warm.  They will cause other nearby slimes to grow larger, but will shrink if they are isolated from the group for too long.",
+	SlimeType.VINE: "Vine slimes seem to have a strong connection to water slimes.  If they remain close to one for long enough, they grow larger.",
+	SlimeType.ROCK: "Rock slimes don't move very fast on their own, and they are also hard for other things to move.",
+	SlimeType.EXPLOSIVE: "Explosive slimes live brief but vibrant existences, as they explode shortly after creation, which launches nearby slimes away!",
+	SlimeType.METAL: "Metal slimes rely on other creatures to move them, as they are unable to move on their own.",
+	SlimeType.ASH: "Ash slimes are mischievous creatures that occasionally like to frighten other slimes, causing them to scatter.",
+	SlimeType.MOSS: "Eco slimes grow larger over time.  Once they are fully grown they share their energy with nearby slimes, causing them to grow larger as well.  Sometimes they even take inspiration from a nearby slime, and create a copy of it!",
+	SlimeType.MUD: "Mud slimes cause the ground around them to be difficult for other slimes to traverse, which slows nearby slimes down.",
+	SlimeType.CRYSTAL: "Crystal slimes are social creatures that encourage nearby slimes to cluster together more tightly.",
+	SlimeType.YINYANG: "Balance slimes, being difficult to create, are somewhat rare.  They will occasionally compel nearby slimes to try to make a circle around them.",
+}
+
+
 static var slime_type_icons: Dictionary[SlimeType, String] = {
 	SlimeType.WATER: "uid://bqoaoiy523b8r",
 	SlimeType.FIRE: "uid://bn03fhhnru5xa",
@@ -109,6 +124,11 @@ static func get_slime_instance(slime_type : SlimeType) -> Slime:
 static func get_slime_name(slime_type : SlimeType) -> String:
 	if slime_type not in slime_type_names: return "Any"
 	return slime_type_names[slime_type]
+
+
+static func get_slime_description(slime_type: SlimeType) -> String:
+	if slime_type not in slime_type_descriptions: return "A default slime."
+	return slime_type_descriptions[slime_type]
 
 
 static func get_slime_icon(slime_type: SlimeType) -> Texture2D:

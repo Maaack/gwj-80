@@ -38,6 +38,7 @@ func _refresh_page() -> void:
 		%ProgressBar.value = 0.0
 	else:
 		%SlimeNameLabel.text = Constants.get_slime_name(page)
+		%DescriptionLabel.text = Constants.get_slime_description(page)
 		if journal_state.has_slime(page):
 			%DiscoveredContainer.show()
 			%ProgressContainer.hide()

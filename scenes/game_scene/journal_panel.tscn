@@ -105,10 +105,10 @@ size_flags_vertical = 3
 
 [node name="DiscoveredContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer"]
+custom_minimum_size = Vector2(0, 161)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/HBoxContainer"]
