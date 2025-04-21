@@ -30,6 +30,7 @@ func apply_effects_to_nearby_slimes() -> void:
 	tween.tween_property(slime_model, "scale", Vector3.ONE * 0.01, 0.25)
 	_explosion_animation_player.play(&"Explosion")
 	await get_tree().create_timer(2, false).timeout
+	is_exploding = false
 	depart(0.1)
 
 

@@ -424,7 +424,10 @@ unique_name_in_owner = true
 
 [node name="SlimeModel" parent="Pivot" instance=ExtResource("2_5btpe")]
 unique_name_in_owner = true
-transform = Transform3D(-0.653133, 0, 0.0600376, 0, 0.655887, 0, -0.0600376, 0, -0.653133, 0.0589509, 0, 0.00646806)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0589509, 0, 0.00646806)
+
+[node name="Armature" parent="Pivot/SlimeModel" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.155607, 0.150589, -0.704985)
 
 [node name="Circle" parent="Pivot/SlimeModel/Armature/Skeleton3D" index="0"]
 transform = Transform3D(0.756952, -4.42378e-09, 1.39698e-09, 5.87897e-09, 0.756953, 0, -1.39698e-09, 7.45058e-09, 0.756953, -0.169257, 1.57579, 0.340779)
