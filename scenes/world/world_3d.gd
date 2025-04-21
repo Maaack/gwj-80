@@ -110,6 +110,8 @@ func _ready():
 			child.slime_spawned.connect(_on_slime_spawned)
 		if child is DeliveryInteractable:
 			child.interacted.connect(delivery_area.deliver)
+		if child is QuestGiver:
+			child.interacted.connect(open_tutorials)
 	await get_tree().create_timer(1, false).timeout
 	open_tutorials()
 
