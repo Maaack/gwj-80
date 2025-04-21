@@ -63,20 +63,35 @@ static var slime_type_names : Dictionary[SlimeType, String] = {
 }
 
 
-# TODO: Update UIDs to use the real icons.
 static var slime_type_icons: Dictionary[SlimeType, String] = {
-	SlimeType.WATER: "uid://drupexiewywk6",
-	SlimeType.FIRE: "uid://drupexiewywk6",
-	SlimeType.VINE: "uid://drupexiewywk6",
-	SlimeType.ROCK: "uid://drupexiewywk6",
-	SlimeType.EXPLOSIVE: "uid://drupexiewywk6",
-	SlimeType.METAL: "uid://drupexiewywk6",
-	SlimeType.ASH: "uid://drupexiewywk6",
-	SlimeType.MOSS: "uid://drupexiewywk6",
-	SlimeType.MUD: "uid://drupexiewywk6",
-	SlimeType.CRYSTAL: "uid://drupexiewywk6",
-	SlimeType.YINYANG: "uid://drupexiewywk6",
+	SlimeType.WATER: "uid://bqoaoiy523b8r",
+	SlimeType.FIRE: "uid://bn03fhhnru5xa",
+	SlimeType.VINE: "uid://vf7ojp3gblq5",
+	SlimeType.ROCK: "uid://cr2oj3p16ccds",
+	SlimeType.EXPLOSIVE: "uid://c0aphyrpahl1k",
+	SlimeType.METAL: "uid://woxi0xeh7vbd",
+	SlimeType.ASH: "uid://du5g8wy5k6ihe",
+	SlimeType.MOSS: "uid://baydccatgwhyf",
+	SlimeType.MUD: "uid://jtae8rr2box6",
+	SlimeType.CRYSTAL: "uid://b8t36wiqmismf",
+	SlimeType.YINYANG: "uid://r1tdjetsw6hv",
 }
+
+
+static var slime_type_sketches: Dictionary[SlimeType, String] = {
+	SlimeType.WATER: "uid://p54mdr5bb81s",
+	SlimeType.FIRE: "uid://hcolfyvfgp6j",
+	SlimeType.VINE: "uid://cwxj4jbdurvoa",
+	SlimeType.ROCK: "uid://bvq1su1lfwwcc",
+	SlimeType.EXPLOSIVE: "uid://c3tpp7bjikdq3",
+	SlimeType.METAL: "uid://c0pm6l5ycafjn",
+	SlimeType.ASH: "uid://csb7onfgbcncc",
+	SlimeType.MOSS: "uid://406hpilypkq6",
+	SlimeType.MUD: "uid://b40vi3fdccxq1",
+	SlimeType.CRYSTAL: "uid://kb26c2a6lctj",
+	SlimeType.YINYANG: "uid://l0inbdk3oqyj",
+}
+
 
 static func new_slime_combination(slime_1 : SlimeType, slime_2 : SlimeType, slime_result : SlimeType) -> SlimeCombination:
 	var slime_combination : = SlimeCombination.new()
@@ -99,6 +114,12 @@ static func get_slime_name(slime_type : SlimeType) -> String:
 static func get_slime_icon(slime_type: SlimeType) -> Texture2D:
 	if slime_type not in slime_type_icons: return load("uid://drupexiewywk6")
 	var icon_path: String = slime_type_icons[slime_type]
+	return load(icon_path)
+
+
+static func get_slime_sketch(slime_type: SlimeType) -> Texture2D:
+	if slime_type not in slime_type_sketches: return load("uid://p54mdr5bb81s")
+	var icon_path: String = slime_type_sketches[slime_type]
 	return load(icon_path)
 
 

@@ -35,7 +35,7 @@ vertical_alignment = 1
 
 [node name="SlimeOneTexture" type="TextureRect" parent="SlimeOneContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -64,7 +64,7 @@ vertical_alignment = 1
 
 [node name="SlimeTwoTexture" type="TextureRect" parent="SlimeTwoContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -93,7 +93,7 @@ vertical_alignment = 1
 
 [node name="ResultTexture" type="TextureRect" parent="ResultContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

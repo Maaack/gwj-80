@@ -148,7 +148,7 @@ theme_override_constants/margin_bottom = 16
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 52
-theme_override_constants/v_separation = 32
+theme_override_constants/v_separation = 20
 
 [node name="SlimeCombinationDisplay" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationContainer" instance=ExtResource("4_t14ij")]
 layout_mode = 2
@@ -190,14 +190,50 @@ theme_override_constants/separation = 12
 [node name="SlimeCombinationDisplay" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer" instance=ExtResource("4_t14ij")]
 layout_mode = 2
 
+[node name="SlimeOneTexture" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay/SlimeOneContainer" index="1"]
+custom_minimum_size = Vector2(40, 40)
+
+[node name="SlimeTwoTexture" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay/SlimeTwoContainer" index="1"]
+custom_minimum_size = Vector2(40, 40)
+
+[node name="ResultTexture" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay/ResultContainer" index="1"]
+custom_minimum_size = Vector2(40, 40)
+
 [node name="SlimeCombinationDisplay2" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer" instance=ExtResource("4_t14ij")]
 layout_mode = 2
+
+[node name="SlimeOneTexture" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay2/SlimeOneContainer" index="1"]
+custom_minimum_size = Vector2(40, 40)
+
+[node name="SlimeTwoTexture" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay2/SlimeTwoContainer" index="1"]
+custom_minimum_size = Vector2(40, 40)
+
+[node name="ResultTexture" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay2/ResultContainer" index="1"]
+custom_minimum_size = Vector2(40, 40)
 
 [node name="SlimeCombinationDisplay3" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer" instance=ExtResource("4_t14ij")]
 layout_mode = 2
 
+[node name="SlimeOneTexture" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay3/SlimeOneContainer" index="1"]
+custom_minimum_size = Vector2(40, 40)
+
+[node name="SlimeTwoTexture" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay3/SlimeTwoContainer" index="1"]
+custom_minimum_size = Vector2(40, 40)
+
+[node name="ResultTexture" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay3/ResultContainer" index="1"]
+custom_minimum_size = Vector2(40, 40)
+
 [node name="SlimeCombinationDisplay4" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer" instance=ExtResource("4_t14ij")]
 layout_mode = 2
+
+[node name="SlimeOneTexture" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay4/SlimeOneContainer" index="1"]
+custom_minimum_size = Vector2(40, 40)
+
+[node name="SlimeTwoTexture" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay4/SlimeTwoContainer" index="1"]
+custom_minimum_size = Vector2(40, 40)
+
+[node name="ResultTexture" parent="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay4/ResultContainer" index="1"]
+custom_minimum_size = Vector2(40, 40)
 
 [node name="ProgressContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
@@ -256,3 +292,8 @@ libraries = {
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/PrevButton" to="." method="_on_prev_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="timeout" from="RefreshTimer" to="." method="_on_refresh_timer_timeout"]
+
+[editable path="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay"]
+[editable path="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay2"]
+[editable path="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay3"]
+[editable path="MarginContainer/VBoxContainer/MarginContainer/DiscoveredContainer/MarginContainer/CombinationStickyNote/PanelContainer/CombinationOverflowContainer/SlimeCombinationDisplay4"]
