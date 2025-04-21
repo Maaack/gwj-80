@@ -1,19 +1,20 @@
 # Attribution
 ## Collaborators
 
-### Role
-Person 1  
-Person 2  
-[Person w/ Link]()  
+### Programming
+[Matt](https://mjb117.itch.io/)  
+[Maaack](https://maaack.itch.io/)  
 
+### 2D & 3D Art
+[Kyveri](https://www.artstation.com/kyveri)
 
-## Sourced / Unaffiliated
-### Asset Type
-#### Use Case
-Author: [Name]()  
-Source: [Domain : webpage.html]()  
-License: [License]()
+### Music
+[Jon Hatch](http://www.jonhatchmusic.com/)
 
+### Production
+[Maaack](https://maaack.itch.io/)  
+
+## Sourced 
 ### Godot Wild Jam Logos
 Author: [Dawk](https://coreyaroberts.com/)  
 Source: [godotwildjam.com](https://godotwildjam.com/branding/)  
@@ -34,3 +35,8 @@ License: [GNU General Public License version 2](https://opensource.org/licenses/
 Author: [Marek Belski and contributors](https://github.com/Maaack/Godot-Game-Template/graphs/contributors)  
 Source: [github: Godot-Game-Template](https://github.com/Maaack/Godot-Game-Template)  
 License: [MIT License](LICENSE.txt)  
+
+#### Terrain3D
+Author: Cory Petkovsek & Roope Palmroos  
+Source: [github: Terrain3D](https://github.com/TokisanGames/Terrain3D)  
+License: [MIT](https://github.com/TokisanGames/Terrain3D/blob/main/LICENSE.txt)  
