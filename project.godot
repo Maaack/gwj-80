@@ -13,7 +13,7 @@ config_version=5
 config/name="Absurd Herd"
 run/main_scene="res://scenes/opening/opening_with_logo.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://drupexiewywk6"
 
 [autoload]
 

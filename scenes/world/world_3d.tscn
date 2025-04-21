@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2o8tdtpcqsbb"]
+[gd_scene load_steps=15 format=3 uid="uid://c2o8tdtpcqsbb"]
 
 [ext_resource type="Script" uid="uid://dlph8i25t6tyd" path="res://scenes/world/world_3d.gd" id="1_d5rq0"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="2_mchqb"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://e0giym03e6sp" path="res://assets/FinalMAp.tscn" id="11_4m75t"]
 [ext_resource type="PackedScene" uid="uid://t2e0c1vjuiws" path="res://scenes/world/delivery_area_3d.tscn" id="12_mchqb"]
 [ext_resource type="PackedScene" uid="uid://r2k1hf583lo6" path="res://scenes/world/delivery_interactable.tscn" id="12_xd1ql"]
+[ext_resource type="PackedScene" uid="uid://cfetxfuxwlk1p" path="res://assets/Art/3d/QuestGiver/QuestGiver.tscn" id="14_j5uvd"]
 [ext_resource type="PackedScene" uid="uid://i860ela8t0qg" path="res://scenes/world/water_slime_spawner.tscn" id="14_wc6xc"]
 [ext_resource type="PackedScene" uid="uid://g8bm0p3pcnvc" path="res://scenes/world/rock_slime_spawner.tscn" id="15_6ng0t"]
 [ext_resource type="PackedScene" uid="uid://yaml4wqvwlll" path="res://scenes/world/fire_slime_spawner.tscn" id="16_k68x3"]
@@ -61,5 +62,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
 
 [node name="DeliveryInteractable2" parent="." instance=ExtResource("12_xd1ql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7)
+
+[node name="QuestGiver" parent="." instance=ExtResource("14_j5uvd")]
+transform = Transform3D(-0.650774, 0, 0.759271, 0, 1, 0, -0.759271, 0, -0.650774, 7.31853, 0.0816598, -61.166)
 
 [connection signal="slime_type_observed" from="PlayerCharacter3D" to="." method="_on_player_character_3d_slime_type_observed"]
