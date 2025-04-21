@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2o8tdtpcqsbb"]
+[gd_scene load_steps=16 format=3 uid="uid://c2o8tdtpcqsbb"]
 
 [ext_resource type="Script" uid="uid://dlph8i25t6tyd" path="res://scenes/world/world_3d.gd" id="1_d5rq0"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="2_mchqb"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cfetxfuxwlk1p" path="res://assets/Art/3d/QuestGiver/QuestGiver.tscn" id="14_j5uvd"]
 [ext_resource type="PackedScene" uid="uid://i860ela8t0qg" path="res://scenes/world/water_slime_spawner.tscn" id="14_wc6xc"]
 [ext_resource type="PackedScene" uid="uid://g8bm0p3pcnvc" path="res://scenes/world/rock_slime_spawner.tscn" id="15_6ng0t"]
+[ext_resource type="AudioStream" uid="uid://bntnjqs8rw566" path="res://assets/Audio/SFX/Birds.mp3" id="15_wvsbj"]
 [ext_resource type="PackedScene" uid="uid://yaml4wqvwlll" path="res://scenes/world/fire_slime_spawner.tscn" id="16_k68x3"]
 [ext_resource type="PackedScene" uid="uid://c4n16qg5j5o3c" path="res://scenes/world/vine_slime_spawner.tscn" id="17_6ng0t"]
 
@@ -65,5 +66,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7)
 
 [node name="QuestGiver" parent="." instance=ExtResource("14_j5uvd")]
 transform = Transform3D(-0.650774, 0, 0.759271, 0, 1, 0, -0.759271, 0, -0.650774, 7.31853, 0.0816598, -61.166)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 15, -63)
+stream = ExtResource("15_wvsbj")
+autoplay = true
+bus = &"SFX"
+parameters/looping = true
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 15, 4)
+stream = ExtResource("15_wvsbj")
+autoplay = true
+bus = &"SFX"
+parameters/looping = true
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 15, 26)
+stream = ExtResource("15_wvsbj")
+autoplay = true
+bus = &"SFX"
+parameters/looping = true
 
 [connection signal="slime_type_observed" from="PlayerCharacter3D" to="." method="_on_player_character_3d_slime_type_observed"]
