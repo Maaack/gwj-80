@@ -45,7 +45,7 @@ static var slime_type_scenes : Dictionary[SlimeType, String] = {
 	SlimeType.MOSS: "uid://d3hfsb384hf32",
 	SlimeType.MUD: "uid://hb7xi8e15pp6",
 	SlimeType.CRYSTAL: "uid://dbm1nj4nxxm1f",
-	SlimeType.YINYANG: "uid://rsvs5gnqqr8d",
+	SlimeType.YINYANG: "uid://bcjfkq2kbbyrr",
 }
 
 static var slime_type_names : Dictionary[SlimeType, String] = {
