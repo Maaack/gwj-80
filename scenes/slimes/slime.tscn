@@ -64,8 +64,7 @@ double_sided = false
 
 [node name="NudgeableIndicator" parent="." instance=ExtResource("4_38t07")]
 unique_name_in_owner = true
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.075, 1.9, 0.17)
-modulate = Color(1, 1, 1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 1.9, 0.17)
 
 [node name="OutOfBoundsDespawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
